@@ -8,5 +8,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grav4029/Birb-Helper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grav4029/Birb-Helper/issues"
+  },
+  "homepage": "https://github.com/grav4029/Birb-Helper#readme",
   "description": ""
 }
