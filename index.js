@@ -10,11 +10,11 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
+	console.log(`Loaded command ${command.name}`);
 }
 
 client.once('ready', () => {
-	console.log(`Logged in as ${client.user.tag}!`);
-	console.log(`WS ping is ${client.ws.ping}`);
+	console.log(`\nLogged in as ${client.user.tag}!`);
 	client.user.setActivity('development go brr', { type: 'WATCHING'});
 });
 
