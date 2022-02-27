@@ -4,6 +4,7 @@ module.exports = {
 	name: 'ping',
 	aliases: ['pong'],
 	description: 'Check the latency of the bot',
+	permissions: 'MANAGE_MESSAGES',
 	
 	async execute(client, message, args) {
 		const stopwatch = new Stopwatch(0).start();
