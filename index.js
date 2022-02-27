@@ -5,12 +5,15 @@ const fs = require('fs');
 const { prefix } = require('./config.json');
 require('dotenv').config();
 
-client.commands = new Discord.Collection()
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-	console.log(`Loaded command ${command.name}`);
+client.commands = new Discord.Collection();
+const commandFolders = fs.readdirSync('./commands');
+for (const folder of commandFolders) {
+	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const command = require(`./commands/${folder}/${file}`);
+		client.commands.set(command.name, command);
+		console.log(`Loaded command ${command.name}`);
+	}
 }
 
 client.once('ready', () => {
