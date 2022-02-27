@@ -31,6 +31,9 @@ client.on('messageCreate', async message => {
 	const command = client.commands.get(commandName)
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 	if (!command) return;
+	if (command.permissions) {
+		const authorPerms = ""; // TODO
+	}
 	try {
 		command.execute(client, message, args);
 	}
