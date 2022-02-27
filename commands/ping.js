@@ -11,6 +11,6 @@ module.exports = {
 		const reply = await message.reply('Pinging...');
 		if (!reply) return;
 		stopwatch.stop();
-		reply.edit(`Pong! Websocket: \`${client.ws.ping}ms\` Bot Latency: \`${stopwatch}\``)
+		reply.edit(`Pong! Websocket Ping: \`${client.ws.ping}ms\` Bot Latency: \`${stopwatch}\``)
 	},
 }
