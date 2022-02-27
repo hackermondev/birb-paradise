@@ -16,5 +16,8 @@
     "url": "https://github.com/grav4029/Birb-Helper/issues"
   },
   "homepage": "https://github.com/grav4029/Birb-Helper#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
 }
