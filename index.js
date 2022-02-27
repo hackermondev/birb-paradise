@@ -15,18 +15,12 @@ for (const file of commandFiles) {
 client.once('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log(`WS ping is ${client.ws.ping}`);
-	client.user.setActivity('you test new features', { type: 'WATCHING'});
+	client.user.setActivity('development go brr', { type: 'WATCHING'});
 });
 
-process.on('uncaughtException', error => {
-	console.error(error);
-})
+process.on('uncaughtException', error => { console.error(error); })
 
 client.on('messageCreate', async message => {
-	if (message.channel.id == '816836475214757970') {
-		if (message.content.startsWith('!') || (message.author.id == '663456983185358893')) return;
-		else return client.commands.get('clean').execute(client, message, message.content.split(' '));
-	}
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
