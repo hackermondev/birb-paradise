@@ -1,4 +1,5 @@
 const { Command } = require('@sapphire/framework');
+const { MessageEmbed } = require('discord.js');
 class EvalCommand extends Command {
   constructor(context, options) {
     super(context, {
@@ -6,20 +7,17 @@ class EvalCommand extends Command {
       name: 'eval',
       aliases: ['e','ev'],
       description: 'Evaluate code',
-      preconditions: ['Developer']
+      preconditions: ['Developer'],
+      flags: ['hide','delete','del']
     });
   }
 
   async messageRun(message, args) {
-	let code = args.rest('string');
-	let includesHide = false;
+	let code = await args.restResult('string');
+	const wantsHide = args.getFlags('hide');
+	const wantsDelete = args.getFlags('delete', 'del');
 	// TODO flags with sapphire
-	if (code.toLowerCase().includes('--hide')) {
-		const indexOfHide = code.indexOf('--');
-		code = code.slice(0, indexOfHide-1);
-		includesHide = true;
-	}
-	if(!code) return message.reply({embeds: [new MessageEmbed().setDescription('\`code\` is a required argument that is missing').setColor('RED')]}).then(reply => setTimeout( function() { reply.delete(); message.delete()}, 3000));
+	if(!code.success) return message.reply({embeds: [new MessageEmbed().setDescription('\`code\` is a required argument that is missing').setColor('RED')]}).then(reply => setTimeout( function() { reply.delete(); message.delete()}, 3000));
 	let evaluation = await message.reply('Evaluating...')
 	try {
 		output = await eval(code);
@@ -30,10 +28,14 @@ class EvalCommand extends Command {
 	}
 	if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
 	if (output.length >= 2000) {
-		return evaluation.edit(`Content was too long to be sent: ${(await hastebin.createPaste(output)).toString()}`);
+		return evaluation.edit(`Content was too long to be sent`);
 	}
-	else if (includesHide) {
+	else if (wantsHide) {
 		return evaluation.delete();
+	}
+	else if (wantsDelete) {
+		evaluation.delete();
+		return message.delete();
 	}
 	return evaluation.edit(`Output: \`\`\`js\n${output}\`\`\`\nType: \`${type}\``);
   }
