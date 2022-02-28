@@ -14,9 +14,9 @@ class EvalCommand extends Command {
   }
 
   async messageRun(message, args) {
-	let ifCode = await args.restResult('string');
-	if(!ifCode.success) return message.reply({embeds: [new MessageEmbed().setDescription('\`code\` is a required argument that is missing').setColor('RED')]}).then(reply => setTimeout( function() { reply.delete(); message.delete()}, 3000));
-	let code = await args.rest('string');
+	let code = await args.restResult('string');
+	if(!code.success) return message.reply({embeds: [new MessageEmbed().setDescription('\`code\` is a required argument that is missing').setColor('RED')]}).then(reply => setTimeout( function() { reply.delete(); message.delete()}, 3000));
+	code = code.value;
 	const wantsHide = args.getFlags('hide');
 	const wantsDelete = args.getFlags('delete', 'del');
 	let output, type;
