@@ -7,6 +7,6 @@ class guildMemberAddListener extends Listener {
 	 * @param { GuildMember} member 
 	 */
 	run(member) {
-		
+		// TODO event handler
 	}
 }
