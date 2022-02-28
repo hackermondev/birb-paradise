@@ -1,4 +1,4 @@
-const { Command } = require('@sapphire/framework');
+const { Command, Args } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 const { faqs } = require('../../config.json');
 

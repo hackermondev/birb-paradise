@@ -1,4 +1,4 @@
-const { Command } = require('@sapphire/framework');
+const { Command, Args } = require('@sapphire/framework');
 const { MessageEmbed, Message } = require('discord.js');
 const util = require('util');
 class EvalCommand extends Command {
@@ -15,7 +15,7 @@ class EvalCommand extends Command {
   /**
    * 
    * @param { Message } message 
-   * @param { string[] } args 
+   * @param { Args } args 
    * @returns evaluated code
    */
   async messageRun(message, args) {
