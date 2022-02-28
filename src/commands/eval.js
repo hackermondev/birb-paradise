@@ -1,5 +1,5 @@
 const { Command } = require('@sapphire/framework');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Message } = require('discord.js');
 const util = require('util');
 class EvalCommand extends Command {
   constructor(context, options) {
@@ -12,7 +12,12 @@ class EvalCommand extends Command {
       flags: ['hide','delete','del']
     });
   }
-
+  /**
+   * 
+   * @param { Message } message 
+   * @param {*} args 
+   * @returns 
+   */
   async messageRun(message, args) {
 	let code = await args.restResult('string');
 	if(!code.success) return message.reply({embeds: [new MessageEmbed().setDescription('\`code\` is a required argument that is missing').setColor('RED')]}).then(reply => setTimeout( function() { reply.delete(); message.delete()}, 3000));
