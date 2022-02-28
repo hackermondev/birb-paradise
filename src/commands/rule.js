@@ -12,6 +12,12 @@ class RuleCommand extends Command {
     });
   }
   
+  /**
+   * 
+   * @param { Message } message 
+   * @param {*} args 
+   * @returns 
+   */
   messageRun(message, args) {
 	const ruleNumber = args.restResult('string');
 	if (!ruleNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));

@@ -16,7 +16,7 @@ class EvalCommand extends Command {
    * 
    * @param { Message } message 
    * @param {*} args 
-   * @returns 
+   * @returns evaluated code
    */
   async messageRun(message, args) {
 	let code = await args.restResult('string');
