@@ -1,4 +1,5 @@
 const { Command } = require('@sapphire/framework');
+const { rules } = require('../../config.json');
 
 class RuleCommand extends Command {
   constructor(context, options) {
@@ -16,4 +17,8 @@ class RuleCommand extends Command {
 	if (!ruleNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
 	// TODO finish rule command
   }
+}
+
+module.exports = {
+	RuleCommand
 }
