@@ -1,4 +1,5 @@
 const { Command } = require('@sapphire/framework');
+const { Stopwatch } = require('@sapphire/stopwatch');
 class PingCommand extends Command {
   constructor(context, options) {
     super(context, {
