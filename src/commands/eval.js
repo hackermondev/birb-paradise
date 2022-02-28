@@ -20,7 +20,6 @@ class EvalCommand extends Command {
 	const wantsHide = args.getFlags('hide');
 	const wantsDelete = args.getFlags('delete', 'del');
 	let output, type;
-	// TODO flags with sapphire
 	let evaluation = await message.reply('Evaluating...')
 	try {
 		output = await eval(code);
