@@ -1,4 +1,5 @@
 const { Command } = require('@sapphire/framework');
+const { Message } = require('discord.js');
 const { faqs } = require('../../config.json');
 
 class RuleCommand extends Command {
@@ -15,7 +16,7 @@ class RuleCommand extends Command {
   /**
    * 
    * @param { Message } message 
-   * @param {*} args 
+   * @param { string[] } args 
    * @returns 
    */
   messageRun(message, args) {

@@ -15,7 +15,7 @@ class EvalCommand extends Command {
   /**
    * 
    * @param { Message } message 
-   * @param {*} args 
+   * @param { string[] } args 
    * @returns evaluated code
    */
   async messageRun(message, args) {

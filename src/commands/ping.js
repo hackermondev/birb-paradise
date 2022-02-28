@@ -1,5 +1,6 @@
 const { Command } = require('@sapphire/framework');
 const { Stopwatch } = require('@sapphire/stopwatch');
+const { Message } = require('discord.js');
 class PingCommand extends Command {
   constructor(context, options) {
     super(context, {
@@ -10,6 +11,11 @@ class PingCommand extends Command {
     });
   }
 
+  /**
+   * 
+   * @param { Message } message 
+   * @returns 
+   */
   async messageRun(message) {
 	const stopwatch = new Stopwatch(0).start();
 
