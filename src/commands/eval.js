@@ -6,7 +6,7 @@ class EvalCommand extends Command {
     super(context, {
       ...options,
       name: 'eval',
-      aliases: ['e','ev'],
+      aliases: ['e'],
       description: 'Evaluate code',
       preconditions: ['Developer'],
       flags: ['hide','delete','del']
