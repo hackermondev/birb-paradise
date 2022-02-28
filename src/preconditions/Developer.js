@@ -6,3 +6,7 @@ class DeveloperPrecondition extends Precondition {
 		return message.author.id === client.application.owner.id ? this.ok() : this.error();
 	}
 }
+
+module.exports = {
+  DeveloperPrecondition
+};

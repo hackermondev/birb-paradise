@@ -5,3 +5,7 @@ class AdminPrecondition extends Precondition {
 		return message.member.permissions.has('ADMINISTRATOR') ? this.ok() : this.error()
 	}
 }
+
+module.exports = {
+	AdminPrecondition
+}
