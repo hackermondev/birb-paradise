@@ -10,8 +10,8 @@ class EvalCommand extends Command {
     });
   }
 
-  async messageRun(message) {
-	let code = args.join(' ');
+  async messageRun(message, args) {
+	let code = args.rest('string');
 	let includesHide = false;
 	// TODO flags with sapphire
 	if (code.toLowerCase().includes('--hide')) {
