@@ -13,6 +13,7 @@ class EvalCommand extends Command {
   async messageRun(message) {
 	let code = args.join(' ');
 	let includesHide = false;
+	// TODO flags with sapphire
 	if (code.toLowerCase().includes('--hide')) {
 		const indexOfHide = code.indexOf('--');
 		code = code.slice(0, indexOfHide-1);
