@@ -1,14 +1,8 @@
-const { Client, Intents, MessageReaction, MessageEmbed } = require('discord.js');
-const Discord = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
-const fs = require('fs');
-const { prefix } = require('../config.json');
+const { SapphireClient } = require('@sapphire/framework');
 require('dotenv').config();
-
-client.once('ready', () => {
-	console.log(`\nLogged in as ${client.user.tag}!`);
-	client.user.setActivity('development go brr', { type: 'WATCHING'});
-});
 
 process.on('uncaughtException', error => { console.error(error); })
 
+const client = new SapphireClient({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
+
+client.login(process.env.DISCORD_TOKEN);
