@@ -13,6 +13,7 @@ class ReadyListener extends Listener {
 	  // TODO index.js after this make sapphire client
 	const { username } = client.user;
 	this.container.logger.info(`Logged in as ${username}`);
+	this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
   }
 }
 
