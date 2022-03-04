@@ -16,6 +16,4 @@ class ReadyListener extends Listener {
   }
 }
 
-module.exports = {
-  ReadyListener
-};
+module.exports = { ReadyListener };

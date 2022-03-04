@@ -10,3 +10,5 @@ class guildMemberAddListener extends Listener {
 		// TODO event handler
 	}
 }
+
+module.exports = { guildMemberAddListener};
