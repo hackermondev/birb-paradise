@@ -21,7 +21,7 @@ class RuleCommand extends Command {
    */
   messageRun(message, args) {
     // return message.reply('Command not ready');
-    let ruleNumber = args.restResult('string');
+    let ruleNumber = args.pickResult('string');
     message.channel.send('This command isn\'t ready yet, but you can still use it');
     if (!ruleNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     else if (Number.isNaN(Number.parseInt(ruleNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
