@@ -11,4 +11,4 @@ class guildMemberAddListener extends Listener {
 	}
 }
 
-module.exports = { guildMemberAddListener};
+module.exports = { guildMemberAddListener };
