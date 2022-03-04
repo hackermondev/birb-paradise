@@ -1,6 +1,5 @@
 const { Command } = require('@sapphire/framework');
-const { Stopwatch } = require('@sapphire/stopwatch');
-const { Message } = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 class InfoCommand extends Command {
   constructor(context, options) {
     super(context, {
@@ -24,11 +23,9 @@ class InfoCommand extends Command {
 		.addField('Memory Usage', `\`${process.memoryUsage.rss() / 1024 / 1024} MiB\``, true)
 		.addField('Users Cached', `${this.container.client.users.cache.size}`, true)
 		.addField('Uptime', `${humanize(this.container.client.uptime)}`)
-		.addField('Commands', `${client.commands.size}`, true)
+		.addField('Commands', `${this.container.stores.get('commands').size}`, true)
 	return message.reply({embeds: [info]});
   }
 }
 
-module.exports = {
-  PingCommand
-};
+module.exports = { InfoCommand };
