@@ -1,5 +1,6 @@
 const { Command } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
+const humanize = require('humanize-duration');
 class InfoCommand extends Command {
   constructor(context, options) {
     super(context, {
