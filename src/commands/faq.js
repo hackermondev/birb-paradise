@@ -20,10 +20,10 @@ class RuleCommand extends Command {
    * @returns 
    */
   messageRun(message, args) {
-	const faqNumber = args.restResult('string');
-	if (!faqNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-	// TODO finish faq command
-  return message.reply('Command not ready');
+    return message.reply('Command not ready');
+    // const faqNumber = args.restResult('string');
+    // if (!faqNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    // // TODO finish faq command
   }
 }
 

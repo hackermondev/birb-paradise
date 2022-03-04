@@ -1,4 +1,4 @@
-const { Command, Args } = require('@sapphire/framework');
+const { Command, Args, UserError } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 const { rules } = require('../../config.json');
 
@@ -20,10 +20,11 @@ class RuleCommand extends Command {
    * @returns 
    */
   messageRun(message, args) {
-	const ruleNumber = args.restResult('string');
-	if (!ruleNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-	// TODO finish rule command
   return message.reply('Command not ready');
+	// const ruleNumber = args.restResult('string');
+	// if (!ruleNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+	// // TODO finish rule command
+  // return message.reply('Command not ready');
   }
 }
 
