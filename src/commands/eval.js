@@ -48,6 +48,4 @@ class EvalCommand extends Command {
   }
 }
 
-module.exports = {
-  EvalCommand
-};
+module.exports = { EvalCommand };

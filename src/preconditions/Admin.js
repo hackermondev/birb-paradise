@@ -6,6 +6,4 @@ class AdminPrecondition extends Precondition {
 	}
 }
 
-module.exports = {
-	AdminPrecondition
-}
+module.exports = { AdminPrecondition }

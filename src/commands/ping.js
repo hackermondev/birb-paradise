@@ -27,6 +27,4 @@ class PingCommand extends Command {
   }
 }
 
-module.exports = {
-  PingCommand
-};
+module.exports = { PingCommand };

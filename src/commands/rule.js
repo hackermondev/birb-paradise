@@ -23,9 +23,8 @@ class RuleCommand extends Command {
 	const ruleNumber = args.restResult('string');
 	if (!ruleNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
 	// TODO finish rule command
+  return message.reply('Command not ready');
   }
 }
 
-module.exports = {
-	RuleCommand
-}
+module.exports = { RuleCommand }

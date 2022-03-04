@@ -31,7 +31,6 @@ class HelpCommand extends Command {
 			.setFooter({text: `${client.commands.size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`})
 		return message.reply({embeds: [helpEmbed]});
 	}
-	const name = args[0].toLowerCase();
 
 	if (!command) {
 		return message.reply(`No help found for command \`${command.name}\``);
@@ -54,6 +53,4 @@ class HelpCommand extends Command {
   }
 }
 
-module.exports = {
-  PingCommand
-};
+module.exports = { HelpCommand };

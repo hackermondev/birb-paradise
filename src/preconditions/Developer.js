@@ -7,6 +7,4 @@ class DeveloperPrecondition extends Precondition {
 	}
 }
 
-module.exports = {
-  DeveloperPrecondition
-};
+module.exports = { DeveloperPrecondition };
