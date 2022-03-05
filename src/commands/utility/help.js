@@ -20,7 +20,7 @@ class HelpCommand extends Command {
    */
   async messageRun(message, args) {
 	const commandsData = [];
-	const commands = this.container.stores.get('commands').categories;
+	const commands = this.container.stores.get('commands');
 	const command = args.pickResult('string');
 		
 	if (!command.success) {
