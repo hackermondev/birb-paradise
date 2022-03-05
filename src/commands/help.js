@@ -29,15 +29,12 @@ class HelpCommand extends Command {
 			.setColor('BLUE')
 			.setTitle('Commands')
 			.setDescription(`${commandsData.toString()}`)
-			.setFooter({text: `${client.commands.size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`})
+			.setFooter({text: `${this.container.stores.get('commands').size} total commands. Use ${prefix}help [command] to get information on a specific command`})
 		return message.reply({embeds: [helpEmbed]});
 	}
 
 	if (!command) {
 		return message.reply(`No help found for command \`${command.name}\``);
-	}
-	else if ((command.name == eval) && (message.author != client.application.owner)) {
-		return message.reply(`This command is too cool for you to get help on`);
 	}
 
 	commandsData.push(`**Name:** ${command.name}\n`);
