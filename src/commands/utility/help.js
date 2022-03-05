@@ -1,4 +1,5 @@
 const { Command, Args } = require('@sapphire/framework');
+const { isNullOrUndefinedOrEmpty } = require('@sapphire/utilities');
 const { Message, MessageEmbed } = require('discord.js');
 const { prefix } = require('../../../config.json');
 class HelpCommand extends Command {
@@ -36,19 +37,25 @@ class HelpCommand extends Command {
 			categories.push(this.container.stores.get('commands').categories[x]);
 		}
 		
-		let categoryCommands = new Array(categories.length);
+		let categoryCommands = new Array(categories.length)
 		// const commandValues = commands.values();
 		commands.forEach(cmd => {
 			const cmdCategory = cmd.category;
-			if (cmdCategory) {
-				categoryCommands[categories.indexOf(cmdCategory)] += cmd.name + ", ";
+			if (cmdCategory && cmd) {
+				if (isNullOrUndefinedOrEmpty(categoryCommands[categories.indexOf(cmdCategory)])) {
+					categoryCommands[categories.indexOf(cmdCategory)] = new Array([cmd.name]);
+				}
+				else {
+					categoryCommands[categories.indexOf(cmdCategory)].push(cmd.name);
+				}
+				
 			}
 		})
 		console.log(categories);
 		console.log(categoryCommands);
 		
 		for (var i = 0; i < categories.length; i++) {
-			helpEmbed.addField(categories[i],categoryCommands[i]);
+			helpEmbed.addField(categories[i],categoryCommands[i].toString());
 		}
 		return message.reply({embeds: [helpEmbed]});
 	}
