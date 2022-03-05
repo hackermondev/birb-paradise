@@ -19,7 +19,7 @@ class ReadyListener extends Listener {
     this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
     setInterval(function() { 
       console.log(`Pinging...`);
-      const wsPing = this.container.client.ws.ping;
+      const wsPing = client.ws.ping;
       console.log(`Ping acknowledged by the api. Latency is ${wsPing} ms`);
     }, 10000);
   }
