@@ -21,7 +21,7 @@ class HelpCommand extends Command {
   async messageRun(message, args) {
 	const commandsData = [];
 	const commands = this.container.stores.get('commands');
-	const command = args.pickResult('string');
+	let command = await args.pickResult('string');
 		
 	if (!command.success) {
 		commands.filter((cmd) => cmd.name != 'eval').forEach(cmd => commandsData.push(`\`${cmd.name}\``));
@@ -47,10 +47,10 @@ class HelpCommand extends Command {
 		return message.reply({embeds: [helpEmbed]});
 	}
 
-	if (!command.value) {
+	if (!this.container.stores.get('commands').get(command.value)) {
 		return message.reply(`No help found for command \`${command.name}\``);
 	}
-	// TODO fix help for certain commands
+	else command = this.container.stores.get('commands');
 	commandsData.push(`**Name:** ${command.name}\n`);
 
 	if (command.aliases) commandsData.push(` **Aliases:** ${command.aliases.join(', ')}\n`);
