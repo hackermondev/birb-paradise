@@ -12,6 +12,9 @@ class RestartCommand extends Command {
   }
 
   messageRun(message) {
-	return message.reply('Command not ready');
+	  message.reply('The bot is restarting...');
+    return process.exit();
   }
 }
+
+module.exports = { RestartCommand };
