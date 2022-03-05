@@ -17,7 +17,7 @@ class BirbCommand extends Command {
    */
   messageRun(message) {
     const birb_images = ['']
-    return message.reply('https://tenor.com/view/bird-roosting-roost-parakeet-birds-gif-16250811');
+    return message.reply('Command isn\'t ready yet');
   }
 }
 
