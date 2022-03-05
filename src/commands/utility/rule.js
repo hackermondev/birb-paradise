@@ -29,7 +29,7 @@ class RuleCommand extends Command {
     ruleNumber = Number.parseInt(ruleNumber);
     const rule = rules[ruleNumber - 1];
     const ruleEmbed = new MessageEmbed()
-      .setTitle(`Rule ${rules.indexOf(rule)}`)
+      .setTitle(`Rule ${rules.indexOf(rule) + 1}`)
       .setDescription(rule)
       .setColor('YELLOW')
       .setFooter({text: `${message.guild.name}`})

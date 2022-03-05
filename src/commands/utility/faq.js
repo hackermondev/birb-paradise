@@ -27,9 +27,9 @@ class FaqCommand extends Command {
     if (Number.isNaN(Number.parseInt(ruleNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     if (ruleNumber < 0 || ruleNumber >= rules.length) return message.reply('That\'s not a valid rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     faqNumber = Number.parseInt(ruleNumber);
-    const faq = faqs[faqNumber];
+    const faq = faqs[faqNumber - 1];
     const faqEmbed = new MessageEmbed()
-      .setTitle(`Faq ${rules.indexOf(faq)}`)
+      .setTitle(`Faq ${rules.indexOf(faq) + 1}`)
       .setDescription(faq)
       .setColor('YELLOW')
       .setFooter({text: `${message.guild.name}`})
