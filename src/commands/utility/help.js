@@ -40,16 +40,14 @@ class HelpCommand extends Command {
 		// const commandValues = commands.values();
 		commands.forEach(cmd => {
 			const cmdCategory = cmd.category;
-			categoryCommands[categories.indexOf(cmdCategory)] += cmd.name;
+			categoryCommands[categories.indexOf(cmdCategory)] += cmd.name = ", ";
 		})
 		console.log(categories);
 		console.log(categoryCommands);
 		
-		// const helpEmbed = new MessageEmbed()
-		// 	.setColor('BLUE')
-		// 	.setTitle('Commands')
-		// 	.setDescription(`${commandsData.toString()}`)
-		// 	.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`})
+		for (var i = 0; i < categories.length; i++) {
+			helpEmbed.addField(categories[i],categoryCommands[i]);
+		}
 		return message.reply({embeds: [helpEmbed]});
 	}
 
