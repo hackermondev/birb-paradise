@@ -26,7 +26,7 @@ class InfoCommand extends Command {
       .addField('Users Cached', `${this.container.client.users.cache.size}`, true)
       .addField('Uptime', `${formatter.format(this.container.client.uptime)}`, true)
       .addField('Commands', `${this.container.stores.get('commands').size}`, true)
-      .addField('Server', `${message.guild.name}`);
+      .addField('Server', `${message.guild.name}`, true);
     return message.reply({embeds: [info]});
   }
 }
