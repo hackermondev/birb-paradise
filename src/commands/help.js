@@ -1,5 +1,6 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
+const { prefix } = require('../../config.json');
 class HelpCommand extends Command {
   constructor(context, options) {
     super(context, {
