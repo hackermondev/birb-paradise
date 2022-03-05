@@ -18,7 +18,7 @@ class SayCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
-    const whatToSay = await args.pickResult('string');
+    const whatToSay = await args.restResult('string');
     if (!whatToSay.success) return message.reply('You need to tell me what to say smh').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     message.delete();
     message.channel.send(whatToSay.value);
