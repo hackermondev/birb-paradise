@@ -6,6 +6,7 @@ class GuildBanAddEvidenceListener extends Listener {
 	constructor(context, options) {
     super(context, {
       ...options,
+      name: 'guildBanAdd',
       once: false,
       event: 'guildBanAdd'
     });
