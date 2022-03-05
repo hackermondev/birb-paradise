@@ -47,10 +47,10 @@ class HelpCommand extends Command {
 		return message.reply({embeds: [helpEmbed]});
 	}
 
-	if (!command) {
+	if (!command.value) {
 		return message.reply(`No help found for command \`${command.name}\``);
 	}
-
+	// TODO fix help for certain commands
 	commandsData.push(`**Name:** ${command.name}\n`);
 
 	if (command.aliases) commandsData.push(` **Aliases:** ${command.aliases.join(', ')}\n`);
