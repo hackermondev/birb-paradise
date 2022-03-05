@@ -24,26 +24,32 @@ class HelpCommand extends Command {
 	const command = await args.pickResult('string');
 		
 	if (!command.success) {
-		commands.filter((cmd) => cmd.name != 'eval').forEach(cmd => commandsData.push(`\`${cmd.name}\``));
+		// commands = commands.filter((cmd) => cmd.name != 'eval');
 		// TODO: finish improving help and making it more fancy
-		// const helpEmbed = new MessageEmbed()
-		// 	.setColor('BLUE')
-		// 	.setTitle('Help')
-		// 	.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`});
-		// TODO: finish working on help
-		// let categories = [];
-		// for (var x = 0; x < this.container.stores.get('commands').categories.length; x++) {
-		// 	helpEmbed.
-		// }
-		
-		// for (var x = 0; x < commandsData.length; x++) {
-			
-		// }
 		const helpEmbed = new MessageEmbed()
 			.setColor('BLUE')
-			.setTitle('Commands')
-			.setDescription(`${commandsData.toString()}`)
-			.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`})
+			.setTitle('Help')
+			.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`});
+		// TODO: finish working on help
+		let categories = [];
+		for (var x = 0; x < this.container.stores.get('commands').categories.length; x++) {
+			categories.push(this.container.stores.get('commands').categories[x]);
+		}
+		
+		let categoryCommands = new Array(categories.length);
+		// const commandValues = commands.values();
+		commands.forEach(cmd => {
+			const cmdCategory = cmd.category;
+			categoryCommands[categories.indexOf(cmdCategory)] += cmd.name;
+		})
+		console.log(categories);
+		console.log(categoryCommands);
+		
+		// const helpEmbed = new MessageEmbed()
+		// 	.setColor('BLUE')
+		// 	.setTitle('Commands')
+		// 	.setDescription(`${commandsData.toString()}`)
+		// 	.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`})
 		return message.reply({embeds: [helpEmbed]});
 	}
 
