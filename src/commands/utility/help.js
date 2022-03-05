@@ -25,11 +25,25 @@ class HelpCommand extends Command {
 		
 	if (!command.success) {
 		commands.filter((cmd) => cmd.name != 'eval').forEach(cmd => commandsData.push(`\`${cmd.name}\``));
+		// TODO: finish improving help and making it more fancy
+		// const helpEmbed = new MessageEmbed()
+		// 	.setColor('BLUE')
+		// 	.setTitle('Help')
+		// 	.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`});
+		// TODO: finish working on help
+		// let categories = [];
+		// for (var x = 0; x < this.container.stores.get('commands').categories.length; x++) {
+		// 	helpEmbed.
+		// }
+		
+		// for (var x = 0; x < commandsData.length; x++) {
+			
+		// }
 		const helpEmbed = new MessageEmbed()
 			.setColor('BLUE')
 			.setTitle('Commands')
 			.setDescription(`${commandsData.toString()}`)
-			.setFooter({text: `${this.container.stores.get('commands').size} total commands. Use ${prefix}help [command] to get information on a specific command`})
+			.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`})
 		return message.reply({embeds: [helpEmbed]});
 	}
 
