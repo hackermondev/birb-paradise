@@ -22,6 +22,7 @@ class FaqCommand extends Command {
   async messageRun(message, args) {
     let faqNumber = await args.pickResult('string');
     if (!faqNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    message.channel.send('This command isn\'t ready yet, but you can still use it. However, it may not work as intended');
     faqNumber = faqNumber.value;
     if (Number.isNaN(Number.parseInt(ruleNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     if (ruleNumber < 0 || ruleNumber >= rules.length) return message.reply('That\'s not a valid rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));

@@ -1,4 +1,4 @@
-const { Command } = require('@sapphire/framework');
+const { Command, Args } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 
 class EmmieCommand extends Command {
@@ -15,8 +15,11 @@ class EmmieCommand extends Command {
   /**
    * 
    * @param { Message } message 
+   * @param { Args } args
    */
-  messageRun(message) {
+  async messageRun(message, args) {
+    const member = await args.pickResult('member');
+    if (!member.success) return message.reply('Mention someone to bam').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     return message.reply('Command not ready');
   }
 }
