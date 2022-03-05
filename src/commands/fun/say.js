@@ -8,7 +8,7 @@ class SayCommand extends Command {
 		name: 'say',
 		aliases: [],
 		description: 'idk you can say something',
-		preconditions: ['Admin']
+		preconditions: ['Staff']
 	});
 	}
 
