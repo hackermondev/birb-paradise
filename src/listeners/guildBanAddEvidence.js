@@ -23,7 +23,7 @@ class GuildBanAddEvidenceListener extends Listener {
       .addField('Moderator', `still have to do this`)
       .setFooter({text: `User ID: ${ban.user.id} - ${ban.guild.name}`});
 
-    return ban.guild.channels.cache.get(evidenceChannel).send({embeds: [banEmbed]});
+    ban.guild.channels.cache.get(evidenceChannel).send({embeds: [banEmbed]});
 	}
 }
 
