@@ -1,6 +1,6 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { prefix } = require('../../config.json');
+const { prefix } = require('../../../config.json');
 class HelpCommand extends Command {
   constructor(context, options) {
     super(context, {
@@ -20,7 +20,7 @@ class HelpCommand extends Command {
    */
   async messageRun(message, args) {
 	const commandsData = [];
-	const commands = this.container.stores.get('commands');
+	const commands = this.container.stores.get('commands').categories;
 	const command = args.pickResult('string');
 		
 	if (!command.success) {

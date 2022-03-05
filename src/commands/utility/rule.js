@@ -1,6 +1,6 @@
 const { Command, Args, UserError } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { rules } = require('../../config.json');
+const { rules } = require('../../../config.json');
 
 class RuleCommand extends Command {
   constructor(context, options) {

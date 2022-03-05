@@ -1,6 +1,6 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { faqs } = require('../../config.json');
+const { faqs } = require('../../../config.json');
 
 class FaqCommand extends Command {
   constructor(context, options) {
