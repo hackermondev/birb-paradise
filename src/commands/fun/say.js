@@ -7,8 +7,6 @@ class SayCommand extends Command {
 		...options,
 		name: 'say',
 		description: 'idk you can say something',
-    cooldownDelay: 5000,
-		preconditions: ['Admin', 'Spinach']
 	});
 	}
 
@@ -18,6 +16,7 @@ class SayCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
+    if (!message.member.permissions.has('ADMINISTRATOR') && message.author.id != '871531078391853158') return message.delete();
     const whatToSay = await args.restResult('string');
     if (!whatToSay.success) return message.reply('You need to tell me what to say smh').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     if (whatToSay.value.length > 100) return message.reply('Why is your message so long').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
