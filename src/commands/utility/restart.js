@@ -1,4 +1,5 @@
 const { Command } = require('@sapphire/framework');
+const { Message } = require('discord.js');
 
 class RestartCommand extends Command {
 	constructor(context, options) {
@@ -11,8 +12,13 @@ class RestartCommand extends Command {
     });
   }
 
-  messageRun(message) {
-	  message.reply('The bot is restarting...');
+  /**
+   * 
+   * @param { Message } message 
+   * @returns 
+   */
+  async messageRun(message) {
+	  await message.reply('The bot is restarting...');
     return process.exit();
   }
 }
