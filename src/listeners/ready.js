@@ -17,11 +17,14 @@ class ReadyListener extends Listener {
   run(client) {
     this.container.logger.info(`Logged in as ${client.user.tag}!`);
     this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
+    process.stdout.write(`Pinging...`);
+    const firstHeartBeat = client.ws.ping;
+    process.stdout.write(`Ping acknowledged by the API. Latency is ${firstHeartBeat} ms\n`);
     setInterval(function() { 
       process.stdout.write(`Pinging...`);
       const wsPing = client.ws.ping;
-      console.log(`Ping acknowledged by the API. Latency is ${wsPing} ms`);
-    }, 10000);
+      process.stdout.write(`Ping acknowledged by the API. Latency is ${wsPing} ms\n`);
+    }, 20000);
   }
 }
 
