@@ -1,5 +1,5 @@
 const { Command, Args } = require('@sapphire/framework');
-const { Message } = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 const { faqs } = require('../../config.json');
 
 class FaqCommand extends Command {
@@ -16,21 +16,21 @@ class FaqCommand extends Command {
   /**
    * 
    * @param { Message } message 
-   * @param { string[] } args 
+   * @param { Args } args 
    * @returns 
    */
-  messageRun(message, args) {
-    // return message.reply('Command not ready');
-    let faqNumber = args.restResult('string');
-    message.channel.send('This command isn\'t ready yet, but you can still use it. However, it may not work as expected');
+  async messageRun(message, args) {
+    let faqNumber = await args.pickResult('string');
     if (!faqNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    else if (Number.isNaN(Number.parseInt(ruleNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    else if (ruleNumber < 0 || ruleNumber >= rules.length) return message.reply('That\'s not a valid rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    faqNumber = faqNumber.value;
+    if (Number.isNaN(Number.parseInt(ruleNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    if (ruleNumber < 0 || ruleNumber >= rules.length) return message.reply('That\'s not a valid rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     faqNumber = Number.parseInt(ruleNumber);
     const faq = faqs[faqNumber];
     const faqEmbed = new MessageEmbed()
-      .setTitle(`Rule ${rules.indexOf(faq)}`)
+      .setTitle(`Faq ${rules.indexOf(faq)}`)
       .setDescription(faq)
+      .setColor('YELLOW')
       .setFooter({text: `${message.guild.name}`})
     return message.reply({embeds: [faqEmbed]});
   }
