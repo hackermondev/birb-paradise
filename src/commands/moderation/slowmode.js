@@ -19,8 +19,10 @@ class SlowmodeCommand extends Command {
    * @returns 
    */
   async messageRun(message, args) {
-	return message.reply('Command not ready');
+    return message.reply('Command not ready');
+    const number = args.pickResult('number');
+    if (!number.success) return message.reply(`The current slowmode in this channel is ${message.channel.rateLimitPerUser} seconds`);
   }
 }
 
-module.exports = { RuleCommand }
+module.exports = { SlowmodeCommand }
