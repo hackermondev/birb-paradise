@@ -21,4 +21,4 @@ class BirbCommand extends Command {
   }
 }
 
-module.exports = { EmmieCommand };
+module.exports = { BirbCommand };
