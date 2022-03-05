@@ -5,9 +5,9 @@ class SayCommand extends Command {
 	constructor(context, options) {
 		super(context, {
 		...options,
-		name: 'emmie',
-		aliases: ['birb'],
-		description: 'idk its the birb',
+		name: 'say',
+		aliases: [],
+		description: 'idk you can say something',
 		preconditions: ['Staff']
 	});
 	}
