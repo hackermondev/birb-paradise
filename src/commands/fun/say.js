@@ -6,8 +6,8 @@ class SayCommand extends Command {
 		super(context, {
 		...options,
 		name: 'say',
-		aliases: [],
 		description: 'idk you can say something',
+    cooldownDelay: 5000,
 		preconditions: ['Staff']
 	});
 	}
