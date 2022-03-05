@@ -1,5 +1,5 @@
 const { Command, Args } = require('@sapphire/framework');
-const { Message } = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 
 class EmmieCommand extends Command {
 	constructor(context, options) {
@@ -18,9 +18,10 @@ class EmmieCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
-    const member = await args.pickResult('member');
-    if (!member.success) return message.reply('Mention someone to bam').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    return message.reply('Command not ready');
+    const rawMember = await args.pickResult('member');
+    if (!rawMember.success) return message.reply('Mention someone to bam').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    const member = rawMember.value
+    return message.reply({embeds: [new MessageEmbed().setDescription(`<@${member.id}> has been bammed by <@${message.author.id}>`).setColor('DARK_RED')]});
   }
 }
 
