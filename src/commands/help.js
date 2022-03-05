@@ -8,7 +8,7 @@ class HelpCommand extends Command {
       name: 'help',
       aliases: ['cmds'],
       description: 'Shows you all the commands on the bot',
-      preconditions: ['Staff']
+      preconditions: []
     });
   }
 
