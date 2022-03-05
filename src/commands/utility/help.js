@@ -52,7 +52,7 @@ class HelpCommand extends Command {
 		})
 		
 		for (var i = 0; i < categories.length; i++) {
-			helpEmbed.addField(categories[i].charAt(0).toUpperCase() + categories[i].charAt(0).slice(1),categoryCommands[i].join(', '));
+			helpEmbed.addField(`${categories[i].charAt(0).toUpperCase()}${categories[i].slice(1)}`,categoryCommands[i].join(', '));
 		}
 		return message.reply({embeds: [helpEmbed]});
 	}
