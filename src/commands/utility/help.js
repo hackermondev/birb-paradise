@@ -40,7 +40,7 @@ class HelpCommand extends Command {
 		// const commandValues = commands.values();
 		commands.forEach(cmd => {
 			const cmdCategory = cmd.category;
-			categoryCommands[categories.indexOf(cmdCategory)] += cmd.name = ", ";
+			categoryCommands[categories.indexOf(cmdCategory)] += cmd.name + ", ";
 		})
 		console.log(categories);
 		console.log(categoryCommands);
