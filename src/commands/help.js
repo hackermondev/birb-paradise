@@ -18,9 +18,9 @@ class HelpCommand extends Command {
    * @returns 
    */
   async messageRun(message, args) {
-	return message.reply('Command not ready');
+	// return message.reply('Command not ready');
 	const commandsData = [];
-	const { commands } = this.container.stores.get('commands');
+	const commands = this.container.stores.get('commands');
 	const command = args.pickResult('string');
 		
 	if (!command.success) {
