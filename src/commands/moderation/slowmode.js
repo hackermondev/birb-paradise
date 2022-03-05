@@ -1,6 +1,5 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { rules } = require('../../../config.json');
 
 class SlowmodeCommand extends Command {
   constructor(context, options) {
