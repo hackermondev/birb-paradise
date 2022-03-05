@@ -6,7 +6,6 @@ class EmmieCommand extends Command {
 		super(context, {
 		...options,
 		name: 'emmie',
-		aliases: ['birb'],
 		description: 'idk its the birb',
 		preconditions: ['Staff']
 	});
