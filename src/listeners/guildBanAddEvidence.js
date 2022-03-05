@@ -2,11 +2,11 @@ const { Listener } = require('@sapphire/framework');
 const { GuildBan, Message, MessageEmbed } = require('discord.js');
 const { evidenceChannel } = require('../../config.json');
 
-class guildBanAddEvidenceListener extends Listener {
+class GuildBanAddEvidenceListener extends Listener {
 	constructor(context, options) {
     super(context, {
       ...options,
-      once: true,
+      once: false,
       event: 'guildBanAdd'
     });
   }
@@ -27,4 +27,4 @@ class guildBanAddEvidenceListener extends Listener {
 	}
 }
 
-module.exports = { guildBanAddEvidenceListener };
+module.exports = { GuildBanAddEvidenceListener };
