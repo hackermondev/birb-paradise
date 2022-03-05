@@ -21,24 +21,23 @@ class HelpCommand extends Command {
    */
   async messageRun(message, args) {
 	const commandsData = [];
-	const commands = this.container.stores.get('commands');
+	let commands = this.container.stores.get('commands');
 	const command = await args.pickResult('string');
 		
 	if (!command.success) {
-		// commands = commands.filter((cmd) => cmd.name != 'eval');
-		// TODO: finish improving help and making it more fancy
 		const helpEmbed = new MessageEmbed()
 			.setColor('BLUE')
 			.setTitle('Help')
 			.setFooter({text: `${this.container.stores.get('commands').size - 1} total commands. Use ${prefix}help [command] to get information on a specific command`});
-		// TODO: finish working on help
 		let categories = [];
+		if (!this.container.client.application.owner) await this.container.client.application.fetch();
 		for (var x = 0; x < this.container.stores.get('commands').categories.length; x++) {
 			categories.push(this.container.stores.get('commands').categories[x]);
 		}
 		
 		let categoryCommands = new Array(categories.length)
-		// const commandValues = commands.values();
+		if (message.author != client.application.owner) commands = commands.filter(c => c.category != 'developer');
+		
 		commands.forEach(cmd => {
 			const cmdCategory = cmd.category;
 			if (cmdCategory && cmd) {
