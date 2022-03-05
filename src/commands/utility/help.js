@@ -54,7 +54,7 @@ class HelpCommand extends Command {
 		console.log(categoryCommands);
 		
 		for (var i = 0; i < categories.length; i++) {
-			helpEmbed.addField(categories[i],categoryCommands[i].toString());
+			helpEmbed.addField(categories[i],categoryCommands[i].join(', '));
 		}
 		return message.reply({embeds: [helpEmbed]});
 	}
