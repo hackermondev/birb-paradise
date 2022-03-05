@@ -21,7 +21,7 @@ class HelpCommand extends Command {
   async messageRun(message, args) {
 	const commandsData = [];
 	const commands = this.container.stores.get('commands');
-	let command = await args.pickResult('string');
+	const command = await args.pickResult('string');
 		
 	if (!command.success) {
 		commands.filter((cmd) => cmd.name != 'eval').forEach(cmd => commandsData.push(`\`${cmd.name}\``));
@@ -47,19 +47,22 @@ class HelpCommand extends Command {
 		return message.reply({embeds: [helpEmbed]});
 	}
 
+	let cmd = null;
 	if (!this.container.stores.get('commands').get(command.value)) {
 		return message.reply(`No help found for command \`${command.name}\``);
 	}
-	else command = this.container.stores.get('commands');
-	commandsData.push(`**Name:** ${command.name}\n`);
+	else {
+		cmd = this.container.stores.get('commands').get(command.value);
+	}
+	commandsData.push(`**Name:** ${cmd.name}\n`);
 
-	if (command.aliases) commandsData.push(` **Aliases:** ${command.aliases.join(', ')}\n`);
-	if (command.description) commandsData.push(` **Description:** ${command.description}\n`);
-	if (command.usage) commandsData.push(` **Usage:** ${command.usage}\n`);
+	if (cmd.aliases) commandsData.push(` **Aliases:** ${cmd.aliases.join(', ')}\n`);
+	if (cmd.description) commandsData.push(` **Description:** ${cmd.description}\n`);
+	if (cmd.usage) commandsData.push(` **Usage:** ${cmd.usage}\n`);
 	const commandsDataString = commandsData.join(' ');
 	const commandHelpEmbed = new MessageEmbed()
 			.setColor('BLUE')
-			.setTitle(`Information for ${command.name}`)
+			.setTitle(`Information for ${cmd.name}`)
 			.setDescription(`${commandsDataString}`)
 	return message.reply({embeds: [commandHelpEmbed]});
   }
