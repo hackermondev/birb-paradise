@@ -50,11 +50,9 @@ class HelpCommand extends Command {
 				
 			}
 		})
-		console.log(categories);
-		console.log(categoryCommands);
 		
 		for (var i = 0; i < categories.length; i++) {
-			helpEmbed.addField(categories[i],categoryCommands[i].join(', '));
+			helpEmbed.addField(categories[i].charAt(0).toUpperCase() + categories[i].charAt(0).slice(1),categoryCommands[i].join(', '));
 		}
 		return message.reply({embeds: [helpEmbed]});
 	}
