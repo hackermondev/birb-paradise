@@ -8,7 +8,7 @@ class SayCommand extends Command {
 		name: 'say',
 		description: 'idk you can say something',
     cooldownDelay: 5000,
-		preconditions: ['Staff']
+		preconditions: ['Admin', 'Spinach']
 	});
 	}
 
