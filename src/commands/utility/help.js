@@ -60,7 +60,7 @@ class HelpCommand extends Command {
 
 	let cmd = null;
 	if (!this.container.stores.get('commands').get(command.value)) {
-		return message.reply(`No help found for command \`${command.name}\``);
+		return message.reply(`No help found for command \`${command.value}\``);
 	}
 	else {
 		cmd = this.container.stores.get('commands').get(command.value);
