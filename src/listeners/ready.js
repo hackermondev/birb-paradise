@@ -15,9 +15,13 @@ class ReadyListener extends Listener {
    * @param { Client } client 
    */
   run(client) {
-    const { username } = client.user;
-    this.container.logger.info(`Logged in as ${username}`);
+    this.container.logger.info(`Logged in as ${client.user.tag}!`);
     this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
+    setInterval(function() { 
+      console.log(`Pinging...`);
+      const wsPing = this.container.client.ws.ping;
+      console.log(`Ping acknowledged by the api. Latency is ${wsPing} ms`);
+    }, 10000);
   }
 }
 
