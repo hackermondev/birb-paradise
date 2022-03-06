@@ -1,6 +1,6 @@
 const { Listener } = require('@sapphire/framework');
 const { Message, MessageEmbed, WebhookClient } = require('discord.js');
-const { msgLogWebhookID, msgLogWebhookToken } = require('../../config.json');
+const { msgLogWebhookID, msgLogWebhookToken, bpGuildID } = require('../../config.json');
 
 class MessageEditLogging extends Listener {
   constructor(context, options) {
@@ -17,7 +17,7 @@ class MessageEditLogging extends Listener {
 	 * @param { Message } newMessage 
 	 */
 	run(oldMessage, newMessage) {
-		if (oldMessage.guildId !== '891286303574994974') return;
+		if (oldMessage.guildId !== bpGuildID) return;
 		if (oldMessage.channel.parentId === '891307974948184114') return;
 		if (!oldMessage.content) return; // TODO add support for image logging and other types of messages
 		const webhookClient = new WebhookClient({id: msgLogWebhookID, token: msgLogWebhookToken});
