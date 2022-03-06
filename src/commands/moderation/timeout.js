@@ -1,6 +1,6 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { DurationFormatter } = require('@sapphire/time-utilities');
+const { Duration } = require('@sapphire/time-utilities');
 
 class TimeoutCommand extends Command {
 	constructor(context, options) {
@@ -22,7 +22,8 @@ class TimeoutCommand extends Command {
     const rawArgs = await args.restResult('string');
     if (!rawArgs.success) return message.reply('Mention someone to timeout').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     const actionMember = await args.pickResult('member');
-    const actionTime = await args.pickResult('string');
+    const rawActionTime = await args.pickResult('string');
+    actionTime.
     if (!actionMember.success) return message.reply('Mention a valid user to timeout').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
 
   }
