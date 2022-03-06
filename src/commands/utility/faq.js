@@ -24,9 +24,9 @@ class FaqCommand extends Command {
     if (!faqNumber.success) return message.reply('You need to enter a rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     message.channel.send('This command isn\'t ready yet, but you can still use it. However, it may not work as intended');
     faqNumber = faqNumber.value;
-    if (Number.isNaN(Number.parseInt(ruleNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    if (ruleNumber < 0 || ruleNumber >= rules.length) return message.reply('That\'s not a valid rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    faqNumber = Number.parseInt(ruleNumber);
+    if (Number.isNaN(Number.parseInt(faqNumber))) return message.reply('That\'s not a valid number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    if (faqNumber < 0 || faqNumber >= rules.length) return message.reply('That\'s not a valid rule number').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    faqNumber = Number.parseInt(faqNumber);
     const faq = faqs[faqNumber - 1];
     const faqEmbed = new MessageEmbed()
       .setTitle(`Faq ${rules.indexOf(faq) + 1}`)
