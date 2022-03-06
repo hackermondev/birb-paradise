@@ -23,7 +23,7 @@ class SlowmodeCommand extends Command {
     const formatter = new DurationFormatter();
     if (!number.success) return message.reply(`The current slowmode in this channel is ${formatter.format(message.channel.rateLimitPerUser * 1000)}`);
     message.channel.setRateLimitPerUser(number.value);
-    return message.reply(`Set the slowmode in this channel to ${formatter.format(message.channel.rateLimitPerUser * 1000)}`);
+    return message.reply(`Set the slowmode in this channel to ${formatter.format(number.value * 1000)}`);
   }
 }
 
