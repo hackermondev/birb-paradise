@@ -16,8 +16,14 @@ class BirbCommand extends Command {
    * @param { Message } message 
    */
   messageRun(message) {
-    const birb_images = ['']
-    return message.reply('Command isn\'t ready yet');
+    const birb_images = ['https://imgur.com/NNLsONt',
+                        'https://imgur.com/dkmpUGU',
+                        'https://imgur.com/jVGxKpE',
+                        'https://imgur.com/sspcIT3',
+                        'https://imgur.com/UxNV46p',
+                        'https://imgur.com/cTbZ9ny']
+    const imageIndex = Math.random() * birb_images.length;
+    return message.reply(birb_images[imageIndex]);
   }
 }
 
