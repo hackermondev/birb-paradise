@@ -18,7 +18,7 @@ class ReadyListener extends Listener {
     this.container.logger.info(`Logged in as ${client.user.tag}!`);
     this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
     process.stdout.write(`Pinging...`);
-    process.stdout.write(`Ping acknowledged by the API. Bot is verified to be online.`);
+    process.stdout.write(`Ping acknowledged by the API. Bot is verified to be online.\n\n`);
     setInterval(function() { 
       process.stdout.write(`Pinging...`);
       const wsPing = client.ws.ping;
