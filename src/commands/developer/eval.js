@@ -1,6 +1,8 @@
 const { Command, Args } = require('@sapphire/framework');
+const { Stopwatch } = require('@sapphire/stopwatch');
 const { MessageEmbed, Message } = require('discord.js');
 const util = require('util');
+const req = require('petitio');
 class EvalCommand extends Command {
   constructor(context, options) {
     super(context, {
@@ -25,17 +27,25 @@ class EvalCommand extends Command {
 	const wantsHide = args.getFlags('hide');
 	const wantsDelete = args.getFlags('delete', 'del');
 	let output, type;
+	const evalTime = new Stopwatch();
+
 	let evaluation = await message.reply('Evaluating...')
 	try {
+		evalTime.start();
 		output = await eval(code);
+		evalTime.stop();
 		type = typeof(output);
 	}
 	catch(err) {
-		return evaluation.edit(`An error occured whilst trying to evaluate your code: ${err}`)
+		// return evaluation.edit(`An error occured during evaluation: ${err}`);
+		output = `An error occured during evaluation: ${err}`;
 	}
 	if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
 	if (output.length >= 2000) {
-		return evaluation.edit(`Content was too long to be sent`);
+		const res = await req('https://hst.sh/documents', 'POST').body(output).timeout(10000).send();
+
+		if (res.statusCode !== 200) return evaluation.edit(`Content was too long to be sent, but it couldn\'t be uploaded to hastebin :(`);
+		return evaluation.edit(`Content was too long to be sent, you can see it here: <https://hst.sh/${res.json().key}.js>`);
 	}
 	else if (wantsHide) {
 		return evaluation.delete();
