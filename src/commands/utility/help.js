@@ -67,10 +67,10 @@ class HelpCommand extends Command {
 	}
 	commandsData.push(`**Name:** ${cmd.name}\n`);
 
-	if (cmd.aliases) commandsData.push(` **Aliases:** ${cmd.aliases.join(', ')}\n`);
+	if (cmd.aliases.length) commandsData.push(` **Aliases:** ${cmd.aliases.join(', ')}\n`);
 	if (cmd.description) commandsData.push(` **Description:** ${cmd.description}\n`);
 	if (cmd.usage) commandsData.push(` **Usage:** ${cmd.usage}\n`);
-	if (cmd.preconditions) commandsData.push(`**Permissions:** ${cmd.options.preconditions.join(', ')}\n`);
+	if (cmd.preconditions.entries.length) commandsData.push(`**Permissions:** ${cmd.options.preconditions.join(', ')}\n`);
 	const commandsDataString = commandsData.join(' ');
 	const commandHelpEmbed = new MessageEmbed()
 			.setColor('BLUE')
