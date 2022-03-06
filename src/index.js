@@ -1,4 +1,5 @@
 const { SapphireClient } = require('@sapphire/framework');
+require('@sapphire/plugin-logger/register');
 const { prefix } = require('../config.json');
 const { DISCORD_TOKEN } = require('../config.json');
 
