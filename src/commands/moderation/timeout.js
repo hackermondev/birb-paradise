@@ -27,3 +27,5 @@ class TimeoutCommand extends Command {
 
   }
 }
+
+module.exports = { TimeoutCommand };
