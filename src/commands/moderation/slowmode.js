@@ -7,6 +7,7 @@ class SlowmodeCommand extends Command {
     super(context, {
       ...options,
       name: 'slowmode',
+      aliases: 'slow',
       preconditions: ['Staff'],
       description: 'Changes (or checks) the slowmode of a channel'
     });
