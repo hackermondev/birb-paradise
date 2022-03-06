@@ -16,6 +16,7 @@ class MessageDeleteLogging extends Listener {
 	 * @param { Message } message 
 	 */
 	run(message) {
+		if (message.guildId !== '891286303574994974') return;
 		if (message.channel.parentId === '891307974948184114') return;
 		if (!message.content) return; // TODO add support for image logging and other types of messages
 		const webhookClient = new WebhookClient({id: msgLogWebhookID, token: msgLogWebhookToken});
