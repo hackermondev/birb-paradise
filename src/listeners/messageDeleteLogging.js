@@ -16,7 +16,18 @@ class MessageDeleteLogging extends Listener {
 	 * @param { Message } message 
 	 */
 	run(message) {
-		console.log(message);
+		if (message.channel.parentId === '891307974948184114') return;
+		if (!message.content) return; // TODO add support for image logging and other types of messages
+		const webhookClient = new WebhookClient({id: msgLogWebhookID, token: msgLogWebhookToken});
+		const msgDeleteEmbed = new MessageEmbed()
+			.setTitle(`Message deleted by ${message.author.tag}`)
+			.addField('Message', `${message.content}`, true)
+			.addField('Channel', `${message.channel.id}`)
+			.addField('Time', `${Math.round(Date.now() / 1000)}`, true)
+		webhookClient.send({
+			avatarURL: `${message.guild.iconURL}`,
+			embeds: [msgDeleteEmbed]
+		})
 	}
 }
 
