@@ -28,7 +28,7 @@ class MessageDeleteLogging extends Listener {
 			.setColor('DARK_ORANGE')
 		webhookClient.send({
 			embeds: [msgDeleteEmbed]
-		})
+		});
 	}
 }
 
