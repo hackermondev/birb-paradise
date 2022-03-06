@@ -17,7 +17,8 @@ class CommandAcceptedListener extends Listener {
    * @param { Command } command 
    */
   run(message, command ) {
-    this.container.logger.info(`Command ${command.name} ran by ${message.member.user.tag}`)
+    // TODO event
+    // this.container.logger.info(`Command ${command.name} ran by ${message.member.user.tag}`)
   }
 }
 
