@@ -17,14 +17,14 @@ class GuildBanAddEvidenceListener extends Listener {
 	 * @param { GuildBan } ban 
 	 */
 	run(ban) {
-    // const banEmbed = new MessageEmbed()
-    //   .setTitle('User Banned')
-    //   .setColor('RED')
-    //   .addField('User', `<@${ban.user.id}> (${ban.user.tag})`)
-    //   .addField('Moderator', `still have to do this`)
-    //   .setFooter({text: `User ID: ${ban.user.id} - ${ban.guild.name}`});
+    const banEmbed = new MessageEmbed()
+      .setTitle('User Banned')
+      .setColor('RED')
+      .addField('User', `<@${ban.user.id}> (${ban.user.tag})`)
+      .addField('Moderator', `still have to do this`)
+      .setFooter({text: `User ID: ${ban.user.id} - ${ban.guild.name}`});
 
-    // ban.guild.channels.cache.get(evidenceChannel).send({embeds: [banEmbed]});
+    ban.guild.channels.cache.get(evidenceChannel).send({embeds: [banEmbed]});
 	}
 }
 
