@@ -19,4 +19,4 @@ class MessageEditLogging extends Listener {
 	}
 }
 
-module.exports = { guildMemberAddListener };
+// module.exports = { }; // TODO
