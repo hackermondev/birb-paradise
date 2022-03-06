@@ -23,7 +23,6 @@ class BirbCommand extends Command {
                         'https://imgur.com/UxNV46p',
                         'https://imgur.com/cTbZ9ny'];
     const imageIndex = Math.floor(Math.random() * (birb_images.length - 1));
-    console.log(imageIndex);
     return message.reply(birb_images[imageIndex].toString());
   }
 }
