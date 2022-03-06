@@ -25,7 +25,6 @@ class MessageDeleteLogging extends Listener {
 			.addField('Channel', `${message.channel.id}`)
 			.addField('Time', `${Math.round(Date.now() / 1000)}`, true)
 		webhookClient.send({
-			avatarURL: `${message.guild.iconURL}`,
 			embeds: [msgDeleteEmbed]
 		})
 	}
