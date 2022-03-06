@@ -35,4 +35,4 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
 	}
 }
 
-module.exports = { guildMemberAddListener };
+module.exports = { GuildMemberAddAccountAgeKickListener };
