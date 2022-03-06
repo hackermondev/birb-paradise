@@ -19,11 +19,11 @@ class SlowmodeCommand extends Command {
    * @returns 
    */
   async messageRun(message, args) {
-    // return message.reply('Command not ready');
-    const number = args.pickResult('number');
+    const number = await args.pickResult('number');
     const formatter = new DurationFormatter();
     if (!number.success) return message.reply(`The current slowmode in this channel is ${formatter.format(message.channel.rateLimitPerUser * 1000)}`);
-    // todo if you enter a number
+    message.channel.setRateLimitPerUser(number.value);
+    return message.reply(`Set the slowmode in this channel to ${formatter.format(message.channel.rateLimitPerUser * 1000)}`);
   }
 }
 
