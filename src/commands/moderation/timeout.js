@@ -18,10 +18,11 @@ class TimeoutCommand extends Command {
    * @param { Args } args 
    */
   async messageRun(message, args) {
+    return message.reply('Command isn\'t ready yet');
     const rawArgs = await args.restResult('string');
     if (!rawArgs.success) return message.reply('Mention someone to timeout').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     const actionMember = await args.pickResult('member');
     const actionTime = await args.pickResult('string');
-    
+
   }
 }
