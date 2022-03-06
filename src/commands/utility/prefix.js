@@ -21,3 +21,5 @@ class PrefixCommand extends Command {
     return message.reply({embeds: [new MessageEmbed().setDescription(`My current prefix is \`${prefix}\``).setColor('DARK_AQUA')]});
   }
 }
+
+module.exports = { PrefixCommand };
