@@ -25,6 +25,7 @@ class MessageEditLogging extends Listener {
 			.setTitle(`Message edited by ${oldMessage.author.tag}`)
 			.addField('Old Message', `${oldMessage.content}`)
 			.addField('New Message', `${newMessage.content}`)
+			.addField('User', `<@${oldMessage.author.id}>`, true)
 			.addField('Channel', `<#${oldMessage.channel.id}>`, true)
 			.addField('Time', `<t:${Math.round(Date.now() / 1000)}>`, true)
 			.setColor('DARK_PURPLE')
