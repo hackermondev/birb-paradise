@@ -23,3 +23,5 @@ class KickCommand extends Command {
     const member = args.pickResult('member');
   }
 }
+
+module.exports = { KickCommand }
