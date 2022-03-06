@@ -24,6 +24,7 @@ class MessageDeleteLogging extends Listener {
 			.addField('Message', `${message.content}`, true)
 			.addField('Channel', `<#${message.channel.id}>`)
 			.addField('Time', `<t:${Math.round(Date.now() / 1000)}>`, true)
+			.setColor('DARK_ORANGE')
 		webhookClient.send({
 			embeds: [msgDeleteEmbed]
 		})
