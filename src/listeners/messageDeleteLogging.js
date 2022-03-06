@@ -1,5 +1,6 @@
 const { Listener } = require('@sapphire/framework');
-const { Message } = require('discord.js');
+const { Message, MessageEmbed, WebhookClient } = require('discord.js');
+const { msgLogWebhookID, msgLogWebhookToken } = require('../../config.json');
 
 class MessageDeleteLogging extends Listener {
   constructor(context, options) {

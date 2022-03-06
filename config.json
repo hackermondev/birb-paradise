@@ -4,5 +4,7 @@
 	"rules": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
 	"faqs": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
 	"evidenceChannel": "892094128215715860",
+	"msgLogWebhookID": "949862193162248232",
+	"msgLogWebhookToken": "NGcOmVlx_5ZbOjll6He-2unfW5FrIESEPMkg2c0nIa6HB_s1y5d9Lzfz_W6Ab5mpg2P9",
 	"DISCORD_TOKEN": "OTI1ODI5MzIzNzYyNTc3NDc5.Ycyzvw.SdsSJ4KX2H2NswnWEgGnHYp-P7w"
 }
