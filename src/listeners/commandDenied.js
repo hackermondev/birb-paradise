@@ -1,7 +1,14 @@
 const { Listener } = require('@sapphire/framework');
 
 class CommandDeniedListener extends Listener {
-
+  constructor(context, options) {
+    super(context, {
+      ...options,
+      name: 'commandDenied',
+      once: false,
+      event: 'commandDenied'
+    });
+  }
   /**
    * 
    * @param { Error } error 

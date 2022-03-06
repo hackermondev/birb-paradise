@@ -2,6 +2,14 @@ const { Listener, Command } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 
 class CommandAcceptedListener extends Listener {
+  constructor(context, options) {
+    super(context, {
+      ...options,
+      name: 'commandAccepted',
+      once: false,
+      event: 'commandAccepted'
+    });
+  }
 
   /**
    * 
