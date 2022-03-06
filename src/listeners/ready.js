@@ -1,5 +1,6 @@
 const { Listener } = require('@sapphire/framework');
 const { Client } = require('discord.js');
+const { container } = require('@sapphire/framework');
 
 class ReadyListener extends Listener {
   constructor(context, options) {
@@ -17,12 +18,12 @@ class ReadyListener extends Listener {
   run(client) {
     this.container.logger.info(`Logged in as ${client.user.tag}!`);
     this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
-    process.stdout.write(`Pinging...`);
-    process.stdout.write(`Ping acknowledged by the API. Bot is verified to be online.\n\n`);
+    this.container.logger.info(`Pinging...`);
+    this.container.logger.info(`Ping acknowledged by the API. Bot is verified to be online.\n\n`);
     setInterval(function() { 
-      process.stdout.write(`Pinging...`);
+      container.logger.info(`Pinging...`);
       const wsPing = client.ws.ping;
-      process.stdout.write(`Ping acknowledged by the API. Latency is ${wsPing} ms.\n\n`);
+      container.logger.info(`Ping acknowledged by the API. Latency is ${wsPing} ms.\n\n`);
     }, 300000);
   }
 }
