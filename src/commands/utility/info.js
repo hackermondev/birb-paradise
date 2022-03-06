@@ -22,6 +22,7 @@ class InfoCommand extends Command {
       .setTitle('Bot Details')
       .setFooter({text: `${this.container.client.user.tag}`})
       .setColor('RANDOM')
+      .addField('Version', require(`${process.cwd()}/package.json`).version)
       .addField('Memory Usage', `\`${process.memoryUsage.rss() / 1024 / 1024} MiB\``, true)
       .addField('Users Cached', `${this.container.client.users.cache.size}`, true)
       .addField('Uptime', `${formatter.format(this.container.client.uptime)}`, true)
