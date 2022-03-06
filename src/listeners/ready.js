@@ -19,12 +19,12 @@ class ReadyListener extends Listener {
     this.container.client.user.setActivity('development go brr', {type: 'WATCHING'});
     process.stdout.write(`Pinging...`);
     const firstHeartBeat = client.ws.ping;
-    process.stdout.write(`Ping acknowledged by the API. Latency is ${firstHeartBeat} ms\n\n`);
+    process.stdout.write(`Ping acknowledged by the API. Bot is verified to be online.`);
     setInterval(function() { 
       process.stdout.write(`Pinging...`);
       const wsPing = client.ws.ping;
-      process.stdout.write(`Ping acknowledged by the API. Latency is ${wsPing} ms\n\n`);
-    }, 100000);
+      process.stdout.write(`Ping acknowledged by the API. Latency is ${wsPing} ms.\n\n`);
+    }, 300000);
   }
 }
 
