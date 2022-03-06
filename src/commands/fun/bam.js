@@ -20,7 +20,7 @@ class EmmieCommand extends Command {
   async messageRun(message, args) {
     const rawMember = await args.pickResult('member');
     if (!rawMember.success) return message.reply('Mention someone to bam').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    const member = rawMember.value
+    const member = rawMember.value;
     return message.reply({embeds: [new MessageEmbed().setDescription(`<@${member.id}> has been bammed by <@${message.author.id}>`).setColor('DARK_RED')]});
   }
 }
