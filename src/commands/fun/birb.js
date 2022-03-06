@@ -7,7 +7,7 @@ class BirbCommand extends Command {
 		...options,
 		name: 'birb',
 		description: 'birb',
-		preconditions: []
+		preconditions: ['Staff']
 	});
 	}
 
