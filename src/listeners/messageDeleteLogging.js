@@ -22,7 +22,7 @@ class MessageDeleteLogging extends Listener {
 		const msgDeleteEmbed = new MessageEmbed()
 			.setTitle(`Message deleted by ${message.author.tag}`)
 			.addField('Message', `${message.content}`, true)
-			.addField('Channel', `<#${message.channel.id}>`)
+			.addField('Channel', `<#${message.channel.id}>`, true)
 			.addField('Time', `<t:${Math.round(Date.now() / 1000)}>`, true)
 			.setColor('DARK_ORANGE')
 		webhookClient.send({
