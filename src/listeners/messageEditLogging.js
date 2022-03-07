@@ -20,7 +20,7 @@ class MessageEditLogging extends Listener {
    * @param { Message } oldMessage
    * @param { Message } newMessage
    */
-  run(oldMessage, newMessage) {
+  async run(oldMessage, newMessage) {
     if (oldMessage.guildId !== bpGuildID) return;
     if (oldMessage.channel.parentId === "891307974948184114") return;
     if (!oldMessage.content || !newMessage.content) return; // TODO add support for image logging and other types of messages

@@ -19,7 +19,7 @@ class MessageDeleteLogging extends Listener {
    *
    * @param { Message } message
    */
-  run(message) {
+  async run(message) {
     if (message.guildId !== bpGuildID) return;
     if (message.channel.parentId === "891307974948184114") return;
     if (!message.content) return; // TODO add support for image logging and other types of messages

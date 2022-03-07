@@ -14,7 +14,7 @@ class CommandDeniedListener extends Listener {
    * @param { Error } error
    * @param { String } message
    */
-  run(error, { message }) {
+  async run(error, { message }) {
     message.delete();
     console.log(`error name logging: ${error.name}`);
   }

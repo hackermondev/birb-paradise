@@ -15,7 +15,7 @@ class ReadyListener extends Listener {
    *
    * @param { Client } client
    */
-  run(client) {
+  async run(client) {
     this.container.logger.info(`Logged in as ${client.user.tag}!`);
     this.container.client.user.setActivity("development go brr", {
       type: "WATCHING",
