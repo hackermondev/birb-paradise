@@ -52,6 +52,7 @@ class EvalCommand extends Command {
     } catch (err) {
       // return evaluation.edit(`An error occured during evaluation: ${err}`);
       output = `An error occured during evaluation: ${err}`;
+      type = `Error`;
     }
     if (typeof output !== "string") output = util.inspect(output, { depth: 0 });
     if (output.length >= 2000) {
