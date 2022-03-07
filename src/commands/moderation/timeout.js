@@ -23,7 +23,7 @@ class TimeoutCommand extends Command {
     if (!rawArgs.success) return message.reply('Mention someone to timeout').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
     const actionMember = await args.pickResult('member');
     const rawActionTime = await args.pickResult('string');
-    actionTime.
+    // actionTime.
     if (!actionMember.success) return message.reply('Mention a valid user to timeout').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
 
   }
