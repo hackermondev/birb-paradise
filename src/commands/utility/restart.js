@@ -1,24 +1,24 @@
-const { Command } = require('@sapphire/framework');
-const { Message } = require('discord.js');
+const { Command } = require("@sapphire/framework");
+const { Message } = require("discord.js");
 
 class RestartCommand extends Command {
-	constructor(context, options) {
+  constructor(context, options) {
     super(context, {
       ...options,
-      name: 'restart',
-      aliases: ['reboot'],
-      preconditions: ['Staff'],
-      description: 'Restarts Birb Helper'
+      name: "restart",
+      aliases: ["reboot"],
+      preconditions: ["Staff"],
+      description: "Restarts Birb Helper",
     });
   }
 
   /**
-   * 
-   * @param { Message } message 
-   * @returns 
+   *
+   * @param { Message } message
+   * @returns
    */
   async messageRun(message) {
-	  await message.reply('The bot is restarting...');
+    await message.reply("The bot is restarting...");
     return process.exit();
   }
 }

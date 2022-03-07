@@ -1,18 +1,18 @@
-const { Listener } = require('@sapphire/framework');
+const { Listener } = require("@sapphire/framework");
 
 class CommandDeniedListener extends Listener {
   constructor(context, options) {
     super(context, {
       ...options,
-      name: 'commandDenied',
+      name: "commandDenied",
       once: false,
-      event: 'commandDenied'
+      event: "commandDenied",
     });
   }
   /**
-   * 
-   * @param { Error } error 
-   * @param { String } message 
+   *
+   * @param { Error } error
+   * @param { String } message
    */
   run(error, { message }) {
     message.delete();
@@ -20,4 +20,4 @@ class CommandDeniedListener extends Listener {
   }
 }
 
-module.exports = { CommandDeniedListener }
+module.exports = { CommandDeniedListener };
