@@ -54,7 +54,7 @@ class EvalCommand extends Command {
 		evaluation.delete();
 		return message.delete();
 	}
-	return evaluation.edit(`Output: \`\`\`js\n${output}\`\`\`\nType: \`${type}\` Time Taken \`${evalTime.toString()}\``);
+	return evaluation.edit(`Output: \`\`\`js\n${output}\`\`\`\nType: \`${type}\` Time Taken: \`${evalTime.toString()}\``);
   }
 }
 
