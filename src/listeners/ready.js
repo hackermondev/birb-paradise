@@ -22,7 +22,7 @@ class ReadyListener extends Listener {
     });
     this.container.logger.info(`Pinging...`);
     this.container.logger.info(
-      `Ping acknowledged by the API. Bot is verified to be online.\n\n`
+      `Ping acknowledged by the API. Bot is online.\n\n`
     );
     setInterval(function () {
       container.logger.info(`Pinging...`);
