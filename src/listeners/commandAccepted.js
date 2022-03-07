@@ -7,6 +7,7 @@ class CommandAcceptedListener extends Listener {
       ...options,
       name: "commandAccepted",
       once: false,
+      enabled: false,
       event: "commandAccepted",
     });
   }
