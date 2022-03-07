@@ -19,7 +19,7 @@ class MessageEditLogging extends Listener {
 	run(oldMessage, newMessage) {
 		if (oldMessage.guildId !== bpGuildID) return;
 		if (oldMessage.channel.parentId === '891307974948184114') return;
-		if (!oldMessage.content) return; // TODO add support for image logging and other types of messages
+		if (!oldMessage.content || !newMessage.content) return; // TODO add support for image logging and other types of messages
 		const webhookClient = new WebhookClient({id: msgLogWebhookID, token: msgLogWebhookToken});
 		const msgDeleteEmbed = new MessageEmbed()
 			.setTitle(`Message edited by ${oldMessage.author.tag}`)
