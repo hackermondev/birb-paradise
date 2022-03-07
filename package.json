@@ -6,7 +6,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "lint": "npx prettier --write \"./src/**/*.js\"",
-    "install": "npm install --production",
     "stop": "process.exit()"
   },
   "keywords": [],
