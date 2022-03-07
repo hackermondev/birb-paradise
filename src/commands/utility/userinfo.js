@@ -19,8 +19,17 @@ class UserInfoCommand extends Command {
    * @returns 
    */
   async messageRun(message, args) {
-    return message.reply('Command not ready').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
-    const userInfoEmbed = new MessageEmbed()
+    // return message.reply('Command not ready').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    const rawMember = await args.restResult('string');
+    const member = await args.pickResult('member');
+    const userInfoEmbed = new MessageEmbed();
+
+    if (!rawMember.success) {
+      // TODO construct embed for message.member
+    }
+    
+    if (!member.success) return message.reply('Invalid User').then(reply => setTimeout(function() { message.delete(); reply.delete();}, 3500));
+    // TODO construct embed for member
   }
 }
 
