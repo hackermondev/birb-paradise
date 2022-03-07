@@ -20,10 +20,10 @@ class PingCommand extends Command {
   async messageRun(message) {
     const stopwatch = new Stopwatch(0).start();
 
-    const reply = await message.reply("Pinging...");
-    if (!reply) return;
+    const pong = await message.reply("Pinging...");
+    if (!pong) return;
     stopwatch.stop();
-    return reply.edit(
+    return pong.edit(
       `Pong! Websocket: \`${this.container.client.ws.ping}ms\` Bot Latency: \`${stopwatch}\``
     );
   }
