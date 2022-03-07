@@ -19,7 +19,7 @@ class RestartCommand extends Command {
    */
   async messageRun(message) {
     await message.reply("The bot is restarting...");
-    return process.exit();
+    return process.exit(1);
   }
 }
 
