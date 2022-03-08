@@ -17,7 +17,6 @@ class CommandFinishListener extends Listener {
    * @param { Command } command
    */
   run(message, command) {
-    // TODO event
     this.container.logger.info(
       `Command ${command.name} ran by ${message.member.user.tag}`
     );
