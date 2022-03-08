@@ -20,4 +20,4 @@ class PiecePostLoadListener extends Listener {
   }
 }
 
-module.exports = { CommandFinishListener };
+module.exports = { PiecePostLoadListener };
