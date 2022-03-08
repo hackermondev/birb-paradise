@@ -10,7 +10,7 @@ class KickCommand extends Command {
       description:
         "Kicks a member from the server(doesn't currently log anything",
       preconditions: ["Staff"],
-      enabled: false
+      enabled: false,
     });
   }
 

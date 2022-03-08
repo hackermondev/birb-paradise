@@ -10,7 +10,7 @@ class BanCommand extends Command {
       description:
         "Bans a member from the server(doesn't currently log anything",
       preconditions: ["Staff"],
-      enabled: false
+      enabled: false,
     });
   }
 
