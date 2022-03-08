@@ -4,7 +4,11 @@ const { prefix } = require("../config.json");
 const { DISCORD_TOKEN } = require("../config.json");
 
 process.on("uncaughtException", (error) => {
-  console.error(error);
+  client.logger.error(error);
+});
+
+process.on("exit", (code) => {
+  client.logger.warn(`Process exiting with code ${code}...`);
 });
 
 const client = new SapphireClient({
