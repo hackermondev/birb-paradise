@@ -39,7 +39,10 @@ class SayCommand extends Command {
           reply.delete();
         }, 3500)
       );
-    await message.channel.send(whatToSay.value);
+    await message.channel.send({
+      content: whatToSay.value,
+      allowedMentions: { users: [], roles: [], parse: [] },
+    });
     return message.delete();
   }
 }
