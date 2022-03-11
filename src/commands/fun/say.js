@@ -21,7 +21,7 @@ class SayCommand extends Command {
     //   !message.member.permissions.has("ADMINISTRATOR") &&
     //   message.author.id != "871531078391853158"
     // )
-      return message.delete();
+    //   return message.delete();
     const whatToSay = await args.restResult("string");
     if (!whatToSay.success)
       return message
