@@ -6,6 +6,7 @@ class SayCommand extends Command {
     super(context, {
       ...options,
       name: "say",
+      preconditions: ["Staff"],
       description: "idk you can say something",
     });
   }
@@ -16,10 +17,10 @@ class SayCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
-    if (
-      !message.member.permissions.has("ADMINISTRATOR") &&
-      message.author.id != "871531078391853158"
-    )
+    // if (
+    //   !message.member.permissions.has("ADMINISTRATOR") &&
+    //   message.author.id != "871531078391853158"
+    // )
       return message.delete();
     const whatToSay = await args.restResult("string");
     if (!whatToSay.success)
