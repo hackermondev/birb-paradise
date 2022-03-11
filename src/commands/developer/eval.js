@@ -11,7 +11,7 @@ class EvalCommand extends Command {
       aliases: ["e"],
       description: "Evaluate code",
       preconditions: ["Developer"],
-      flags: ["hide", "delete", "del"],
+      flags: ["hide", "delete", "del", "async"],
     });
   }
   /**
@@ -40,13 +40,15 @@ class EvalCommand extends Command {
     code = code.value;
     const wantsHide = args.getFlags("hide");
     const wantsDelete = args.getFlags("delete", "del");
+    const async = args.getFlags("async");
     let output, type;
     const evalTime = new Stopwatch();
 
     let evaluation = await message.reply("Evaluating...");
     try {
       evalTime.start();
-      output = await eval(code);
+      if (async) output = eval(async () => code);
+      else output = await eval(code);
       evalTime.stop();
       type = typeof output;
     } catch (err) {
