@@ -47,8 +47,8 @@ class EvalCommand extends Command {
     let evaluation = await message.reply("Evaluating...");
     try {
       evalTime.start();
-      if (async) output = eval(async () => code);
-      else output = await eval(code);
+      if (async) code = `(async () => {\n${code}\n})();`;
+      output = await eval(code);
       evalTime.stop();
       type = typeof output;
     } catch (err) {
