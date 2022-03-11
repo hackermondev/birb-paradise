@@ -23,7 +23,7 @@ class GuildBanAddEvidenceListener extends Listener {
       .setColor("RED")
       .addField("User", `<@${ban.user.id}> (${ban.user.tag})`)
       .addField("Reason", `${ban.reason}`)
-      .addField("Moderator", `still have to do this`)
+      .addField("Moderator", `Parallel#7735`)
       .setFooter({ text: `User ID: ${ban.user.id} - ${ban.guild.name}` });
 
     ban.guild.channels.cache.get(evidenceChannel).send({ embeds: [banEmbed] });
