@@ -17,6 +17,7 @@
 		"Rule 13: Do not spam. Spamming can include sending large blocks of text or sending random text repetitively", 
 		"Rule 14: No directing to bypasses/rule breaking offenses; This means directing to any rule breaking offenses, like replying to a rule breaking offense or telling people to go to a channel to see the bypass or rule break."],
 	"faqs": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
+	"reactChannels": ["927983294853816330", "913138419142651934"],
 	"evidenceChannel": "892094128215715860",
 	"msgLogWebhookID": "949862193162248232",
 	"msgLogWebhookToken": "NGcOmVlx_5ZbOjll6He-2unfW5FrIESEPMkg2c0nIa6HB_s1y5d9Lzfz_W6Ab5mpg2P9",

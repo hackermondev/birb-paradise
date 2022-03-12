@@ -1,5 +1,6 @@
 const { Listener } = require("@sapphire/framework");
 const { Message } = require("discord.js");
+const { reactChannels } = require("../../config.json");
 
 class MessageReactBarneySuggestions extends Listener {
   constructor(context, options) {
@@ -16,7 +17,7 @@ class MessageReactBarneySuggestions extends Listener {
    * @param { Message } message
    */
   async run(message) {
-    if (message.channelId !== "927983294853816330" || "913138419142651934")
+    if (!reactChannels.includes(message.channelId))
       return;
     if (message.author.id === message.guild.ownerId) return;
     return message.react("👍").then(message.react("👎"));
