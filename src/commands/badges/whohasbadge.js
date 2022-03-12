@@ -66,7 +66,7 @@ class WhoHasBadgeCommand extends Command {
     let r = await message.reply(
       `Fetching members and checking for the badge ${badgesLiteralStrings[index]}...`
     );
-    let guilds = [...client.guilds.cache.values()];
+    let guilds = [...this.container.client.guilds.cache.values()];
     for (let i = 0; i < guilds.length; i++) {
       const guild = guilds[i];
       await guild.members.fetch();
