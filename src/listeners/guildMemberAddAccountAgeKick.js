@@ -25,8 +25,8 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
     const accountAgeLogEmbed = new MessageEmbed()
       .setTitle("A user was kicked since their account was too young")
       .addField("User", `<@${member.id}>`)
-      .addField("Time", `<t:${Date.now() / 1000}>`)
-      .addField("Account Created", `<t:${member.user.createdTimestamp}:R>`);
+      .addField("Time", `<t:${Math.floor(Date.now() / 1000)}>`)
+      .addField("Account Created", `<t:${member.user.createdAt.getTime()}:R>`);
     if (Date.now() - member.user.createdAt < 86400000) {
       await member.send({ embeds: [accountAgeKickEmbed] }).catch(() => {});
       await member.kick("Account was less than 1d old");
