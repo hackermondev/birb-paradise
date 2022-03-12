@@ -8,8 +8,8 @@
     "lint": "npx prettier --write \"./src/**/*.js\""
   },
   "engines": {
-    "node": ">17.5.0",
-    "npm": ">8.5.0"
+    "node": ">17.0.0",
+    "npm": ">8.0.0"
   },
   "keywords": [],
   "author": "Grav <grav4029@gmail.com>",
