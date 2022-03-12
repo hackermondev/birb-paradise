@@ -5,8 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "lint": "npx prettier --write \"./src/**/*.js\"",
-    "stop": "process.exit()"
+    "lint": "npx prettier --write \"./src/**/*.js\""
   },
   "keywords": [],
   "author": "",
