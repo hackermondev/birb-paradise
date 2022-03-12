@@ -5,7 +5,7 @@ class MessageReactBarneySuggestions extends Listener {
   constructor(context, options) {
     super(context, {
       ...options,
-      name: "messageReactBarneySuggestions",
+      name: "messageReactChannels",
       once: false,
       event: "messageCreate",
     });
@@ -16,7 +16,8 @@ class MessageReactBarneySuggestions extends Listener {
    * @param { Message } message
    */
   async run(message) {
-    if (message.channelId !== "927983294853816330") return;
+    if (message.channelId !== "927983294853816330" || "913138419142651934") return;
+    if (message.author.id === message.guild.ownerId) return;
     return message.react("👍").then(message.react("👎"));
   }
 }
