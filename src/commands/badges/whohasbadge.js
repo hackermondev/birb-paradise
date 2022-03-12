@@ -7,7 +7,7 @@ class WhoHasBadgeCommand extends Command {
     super(context, {
       ...options,
       name: "whohasbadge",
-      aliases: ["whohasb"],
+      aliases: ["whohasb", "whohas"],
       description: "Gets you the members who have the specified badge",
       preconditions: ["Admin"],
     });
