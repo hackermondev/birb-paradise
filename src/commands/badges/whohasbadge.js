@@ -72,16 +72,7 @@ class WhoHasBadgeCommand extends Command {
       await guild.members.fetch();
     }
     let membersWithBadge = [];
-    membersWithBadge = message.guild.members.cache
-      .filter(
-        (member) =>
-          member.user.flags &&
-          member.user.flags
-            .toArray()
-            .toString()
-            .includes(badgesLiteralStrings[index])
-      )
-      .map(`${member.user.tag} (<@${member.id}>)`);
+    message.guild.members.cache.filter((member) => ((member.user.flags) && (member.user.flags.toArray().toString().includes(badgesLiteralStrings[index])))).forEach(member => membersWithBadge.push(`${member.user.tag} (<@${member.id}>)`));
     if (membersWithBadge.length == 0)
       return r.edit(
         `I couldn\'t find anyone who has the ${badgesLiteralStrings[index]} badge`
