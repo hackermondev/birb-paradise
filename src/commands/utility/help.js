@@ -92,6 +92,7 @@ class HelpCommand extends Command {
       commandsData.push(
         `**Permissions:** ${cmd.options.preconditions.join(", ")}\n`
       );
+    if (!cmd.enabled) commandsData.push(`*This command is disabled*\n`);
     const commandsDataString = commandsData.join(" ");
     const commandHelpEmbed = new MessageEmbed()
       .setColor("BLUE")
