@@ -1,6 +1,7 @@
 const { Command, Args } = require("@sapphire/framework");
 const { Message, MessageEmbed } = require("discord.js");
 const { Duration } = require("@sapphire/time-utilities");
+const { DurationFormatter } = require("@sapphire/time-utilities");
 
 class TimeoutCommand extends Command {
   constructor(context, options) {
@@ -18,7 +19,6 @@ class TimeoutCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
-    // return message.reply("Command isn't ready yet");
     const rawArgs = await args.restResult("string");
     if (!rawArgs.success)
       return message.reply("Mention someone to timeout").then((reply) =>
@@ -29,8 +29,7 @@ class TimeoutCommand extends Command {
       );
     const actionMember = await args.pickResult("member");
     const rawActionTime = await args.pickResult("string");
-    const d = new Duration(rawActionTime);
-    // actionTime.
+    const reason = await args.pickResult("string");
     if (!actionMember.success)
       return message.reply("Mention a valid user to timeout").then((reply) =>
         setTimeout(function () {
@@ -38,6 +37,36 @@ class TimeoutCommand extends Command {
           reply.delete();
         }, 3500)
       );
+    if (!rawActionTime.success)
+      return message
+        .reply("Specify a time to timeout the user for")
+        .then((reply) =>
+          setTimeout(function () {
+            message.delete();
+            reply.delete();
+          }, 3500)
+        );
+    if (!reason.success)
+      return message
+        .reply("You must provide a reason to timeout")
+        .then((reply) =>
+          setTimeout(function () {
+            message.delete();
+            reply.delete();
+          }, 3500)
+        );
+    const time = new Duration(rawActionTime.value).offset;
+    const d = new DurationFormatter();
+    try {
+      await actionMember.value.timeout(time, reason.value);
+      return message.reply(
+        `<@${
+          actionMember.value.id
+        }> has been successfully timeouted for ${d.format(time)}`
+      );
+    } catch (error) {
+      return message.reply(`Failed to timeout <@${actionMember.value.id}>`);
+    }
   }
 }
 

@@ -16,7 +16,9 @@ class CommandDeniedListener extends Listener {
    */
   async run(error, { message }) {
     message.delete();
-    console.log(`error name logging: ${error.name}`);
+    this.container.client.logger.debug(
+      `error name logging: ${error.name} + error message: ${error.message}`
+    );
   }
 }
 
