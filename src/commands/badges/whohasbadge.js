@@ -100,7 +100,7 @@ class WhoHasBadgeCommand extends Command {
       return r.edit(
         `The list of members was too long to be sent on discord, you can see the list here: <https://hst.sh/${
           res.json().key
-        }`
+        }>`
       );
     } else {
       return r.edit(
