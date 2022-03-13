@@ -19,7 +19,7 @@ class TimeoutCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
-    const rawArgs = await args.restResult("string");
+    const rawArgs = await args.peekResult("string");
     if (!rawArgs.success)
       return message.reply("Mention someone to timeout").then((reply) =>
         setTimeout(function () {
