@@ -15,8 +15,8 @@ class ErrorListener extends Listener {
    * @param { String } message
    */
   async run(error, message) {
-   this.container.logger.debug(`error name(error listener):}`);
+   this.container.logger.debug(`error name(error listener): ${error.name} + message: ${error.message}`);
   }
 }
 
-module.exports = { CommandDeniedListener };
+module.exports = { ErrorListener };
