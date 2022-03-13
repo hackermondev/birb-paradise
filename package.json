@@ -22,7 +22,7 @@
     "url": "https://github.com/grav4029/Birb-Helper/issues"
   },
   "homepage": "https://github.com/grav4029/Birb-Helper#readme",
-  "description": "",
+  "description": "A custom bot for the server Birb Paradise",
   "dependencies": {
     "@sapphire/discord-utilities": "^2.8.0",
     "@sapphire/discord.js-utilities": "^4.9.0",
