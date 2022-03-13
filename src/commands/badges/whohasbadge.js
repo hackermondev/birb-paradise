@@ -90,7 +90,7 @@ class WhoHasBadgeCommand extends Command {
       );
     if (membersWithBadge.toString().length > 4000) {
       const res = await req("https://hst.sh/documents", "POST")
-        .body(output)
+        .body(membersWithBadge.toString())
         .timeout(10000)
         .send();
       if (res.statusCode !== 200)
