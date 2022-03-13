@@ -1,4 +1,9 @@
-const { Command, Args, UserError, ArgumentError } = require("@sapphire/framework");
+const {
+  Command,
+  Args,
+  UserError,
+  ArgumentError,
+} = require("@sapphire/framework");
 const { Message, MessageEmbed } = require("discord.js");
 const { rules } = require("../../../config.json");
 
@@ -21,7 +26,13 @@ class RuleCommand extends Command {
    */
   async messageRun(message, args) {
     let ruleNumber = await args.pickResult("string");
-    if (!ruleNumber.success) throw new ArgumentError({message: "No arguments provided"});
+    if (!ruleNumber.success)
+      return message.reply("You need to enter a rule number").then((reply) =>
+        setTimeout(function () {
+          message.delete();
+          reply.delete();
+        }, 3500)
+      );
     ruleNumber = ruleNumber.value;
     if (Number.isNaN(Number.parseInt(ruleNumber)))
       return message.reply("That's not a valid number").then((reply) =>

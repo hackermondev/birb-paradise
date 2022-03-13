@@ -15,7 +15,9 @@ class ErrorListener extends Listener {
    * @param { CommandErrorPayload } payload
    */
   async run(error, payload) {
-   this.container.logger.debug(`payload message: ${payload.message}, error message: ${error.message}`);
+    this.container.logger.debug(
+      `payload message: ${payload.message}, error message: ${error.message}`
+    );
   }
 }
 
