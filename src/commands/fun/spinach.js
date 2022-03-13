@@ -8,7 +8,6 @@ class SpinachCommand extends Command {
       name: "spinach",
       description: "spinach is cool",
       preconditions: ["Staff"],
-      enabled: false,
     });
   }
 
