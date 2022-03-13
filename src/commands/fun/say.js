@@ -7,7 +7,7 @@ class SayCommand extends Command {
       ...options,
       name: "say",
       preconditions: ["Staff"],
-      description: "idk you can say something",
+      description: "idk you can say stuff with this",
     });
   }
 
