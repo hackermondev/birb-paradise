@@ -17,11 +17,6 @@ class SayCommand extends Command {
    * @param { Args } args
    */
   async messageRun(message, args) {
-    // if (
-    //   !message.member.permissions.has("ADMINISTRATOR") &&
-    //   message.author.id != "871531078391853158"
-    // )
-    //   return message.delete();
     const whatToSay = await args.restResult("string");
     if (!whatToSay.success)
       return message

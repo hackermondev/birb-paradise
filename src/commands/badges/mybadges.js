@@ -18,17 +18,12 @@ class MyBadgesCommand extends Command {
    */
   messageRun(message) {
     let badges = message.author.flags.toArray().toString();
-    badges = badges.replace("DISCORD_EMPLOYEE", "Discord Staff");
-    badges = badges.replace("HOUSE_BRILLIANCE", "Hypesquad Brilliance");
-    badges = badges.replace("HOUSE_BALANCE", "Hypesquad Balance");
-    badges = badges.replace(
-      "EARLY_VERIFIED_BOT_DEVELOPER",
-      "Early Verified Bot Developer"
-    );
-    badges = badges.replace(
-      "DISCORD_CERTIFIED_MODERATOR",
-      "Discord Certified Moderator"
-    );
+    badges = badges
+      .replace("DISCORD_EMPLOYEE", "Discord Staff")
+      .replace("HOUSE_BRILLIANCE", "Hypesquad Brilliance")
+      .replace("HOUSE_BALANCE", "Hypesquad Balance")
+      .replace("EARLY_VERIFIED_BOT_DEVELOPER", "Early Verified Bot Developer")
+      .replace("DISCORD_CERTIFIED_MODERATOR", "Discord Certified Moderator");
     const badgesArray = badges.split(",");
     if (!badgesArray.length) return message.reply("You have no badges");
     else

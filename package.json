@@ -34,6 +34,5 @@
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
     "petitio": "^1.4.0"
-  },
-  "packageManager": "npm@8.5.0"
+  }
 }
