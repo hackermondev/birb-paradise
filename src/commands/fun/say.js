@@ -6,7 +6,7 @@ class SayCommand extends Command {
     super(context, {
       ...options,
       name: "say",
-      preconditions: ["Staff"],
+      preconditions: ["Admin"],
       description: "idk you can say stuff with this",
     });
   }
