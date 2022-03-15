@@ -23,6 +23,7 @@
 		"faq 5: ", "6", "7", "8", "9", "10", "11"],
 	"reactChannels": ["927983294853816330", "913138419142651934"],
 	"evidenceChannel": "892094128215715860",
+	"memberLeaveChannel": "930181144752816158",
 	"msgLogWebhookID": "949862193162248232",
 	"msgLogWebhookToken": "NGcOmVlx_5ZbOjll6He-2unfW5FrIESEPMkg2c0nIa6HB_s1y5d9Lzfz_W6Ab5mpg2P9",
 	"accountAgeLogWebhookID": "950122555631624192",
