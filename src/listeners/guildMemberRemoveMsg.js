@@ -16,7 +16,11 @@ class GuildMemberRemoveMsg extends Listener {
    * @param { GuildMember } member
    */
   async run(member) {
-	return member.guild.channels.cache.get(memberLeaveChannel).send(`**${member.user.tag} just left the server, sadge :verysadbirb:`);
+    return member.guild.channels.cache
+      .get(memberLeaveChannel)
+      .send(
+        `**${member.user.tag}** just left the server, sadge <:verysadbirb:925771843040841768>`
+      );
   }
 }
 
