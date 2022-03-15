@@ -19,7 +19,7 @@ class MessageReactBarneySuggestions extends Listener {
   async run(message) {
     if (!reactChannels.includes(message.channelId)) return;
     if (message.author.id === message.guild.ownerId) return;
-    return message.react("👍").then(message.react("👎"));
+    return message.react("👍").then(message.react("👎")).catch((e) => this.container.logger.error(e));
   }
 }
 
