@@ -17,7 +17,7 @@ class ReadyListener extends Listener {
    */
   async run(client) {
     this.container.logger.info(`Logged in as ${client.user.tag}!`);
-    this.container.client.user.setActivity("development go brr", {
+    this.container.client.user.setActivity("a partnered server", {
       type: "WATCHING",
     });
     this.container.logger.info(`Pinging...`);
