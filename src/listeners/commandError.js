@@ -1,4 +1,8 @@
-const { Listener, CommandErrorPayload } = require("@sapphire/framework");
+const {
+  Listener,
+  CommandErrorPayload,
+  Events,
+} = require("@sapphire/framework");
 
 class ErrorListener extends Listener {
   constructor(context, options) {
@@ -6,7 +10,7 @@ class ErrorListener extends Listener {
       ...options,
       name: "error",
       once: false,
-      event: "CommandError",
+      event: Events.CommandError,
     });
   }
   /**

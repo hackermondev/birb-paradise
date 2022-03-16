@@ -1,4 +1,4 @@
-const { Listener, Command } = require("@sapphire/framework");
+const { Listener, Command, Events } = require("@sapphire/framework");
 const { Message } = require("discord.js");
 
 class CommandFinishListener extends Listener {
@@ -7,7 +7,7 @@ class CommandFinishListener extends Listener {
       ...options,
       name: "commandFinish",
       once: false,
-      event: "commandFinish",
+      event: Events.CommandFinish,
     });
   }
 

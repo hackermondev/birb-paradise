@@ -1,4 +1,4 @@
-const { Listener } = require("@sapphire/framework");
+const { Listener, Events } = require("@sapphire/framework");
 const { GuildMember, MessageEmbed, WebhookClient } = require("discord.js");
 const { accountAgeLogWebhookID } = require("../../config.json");
 const { accountAgeLogWebhookToken } = require("../../config.json");
@@ -8,7 +8,7 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
     super(context, {
       ...options,
       once: true,
-      event: "guildMemberAdd",
+      event: Events.GuildMemberAdd,
     });
   }
 

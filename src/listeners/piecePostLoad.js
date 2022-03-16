@@ -1,4 +1,4 @@
-const { Listener, Store, Piece } = require("@sapphire/framework");
+const { Listener, Store, Piece, Events } = require("@sapphire/framework");
 
 class PiecePostLoadListener extends Listener {
   constructor(context, options) {
@@ -6,7 +6,7 @@ class PiecePostLoadListener extends Listener {
       ...options,
       name: "piecePostLoad",
       once: false,
-      event: "piecePostLoad",
+      event: Events.PiecePostLoad,
     });
   }
 

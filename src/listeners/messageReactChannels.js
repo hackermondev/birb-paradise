@@ -1,4 +1,4 @@
-const { Listener } = require("@sapphire/framework");
+const { Listener, Events } = require("@sapphire/framework");
 const { Message } = require("discord.js");
 const { reactChannels } = require("../../config.json");
 
@@ -8,7 +8,7 @@ class MessageReactBarneySuggestions extends Listener {
       ...options,
       name: "messageReactChannels",
       once: false,
-      event: "messageCreate",
+      event: Events.MessageCreate,
     });
   }
 
@@ -19,7 +19,10 @@ class MessageReactBarneySuggestions extends Listener {
   async run(message) {
     if (!reactChannels.includes(message.channelId)) return;
     if (message.author.id === message.guild.ownerId) return;
-    return message.react("👍").then(message.react("👎")).catch((e) => this.container.logger.error(e));
+    return message
+      .react("👍")
+      .then(message.react("👎"))
+      .catch((e) => this.container.logger.error(e));
   }
 }
 

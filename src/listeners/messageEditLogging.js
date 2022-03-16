@@ -1,4 +1,4 @@
-const { Listener } = require("@sapphire/framework");
+const { Listener, Events } = require("@sapphire/framework");
 const { Message, MessageEmbed, WebhookClient } = require("discord.js");
 const {
   msgLogWebhookID,
@@ -11,7 +11,7 @@ class MessageEditLogging extends Listener {
     super(context, {
       ...options,
       once: false,
-      event: "messageUpdate",
+      event: Events.MessageUpdate,
     });
   }
 

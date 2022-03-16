@@ -1,4 +1,4 @@
-const { Listener } = require("@sapphire/framework");
+const { Listener, Events } = require("@sapphire/framework");
 const { Client } = require("discord.js");
 const { container } = require("@sapphire/framework");
 
@@ -7,7 +7,7 @@ class ReadyListener extends Listener {
     super(context, {
       ...options,
       once: true,
-      event: "ready",
+      event: Events.ClientReady,
     });
   }
 

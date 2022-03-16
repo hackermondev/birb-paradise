@@ -1,4 +1,4 @@
-const { Listener } = require("@sapphire/framework");
+const { Listener, Events } = require("@sapphire/framework");
 
 class CommandDeniedListener extends Listener {
   constructor(context, options) {
@@ -6,7 +6,7 @@ class CommandDeniedListener extends Listener {
       ...options,
       name: "commandDenied",
       once: false,
-      event: "commandDenied",
+      event: Events.CommandDenied,
     });
   }
   /**
