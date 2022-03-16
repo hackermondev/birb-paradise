@@ -12,6 +12,7 @@ class PrefixCommand extends SubCommandPluginCommand {
       description: "Gets you the prefix of the bot",
       subCommands: ["set", "get"],
       preconditions: ["Staff"],
+      enabled: false
     });
   }
 
