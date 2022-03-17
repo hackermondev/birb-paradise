@@ -43,7 +43,7 @@ class AvailableBadgesCommand extends Command {
     return message.reply(
       `The badges that are currently supported are ${badgesLiteralStrings.join(
         ", "
-      )}\n You can use them by using the \`b!whohas\` command with the following identifiers: ${badgesStrings.join(
+      )}\n You can use them by using the \`${this.container.client.options.defaultPrefix} whohas\` command with the following identifiers: ${badgesStrings.join(
         ", "
       )}`
     );

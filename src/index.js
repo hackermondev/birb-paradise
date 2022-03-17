@@ -6,7 +6,7 @@ const { prefix } = require("../config.json");
 const { DISCORD_TOKEN } = require("../config.json");
 
 process.on("uncaughtException", (error) => {
-  client.logger.error(error);
+  Sentry.captureException(error);
 });
 
 process.on("exit", (code) => {
@@ -21,14 +21,5 @@ Sentry.init({
   dsn: "https://b96f5bab3c2e407db829c97a9e73abe5@o1170791.ingest.sentry.io/6264651",
   tracesSampleRate: 1.0,
 })
-setTimeout(() => {
-  try {
-    foo();
-  } catch (e) {
-    Sentry.captureException(e);
-  } finally {
-    transaction.finish();
-  }
-}, 99);
 
 client.login(DISCORD_TOKEN);
