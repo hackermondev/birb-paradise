@@ -1,1 +1,1 @@
-const { Listener } = require("@sapphire/framework")
+const { Listener } = require('@sapphire/framework');
