@@ -1,6 +1,8 @@
 const { Listener, Events } = require('@sapphire/framework');
+const { Sentry } = require('@sentry/node');
 const { Message } = require('discord.js');
-const { staffRoles } = require('../../config.json');
+const { staffRoles, gifPermRoles } = require('../../config.json');
+const linkRegex = new RegExp("");
 
 class AutomodGifPermsListener extends Listener {
 	constructor(context, options) {
@@ -9,6 +11,7 @@ class AutomodGifPermsListener extends Listener {
             name: 'automodGifPerms',
             once: false,
             event: Events.MessageCreate,
+            enabled: false,
         });
     }
 
@@ -18,6 +21,16 @@ class AutomodGifPermsListener extends Listener {
      */
     async run(message) {
         if (staffRoles.some(role => message.member.roles.cache.has(role))) return;
+        if (gifPermRoles.some(role => message.member.roles.cache.has(role))) return;
         
+        if (!linkRegex.test(message.content)) return;
+
+        if (message.deletable) {
+            await message.delete();
+            const automodMsg = await message.channel.send('You do not have permissions to send gifs in this channel');
+            setTimeout(() => automodMsg.delete(), 4500);
+        }
     }
 }
+
+module.exports = { AutomodGifPermsListener };
