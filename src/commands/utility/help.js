@@ -46,7 +46,7 @@ class HelpCommand extends Command {
 
       let categoryCommands = new Array(categories.length);
       if (message.author != this.container.client.application.owner)
-        commands = commands.filter((c) => c.category != "developer" || "donations");
+        commands = commands.filter((c) => c.category != "developer");
 
       commands.forEach((cmd) => {
         const cmdCategory = cmd.category;
