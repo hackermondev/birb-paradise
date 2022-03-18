@@ -20,6 +20,7 @@ client.options.defaultPrefix = prefix;
 Sentry.init({
   dsn: "https://b96f5bab3c2e407db829c97a9e73abe5@o1170791.ingest.sentry.io/6264651",
   tracesSampleRate: 1.0,
-})
+  release: `${require('../package.json').name}@${require('../package.json').version}`,
+});
 
 client.login(DISCORD_TOKEN);
