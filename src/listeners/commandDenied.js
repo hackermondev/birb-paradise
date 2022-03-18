@@ -1,4 +1,5 @@
 const { Listener, Events } = require('@sapphire/framework');
+const { Message } = require('discord.js');
 
 class CommandDeniedListener extends Listener {
     constructor(context, options) {
@@ -12,13 +13,10 @@ class CommandDeniedListener extends Listener {
     /**
      *
      * @param { Error } error
-     * @param { String } message
+     * @param { Message } message
      */
     async run(error, { message }) {
-        message.delete();
-        this.container.client.logger.debug(
-            `error name logging: ${error.name} + error message: ${error.message}`
-        );
+        if (message.deletable) await message.delete();
     }
 }
 
