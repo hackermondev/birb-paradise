@@ -53,4 +53,4 @@ class LinkAutomodListener extends Listener {
     }
 }
 
-module.exports = { GifAutomodListener };
+module.exports = { LinkAutomodListener };

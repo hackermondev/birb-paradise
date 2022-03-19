@@ -1,6 +1,6 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed, WebhookClient } = require('discord.js');
-const { bpGuildID } = require('../../config.json');
+const { bpGuildID } = require('../../../config.json');
 const msgLogWebhookID = process.env.msgLogWebhookID;
 const msgLogWebhookToken = process.env.msgLogWebhookToken;
 class MessageEditLogging extends Listener {
