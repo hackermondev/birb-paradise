@@ -19,6 +19,7 @@ class AutomodGifPermsListener extends Listener {
      * @param { Message } message
      */
     async run(message) {
+        if (message.author === this.container.client.user) return;
         if (staffRoles.some((role) => message.member.roles.cache.has(role)))
             return;
         if (gifPermRoles.some((role) => message.member.roles.cache.has(role)))
