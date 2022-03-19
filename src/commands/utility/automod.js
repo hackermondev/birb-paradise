@@ -20,9 +20,11 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @returns
      */
     async current(message) {
-        const currentAutomodConfig = new MessageEmbed()
-            .setTitle('Current Automod Configuration')
-            .addField('Gifs', this.container.stores.get('listeners').get('gifAutomod') ? true : false)
+        const automods = this.container.stores.get('listeners');
+        const currentAutomodConfig = new MessageEmbed().setTitle('Current Automod Configuration');
+        automods.forEach(automod => {
+            currentAutomodConfig.addField('Gifs', this.container.stores.get('listeners').get(automod.name).enabled ? true : false)
+        });
         return message.reply({embeds: [currentAutomodConfig]});
     }
 
