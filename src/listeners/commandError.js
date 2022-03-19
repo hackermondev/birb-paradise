@@ -22,10 +22,12 @@ class ErrorListener extends Listener {
      */
     async run(error, payload) {
         const sentryID = Sentry.captureException(error);
-        this.container.logger.error(`Error with id ${sentryID} sent to Sentry`);
-        this.container.logger.debug(
-            `payload message: ${payload.message}, error message: ${error.message}`
+        this.container.logger.error(
+            `Command error with ID ${sentryID} sent to Sentry`
         );
+        // this.container.logger.debug(
+        //     `payload message: ${payload.message}, error message: ${error.message}`
+        // );
     }
 }
 

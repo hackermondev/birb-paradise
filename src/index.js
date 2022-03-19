@@ -6,7 +6,10 @@ const { prefix } = require('../config.json');
 const { DISCORD_TOKEN } = require('../config.json');
 
 process.on('uncaughtException', (error) => {
-    Sentry.captureException(error);
+    const sentryID = Sentry.captureException(error);
+    client.logger.error(
+        `Uncaught exception with ID ${sentryID} sent to Sentry`
+    );
 });
 
 process.on('exit', (code) => {
@@ -17,6 +20,7 @@ const client = new SapphireClient({
     intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_BANS'],
 });
 client.options.defaultPrefix = prefix;
+
 Sentry.init({
     dsn: 'https://b96f5bab3c2e407db829c97a9e73abe5@o1170791.ingest.sentry.io/6264651',
     tracesSampleRate: 1.0,
