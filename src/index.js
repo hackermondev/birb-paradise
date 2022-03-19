@@ -3,7 +3,6 @@ const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');
 const { prefix } = require('../config.json');
-const { DISCORD_TOKEN } = require('../config.json');
 
 process.on('uncaughtException', (error) => {
     const sentryID = Sentry.captureException(error);
