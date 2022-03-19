@@ -20,12 +20,21 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @returns
      */
     async current(message) {
-        const automods = this.container.stores.get('listeners');
-        const currentAutomodConfig = new MessageEmbed().setTitle('Current Automod Configuration');
-        automods.forEach(automod => {
-            currentAutomodConfig.addField('Gifs', this.container.stores.get('listeners').get(automod.name).enabled ? true : false)
+        const automods = this.container.stores
+            .get('listeners')
+            .filter((cmd) => cmd.name.endsWith('Automod'));
+        const currentAutomodConfig = new MessageEmbed().setTitle(
+            'Current Automod Configuration'
+        );
+        automods.forEach((automod) => {
+            currentAutomodConfig.addField(
+                'Gifs',
+                this.container.stores.get('listeners').get(automod.name).enabled
+                    ? true
+                    : false
+            );
         });
-        return message.reply({embeds: [currentAutomodConfig]});
+        return message.reply({ embeds: [currentAutomodConfig] });
     }
 
     /**
@@ -33,10 +42,7 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async disablegif(message) {
-        if (
-            !this.container.stores.get('listeners').get('gifAutomod')
-                .enabled
-        )
+        if (!this.container.stores.get('listeners').get('gifAutomod').enabled)
             return message.reply(
                 `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it`
             );
@@ -53,16 +59,11 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async enablegif(message) {
-        if (
-            this.container.stores.get('listeners').get('gifAutomod')
-                .enabled
-        )
+        if (this.container.stores.get('listeners').get('gifAutomod').enabled)
             return message.reply(
                 `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it`
             );
-        this.container.stores
-            .get('listeners')
-            .get('gifAutomod').enabled = true;
+        this.container.stores.get('listeners').get('gifAutomod').enabled = true;
         return message.reply(
             `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it again`
         );
