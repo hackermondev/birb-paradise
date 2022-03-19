@@ -1,4 +1,4 @@
-name: CI to Docker for Birb Helper
+name: Publish Birb Helper to Docker
 
 # Controls when the workflow will run
 on:
@@ -26,7 +26,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build and push Birb Helper's docker image
+      - name: Build and push Birb Helper docker image
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -34,6 +34,6 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/birb-helper:latest
       - name: Echo docker imaage
         run: echo ${{ steps.docker_build.outputs.digest }}
