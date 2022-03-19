@@ -9,7 +9,7 @@ class EmmieCommand extends Command {
             aliases: ['bam'],
             description: 'Definitely bans you from the server',
             preconditions: ['Staff'],
-            enabled: false
+            enabled: false,
         });
     }
 

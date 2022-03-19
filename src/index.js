@@ -4,6 +4,7 @@ const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
+const sentryDSN = process.env.SENTRY_DSN;
 
 process.on('uncaughtException', (error) => {
     const sentryID = Sentry.captureException(error);
@@ -22,11 +23,12 @@ const client = new SapphireClient({
 client.options.defaultPrefix = prefix;
 
 Sentry.init({
-    dsn: 'https://b96f5bab3c2e407db829c97a9e73abe5@o1170791.ingest.sentry.io/6264651',
+    dsn: sentryDSN,
     tracesSampleRate: 1.0,
     release: `${require('../package.json').name}@${
         require('../package.json').version
     }`,
+    integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
 client.login(process.env.DISCORD_TOKEN);

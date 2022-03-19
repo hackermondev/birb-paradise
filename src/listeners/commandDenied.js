@@ -1,4 +1,5 @@
 const { Listener, Events } = require('@sapphire/framework');
+const Sentry = require('@sentry/node');
 const { Message } = require('discord.js');
 
 class CommandDeniedListener extends Listener {
@@ -17,6 +18,11 @@ class CommandDeniedListener extends Listener {
      */
     async run(error, { message }) {
         if (message.deletable) await message.delete();
+        else
+            Sentry.captureMessage(
+                `A command was denied but the message wasn't able to be deleted`,
+                Sentry.Severity.Warning
+            );
     }
 }
 
