@@ -1,7 +1,7 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { GuildMember, MessageEmbed, WebhookClient } = require('discord.js');
-const { accountAgeLogWebhookID } = require('../../config.json');
-const { accountAgeLogWebhookToken } = require('../../config.json');
+const accountAgeLogWebhookID = process.env.accountAgeLogWebhookID;
+const accountAgeLogWebhookToken = process.env.accountAgeLogWebhookToken;
 
 class GuildMemberAddAccountAgeKickListener extends Listener {
     constructor(context, options) {
