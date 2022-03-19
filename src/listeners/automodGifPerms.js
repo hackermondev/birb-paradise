@@ -42,10 +42,9 @@ class AutomodGifPermsListener extends Listener {
                 .setColor('YELLOW')
                 .setTitle('Gif Deleted')
                 .setDescription(
-                    `${message.member.toString()} sent a gif in ${
-                        message.channelId
-                    } and it was deleted since they lack the perms to send gifs`
-                );
+                    `${message.member} sent a gif in ${message.channel} and it was deleted since they lack the perms to send gifs`
+                )
+                .addField('Gif Sent', `${message.content}`);
             automodLogsWebhookClient.send({ embeds: [gifLogEmbed] });
         }
     }
