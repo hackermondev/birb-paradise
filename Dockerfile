@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:2
+#syntax=docker/dockerfile:1.2
 
 FROM node:17.6.0
 
