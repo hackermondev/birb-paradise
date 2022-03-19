@@ -28,11 +28,18 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async disablegif(message) {
+        if (
+            !this.container.stores.get('listeners').get('autmodGifPerms')
+                .enabled
+        )
+            return message.reply(
+                `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it`
+            );
         this.container.stores
             .get('listeners')
-            .get('automodGifPerms').options.enabled = false;
+            .get('automodGifPerms').enabled = false;
         return message.reply(
-            `The gif automod has successfully been disabled. You can use ${this.container.client.options.defaultPrefix}automod enablegif to enable it again`
+            `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it again`
         );
     }
 
@@ -41,11 +48,17 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async enablegif(message) {
+        if (
+            this.container.stores.get('listeners').get('autmodGifPerms').enabled
+        )
+            return message.reply(
+                `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it`
+            );
         this.container.stores
             .get('listeners')
-            .get('automodGifPerms').options.enabled = true;
+            .get('automodGifPerms').enabled = true;
         return message.reply(
-            `The gif automod has successfully been enabled. You can use ${this.container.client.options.defaultPrefix}automod disablegif to disable it again`
+            `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it again`
         );
     }
 }
