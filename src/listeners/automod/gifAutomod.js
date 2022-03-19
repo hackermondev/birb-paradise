@@ -19,7 +19,7 @@ class GifAutomodListener extends Listener {
      * @param { Message } message
      */
     async run(message) {
-        if (!message.guild) return;
+        if (!message.guild || message.author.bot) return;
         if (message.author === this.container.client.user) return;
         this.container.client.logger.info(message.member);
         console.log(message.member);
