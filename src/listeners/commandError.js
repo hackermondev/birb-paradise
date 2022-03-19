@@ -2,7 +2,7 @@ const {
     Listener,
     CommandErrorPayload,
     Events,
-    UserError
+    UserError,
 } = require('@sapphire/framework');
 const Sentry = require('@sentry/node');
 
