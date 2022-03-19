@@ -1,6 +1,6 @@
 {
   "name": "birb-helper",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,6 @@
     "node": ">17.0.0",
     "npm": ">8.0.0"
   },
-  "keywords": [],
   "author": "Grav <grav4029@gmail.com>",
   "license": "ISC",
   "repository": {
