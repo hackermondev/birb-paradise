@@ -2,6 +2,7 @@ const { SapphireClient } = require('@sapphire/framework');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');
+require('dotenv').config();
 const { prefix } = require('../config.json');
 
 process.on('uncaughtException', (error) => {
