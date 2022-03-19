@@ -1,6 +1,6 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message } = require('discord.js');
-const { reactChannels } = require('../../config.json');
+const { reactChannels } = require('../../../config.json');
 
 class MessageReactBarneySuggestions extends Listener {
     constructor(context, options) {

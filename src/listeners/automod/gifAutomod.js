@@ -1,6 +1,6 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, WebhookClient, MessageEmbed } = require('discord.js');
-const { staffRoles, gifPermRoles } = require('../../config.json');
+const { staffRoles, gifPermRoles } = require('../../../config.json');
 const automodLogsWebhookID = process.env.automodLogsWebhookID;
 const automodLogsWebhookToken = process.env.automodLogsWebhookToken;
 const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
