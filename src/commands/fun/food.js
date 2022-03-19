@@ -19,3 +19,5 @@ class FoodCommand extends Command {
         return message.reply('https://tenor.com/view/cute-bird-parrot-perroquet-oiseau-gif-13534334');
     }
 }
+
+module.exports = { FoodCommand };

@@ -20,3 +20,5 @@ class DonateCommand extends Command {
         return message.reply('Command not ready');
     }
 }
+
+module.exports = { DonateCommand };
