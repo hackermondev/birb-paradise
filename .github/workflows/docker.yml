@@ -18,7 +18,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Check Out Repo 
+      - name: Checkout Repo 
         uses: actions/checkout@v2
       
       - name: Login to Docker Hub
@@ -26,7 +26,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build and push
+      - name: Build and push Birb Helper's docker image
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -35,5 +35,5 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
-      - name: Image digest
+      - name: Echo docker imaage
         run: echo ${{ steps.docker_build.outputs.digest }}
