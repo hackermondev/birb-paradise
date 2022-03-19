@@ -2,11 +2,10 @@ const {
     Listener,
     CommandErrorPayload,
     Events,
-    UserError,
 } = require('@sapphire/framework');
 const Sentry = require('@sentry/node');
 
-class ErrorListener extends Listener {
+class CommandErrorListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
@@ -31,4 +30,4 @@ class ErrorListener extends Listener {
     }
 }
 
-module.exports = { ErrorListener };
+module.exports = { CommandErrorListener };
