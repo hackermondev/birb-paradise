@@ -24,9 +24,6 @@ class ListenerErrorListener extends Listener {
         this.container.logger.error(
             `Listener error with ID ${sentryID} sent to Sentry`
         );
-        // this.container.logger.debug(
-        //     `payload message: ${payload.message}, error message: ${error.message}`
-        // );
     }
 }
 
