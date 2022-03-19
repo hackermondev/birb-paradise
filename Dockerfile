@@ -8,7 +8,7 @@ WORKDIR home/container/src
 
 COPY ["package.json", "package-lock.json", "./"]
 
-RUN npm ci
+#RUN npm ci #
 RUN npm install --production
 
 COPY . .
