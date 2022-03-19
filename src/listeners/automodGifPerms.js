@@ -1,6 +1,11 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { Message } = require('discord.js');
-const { staffRoles, gifPermRoles } = require('../../config.json');
+const { Message, WebhookClient, MessageEmbed } = require('discord.js');
+const {
+    staffRoles,
+    gifPermRoles,
+    automodLogsWebhookID,
+    automodLogsWebhookToken,
+} = require('../../config.json');
 const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
 class AutomodGifPermsListener extends Listener {
     constructor(context, options) {
@@ -26,11 +31,25 @@ class AutomodGifPermsListener extends Listener {
             return;
 
         if (message.deletable) {
+            const automodLogsWebhookClient = new WebhookClient({
+                id: automodLogsWebhookID,
+                token: automodLogsWebhookToken,
+            });
             await message.delete();
             const automodMsg = await message.channel.send(
                 `${message.member.toString()}, You do not have permissions to send gifs in this channel`
             );
             setTimeout(() => automodMsg.delete(), 4500);
+
+            const gifLogEmbed = new MessageEmbed()
+                .setColor('YELLOW')
+                .setTitle('Gif Deleted')
+                .setDescription(
+                    `${message.member.toString()} sent a gif in ${
+                        message.channelId
+                    } and it was deleted since they lack the perms to send gifs`
+                );
+            automodLogsWebhookClient.send({ embeds: [gifLogEmbed] });
         }
     }
 }
