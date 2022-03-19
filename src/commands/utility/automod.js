@@ -1,6 +1,6 @@
 const { Args } = require('@sapphire/framework');
 const { SubCommandPluginCommand } = require('@sapphire/plugin-subcommands');
-const { Message } = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 
 class AutomodCommand extends SubCommandPluginCommand {
     constructor(context, options) {
@@ -16,11 +16,14 @@ class AutomodCommand extends SubCommandPluginCommand {
 
     /**
      *
-     * @param { Message } messsage
+     * @param { Message } message
      * @returns
      */
     async current(message) {
-        return message.reply('Subcommand not ready');
+        const currentAutomodConfig = new MessageEmbed()
+            .setTitle('Current Automod Configuration')
+            .addField('Gifs', this.container.stores.get('listeners').get('gifAutomod') ? true : false)
+        return message.reply({embeds: [currentAutomodConfig]});
     }
 
     /**
@@ -29,7 +32,7 @@ class AutomodCommand extends SubCommandPluginCommand {
      */
     async disablegif(message) {
         if (
-            !this.container.stores.get('listeners').get('automodGifPerms')
+            !this.container.stores.get('listeners').get('gifAutomod')
                 .enabled
         )
             return message.reply(
@@ -37,7 +40,7 @@ class AutomodCommand extends SubCommandPluginCommand {
             );
         this.container.stores
             .get('listeners')
-            .get('automodGifPerms').enabled = false;
+            .get('gifAutomod').enabled = false;
         return message.reply(
             `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it again`
         );
@@ -49,7 +52,7 @@ class AutomodCommand extends SubCommandPluginCommand {
      */
     async enablegif(message) {
         if (
-            this.container.stores.get('listeners').get('automodGifPerms')
+            this.container.stores.get('listeners').get('gifAutomod')
                 .enabled
         )
             return message.reply(
@@ -57,7 +60,7 @@ class AutomodCommand extends SubCommandPluginCommand {
             );
         this.container.stores
             .get('listeners')
-            .get('automodGifPerms').enabled = true;
+            .get('gifAutomod').enabled = true;
         return message.reply(
             `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it again`
         );

@@ -4,11 +4,11 @@ const { staffRoles, gifPermRoles } = require('../../config.json');
 const automodLogsWebhookID = process.env.automodLogsWebhookID;
 const automodLogsWebhookToken = process.env.automodLogsWebhookToken;
 const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
-class AutomodGifPermsListener extends Listener {
+class GifAutomodListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'automodGifPerms',
+            name: 'gifAutomod',
             once: false,
             event: Events.MessageCreate,
         });
@@ -52,4 +52,4 @@ class AutomodGifPermsListener extends Listener {
     }
 }
 
-module.exports = { AutomodGifPermsListener };
+module.exports = { GifAutomodListener };

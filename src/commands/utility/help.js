@@ -95,8 +95,9 @@ class HelpCommand extends Command {
         if (cmd.description)
             commandsData.push(` **Description:** ${cmd.description}\n`);
         if (cmd.usage) commandsData.push(` **Usage:** ${cmd.usage}\n`);
-        // if (cmd.options.subCommands)
-        //   commandsData.push(` **Subcommands:** ${subCommands.join(", ")}`);
+        const subCmds = await cmd.options.subCommands.catch(() => null);
+        if (subCmds)
+            commandsData.push(` **Subcommands:** ${subCommands.join(', ')}`);
         if (cmd.preconditions.entries.length)
             commandsData.push(
                 `**Permissions:** ${cmd.options.preconditions.join(', ')}\n`
