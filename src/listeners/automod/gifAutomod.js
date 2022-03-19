@@ -21,6 +21,10 @@ class GifAutomodListener extends Listener {
     async run(message) {
         if (!message.guild) return;
         if (message.author === this.container.client.user) return;
+        this.container.client.logger.info(message.member);
+        console.log(message.member);
+        console.log(message.member.roles);
+        console.log(message.member._roles);
         if (staffRoles.some((role) => message.member.roles.cache.has(role)))
             return;
         if (gifPermRoles.some((role) => message.member.roles.cache.has(role)))
