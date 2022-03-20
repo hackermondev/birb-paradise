@@ -19,9 +19,9 @@ process.on('exit', (code) => {
 
 const client = new SapphireClient({
     intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_BANS'],
+    defaultPrefix: prefix,
+    loadMessageCommandListeners: true,
 });
-client.options.defaultPrefix = prefix;
-client.options.loadMessageCommandListeners = true;
 
 Sentry.init({
     dsn: process.env.sentryDSN,
