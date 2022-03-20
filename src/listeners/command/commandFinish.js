@@ -6,7 +6,7 @@ class CommandFinishListener extends Listener {
         super(context, {
             ...options,
             name: 'commandFinish',
-            event: Events.CommandFinish,
+            event: Events.MessageCommandFinish,
         });
     }
 

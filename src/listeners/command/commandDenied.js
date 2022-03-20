@@ -6,8 +6,8 @@ class CommandDeniedListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'commandDenied',
-            event: Events.CommandDenied,
+            name: 'messageCommandDenied',
+            event: Events.MessageCommandDenied,
         });
     }
     /**
