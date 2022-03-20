@@ -28,37 +28,39 @@
   "resolved" "https://registry.npmjs.org/@sapphire/async-queue/-/async-queue-1.2.0.tgz"
   "version" "1.2.0"
 
-"@sapphire/discord-utilities@^2.10.0", "@sapphire/discord-utilities@^2.8.0":
-  "integrity" "sha512-KsJB9oXOUf2mZDT6/VMNJ3vraZg7d7Afq+wD+SEoThnkpQLTP/HC3q3OZUNNc0SPz0qQPwOpSV+6+dVAzhTHJw=="
-  "resolved" "https://registry.npmjs.org/@sapphire/discord-utilities/-/discord-utilities-2.10.0.tgz"
-  "version" "2.10.0"
+"@sapphire/discord-utilities@^2.10.1", "@sapphire/discord-utilities@^2.10.2", "@sapphire/discord-utilities@^2.8.0":
+  "integrity" "sha512-GTKxtgOMoboY4BVAd/hIDtVL+D9cVvzU3NcTRvKy0Q6L7TAkknkaRowoxUBiOG/k1guK9SbgWPYX4VNwjQ/uvQ=="
+  "resolved" "https://registry.npmjs.org/@sapphire/discord-utilities/-/discord-utilities-2.10.2.tgz"
+  "version" "2.10.2"
   dependencies:
-    "twemoji-parser" "^13.1.0"
+    "twemoji-parser" "^14.0.0"
 
-"@sapphire/discord.js-utilities@^4.8.1", "@sapphire/discord.js-utilities@^4.9.0":
-  "integrity" "sha512-UX8ES6q/rpBeIDJM/8Ck6xgmZkwhfGbxFMr5MMSpSL3qJnyxXpAifW+dHvkj6fxjArFlwdzVFcdIutd4EjfQMw=="
-  "resolved" "https://registry.npmjs.org/@sapphire/discord.js-utilities/-/discord.js-utilities-4.9.0.tgz"
-  "version" "4.9.0"
+"@sapphire/discord.js-utilities@^4.9.0", "@sapphire/discord.js-utilities@^4.9.1":
+  "integrity" "sha512-2AjZAiUHE/QNYBSMK4bmBIMok/+x2N2bI75IHPaQBNeQS9qDG+wqTRLfHeXYrTPYGNeAvsew6QTDcRz/+pDcGQ=="
+  "resolved" "https://registry.npmjs.org/@sapphire/discord.js-utilities/-/discord.js-utilities-4.9.2.tgz"
+  "version" "4.9.2"
   dependencies:
-    "@sapphire/discord-utilities" "^2.10.0"
-    "@sapphire/time-utilities" "^1.7.0"
-    "@sapphire/utilities" "^3.4.0"
+    "@sapphire/discord-utilities" "^2.10.2"
+    "@sapphire/time-utilities" "^1.7.2"
+    "@sapphire/utilities" "^3.6.0"
     "tslib" "^2.3.1"
 
-"@sapphire/framework@^2.4.1":
-  "integrity" "sha512-AIrpLT/jA1m0EzPiJ4XXL1K2as+AflE2xjlXX0JCaRSTYnjW6xSRinSOIn7oVyV1zO3qHSIzzgue1nzoNL9yvQ=="
-  "resolved" "https://registry.npmjs.org/@sapphire/framework/-/framework-2.4.1.tgz"
-  "version" "2.4.1"
+"@sapphire/framework@^3.0.0-next.7ef7ac9.0":
+  "integrity" "sha512-f5PqJyfAHeCRujCH/J3YEGOyXr6gaaigZQdnUHzQTydJ/1NW//AQ/PKPMV97aJPBEj/ctn1SAS2I5Cqk8MbYAQ=="
+  "resolved" "https://registry.npmjs.org/@sapphire/framework/-/framework-3.0.0-next.7ef7ac9.0.tgz"
+  "version" "3.0.0-next.7ef7ac9.0"
   dependencies:
-    "@sapphire/discord-utilities" "^2.8.0"
-    "@sapphire/discord.js-utilities" "^4.8.1"
-    "@sapphire/pieces" "^3.2.0"
-    "@sapphire/ratelimits" "^2.3.1"
-    "@sapphire/utilities" "^3.3.0"
+    "@sapphire/discord-utilities" "^2.10.1"
+    "@sapphire/discord.js-utilities" "^4.9.1"
+    "@sapphire/pieces" "^3.3.0"
+    "@sapphire/ratelimits" "^2.4.1"
+    "@sapphire/result" "^1.1.0"
+    "@sapphire/stopwatch" "^1.4.0"
+    "@sapphire/utilities" "^3.5.0"
     "lexure" "^0.17.0"
     "tslib" "^2.3.1"
 
-"@sapphire/pieces@^3.2.0":
+"@sapphire/pieces@^3.3.0":
   "integrity" "sha512-T3r6iN9BQLG9wyGvUzfQp4rXsiZ1AGN0+MXlsWER0kC6XxtDxFSCJWG613JFTS0f4xWqfYRaZr7wW/ggyc71UQ=="
   "resolved" "https://registry.npmjs.org/@sapphire/pieces/-/pieces-3.3.0.tgz"
   "version" "3.3.0"
@@ -83,31 +85,36 @@
   dependencies:
     "tslib" "^2.3.1"
 
-"@sapphire/ratelimits@^2.3.1":
+"@sapphire/ratelimits@^2.4.1":
   "integrity" "sha512-/v3wv2HH50gcG2EXXJINLTuw86zK1cINcUZOpn/v2JqQbPMPG/rJRAycMZhtOtPRm6d4NrjLoqRyv4wDMR6D4g=="
   "resolved" "https://registry.npmjs.org/@sapphire/ratelimits/-/ratelimits-2.4.1.tgz"
   "version" "2.4.1"
   dependencies:
     "@sapphire/time-utilities" "^1.7.1"
 
-"@sapphire/stopwatch@^1.3.0":
-  "integrity" "sha512-YOUWul86wg2EG3m5sv6RFXkMXCnFXUqaOFdnVYvUIwmMfl+YhINW5x4/6esotI6b2kT98BOhOGpbMZMWIXZ4zQ=="
-  "resolved" "https://registry.npmjs.org/@sapphire/stopwatch/-/stopwatch-1.3.0.tgz"
-  "version" "1.3.0"
+"@sapphire/result@^1.1.0":
+  "integrity" "sha512-lMAbvWamuz4g/oRQgM4abMPAuulcepxweE0bFR7qvrdtWn497o1hJT0qk+IOHY7q3GQBNUELZHE3KnxyyhkxDQ=="
+  "resolved" "https://registry.npmjs.org/@sapphire/result/-/result-1.1.0.tgz"
+  "version" "1.1.0"
+
+"@sapphire/stopwatch@^1.3.0", "@sapphire/stopwatch@^1.4.0":
+  "integrity" "sha512-4gtDuls69vTLseQ3TCZnrWj2boLz7imok0W7wg0+VtF+VGTK3glRn34YEEt0Hj92Ebqmst87EPEJyZ1U5nNs9w=="
+  "resolved" "https://registry.npmjs.org/@sapphire/stopwatch/-/stopwatch-1.4.0.tgz"
+  "version" "1.4.0"
   dependencies:
     "tslib" "^2.3.1"
 
-"@sapphire/time-utilities@^1.6.0", "@sapphire/time-utilities@^1.7.0", "@sapphire/time-utilities@^1.7.1":
-  "integrity" "sha512-0YLA/wPFozKQbmdfrtIOFTKznLINaCnj6NU0ydjKZOtofNa2MWGxwUd6ZtiU0NnxCtwvM7dYLw9H3c/IIeZCzQ=="
-  "resolved" "https://registry.npmjs.org/@sapphire/time-utilities/-/time-utilities-1.7.1.tgz"
-  "version" "1.7.1"
+"@sapphire/time-utilities@^1.6.0", "@sapphire/time-utilities@^1.7.1", "@sapphire/time-utilities@^1.7.2":
+  "integrity" "sha512-Ws78OT4qg6aoznv2WzfPFleyynamPXEEl7kK86as7CVsYL9HiKhKKh91iV/2Wk0iVDj3BGUZV8ZIm/cdJJ5NKg=="
+  "resolved" "https://registry.npmjs.org/@sapphire/time-utilities/-/time-utilities-1.7.2.tgz"
+  "version" "1.7.2"
   dependencies:
-    "@sapphire/utilities" "^3.5.0"
+    "@sapphire/utilities" "^3.6.0"
 
-"@sapphire/utilities@^3.3.0", "@sapphire/utilities@^3.4.0", "@sapphire/utilities@^3.5.0":
-  "integrity" "sha512-TKB6szXNBlKY9HfkiOvT1p79iQEnXVhr49QwWXgoQpGU9ODXcE1oGOTTAYixmYZLJfRw64+4gGiiUoSE1KiPEw=="
-  "resolved" "https://registry.npmjs.org/@sapphire/utilities/-/utilities-3.5.0.tgz"
-  "version" "3.5.0"
+"@sapphire/utilities@^3.4.0", "@sapphire/utilities@^3.5.0", "@sapphire/utilities@^3.6.0":
+  "integrity" "sha512-zpMM5xNitahW0lMrbOyXFk4BTSgV39Yqhrc7dgJBm6ZXXdBEO8YGWWEOL8GpdDHcxzl0KnHqgsdZEZURXVXauw=="
+  "resolved" "https://registry.npmjs.org/@sapphire/utilities/-/utilities-3.6.0.tgz"
+  "version" "3.6.0"
 
 "@sentry/core@6.18.2":
   "integrity" "sha512-r5ad/gq5S/JHc9sd5CUhZQT9ojQ+f+thk/AoGeGawX/8HURZYAgIqD565d6FK0VsZEDkdRMl58z1Qon20h3y1g=="
@@ -391,10 +398,10 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   "version" "2.3.1"
 
-"twemoji-parser@^13.1.0":
-  "integrity" "sha512-AQOzLJpYlpWMy8n+0ATyKKZzWlZBJN+G0C+5lhX7Ftc2PeEVdUU/7ns2Pn2vVje26AIZ/OHwFoUbdv6YYD/wGg=="
-  "resolved" "https://registry.npmjs.org/twemoji-parser/-/twemoji-parser-13.1.0.tgz"
-  "version" "13.1.0"
+"twemoji-parser@^14.0.0":
+  "integrity" "sha512-9DUOTGLOWs0pFWnh1p6NF+C3CkQ96PWmEFwhOVmT3WbecRC+68AIqpsnJXygfkFcp4aXbOp8Dwbhh/HQgvoRxA=="
+  "resolved" "https://registry.npmjs.org/twemoji-parser/-/twemoji-parser-14.0.0.tgz"
+  "version" "14.0.0"
 
 "utf7@^1.0.2":
   "integrity" "sha1-lV9JCq5lO6IguUVqCod2wZk2CZE="

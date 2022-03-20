@@ -5,7 +5,6 @@ class PiecePostLoadListener extends Listener {
         super(context, {
             ...options,
             name: 'piecePostLoad',
-            once: false,
             event: Events.PiecePostLoad,
         });
     }

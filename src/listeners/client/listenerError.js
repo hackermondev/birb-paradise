@@ -10,7 +10,6 @@ class ListenerErrorListener extends Listener {
         super(context, {
             ...options,
             name: 'listenerError',
-            once: false,
             event: Events.ListenerError,
         });
     }

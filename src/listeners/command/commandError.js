@@ -10,7 +10,6 @@ class CommandErrorListener extends Listener {
         super(context, {
             ...options,
             name: 'error',
-            once: false,
             event: Events.CommandError,
         });
     }

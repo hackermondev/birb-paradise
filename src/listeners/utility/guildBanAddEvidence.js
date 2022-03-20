@@ -7,7 +7,6 @@ class GuildBanAddEvidenceListener extends Listener {
         super(context, {
             ...options,
             name: 'guildBanAdd',
-            once: false,
             event: Events.GuildBanAdd,
         });
     }

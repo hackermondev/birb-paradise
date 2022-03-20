@@ -7,7 +7,6 @@ class CommandDeniedListener extends Listener {
         super(context, {
             ...options,
             name: 'commandDenied',
-            once: false,
             event: Events.CommandDenied,
         });
     }

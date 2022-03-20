@@ -10,7 +10,6 @@ class LinkAutomodListener extends Listener {
         super(context, {
             ...options,
             name: 'linkAutomod',
-            once: false,
             event: Events.MessageCreate,
             enabled: false,
         });

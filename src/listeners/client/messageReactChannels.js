@@ -7,7 +7,6 @@ class MessageReactBarneySuggestions extends Listener {
         super(context, {
             ...options,
             name: 'messageReactChannels',
-            once: false,
             event: Events.MessageCreate,
         });
     }

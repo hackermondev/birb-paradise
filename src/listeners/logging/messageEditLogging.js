@@ -7,7 +7,6 @@ class MessageEditLogging extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            once: false,
             event: Events.MessageUpdate,
         });
     }

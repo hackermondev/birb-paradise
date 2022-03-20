@@ -6,7 +6,6 @@ class GuildMemberRemoveMsg extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            once: false,
             event: Events.GuildMemberRemove,
         });
     }

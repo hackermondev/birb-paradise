@@ -9,7 +9,6 @@ class GifAutomodListener extends Listener {
         super(context, {
             ...options,
             name: 'gifAutomod',
-            once: false,
             event: Events.MessageCreate,
         });
     }
