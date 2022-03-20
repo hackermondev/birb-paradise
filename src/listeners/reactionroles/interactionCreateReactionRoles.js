@@ -21,7 +21,7 @@ class InteractionCreateReactionRolesListener extends Listener {
         switch (interaction.customId) {
             case 'giveaway':
                 if (!interaction.member.roles.cache.has(pingRoles[0])) {
-                    interaction.member.roles.add(pingRoles[0]);
+                    interaction.member.roles.add(pingRoles[0], 'Reaction role add');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -32,7 +32,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 } else {
-                    interaction.member.roles.remove(pingRoles[0]);
+                    interaction.member.roles.remove(pingRoles[0], 'Reaction role remove');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -45,7 +45,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                 }
             case 'announcement':
                 if (!interaction.member.roles.cache.has(pingRoles[1])) {
-                    interaction.member.roles.add(pingRoles[1]);
+                    interaction.member.roles.add(pingRoles[1], 'Reaction role add');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -56,7 +56,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 } else {
-                    interaction.member.roles.remove(pingRoles[1]);
+                    interaction.member.roles.remove(pingRoles[1], 'Reaction role remove');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -69,7 +69,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                 }
             case 'event':
                 if (!interaction.member.roles.cache.has(pingRoles[2])) {
-                    interaction.member.roles.add(pingRoles[2]);
+                    interaction.member.roles.add(pingRoles[2], 'Reaction role add');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -78,7 +78,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 } else {
-                    interaction.member.roles.remove(pingRoles[2]);
+                    interaction.member.roles.remove(pingRoles[2], 'Reaction role remove');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -91,7 +91,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                 }
             case 'upload':
                 if (!interaction.member.roles.cache.has(pingRoles[3])) {
-                    interaction.member.roles.add(pingRoles[3]);
+                    interaction.member.roles.add(pingRoles[3], 'Reaction role add');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -102,7 +102,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 } else {
-                    interaction.member.roles.remove(pingRoles[3]);
+                    interaction.member.roles.remove(pingRoles[3], 'Reaction role remove');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -115,7 +115,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                 }
             case 'update':
                 if (!interaction.member.roles.cache.has(pingRoles[4])) {
-                    interaction.member.roles.add(pingRoles[4]);
+                    interaction.member.roles.add(pingRoles[4], 'Reaction role add');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -126,7 +126,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 } else {
-                    interaction.member.roles.remove(pingRoles[4]);
+                    interaction.member.roles.remove(pingRoles[4], 'Reaction role remove');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -139,7 +139,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                 }
             case 'bumper':
                 if (!interaction.member.roles.cache.has(pingRoles[5])) {
-                    interaction.member.roles.add(pingRoles[5]);
+                    interaction.member.roles.add(pingRoles[5], 'Reaction role add');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
@@ -150,7 +150,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 } else {
-                    interaction.member.roles.remove(pingRoles[5]);
+                    interaction.member.roles.remove(pingRoles[5], 'Reaction role remove');
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
