@@ -1,7 +1,7 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { Interaction, MessageEmbed } = require('discord.js');
+const { Interaction, MessageEmbed, Message } = require('discord.js');
 const Sentry = require('@sentry/node');
-const { pingRoles } = require('../../../config.json');
+const { pingRoles, verifiedRole } = require('../../../config.json');
 
 class InteractionCreateReactionRolesListener extends Listener {
     constructor(context, options) {
@@ -197,7 +197,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 }
-            case 'partner':
+            case 'partnership':
                 if (!interaction.member.roles.cache.has(pingRoles[5])) {
                     interaction.member.roles.add(
                         pingRoles[5],
@@ -227,11 +227,19 @@ class InteractionCreateReactionRolesListener extends Listener {
                         ],
                     });
                 }
+            case 'verify':
+                if (!interaction.member.roles.cache.has(verifiedRole)) {
+                    interaction.member.roles.add(verifiedRole, 'verification');
+                    return interaction.followUp('You are now verified!');
+                }
+                else {
+                    return interaction.followUp('You are already verified!');
+                }
             default:
-                Sentry.captureMessage(
-                    'Unknown Interaction(interactionCreateReactionRoles.js',
-                    Sentry.Severity.Warning
+                Sentry.captureException(
+                    interaction
                 );
+                return interaction.followUp('There was an error adding or removing your role. Please try again');
         }
     }
 }
