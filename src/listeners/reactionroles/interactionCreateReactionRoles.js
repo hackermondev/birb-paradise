@@ -17,7 +17,7 @@ class InteractionCreateReactionRolesListener extends Listener {
      */
     async run(interaction) {
         if (!interaction.isButton()) return;
-        interaction.deferReply();
+        await interaction.deferReply({ephemeral: true});
         switch (interaction.customId) {
             case 'giveaway':
                 if (interaction.member.roles.cache.has(pingRoles[0])) {
