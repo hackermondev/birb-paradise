@@ -1,4 +1,5 @@
 const { SapphireClient } = require('@sapphire/framework');
+const { Options, Sweepers } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');
@@ -21,6 +22,16 @@ const client = new SapphireClient({
     intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_BANS'],
     defaultPrefix: prefix,
     loadMessageCommandListeners: true,
+    caseInsensitiveCommands: true,
+    caseInsensitivePrefixes: true,
+    loadDefaultErrorListeners: false,
+    sweepers: {
+        ...Options.defaultSweeperSettings,
+        guildMembers: {
+            interval: 500,
+            filter: () => m => m.id != '925829323762577479'
+        }
+    }
 });
 
 Sentry.init({

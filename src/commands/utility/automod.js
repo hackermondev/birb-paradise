@@ -30,8 +30,8 @@ class AutomodCommand extends SubCommandPluginCommand {
             currentAutomodConfig.addField(
                 'Gifs',
                 this.container.stores.get('listeners').get(automod.name).enabled
-                    ? true
-                    : false
+                    ? `true`
+                    : `false`
             );
         });
         return message.reply({ embeds: [currentAutomodConfig] });

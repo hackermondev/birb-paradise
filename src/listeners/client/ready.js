@@ -37,7 +37,15 @@ class ReadyListener extends Listener {
         setInterval(() => {
             activityIndex++;
             if (activityIndex >= activities.length) activityIndex = 0;
-            this.container.client.user.setActivity(`${activities[activityIndex].slice(0, activities[activityIndex].indexOf(',')).replace(/"/gm, '')}`, `${activities[activityIndex].slice(activities[activityIndex].indexOf(','), activities[activityIndex].length)}`);
+            this.container.client.user.setActivity(
+                `${activities[activityIndex]
+                    .slice(0, activities[activityIndex].indexOf(','))
+                    .replace(/"/gm, '')}`,
+                `${activities[activityIndex].slice(
+                    activities[activityIndex].indexOf(','),
+                    activities[activityIndex].length
+                )}`
+            );
         }, 30000);
     }
 }

@@ -16,9 +16,7 @@ class InteractionCreateVerifyReactionRoleListener extends Listener {
      *
      * @param { Interaction } interaction
      */
-    async run(interaction) {
-        
-    }
+    async run(interaction) {}
 }
 
 module.exports = { InteractionCreateVerifyReactionRoleListener };
