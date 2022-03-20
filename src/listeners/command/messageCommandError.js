@@ -5,7 +5,7 @@ const {
 } = require('@sapphire/framework');
 const Sentry = require('@sentry/node');
 
-class CommandErrorListener extends Listener {
+class MessageCommandErrorListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
@@ -23,10 +23,7 @@ class CommandErrorListener extends Listener {
         this.container.logger.error(
             `Command error with ID ${sentryID} sent to Sentry`
         );
-        // this.container.logger.debug(
-        //     `payload message: ${payload.message}, error message: ${error.message}`
-        // );
     }
 }
 
-module.exports = { CommandErrorListener };
+module.exports = { MessageCommandErrorListener };

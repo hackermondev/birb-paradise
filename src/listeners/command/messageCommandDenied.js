@@ -2,7 +2,7 @@ const { Listener, Events } = require('@sapphire/framework');
 const Sentry = require('@sentry/node');
 const { Message } = require('discord.js');
 
-class CommandDeniedListener extends Listener {
+class MessageCommandDeniedListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
@@ -25,4 +25,4 @@ class CommandDeniedListener extends Listener {
     }
 }
 
-module.exports = { CommandDeniedListener };
+module.exports = { MessageCommandDeniedListener };

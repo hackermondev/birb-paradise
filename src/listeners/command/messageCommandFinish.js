@@ -1,7 +1,7 @@
 const { Listener, Command, Events } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 
-class CommandFinishListener extends Listener {
+class MessageCommandFinishListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
@@ -22,4 +22,4 @@ class CommandFinishListener extends Listener {
     }
 }
 
-module.exports = { CommandFinishListener };
+module.exports = { MessageCommandFinishListener };
