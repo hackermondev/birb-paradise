@@ -32,7 +32,7 @@ class ReadyListener extends Listener {
             container.logger.info(
                 `Ping acknowledged by the API. Latency is ${wsPing} ms.\n\n`
             );
-        }, 300000);
+        }, 400000);
 
         setInterval(() => {
             activityIndex++;
@@ -40,7 +40,7 @@ class ReadyListener extends Listener {
             eval(
                 `this.container.client.user.setActivity(${activities[activityIndex]})`
             );
-        }, 15000);
+        }, 30000);
     }
 }
 
