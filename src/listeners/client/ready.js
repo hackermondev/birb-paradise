@@ -37,9 +37,7 @@ class ReadyListener extends Listener {
         setInterval(() => {
             activityIndex++;
             if (activityIndex >= activities.length) activityIndex = 0;
-            eval(
-                `this.container.client.user.setActivity(${activities[activityIndex]})`
-            );
+            this.container.client.user.setActivity(`${activities[activityIndex]}`);
         }, 30000);
     }
 }
