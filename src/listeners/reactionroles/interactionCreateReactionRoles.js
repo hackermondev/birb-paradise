@@ -230,16 +230,16 @@ class InteractionCreateReactionRolesListener extends Listener {
             case 'verify':
                 if (!interaction.member.roles.cache.has(verifiedRole)) {
                     interaction.member.roles.add(verifiedRole, 'verification');
-                    return interaction.followUp('You are now verified!');
+                    return interaction.followUp({embeds: [new MessageEmbed().setDescription('You are now verified!').setColor('GREEN')]});
                 }
                 else {
-                    return interaction.followUp('You are already verified!');
+                    return interaction.followUp({embeds: [new MessageEmbed().setDescription('You are already verified!').setColor('RED')]});
                 }
             default:
                 Sentry.captureException(
                     interaction
                 );
-                return interaction.followUp('There was an error adding or removing your role. Please try again');
+                return interaction.followUp({embeds: [new MessageEmbed().setDescription('There was an error adding or removing a role. Please try again').setColor('ORANGE')]});
         }
     }
 }
