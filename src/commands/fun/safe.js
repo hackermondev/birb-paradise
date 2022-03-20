@@ -16,9 +16,7 @@ class SafeCommand extends Command {
      * @param { Message } message
      */
     messageRun(message) {
-        return message.reply(
-            'https://tenor.com/view/banned-thor-banned-thor-ban-thor-admin-gif-12850590'
-        );
+        return message.reply('<:birbkek:911720041756655656>');
     }
 }
 

@@ -29,9 +29,9 @@ const client = new SapphireClient({
         ...Options.defaultSweeperSettings,
         guildMembers: {
             interval: 500,
-            filter: () => m => m.id != '925829323762577479'
-        }
-    }
+            filter: () => (m) => m.id != '925829323762577479',
+        },
+    },
 });
 
 Sentry.init({
