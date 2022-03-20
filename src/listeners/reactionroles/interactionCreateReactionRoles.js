@@ -20,7 +20,7 @@ class InteractionCreateReactionRolesListener extends Listener {
         await interaction.deferReply({ephemeral: true});
         switch (interaction.customId) {
             case 'giveaway':
-                if (interaction.member.roles.includes(pingRoles[0])) {
+                if (interaction.member.roles.cache.get(pingRoles[0])) {
                     interaction.member.roles.add(pingRoles[0]);
                     return interaction.followUp({
                         embeds: [
@@ -44,7 +44,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'announcement':
-                if (interaction.member.roles.includes(pingRoles[1])) {
+                if (interaction.member.roles.cache.get(pingRoles[1])) {
                     interaction.member.roles.add(pingRoles[1]);
                     return interaction.followUp({
                         embeds: [
@@ -68,7 +68,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'event':
-                if (interaction.member.roles.includes(pingRoles[2])) {
+                if (interaction.member.roles.cache.get(pingRoles[2])) {
                     interaction.member.roles.add(pingRoles[2]);
                     return interaction.followUp({
                         embeds: [
@@ -90,7 +90,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'upload':
-                if (interaction.member.roles.includes(pingRoles[3])) {
+                if (interaction.member.roles.cache.get(pingRoles[3])) {
                     interaction.member.roles.add(pingRoles[3]);
                     return interaction.followUp({
                         embeds: [
@@ -114,7 +114,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'update':
-                if (interaction.member.roles.includes(pingRoles[4])) {
+                if (interaction.member.roles.cache.get(pingRoles[4])) {
                     interaction.member.roles.add(pingRoles[4]);
                     return interaction.followUp({
                         embeds: [
@@ -138,7 +138,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'bumper':
-                if (interaction.member.roles.includes(pingRoles[5])) {
+                if (interaction.member.roles.cache.get(pingRoles[5])) {
                     interaction.member.roles.add(pingRoles[5]);
                     return interaction.followUp({
                         embeds: [
