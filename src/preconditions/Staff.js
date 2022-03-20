@@ -8,7 +8,7 @@ class StaffPrecondition extends Precondition {
      * @param { Message } message
      * @returns
      */
-    run(message) {
+    messageRun(message) {
         if (message.guild.id === '895515788126072842') return this.ok();
         return staffRoles.some((role) => message.member.roles.cache.has(role))
             ? this.ok()
