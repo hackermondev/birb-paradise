@@ -29,7 +29,7 @@ class ReadyListener extends Listener {
             container.logger.info(
                 `Ping acknowledged by the API. Latency is ${wsPing} ms.\n\n`
             );
-        }, 400000);
+        }, 600000);
 
         setInterval(() => {
             activityIndex++;
