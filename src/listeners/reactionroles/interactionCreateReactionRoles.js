@@ -275,7 +275,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully added the green color role '
+                                    'Successfully added the Green color role '
                                 )
                                 .setColor('GREEN'),
                         ],
@@ -289,7 +289,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully removed the green color role '
+                                    'Successfully removed the Green color role '
                                 )
                                 .setColor('RED'),
                         ],
@@ -321,7 +321,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully added the gold color role '
+                                    'Successfully added the Gold color role '
                                 )
                                 .setColor('GREEN'),
                         ],
@@ -335,7 +335,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully removed the gold color role '
+                                    'Successfully removed the Gold color role '
                                 )
                                 .setColor('RED'),
                         ],
@@ -367,7 +367,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully added the red color role '
+                                    'Successfully added the Red color role '
                                 )
                                 .setColor('GREEN'),
                         ],
@@ -381,7 +381,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully removed the red color role '
+                                    'Successfully removed the Red color role '
                                 )
                                 .setColor('RED'),
                         ],
@@ -413,7 +413,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully added the white color role '
+                                    'Successfully added the White color role '
                                 )
                                 .setColor('GREEN'),
                         ],
@@ -427,7 +427,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully removed the white color role '
+                                    'Successfully removed the White color role '
                                 )
                                 .setColor('RED'),
                         ],
@@ -459,7 +459,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully added the pink color role '
+                                    'Successfully added the Pink color role '
                                 )
                                 .setColor('GREEN'),
                         ],
@@ -473,7 +473,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully removed the pink color role '
+                                    'Successfully removed the Pink color role '
                                 )
                                 .setColor('RED'),
                         ],
@@ -505,7 +505,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully added the blue color role '
+                                    'Successfully added the Blue color role '
                                 )
                                 .setColor('GREEN'),
                         ],
@@ -519,7 +519,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                         embeds: [
                             new MessageEmbed()
                                 .setDescription(
-                                    'Successfully removed the blue color role '
+                                    'Successfully removed the Blue color role '
                                 )
                                 .setColor('RED'),
                         ],
