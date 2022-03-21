@@ -250,7 +250,11 @@ class InteractionCreateReactionRolesListener extends Listener {
                 }
             // color role cases
             case 'green':
-                if (!interaction.member.roles.cache.some(role => role.id === colorRoles[0])) {
+                if (
+                    !interaction.member.roles.cache.some(
+                        (role) => role.id === colorRoles[0]
+                    )
+                ) {
                     if (
                         interaction.member.roles.cache.some((role) =>
                             colorRoles.includes(role.id)
@@ -258,7 +262,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     ) {
                         colorRoles.forEach((role) => {
                             interaction.member.roles.remove(
-                                role.id,
+                                role,
                                 'Removing other color roles'
                             );
                         });
@@ -292,7 +296,11 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'gold':
-                if (!interaction.member.roles.cache.some(role => role.id === colorRoles[1])) {
+                if (
+                    !interaction.member.roles.cache.some(
+                        (role) => role.id === colorRoles[1]
+                    )
+                ) {
                     if (
                         interaction.member.roles.cache.some((role) =>
                             colorRoles.includes(role.id)
@@ -300,7 +308,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     ) {
                         colorRoles.forEach((role) => {
                             interaction.member.roles.remove(
-                                role.id,
+                                role,
                                 'Removing other color roles'
                             );
                         });
@@ -334,7 +342,11 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'red':
-                if (!interaction.member.roles.cache.some(role => role.id === colorRoles[2])) {
+                if (
+                    !interaction.member.roles.cache.some(
+                        (role) => role.id === colorRoles[2]
+                    )
+                ) {
                     if (
                         interaction.member.roles.cache.some((role) =>
                             colorRoles.includes(role.id)
@@ -342,7 +354,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     ) {
                         colorRoles.forEach((role) => {
                             interaction.member.roles.remove(
-                                role.id,
+                                role,
                                 'Removing other color roles'
                             );
                         });
@@ -376,7 +388,11 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'white':
-                if (!interaction.member.roles.cache.some(role => role.id === colorRoles[3])) {
+                if (
+                    !interaction.member.roles.cache.some(
+                        (role) => role.id === colorRoles[3]
+                    )
+                ) {
                     if (
                         interaction.member.roles.cache.some((role) =>
                             colorRoles.includes(role.id)
@@ -384,7 +400,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     ) {
                         colorRoles.forEach((role) => {
                             interaction.member.roles.remove(
-                                role.id,
+                                role,
                                 'Removing other color roles'
                             );
                         });
@@ -418,7 +434,11 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'pink':
-                if (!interaction.member.roles.cache.some(role => role.id === colorRoles[4])) {
+                if (
+                    !interaction.member.roles.cache.some(
+                        (role) => role.id === colorRoles[4]
+                    )
+                ) {
                     if (
                         interaction.member.roles.cache.some((role) =>
                             colorRoles.includes(role.id)
@@ -426,7 +446,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     ) {
                         colorRoles.forEach((role) => {
                             interaction.member.roles.remove(
-                                role.id,
+                                role,
                                 'Removing other color roles'
                             );
                         });
@@ -460,7 +480,11 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 }
             case 'blue':
-                if (!interaction.member.roles.cache.some(role => role.id === colorRoles[5])) {
+                if (
+                    !interaction.member.roles.cache.some(
+                        (role) => role.id === colorRoles[5]
+                    )
+                ) {
                     if (
                         interaction.member.roles.cache.some((role) =>
                             colorRoles.includes(role.id)
@@ -468,7 +492,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     ) {
                         colorRoles.forEach((role) => {
                             interaction.member.roles.remove(
-                                role.id,
+                                role,
                                 'Removing other color roles'
                             );
                         });
