@@ -35,7 +35,7 @@ const client = new SapphireClient({
 });
 
 Sentry.init({
-    dsn: process.env.sentryDSN,
+    dsn: sentryDSN,
     tracesSampleRate: 1.0,
     release: `${require('../package.json').name}@${
         require('../package.json').version
