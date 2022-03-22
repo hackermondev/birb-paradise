@@ -50,7 +50,6 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async disablegif(message) {
-        this.container.ut;
         if (!this.container.stores.get('listeners').get('gifAutomod').enabled)
             return message.reply(
                 `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it`
