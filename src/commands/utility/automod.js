@@ -30,10 +30,18 @@ class AutomodCommand extends SubCommandPluginCommand {
             currentAutomodConfig.addField(
                 'Gifs',
                 this.container.stores.get('listeners').get(automod.name).enabled
-                    ? `true`
-                    : `false`
+                    ? `enabled`
+                    : `disabled`
             );
         });
+        currentAutomodConfig.addField(
+            'Account Age Kick',
+            this.container.stores
+                .get('listeners')
+                .get('guildMemberAddAccountAgeKick').enabled
+                ? 'enabled'
+                : 'disabled'
+        );
         return message.reply({ embeds: [currentAutomodConfig] });
     }
 
@@ -42,13 +50,14 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async disablegif(message) {
+        this.container.ut;
         if (!this.container.stores.get('listeners').get('gifAutomod').enabled)
             return message.reply(
                 `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it`
             );
         this.container.stores
             .get('listeners')
-            .get('gifAutomod').enabled = false;
+            .get('gifAutomod').options.enabled = false;
         return message.reply(
             `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it again`
         );
@@ -63,7 +72,9 @@ class AutomodCommand extends SubCommandPluginCommand {
             return message.reply(
                 `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it`
             );
-        this.container.stores.get('listeners').get('gifAutomod').enabled = true;
+        this.container.stores
+            .get('listeners')
+            .get('gifAutomod').options.enabled = true;
         return message.reply(
             `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it again`
         );

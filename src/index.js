@@ -1,5 +1,5 @@
 const { SapphireClient } = require('@sapphire/framework');
-const { Options, Sweepers } = require('discord.js');
+const { Options } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');

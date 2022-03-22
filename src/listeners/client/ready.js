@@ -24,10 +24,8 @@ class ReadyListener extends Listener {
             `Ping acknowledged by the API. Bot is online.\n\n`
         );
         setInterval(() => {
-            container.logger.info(`Pinging...`);
-            const wsPing = client.ws.ping;
             container.logger.info(
-                `Ping acknowledged by the API. Latency is ${wsPing} ms.\n\n`
+                `Pinging...Ping acknowledged by the API. Latency is ${client.ws.ping} ms.\n\n`
             );
         }, 600000);
 
