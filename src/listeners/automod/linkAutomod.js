@@ -21,9 +21,10 @@ class LinkAutomodListener extends Listener {
      */
     async run(message) {
         if (!message.guild) return;
+        if (!this.container.utility.isBp(message.guild)) return;
         if (message.author === this.container.client.user || message.author.bot)
             return;
-        if (staffRoles.some((role) => message.member.roles.cache.has(role)))
+        if (this.container.utility.isStaffMember(message.member))
             return;
 
         if (!tenorDomains.some((domain) => message.content.startsWith(domain)))

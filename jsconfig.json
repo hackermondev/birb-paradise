@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
+		"strict": true,
 		"module": "commonjs",
 		"target": "es2021",
 		"jsx": "preserve",
-		"strictFunctionTypes": true
+		"strictFunctionTypes": true,
 	},
 	"exclude": [
 		"node_modules",

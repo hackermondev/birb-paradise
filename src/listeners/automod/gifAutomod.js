@@ -20,7 +20,8 @@ class GifAutomodListener extends Listener {
     async run(message) {
         if (!message.guild || message.author.bot) return;
         if (message.author === this.container.client.user) return;
-        if (staffRoles.some((role) => message.member.roles.cache.has(role)))
+        if (!this.container.utility.isBp(message.guild)) return;
+        if (this.container.utility.isStaffMember(message.member))
             return;
         if (gifPermRoles.some((role) => message.member.roles.cache.has(role)))
             return;

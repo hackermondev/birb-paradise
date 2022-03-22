@@ -2,7 +2,6 @@ const { Command } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
 const {
     lockdownChannels,
-    bpGuildID,
     mainChannel,
 } = require('../../../config.json');
 
@@ -23,7 +22,7 @@ class LockdownCommand extends Command {
      * @param { Message } message
      */
     async messageRun(message) {
-        if (message.guildId !== bpGuildID)
+        if (!this.container.utility.isBp(message.guild))
             return message.reply('This server is not configured');
         message.channel.send('Starting Lockdown...');
         for (var i = 0; i < lockdownChannels.length; ++i) {
