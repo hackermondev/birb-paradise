@@ -9,14 +9,13 @@ const { Utility } = require('./library/utility');
 const sentryDSN = process.env.SENTRY_DSN;
 
 process.on('uncaughtException', (error) => {
-    const sentryID = Sentry.captureException(error);
-    client.logger.error(
-        `Uncaught exception with ID ${sentryID} sent to Sentry`
-    );
+    container.utility.sendException(error, 'Uncaught');
 });
 
 process.on('exit', (code) => {
-    client.logger.warn(`Process exiting with code ${code}...`);
+    client.logger.warn(
+        `Process exiting with code ${code}...(A restart signal was probably sent)`
+    );
 });
 
 const client = new SapphireClient({
@@ -35,7 +34,6 @@ const client = new SapphireClient({
     },
 });
 container.utility = new Utility();
-
 Sentry.init({
     dsn: sentryDSN,
     tracesSampleRate: 1.0,

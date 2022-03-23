@@ -22,34 +22,24 @@ class FaqCommand extends Command {
     async messageRun(message, args) {
         let faqNumber = await args.pickResult('string');
         if (!faqNumber.success)
-            return message
-                .reply('You need to enter a rule number')
-                .then((reply) =>
-                    setTimeout(function () {
-                        message.delete();
-                        reply.delete();
-                    }, 3500)
-                );
+            return this.container.utility.errorReply(
+                message,
+                'You need to enter a rule number'
+            );
         message.channel.send(
             "This command isn't ready yet, but you can still use it. However, it may not work as intended"
         );
         faqNumber = faqNumber.value;
         if (Number.isNaN(Number.parseInt(faqNumber)))
-            return message.reply("That's not a valid number").then((reply) =>
-                setTimeout(function () {
-                    message.delete();
-                    reply.delete();
-                }, 3500)
+            return this.container.utility.errorReply(
+                message,
+                `That's not a valid number`
             );
         if (faqNumber < 0 || faqNumber >= rules.length)
-            return message
-                .reply("That's not a valid rule number")
-                .then((reply) =>
-                    setTimeout(function () {
-                        message.delete();
-                        reply.delete();
-                    }, 3500)
-                );
+            return this.container.utility.errorReply(
+                message,
+                `That's not a valid rule number`
+            );
         faqNumber = Number.parseInt(faqNumber);
         const faq = faqs[faqNumber - 1];
         const faqEmbed = new MessageEmbed()

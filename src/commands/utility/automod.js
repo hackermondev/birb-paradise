@@ -9,7 +9,13 @@ class AutomodCommand extends SubCommandPluginCommand {
             name: 'automod',
             aliases: ['auto'],
             description: 'Configures or shows you the current automod settings',
-            subCommands: ['current', 'disablegif', 'enablegif'],
+            subCommands: [
+                'current',
+                'disablegif',
+                'enablegif',
+                'disableaccountkick',
+                'enableaccountkick',
+            ],
             preconditions: ['Admin'],
         });
     }
@@ -54,9 +60,7 @@ class AutomodCommand extends SubCommandPluginCommand {
             return message.reply(
                 `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it`
             );
-        this.container.stores
-            .get('listeners')
-            .get('gifAutomod').options.enabled = false;
+        await this.container.stores.get('listeners').get('gifAutomod').unload();
         return message.reply(
             `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it again`
         );
@@ -71,11 +75,55 @@ class AutomodCommand extends SubCommandPluginCommand {
             return message.reply(
                 `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it`
             );
-        this.container.stores
-            .get('listeners')
-            .get('gifAutomod').options.enabled = true;
+        await this.container.stores.get('listeners').get('gifAutomod').reload();
         return message.reply(
             `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it again`
+        );
+    }
+
+    /**
+     *
+     * @param { Message } message
+     * @returns
+     */
+    async enableaccountkick(message) {
+        if (
+            this.container.stores
+                .get('listeners')
+                .get('guildMemberAddAccountAgeKick').enabled
+        )
+            return message.reply(
+                `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to disable it`
+            );
+        await this.container.stores
+            .get('listeners')
+            .get('gifguildMemberAddAccountAgeKickAutomod')
+            .reload();
+        return message.reply(
+            `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to disable it again`
+        );
+    }
+
+    /**
+     *
+     * @param { Message } message
+     * @returns
+     */
+    async disableaccountkick(message) {
+        if (
+            !this.container.stores
+                .get('listeners')
+                .get('guildMemberAddAccountAgeKick').enabled
+        )
+            return message.reply(
+                `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to enable it`
+            );
+        await this.container.stores
+            .get('listeners')
+            .get('gifguildMemberAddAccountAgeKickAutomod')
+            .unload();
+        return message.reply(
+            `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to enable it again`
         );
     }
 }

@@ -1,4 +1,4 @@
-import { ApplicationCommandRegistry, ILogger, SapphireClient } from '@sapphire/framework';
+import { ApplicationCommandRegistry, ILogger, SapphireClient, StoreRegistry } from '@sapphire/framework';
 import { Utility } from './utility';
 
 declare module '@sapphire/pieces' {
@@ -6,7 +6,7 @@ declare module '@sapphire/pieces' {
         client: SapphireClient;
         utility: Utility;
         stores: StoreRegistry;
-	logger: ILogger;
-	applicationCommandRegistries: ApplicationCommandRegistry;
+	    logger: ILogger;
+	    applicationCommandRegistries: ApplicationCommandRegistry;
     }
 }

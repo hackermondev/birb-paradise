@@ -1,6 +1,6 @@
 const {
     Listener,
-    CommandErrorPayload,
+    MessageCommandErrorPayload,
     Events,
 } = require('@sapphire/framework');
 const Sentry = require('@sentry/node');
@@ -16,13 +16,10 @@ class MessageCommandErrorListener extends Listener {
     /**
      *
      * @param { Error } error
-     * @param { CommandErrorPayload } payload
+     * @param { MessageCommandErrorPayload } payload
      */
     async run(error, payload) {
-        const sentryID = Sentry.captureException(error);
-        this.container.logger.error(
-            `Command error with ID ${sentryID} sent to Sentry`
-        );
+        this.container.utility.sendException(error, 'Command');
     }
 }
 

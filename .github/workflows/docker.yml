@@ -35,5 +35,5 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/birb-helper:latest
-      - name: Echo docker imaage
+      - name: Echo docker image
         run: echo ${{ steps.docker_build.outputs.digest }}

@@ -45,6 +45,7 @@ class EvalCommand extends Command {
         const async = args.getFlags('async');
         let output, type;
         const evalTime = new Stopwatch();
+        let error = false;
 
         let evaluation = await message.reply('Evaluating...');
         try {
@@ -57,30 +58,19 @@ class EvalCommand extends Command {
             // return evaluation.edit(`An error occured during evaluation: ${err}`);
             output = `An error occured during evaluation: ${err}`;
             type = `Error`;
+            error = true;
         }
         if (typeof output !== 'string')
             output = util.inspect(output, { depth: 0 });
         if (output.length >= 2000) {
-            const res = await req('https://hst.sh/documents', 'POST')
-                .body(output)
-                .timeout(10000)
-                .send();
-
-            if (res.statusCode !== 200)
-                return evaluation.edit(
-                    `Content was too long to be sent, but it couldn\'t be uploaded to hastebin :(`
-                );
-            return evaluation.edit(
-                `Content was too long to be sent, you can see it here: <https://hst.sh/${
-                    res.json().key
-                }.js>`
-            );
-        } else if (wantsHide) {
-            return evaluation.delete();
-        } else if (wantsDelete) {
+            let hastebinOutput = this.container.utility.createHastebin(output);
+            return evaluation.edit(hastebinOutput);
+        } else if (wantsHide && !error) {
             evaluation.delete();
-            return message.delete();
+        } else if (wantsDelete) {
+            message.delete();
         }
+        if (wantsHide || wantsDelete) return;
         return evaluation.edit(
             `Output: \`\`\`js\n${output}\`\`\`\nType: \`${type}\` Time Taken: \`${evalTime.toString()}\``
         );

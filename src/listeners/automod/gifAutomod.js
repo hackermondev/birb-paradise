@@ -1,6 +1,6 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, WebhookClient, MessageEmbed } = require('discord.js');
-const { staffRoles, gifPermRoles } = require('../../../config.json');
+const { gifPermRoles } = require('../../../config.json');
 const automodLogsWebhookID = process.env.automodLogsWebhookID;
 const automodLogsWebhookToken = process.env.automodLogsWebhookToken;
 const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
@@ -21,11 +21,9 @@ class GifAutomodListener extends Listener {
         if (!message.guild || message.author.bot) return;
         if (message.author === this.container.client.user) return;
         if (!this.container.utility.isBp(message.guild)) return;
-        if (this.container.utility.isStaffMember(message.member))
-            return;
+        if (this.container.utility.isStaffMember(message.member)) return;
         if (gifPermRoles.some((role) => message.member.roles.cache.has(role)))
             return;
-
         if (!tenorDomains.some((domain) => message.content.startsWith(domain)))
             return;
 

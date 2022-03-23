@@ -29,23 +29,15 @@ class SlowmodeCommand extends Command {
                 )}`
             );
         if (number.value < 0)
-            return message
-                .reply(`The slowmode can\'t be negative`)
-                .then((reply) =>
-                    setTimeout(function () {
-                        reply.delete();
-                        message.delete();
-                    }, 3500)
-                );
+            return this.container.utility.errorReply(
+                message,
+                `The slowmode can\'t be negative`
+            );
         if (number.value > 21600)
-            return message
-                .reply(`You may not set the slowmode to more than 6h`)
-                .then((reply) =>
-                    setTimeout(function () {
-                        reply.delete();
-                        message.delete();
-                    }, 3500)
-                );
+            return this.container.utility.errorReply(
+                message,
+                'You may not set the slowmode to more than 6h'
+            );
         message.channel.setRateLimitPerUser(number.value);
         return message.reply(
             `Set the slowmode in this channel to ${formatter.format(

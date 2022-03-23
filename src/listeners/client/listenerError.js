@@ -19,10 +19,7 @@ class ListenerErrorListener extends Listener {
      * @param { ListenerErrorPayload } payload
      */
     async run(error, payload) {
-        const sentryID = Sentry.captureException(error);
-        this.container.logger.error(
-            `Listener error with ID ${sentryID} sent to Sentry`
-        );
+        this.container.utility.sendException(error, 'Listener');
     }
 }
 

@@ -19,20 +19,14 @@ class SayCommand extends Command {
     async messageRun(message, args) {
         const whatToSay = await args.restResult('string');
         if (!whatToSay.success)
-            return message
-                .reply('You need to tell me what to say smh')
-                .then((reply) =>
-                    setTimeout(function () {
-                        message.delete();
-                        reply.delete();
-                    }, 3500)
-                );
+            return this.container.utility.errorReply(
+                message,
+                'You need to tell me something to say'
+            );
         if (whatToSay.value.length > 500)
-            return message.reply('Why is your message so long').then((reply) =>
-                setTimeout(function () {
-                    message.delete();
-                    reply.delete();
-                }, 3500)
+            return this.container.utility.errorReply(
+                message,
+                'Your message is too long'
             );
         await message.channel.send({
             content: whatToSay.value,

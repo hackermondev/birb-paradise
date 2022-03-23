@@ -2,13 +2,13 @@ const { Command } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
 const { lockdownChannels, mainChannel } = require('../../../config.json');
 
-class LockdownCommand extends Command {
+class UnLockdownCommand extends Command {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'lockdown',
-            aliases: ['lockall'],
-            description: 'Locks down Birb Paradise',
+            name: 'unlockdown',
+            aliases: ['unlockall'],
+            description: 'Unlocks Birb Paradise',
             preconditions: ['Staff'],
             enabled: false,
         });
@@ -21,15 +21,13 @@ class LockdownCommand extends Command {
     async messageRun(message) {
         if (!this.container.utility.isBp(message.guild))
             return message.reply('This server is not configured');
-        message.channel.send('Starting Lockdown...');
+        message.channel.send('Starting Unlockdown...');
         for (var i = 0; i < lockdownChannels.length; ++i) {
             const ch = message.guild.channels.cache.get(lockdownChannels[i]);
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: false,
             });
-            await ch.send(
-                `This channel is locked. see <#${mainChannel}> for more information.`
-            );
+            await ch.send(`This channel is now unlocked.`);
         }
         // TODO handle ratelimits
         const serverLockEmbed = new MessageEmbed()
@@ -38,8 +36,8 @@ class LockdownCommand extends Command {
         message.guild.channels.cache
             .get(mainChannel)
             .send({ embeds: [serverLockEmbed] });
-        message.channel.send('The server has been locked down.');
+        message.channel.send('The server has been unlocked.');
     }
 }
 
-module.exports = { LockdownCommand };
+module.exports = { UnLockdownCommand };

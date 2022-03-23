@@ -1,7 +1,5 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message } = require('discord.js');
-const { reactChannels, bpGuildID } = require('../../../config.json');
-
 class MessageReactChannelsListener extends Listener {
     constructor(context, options) {
         super(context, {
@@ -16,8 +14,9 @@ class MessageReactChannelsListener extends Listener {
      * @param { Message } message
      */
     async run(message) {
-        if (message.guild.id !== bpGuildID || message.author.bot) return;
-        if (!reactChannels.includes(message.channelId)) return;
+        if (!this.container.utility.isBp(message.guild) || message.author.bot)
+            return;
+        if (!this.container.utility.isReactChannel(message.channel)) return;
         if (message.author.id === message.guild.ownerId) return;
         return message
             .react('👍')

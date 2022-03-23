@@ -1,5 +1,10 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { Interaction, MessageEmbed, Message } = require('discord.js');
+const {
+    Interaction,
+    MessageEmbed,
+    Message,
+    GuildMember,
+} = require('discord.js');
 const Sentry = require('@sentry/node');
 const { pingRoles, verifiedRole, colorRoles } = require('../../../config.json');
 
@@ -260,12 +265,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                             colorRoles.includes(role.id)
                         )
                     ) {
-                        colorRoles.forEach((role) => {
-                            interaction.member.roles.remove(
-                                role,
-                                'Removing other color roles'
-                            );
-                        });
+                        removeOtherColorRoles(interaction.member);
                     }
                     interaction.member.roles.add(
                         colorRoles[0],
@@ -306,12 +306,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                             colorRoles.includes(role.id)
                         )
                     ) {
-                        colorRoles.forEach((role) => {
-                            interaction.member.roles.remove(
-                                role,
-                                'Removing other color roles'
-                            );
-                        });
+                        removeOtherColorRoles(interaction.member);
                     }
                     interaction.member.roles.add(
                         colorRoles[1],
@@ -352,12 +347,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                             colorRoles.includes(role.id)
                         )
                     ) {
-                        colorRoles.forEach((role) => {
-                            interaction.member.roles.remove(
-                                role,
-                                'Removing other color roles'
-                            );
-                        });
+                        removeOtherColorRoles(interaction.member);
                     }
                     interaction.member.roles.add(
                         colorRoles[2],
@@ -398,12 +388,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                             colorRoles.includes(role.id)
                         )
                     ) {
-                        colorRoles.forEach((role) => {
-                            interaction.member.roles.remove(
-                                role,
-                                'Removing other color roles'
-                            );
-                        });
+                        removeOtherColorRoles(interaction.member);
                     }
                     interaction.member.roles.add(
                         colorRoles[3],
@@ -444,12 +429,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                             colorRoles.includes(role.id)
                         )
                     ) {
-                        colorRoles.forEach((role) => {
-                            interaction.member.roles.remove(
-                                role,
-                                'Removing other color roles'
-                            );
-                        });
+                        removeOtherColorRoles(interaction.member);
                     }
                     interaction.member.roles.add(
                         colorRoles[4],
@@ -490,12 +470,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                             colorRoles.includes(role.id)
                         )
                     ) {
-                        colorRoles.forEach((role) => {
-                            interaction.member.roles.remove(
-                                role,
-                                'Removing other color roles'
-                            );
-                        });
+                        removeOtherColorRoles(interaction.member);
                     }
                     interaction.member.roles.add(
                         colorRoles[5],
@@ -541,3 +516,13 @@ class InteractionCreateReactionRolesListener extends Listener {
 }
 
 module.exports = { InteractionCreateReactionRolesListener };
+
+/**
+ *
+ * @param { GuildMember } member
+ */
+function removeOtherColorRoles(member) {
+    colorRoles.forEach((role) => {
+        member.roles.remove(role, 'Removing other color roles');
+    });
+}

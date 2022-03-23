@@ -89,18 +89,11 @@ class WhoHasBadgeCommand extends Command {
                 `I couldn\'t find anyone who has the ${badgesLiteralStrings[index]} badge`
             );
         if (membersWithBadge.toString().length > 4000) {
-            const res = await req('https://hst.sh/documents', 'POST')
-                .body(membersWithBadge.toString())
-                .timeout(10000)
-                .send();
-            if (res.statusCode !== 200)
-                return r.edit(
-                    `The list of members was too long to be sent on discord, but the list couldn\'t be uploaded to hastebin :(. Try again in a few minutes.`
-                );
+            let hastebinOutput = this.container.utility.createHastebin(
+                membersWithBadge.toString()
+            );
             return r.edit(
-                `The list of members was too long to be sent on discord, you can see the list here: <https://hst.sh/${
-                    res.json().key
-                }>`
+                `The list of members was too long to be sent on discord, you can see the list here: ${hastebinOutput}`
             );
         } else {
             return r.edit(
