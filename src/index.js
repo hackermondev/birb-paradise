@@ -1,10 +1,11 @@
-const { SapphireClient } = require('@sapphire/framework');
+const { SapphireClient, container } = require('@sapphire/framework');
 const { Options } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
+const { Utility } = require('./library/utility');
 const sentryDSN = process.env.SENTRY_DSN;
 
 process.on('uncaughtException', (error) => {
@@ -33,6 +34,7 @@ const client = new SapphireClient({
         },
     },
 });
+container.utility = new Utility();
 
 Sentry.init({
     dsn: sentryDSN,
