@@ -35,6 +35,7 @@ class UnLockdownCommand extends Command {
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: null,
             });
+            if (ch.id === '891286303574994977') continue;
             await ch.send(`This channel is now unlocked.`);
             await this.container.utility.delay(400);
         }

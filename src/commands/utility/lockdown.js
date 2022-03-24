@@ -38,6 +38,7 @@ class LockdownCommand extends Command {
             await ch.permissionOverwrites.edit('925832521218920490', {
                 SEND_MESSAGES: true,
             });
+            if (ch.id === '891286303574994977') continue;
             await ch.send(
                 `This channel is locked. see <#${mainChannel}> for more information.`
             );
