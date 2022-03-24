@@ -86,11 +86,11 @@ class Utility {
     }
 
     /**
-     * 
-     * @param { Number } duration 
+     *
+     * @param { Number } duration
      */
     async delay(duration) {
-        return new Promise(r => setTimeout(r, duration));
+        return new Promise((r) => setTimeout(r, duration));
     }
 }
 

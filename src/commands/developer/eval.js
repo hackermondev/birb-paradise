@@ -63,8 +63,12 @@ class EvalCommand extends Command {
         if (typeof output !== 'string')
             output = util.inspect(output, { depth: 0 });
         if (output.length >= 2000) {
-            let hastebinOutput = await this.container.utility.createHastebin(output);
-            return evaluation.edit(`Output was too long to be sent on discord: ${hastebinOutput}`);;
+            let hastebinOutput = await this.container.utility.createHastebin(
+                output
+            );
+            return evaluation.edit(
+                `Output was too long to be sent on discord: ${hastebinOutput}`
+            );
         } else if (wantsHide && !error) {
             evaluation.delete();
         } else if (wantsDelete) {

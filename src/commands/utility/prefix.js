@@ -47,7 +47,7 @@ class PrefixCommand extends SubCommandPluginCommand {
                         reply.delete();
                     }, 3500)
                 );
-        const config = JSON.parse(fs.readFileSync('config.json').toString())
+        const config = JSON.parse(fs.readFileSync('config.json').toString());
         require('../../../config.json').prefix = newPrefix;
         this.container.client.options.defaultPrefix = newPrefix;
         return message.reply(`Prefix successfully set to ${newPrefix}`);
