@@ -37,7 +37,7 @@ class UnLockdownCommand extends Command {
             });
             if (ch.id === '891286303574994977') continue;
             await ch.send(`This channel is now unlocked.`);
-            await this.container.utility.delay(400);
+            await this.container.utility.delay(150);
         }
         unlockTime.stop();
         const serverUnlockEmbed = new MessageEmbed()

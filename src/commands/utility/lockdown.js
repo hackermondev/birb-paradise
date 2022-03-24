@@ -42,7 +42,7 @@ class LockdownCommand extends Command {
             await ch.send(
                 `This channel is locked. see <#${mainChannel}> for more information.`
             );
-            await this.container.utility.delay(400);
+            await this.container.utility.delay(150);
         }
         lockTime.stop();
         const serverLockEmbed = new MessageEmbed()
