@@ -33,7 +33,7 @@ class Utility {
      * @returns if the channel is on the react channel list
      */
     async isReactChannel(channel) {
-        return reactChannels.some((ch) => ch === channel.id);
+        return reactChannels.includes(channel.id);
     }
 
     /**
