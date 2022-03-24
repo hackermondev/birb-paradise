@@ -2,7 +2,7 @@ const { Command, Args } = require('@sapphire/framework');
 const { SubCommandPluginCommand } = require('@sapphire/plugin-subcommands');
 const { Message, MessageEmbed } = require('discord.js');
 const { prefix } = require('../../../config.json');
-
+const fs = require('fs');
 class PrefixCommand extends SubCommandPluginCommand {
     constructor(context, options) {
         super(context, {
@@ -47,6 +47,7 @@ class PrefixCommand extends SubCommandPluginCommand {
                         reply.delete();
                     }, 3500)
                 );
+        const config = JSON.parse(fs.readFileSync('config.json').toString())
         require('../../../config.json').prefix = newPrefix;
         this.container.client.options.defaultPrefix = newPrefix;
         return message.reply(`Prefix successfully set to ${newPrefix}`);

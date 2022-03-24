@@ -6,7 +6,7 @@ class MessageReactChannelsListener extends Listener {
             ...options,
             name: 'messageReactChannels',
             event: Events.MessageCreate,
-            enabled: false,
+            enabled: true,
         });
     }
 

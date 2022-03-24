@@ -13,7 +13,7 @@ class Utility {
      * @param { GuildMember } member
      * @returns if the member is a staff member
      */
-    async isStaffMember(member) {
+    isStaffMember(member) {
         if (member.permissions.has('ADMINISTRATOR')) return true;
         return staffRoles.some((role) => member.roles.cache.has(role));
     }
@@ -23,7 +23,7 @@ class Utility {
      * @param { Guild } guild
      * @returns if the guild is Birb Paradise
      */
-    async isBp(guild) {
+    isBp(guild) {
         return guild.id === '891286303574994974';
     }
 
@@ -32,7 +32,7 @@ class Utility {
      * @param { TextChannel } channel
      * @returns if the channel is on the react channel list
      */
-    async isReactChannel(channel) {
+    isReactChannel(channel) {
         return reactChannels.includes(channel.id);
     }
 
@@ -42,7 +42,7 @@ class Utility {
      * @param { String } type
      * @returns the sentry id of the exception
      */
-    async sendException(error, type) {
+    sendException(error, type) {
         const sentryID = Sentry.captureException(error);
         container.logger.error(
             `${type} exception with ID ${sentryID} sent to Sentry`
