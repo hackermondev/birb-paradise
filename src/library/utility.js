@@ -2,7 +2,8 @@ const { GuildMember, Guild, TextChannel, Message } = require('discord.js');
 const { container } = require('@sapphire/pieces');
 const Sentry = require('@sentry/node');
 const req = require('petitio');
-const { staffRoles, reactChannels } = require('../../config.json');
+const staffRoles = ["891351290125369364", "891322260051329054", "891439426067107900", "891289120406646825"];
+const reactChannels = ["927983294853816330", "913138419142651934", "955117848710234132"];
 class Utility {
     constructor() {
         container.utility = this;
