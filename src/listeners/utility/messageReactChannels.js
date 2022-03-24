@@ -16,7 +16,7 @@ class MessageReactChannelsListener extends Listener {
     async run(message) {
         if (!this.container.utility.isBp(message.guild) || message.author.bot)
             return;
-        if (!this.container.utility.isReactChannel(message.channel)) return;
+        if (this.container.utility.isReactChannel(message.channel)) return;
         if (message.author.id === message.guild.ownerId) return;
         return message
             .react('👍')
