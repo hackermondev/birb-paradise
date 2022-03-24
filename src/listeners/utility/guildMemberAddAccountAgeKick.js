@@ -27,7 +27,7 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
             .addField('Time', `<t:${Math.floor(Date.now() / 1000)}>`)
             .addField(
                 'Account Created',
-                `<t:${member.user.createdAt.getTime()}:R>`
+                `<t:${member.user.createdAt.getTime() / 1000}:R>`
             );
         if (Date.now() - member.user.createdAt < 86400000) {
             await member

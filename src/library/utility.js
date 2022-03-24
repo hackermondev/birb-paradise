@@ -75,10 +75,10 @@ class Utility {
         const reply = await message.reply(errorMsg);
         if (!reply) return false;
         setTimeout(() => {
-                message.delete().catch(() => {
+            message.delete().catch(() => {
                 return false;
             });
-                reply.delete().catch(() => {
+            reply.delete().catch(() => {
                 return false;
             });
         }, 3500);
