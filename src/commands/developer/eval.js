@@ -63,7 +63,7 @@ class EvalCommand extends Command {
         if (typeof output !== 'string')
             output = util.inspect(output, { depth: 0 });
         if (output.length >= 2000) {
-            let hastebinOutput = this.container.utility.createHastebin(output);
+            let hastebinOutput = await this.container.utility.createHastebin(output);
             return evaluation.edit(hastebinOutput);
         } else if (wantsHide && !error) {
             evaluation.delete();
