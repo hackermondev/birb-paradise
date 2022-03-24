@@ -29,6 +29,7 @@ class LockdownCommand extends Command {
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: false,
             });
+            await ch.permissionOverwrites.edit('925832521218920490', {SEND_MESSAGES: true});
             await ch.send(
                 `This channel is locked. see <#${mainChannel}> for more information.`
             );
