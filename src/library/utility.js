@@ -73,16 +73,24 @@ class Utility {
      */
     async errorReply(message, errorMsg) {
         const reply = await message.reply(errorMsg);
-        if (!reply) return false;
+        if (!reply) return;
         setTimeout(() => {
             message.delete().catch(() => {
-                return false;
+                return;
             });
             reply.delete().catch(() => {
-                return false;
+                return;
             });
         }, 3500);
-        return true;
+        return;
+    }
+
+    /**
+     * 
+     * @param { Number } duration 
+     */
+    async delay(duration) {
+        return new Promise(r => setTimeout(r, duration));
     }
 }
 
