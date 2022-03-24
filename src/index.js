@@ -18,6 +18,8 @@ process.on('exit', (code) => {
     );
 });
 
+container.utility = new Utility();
+
 const client = new SapphireClient({
     intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_BANS'],
     defaultPrefix: prefix,
@@ -33,7 +35,7 @@ const client = new SapphireClient({
         },
     },
 });
-container.utility = new Utility();
+
 Sentry.init({
     dsn: sentryDSN,
     tracesSampleRate: 1.0,
