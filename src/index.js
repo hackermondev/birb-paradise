@@ -21,7 +21,12 @@ process.on('exit', (code) => {
 container.utility = new Utility();
 
 const client = new SapphireClient({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS],
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_BANS,
+    ],
     defaultPrefix: prefix,
     loadMessageCommandListeners: true,
     caseInsensitiveCommands: true,

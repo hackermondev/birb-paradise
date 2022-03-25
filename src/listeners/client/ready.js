@@ -28,7 +28,9 @@ class ReadyListener extends Listener {
                 `Pinging...Ping acknowledged by the API. Latency is ${client.ws.ping} ms.\n\n`
             );
         }, 600000);
-        this.container.client.user.setActivity(`${activities[0]}`, {type: `${activitiesTypes[0]}`});
+        this.container.client.user.setActivity(`${activities[0]}`, {
+            type: `${activitiesTypes[0]}`,
+        });
         activityIndex++;
 
         setInterval(() => {
