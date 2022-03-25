@@ -1,5 +1,5 @@
 const { SapphireClient, container } = require('@sapphire/framework');
-const { Options } = require('discord.js');
+const { Options, Intents } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 require('@sapphire/plugin-logger/register');
@@ -13,7 +13,7 @@ process.on('uncaughtException', (error) => {
 });
 
 process.on('exit', (code) => {
-    client.logger.warn(
+    client.logger.info(
         `Process exiting with code ${code}...(A restart signal was probably sent)`
     );
 });
@@ -21,7 +21,7 @@ process.on('exit', (code) => {
 container.utility = new Utility();
 
 const client = new SapphireClient({
-    intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_BANS'],
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS],
     defaultPrefix: prefix,
     loadMessageCommandListeners: true,
     caseInsensitiveCommands: true,
@@ -30,6 +30,10 @@ const client = new SapphireClient({
     sweepers: {
         ...Options.defaultSweeperSettings,
         guildMembers: {
+            interval: 500,
+            filter: () => (m) => m.id != '925829323762577479',
+        },
+        users: {
             interval: 500,
             filter: () => (m) => m.id != '925829323762577479',
         },
