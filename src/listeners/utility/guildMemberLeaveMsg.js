@@ -15,6 +15,7 @@ class GuildMemberRemoveMsg extends Listener {
      * @param { GuildMember } member
      */
     async run(member) {
+        if (!this.container.utility.isBp(member.guild)) return;
         return member.guild.channels.cache
             .get(memberLeaveChannel)
             .send(

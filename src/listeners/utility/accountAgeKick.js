@@ -16,6 +16,7 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
      * @param { GuildMember } member
      */
     async run(member) {
+        if (!this.container.utility.isBp(member.guild)) return;
         const accountAgeKickEmbed = new MessageEmbed()
             .setTitle(
                 `Your account was kicked from ${member.guild.name} for having an account age below the threshold`

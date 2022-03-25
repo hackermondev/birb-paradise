@@ -16,8 +16,11 @@ class DividerRoleAdd extends Listener {
      * @param { GuildMember } member
      */
     async run(member) {
+        if (!this.container.utility.isBp(member.guild)) return;
         setTimeout(() => {
-            await member.roles.add(dividerPingRole, 'Adding divider ping role').catch(() => {});
+            member.roles
+                .add(dividerPingRole, 'Adding divider ping role')
+                .catch(() => {});
         }, 600000);
     }
 }

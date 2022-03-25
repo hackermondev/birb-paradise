@@ -16,6 +16,7 @@ class GuildBanAddEvidenceListener extends Listener {
      * @param { GuildBan } ban
      */
     async run(ban) {
+        if (!this.container.utility.isBp(ban.guild)) return;
         await ban.fetch();
         const banEmbed = new MessageEmbed()
             .setTitle('User Banned')
