@@ -28,6 +28,8 @@ class ReadyListener extends Listener {
                 `Pinging...Ping acknowledged by the API. Latency is ${client.ws.ping} ms.\n\n`
             );
         }, 600000);
+        this.container.client.user.setActivity(`${activities[0]}`, {type: `${activitiesTypes[0]}`});
+        activityIndex++;
 
         setInterval(() => {
             activityIndex++;
@@ -36,7 +38,7 @@ class ReadyListener extends Listener {
                 `${activities[activityIndex]}`,
                 { type: `${activitiesTypes[activityIndex]}` }
             );
-        }, 30000);
+        }, 25000);
     }
 }
 
