@@ -6,7 +6,12 @@ const {
     GuildMember,
 } = require('discord.js');
 const Sentry = require('@sentry/node');
-const { bpPingRoles, bpVerifiedRole, colorRoles, cpPingRoles } = require('../../../config.json');
+const {
+    bpPingRoles,
+    bpVerifiedRole,
+    colorRoles,
+    cpPingRoles,
+} = require('../../../config.json');
 
 class InteractionCreateReactionRolesListener extends Listener {
     constructor(context, options) {
@@ -237,7 +242,10 @@ class InteractionCreateReactionRolesListener extends Listener {
             // bp verify reaction role case
             case 'verify':
                 if (!interaction.member.roles.cache.has(bpVerifiedRole)) {
-                    interaction.member.roles.add(bpVerifiedRole, 'verification');
+                    interaction.member.roles.add(
+                        bpVerifiedRole,
+                        'verification'
+                    );
                     return interaction.followUp({
                         embeds: [
                             new MessageEmbed()
