@@ -48,7 +48,6 @@ class RaidPreventionListener extends Listener {
                         '891439426067107900',
                         '891351290125369364',
                     ],
-                    parse: [],
                 },
             });
         }
