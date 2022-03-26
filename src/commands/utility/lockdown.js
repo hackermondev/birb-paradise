@@ -38,13 +38,17 @@ class LockdownCommand extends Command {
             await ch.permissionOverwrites.edit('925832521218920490', {
                 SEND_MESSAGES: true,
             });
-            if (ch.id === '891286303574994977') continue;
+            if (ch.id === mainChannel) continue;
             await ch.send(
                 `This channel is locked. see <#${mainChannel}> for more information.`
             );
-            await this.container.utility.delay(150);
+            await this.container.utility.delay(200);
         }
-        await message.guild.channels.cache.get('893914976568373258').permissionOverwrites.edit(message.guild.roles.everyone, {VIEW_CHANNEL: false});
+        await message.guild.channels.cache
+            .get('893914976568373258')
+            .permissionOverwrites.edit(message.guild.roles.everyone, {
+                VIEW_CHANNEL: false,
+            });
         lockTime.stop();
         const serverLockEmbed = new MessageEmbed()
             .setTitle('Server Locked')

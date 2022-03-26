@@ -35,11 +35,15 @@ class UnLockdownCommand extends Command {
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: null,
             });
-            if (ch.id === '891286303574994977') continue;
+            if (ch.id === mainChannel) continue;
             await ch.send(`This channel is now unlocked.`);
-            await this.container.utility.delay(150);
+            await this.container.utility.delay(200);
         }
-        await message.guild.channels.cache.get('893914976568373258').permissionOverwrites.edit(message.guild.roles.everyone, {VIEW_CHANNEL: null});
+        await message.guild.channels.cache
+            .get('893914976568373258')
+            .permissionOverwrites.edit(message.guild.roles.everyone, {
+                VIEW_CHANNEL: null,
+            });
         unlockTime.stop();
         const serverUnlockEmbed = new MessageEmbed()
             .setTitle('Server Unlocked')
