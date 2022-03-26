@@ -236,7 +236,7 @@ class InteractionCreateReactionRolesListener extends Listener {
 
             // bp verify reaction role case
             case 'verify':
-                if (!interaction.member.roles.cache.has(verifiedRole)) {
+                if (!interaction.member.roles.cache.has(bpVerifiedRole)) {
                     interaction.member.roles.add(bpVerifiedRole, 'verification');
                     return interaction.followUp({
                         embeds: [
