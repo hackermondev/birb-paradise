@@ -195,7 +195,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 } else {
                     interaction.member.roles.remove(
-                        bpbpPingRoles[6],
+                        bpPingRoles[6],
                         'Reaction role remove'
                     );
                     return interaction.followUp({
