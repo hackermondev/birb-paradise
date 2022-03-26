@@ -37,10 +37,10 @@ class RaidBanCommand extends Command {
             .messageRun(message).success
             ? true
             : false;
-        if (!isAdmin && usersArray.length > 10)
+        if (!isAdmin && usersArray.length > 20)
             return this.container.utility.errorReply(
                 message,
-                'You can only ban up to 10 users at a time'
+                'You can only ban up to 20 users at a time'
             );
         message.reply(`Banning ${usersArray.length} users`);
         let errors = [];
