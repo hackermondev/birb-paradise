@@ -22,8 +22,10 @@ class RestartCommand extends Command {
         this.container.logger.warn(
             `Restart signal sent by ${message.member.user.tag}`
         );
-        this.container.client.user.setActivity('Restarting..');
-        return process.exit(1);
+        this.container.client.user.setActivity(
+            "Restarting.. (You can check the bot's status to see when it has restarted"
+        );
+        return process.exit();
     }
 }
 

@@ -19,6 +19,11 @@ class RaidBanCommand extends Command {
      * @param { Args } args
      */
     async messageRun(message, args) {
+        if (!this.container.utility.isBp(message.guild))
+            return this.container.utility.errorReply(
+                message,
+                'This command is currently only available to Birb Paradise'
+            );
         const users = await args.restResult('string');
         if (!users.success)
             return this.container.utility.errorReply(
@@ -46,6 +51,14 @@ class RaidBanCommand extends Command {
                 .catch(() => null);
             if (!resolvedUser) {
                 errors.push(`${user} is not a valid user`);
+                continue;
+            }
+            if (
+                this.container.utility.isStaffMember(
+                    message.guild.members.cache.get(user)
+                )
+            ) {
+                errors.push(`${user} is a staff member`);
                 continue;
             }
             await message.guild.members

@@ -27,14 +27,10 @@ class RuleCommand extends Command {
     async messageRun(message, args) {
         let ruleNumber = await args.pickResult('string');
         if (!ruleNumber.success)
-            return message
-                .reply('You need to enter a rule number')
-                .then((reply) =>
-                    setTimeout(function () {
-                        message.delete();
-                        reply.delete();
-                    }, 3500)
-                );
+            return this.container.utility.errorReply(
+                message,
+                'You need to enter a rule number'
+            );
         ruleNumber = ruleNumber.value;
         if (Number.isNaN(Number.parseInt(ruleNumber)))
             return this.container.utility.errorReply(
