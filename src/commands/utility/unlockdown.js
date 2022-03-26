@@ -39,6 +39,7 @@ class UnLockdownCommand extends Command {
             await ch.send(`This channel is now unlocked.`);
             await this.container.utility.delay(150);
         }
+        await message.guild.channels.cache.get('893914976568373258').permissionOverwrites.edit(message.guild.roles.everyone, {VIEW_CHANNEL: null});
         unlockTime.stop();
         const serverUnlockEmbed = new MessageEmbed()
             .setTitle('Server Unlocked')

@@ -44,6 +44,7 @@ class LockdownCommand extends Command {
             );
             await this.container.utility.delay(150);
         }
+        await message.guild.channels.cache.get('893914976568373258').permissionOverwrites.edit(message.guild.roles.everyone, {VIEW_CHANNEL: false});
         lockTime.stop();
         const serverLockEmbed = new MessageEmbed()
             .setTitle('Server Locked')
