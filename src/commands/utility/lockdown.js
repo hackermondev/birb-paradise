@@ -60,7 +60,7 @@ class LockdownCommand extends Command {
         message.guild.channels.cache
             .get(mainChannel)
             .send({ embeds: [serverLockEmbed] });
-        message.channel.send(
+        return message.channel.send(
             `The server has been locked down. Process took ${lockTime}`
         );
     }

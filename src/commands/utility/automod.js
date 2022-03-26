@@ -45,9 +45,7 @@ class AutomodCommand extends SubCommandPluginCommand {
         });
         currentAutomodConfig.addField(
             'Account Age Kick',
-            this.container.stores
-                .get('listeners')
-                .get('accountAgeKick').enabled
+            this.container.stores.get('listeners').get('accountAgeKick').enabled
                 ? 'enabled'
                 : 'disabled'
         );
