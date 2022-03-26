@@ -17,8 +17,11 @@ class AutomodCommand extends SubCommandPluginCommand {
                 'enableaccountkick',
             ],
             preconditions: ['Admin'],
+            enabled: false,
         });
     }
+
+    // TODO: fix command
 
     /**
      *
