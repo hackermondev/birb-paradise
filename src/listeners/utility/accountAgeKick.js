@@ -7,6 +7,7 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
+            name: 'accountAgeKick',
             event: Events.GuildMemberAdd,
         });
     }
