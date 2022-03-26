@@ -80,7 +80,7 @@ class RaidBanCommand extends Command {
             return message.channel.send(
                 `Successfully banned ${
                     errors.length - usersArray.length
-                } users from this server. There were errors banning some users:\n  \`\`\`js\n${errors.toString()} \`\`\``
+                } users from this server. There were errors banning some users:\n  \`\`\`js\n${errors.join('\n')} \`\`\``
             );
         }
     }
