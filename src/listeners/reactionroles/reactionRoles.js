@@ -595,7 +595,7 @@ class InteractionCreateReactionRolesListener extends Listener {
             case 'updateCat':
                 if (!interaction.member.roles.cache.has(cpPingRoles[4])) {
                     interaction.member.roles.add(
-                        cpPingRoles[4],
+                        cpPingRoles[3],
                         'Reaction role add'
                     );
                     return interaction.followUp({
@@ -609,7 +609,7 @@ class InteractionCreateReactionRolesListener extends Listener {
                     });
                 } else {
                     interaction.member.roles.remove(
-                        cpPingRoles[4],
+                        cpPingRoles[3],
                         'Reaction role remove'
                     );
                     return interaction.followUp({
