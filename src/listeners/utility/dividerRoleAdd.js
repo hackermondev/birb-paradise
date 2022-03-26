@@ -24,3 +24,5 @@ class DividerRoleAdd extends Listener {
         }, 600000);
     }
 }
+
+module.exports = { DividerRoleAdd };
