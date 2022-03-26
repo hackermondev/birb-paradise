@@ -11,7 +11,6 @@ class RaidPreventionListener extends Listener {
             ...options,
             name: 'raidPrevention',
             event: Events.GuildMemberAdd,
-            enabled: false,
         });
     }
 
