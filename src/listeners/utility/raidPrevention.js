@@ -30,13 +30,15 @@ class RaidPreventionListener extends Listener {
                 'A raid has been detected. Inititiating lockdown...'
             );
             msg.content = `>lockdown Automatic Lockdown\n\n Raid Detected\n`;
+            mainChannel.send(`Automatic Lockdown started...`);
             await this.container.stores
                 .get('commands')
                 .get('lockdown')
                 .messageRun(msg);
-            mainChannel.send(`Automatic Lockdown started...`);
+            mainChannel.send(`Automatic Lockdown completed`);
+            member.guild.setVerificationLevel('VERY_HIGH');
             staffChat.send({
-                content: `<@&891322260051329054> <@&891289120406646825> <@&891293531455496202> <@&891439426067107900> <@&891351290125369364> A raid was detected and all channels are currently locked down. If this was a false detection you can unlock with the \`>unlockdown\` command`,
+                content: `<@&891322260051329054> <@&891289120406646825> <@&891293531455496202> <@&891439426067107900> <@&891351290125369364> A raid was detected and all channels are currently locked down. The verification level has also been set to very high. If this was a false detection you can unlock with the \`>unlockdown\` command`,
                 allowedMentions: {
                     users: [],
                     roles: [
