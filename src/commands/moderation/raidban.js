@@ -31,12 +31,12 @@ class RaidBanCommand extends Command {
             .messageRun(message).success
             ? true
             : false;
-        if (!isAdmin && usersArray.length - 1 > 15)
+        if (!isAdmin && usersArray.length > 15)
             return this.container.utility.errorReply(
                 message,
                 'You can only ban up to 15 users at a time'
             );
-        message.reply(`Banning ${usersArray.length - 1} users`);
+        message.reply(`Banning ${usersArray.length} users`);
         let errors = [];
         for (let x = 0; x < usersArray.length; ++x) {
             const user = usersArray[x];
@@ -53,6 +53,7 @@ class RaidBanCommand extends Command {
                     reason: `Raiding or attempting to raid ${message.guild.name}`,
                 })
                 .catch((e) => errors.push(`Error banning ${user}: ${e}`));
+            await this.container.utility.delay(400);
         }
 
         if (!errors.length)
@@ -64,8 +65,8 @@ class RaidBanCommand extends Command {
         else {
             return message.channel.send(
                 `Successfully banned ${
-                    errors.length - 1 - (usersArray.length - 1)
-                } users from this server. There were errors banning some users: ${errors.toString()}`
+                    errors.length - usersArray.length
+                } users from this server. There were errors banning some users:\n  \`\`\`js ${errors.toString()} \`\`\``
             );
         }
     }
