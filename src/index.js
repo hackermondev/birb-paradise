@@ -48,9 +48,6 @@ const client = new SapphireClient({
 Sentry.init({
     dsn: sentryDSN,
     tracesSampleRate: 1.0,
-    release: `${require('../package.json').name}@${
-        require('../package.json').version
-    }`,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
