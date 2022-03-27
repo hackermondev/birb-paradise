@@ -33,10 +33,7 @@ class RaidPreventionListener extends Listener {
             await staffChat.send(
                 'A raid has been detected. Inititiating lockdown...'
             );
-            let msgForLock = await member.guild.channels.cache
-                .get(mainChannel)
-                .messages.fetch('957438046192676874')
-                .catch(() => null);
+            let msgForLock = staffChat.messages.fetch('957438046192676874').catch(() => null);
             msgForLock.content = `>lockdown Automatic Lockdown\n\n **Raid Detected**\n`;
             this.container.client.emit(Events.PreMessageParsed, msgForLock);
             setTimeout(() => {
