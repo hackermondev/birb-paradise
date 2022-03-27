@@ -18,12 +18,12 @@ class RestartCommand extends Command {
      * @returns
      */
     async messageRun(message) {
-        await message.reply('The bot is restarting...');
+        await message.reply('The bot is restarting... (You can check the bot\'s status to see when it has restarted)');
         this.container.logger.warn(
             `Restart signal sent by ${message.member.user.tag}`
         );
         this.container.client.user.setActivity(
-            "Restarting.. (You can check the bot's status to see when it has restarted"
+            "Restarting.."
         );
         return process.exit();
     }
