@@ -1,4 +1,4 @@
-name: Publish Birb Helper to Docker
+name: Deploy Birb Helper to Production
 
 # Controls when the workflow will run
 on:
@@ -20,8 +20,7 @@ jobs:
     steps:
       - name: Checkout Repo 
         uses: actions/checkout@v3
-      - uses: actions/checkout@v2
-      - name: Create Sentry release
+      - name: Create Sentry Release
         uses: getsentry/action-release@v1.1.6
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -34,7 +33,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build and push Birb Helper docker image
+      - name: Build and push Birb Helper Docker i=Image
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -43,5 +42,5 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/birb-helper:latest
-      - name: Echo docker image
+      - name: Echo Docker Image
         run: echo ${{ steps.docker_build.outputs.digest }}
