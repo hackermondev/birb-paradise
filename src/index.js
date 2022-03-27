@@ -26,6 +26,7 @@ const client = new SapphireClient({
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_MEMBERS,
         Intents.FLAGS.GUILD_BANS,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
     ],
     defaultPrefix: prefix,
     loadMessageCommandListeners: true,

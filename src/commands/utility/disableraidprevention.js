@@ -2,7 +2,7 @@ const { Command } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 
 class DisableRaidPreventionCommand extends Command {
-	constructor(context, options) {
+    constructor(context, options) {
         super(context, {
             ...options,
             name: 'disableraidprevention',
@@ -12,8 +12,8 @@ class DisableRaidPreventionCommand extends Command {
     }
 
     /**
-     * 
-     * @param { Message } message 
+     *
+     * @param { Message } message
      */
     async messageRun(message) {
         this.container.stores.get('listeners').get('raidPrevention').unload();

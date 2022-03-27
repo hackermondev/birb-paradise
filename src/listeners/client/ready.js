@@ -1,8 +1,13 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Client } = require('discord.js');
 const { container } = require('@sapphire/framework');
-const activities = [`a partnered server`, `people level up`, `Birb Paradise`];
-const activitiesTypes = ['WATCHING', 'WATCHING', 'WATCHING'];
+const activities = [
+    `a partnered server`,
+    `people level up`,
+    `Birb Paradise`,
+    `Cat Paradise`,
+];
+const activitiesTypes = ['WATCHING', 'WATCHING', 'WATCHING', 'WATCHING'];
 let activityIndex = 0;
 class ReadyListener extends Listener {
     constructor(context, options) {
