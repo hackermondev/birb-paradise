@@ -1,4 +1,4 @@
-name: Deploy Birb Helper to Production
+name: Pre deploy tasks for Birb Helper
 
 # Controls when the workflow will run
 on:
@@ -9,25 +9,15 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # Build and push Docker Image
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout Repo 
         uses: actions/checkout@v3
-      - name: Create Sentry Release
-        uses: getsentry/action-release@v1.1.6
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-        with:
-          environment: production
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -44,3 +34,17 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/birb-helper:latest
       - name: Echo Docker Image
         run: echo ${{ steps.docker_build.outputs.digest }}
+  # Create Sentry release
+  sentry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo 
+        uses: actions/checkout@v3
+      - name: Create Sentry Release
+        uses: getsentry/action-release@v1.1.6
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
