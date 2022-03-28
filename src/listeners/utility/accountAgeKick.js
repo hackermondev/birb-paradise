@@ -25,6 +25,7 @@ class GuildMemberAddAccountAgeKickListener extends Listener {
             .setDescription(`Try joining again in a few days`);
         const accountAgeLogEmbed = new MessageEmbed()
             .setTitle('A user was kicked since their account was too young')
+            .setColor('DARK_RED')
             .addField('User', `<@${member.id}>`)
             .addField('Time', `<t:${Math.floor(Date.now() / 1000)}>`)
             .addField(

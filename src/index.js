@@ -49,7 +49,7 @@ const client = new SapphireClient({
 Sentry.init({
     dsn: sentryDSN,
     tracesSampleRate: 1.0,
-    integrations: [new Sentry.Integrations.Http({ tracing: true })],
+    integrations: [new Sentry.Integrations.Http({ tracing: true })]
 });
 
 client.login(process.env.DISCORD_TOKEN);
