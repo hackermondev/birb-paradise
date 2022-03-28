@@ -11,6 +11,7 @@ on:
 jobs:
   # Build and push Docker Image
   docker:
+    name: Build and push Docker Image
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -35,6 +36,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
   # Create Sentry release
   sentry:
+    name: Sentry Release creation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo 
