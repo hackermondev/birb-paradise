@@ -12,6 +12,7 @@ class EvalCommand extends Command {
             description: 'Evaluate code',
             preconditions: ['Developer'],
             flags: ['hide', 'delete', 'del', 'async'],
+            options: ['depth'],
         });
     }
     /**
@@ -61,7 +62,9 @@ class EvalCommand extends Command {
             error = true;
         }
         if (typeof output !== 'string')
-            output = util.inspect(output, { depth: 0 });
+            output = util.inspect(output, {
+                depth: args.getOption('depth') || 0,
+            });
         if (output.length >= 2000) {
             let hastebinOutput = await this.container.utility.createHastebin(
                 output
