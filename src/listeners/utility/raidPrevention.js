@@ -33,7 +33,9 @@ class RaidPreventionListener extends Listener {
             await staffChat.send(
                 'A raid has been detected. Inititiating lockdown...'
             );
-            let msgForLock = await staffChat.messages.fetch('957438046192676874').catch(() => null);
+            let msgForLock = await staffChat.messages
+                .fetch('957438046192676874')
+                .catch(() => null);
             msgForLock.content = `>lockdown Automatic Lockdown - **Raid Detected**\n`;
             this.container.client.emit(Events.PreMessageParsed, msgForLock);
             setTimeout(() => {

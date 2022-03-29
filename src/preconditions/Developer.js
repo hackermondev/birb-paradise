@@ -3,9 +3,9 @@ const { Message } = require('discord.js');
 
 class DeveloperPrecondition extends Precondition {
     /**
-     * 
-     * @param { Message } message 
-     * @returns 
+     *
+     * @param { Message } message
+     * @returns
      */
     async messageRun(message) {
         if (!this.container.client.application.owner)
