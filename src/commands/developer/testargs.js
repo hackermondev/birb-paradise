@@ -25,8 +25,8 @@ class TestArgsCommand extends Command {
 		else {
 			if (args.getFlags('force')) message.channel.send('Force flag detected');
 			if (args.getFlags('test')) message.channel.send('Test flag detected');
-			message.channel.send(`argsRest: \`${argsRest}\``);
-			message.channel.send(`argsPick: \`${argsPick}\``);
+			message.channel.send(`argsRest: \`${argsRest.value}\``);
+			message.channel.send(`argsPick: \`${argsPick.value}\``);
 		}
     }
 }
