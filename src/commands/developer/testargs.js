@@ -8,7 +8,8 @@ class TestArgsCommand extends Command {
             name: 'testargs',
             description: 'Tests stuff',
             preconditions: ['Developer'],
-			flags: ['force', 'test']
+			flags: ['force', 'test'],
+			enabled: false
         });
     }
 
