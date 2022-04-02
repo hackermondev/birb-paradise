@@ -37,7 +37,7 @@ class UnLockdownCommand extends Command {
             });
             if (ch.id === mainChannel) continue;
             await ch.send(`This channel is now unlocked.`);
-            await this.container.utility.delay(200);
+            await this.container.utility.delay(150);
         }
         await message.guild.channels.cache
             .get('893914976568373258')
