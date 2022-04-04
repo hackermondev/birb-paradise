@@ -8,6 +8,7 @@ class BuboiCommand extends Command {
             name: 'buboi',
             description: 'oh look its that cool mod',
             preconditions: ['Staff'],
+            enabled: false,
         });
     }
 
