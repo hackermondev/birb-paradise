@@ -42,7 +42,7 @@ class LockdownCommand extends Command {
             await ch.send(
                 `This channel is locked. see <#${mainChannel}> for more information.`
             );
-            await this.container.utility.delay(150);
+            await this.container.utility.delay(100);
         }
         await message.guild.channels.cache
             .get('893914976568373258')
