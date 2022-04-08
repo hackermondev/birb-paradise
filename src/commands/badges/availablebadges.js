@@ -28,6 +28,8 @@ class AvailableBadgesCommand extends Command {
             'HYPESQUAD_EVENTS',
             'EARLY_SUPPORTER',
             'PARTNERED_SERVER_OWNER',
+            'BUGHUNTER_LEVEL_1',
+            'BUGHUNTER_LEVEL_2',
         ];
         const badgesStrings = [
             'discord staff',
@@ -39,6 +41,8 @@ class AvailableBadgesCommand extends Command {
             'hypesquad events',
             'early supporter',
             'partner',
+            'bug hunter level 1',
+            'bug hunter level 2',
         ];
         return message.reply(
             `The badges that are currently supported are ${badgesLiteralStrings.join(

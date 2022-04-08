@@ -39,6 +39,8 @@ class WhoHasBadgeCommand extends Command {
             'hypesquad events',
             'early supporter',
             'partner',
+            'bug hunter level 1',
+            'bug hunter level 2',
         ];
         const badgesLiteralStrings = [
             'DISCORD_EMPLOYEE',
@@ -50,6 +52,8 @@ class WhoHasBadgeCommand extends Command {
             'HYPESQUAD_EVENTS',
             'EARLY_SUPPORTER',
             'PARTNERED_SERVER_OWNER',
+            'BUGHUNTER_LEVEL_1',
+            'BUGHUNTER_LEVEL_2',
         ];
         if (!badgesStrings.includes(rawBadge.value))
             return message
