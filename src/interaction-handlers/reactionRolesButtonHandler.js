@@ -505,7 +505,7 @@ class ReactionRolesButtonHandler extends InteractionHandler {
 	/**
 	 * @param { ButtonInteraction } interaction
 	 */
-	parse(interaction) {
+	async parse(interaction) {
 		await interaction.deferReply(); // defer reply and then call run
 		return this.some();
 	}
