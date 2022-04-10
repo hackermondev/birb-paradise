@@ -1,5 +1,13 @@
-const { InteractionHandler, InteractionHandlerTypes } = require('@sapphire/framework');
-const { Interaction, ButtonInteraction, MessageEmbed, GuildMember } = require('discord.js');
+const {
+    InteractionHandler,
+    InteractionHandlerTypes,
+} = require('@sapphire/framework');
+const {
+    Interaction,
+    ButtonInteraction,
+    MessageEmbed,
+    GuildMember,
+} = require('discord.js');
 const Sentry = require('@sentry/node');
 const {
     bpPingRoles,
@@ -8,16 +16,16 @@ const {
 } = require('../../config.json');
 
 class ReactionRolesButtonHandler extends InteractionHandler {
-	constructor(ctx) {
-		super(ctx, { interactionHandlerType: InteractionHandlerTypes.Button });
-	}
+    constructor(ctx) {
+        super(ctx, { interactionHandlerType: InteractionHandlerTypes.Button });
+    }
 
-	/**
-	 * 
-	 * @param { ButtonInteraction } interaction 
-	 */
-	async run(interaction) {
-		switch (interaction.customId) {
+    /**
+     *
+     * @param { ButtonInteraction } interaction
+     */
+    async run(interaction) {
+        switch (interaction.customId) {
             // bp reaction role cases
             case 'giveaway':
                 if (!interaction.member.roles.cache.has(bpPingRoles[0])) {
@@ -500,15 +508,15 @@ class ReactionRolesButtonHandler extends InteractionHandler {
                     });
                 }
         }
-	}
+    }
 
-	/**
-	 * @param { ButtonInteraction } interaction
-	 */
-	async parse(interaction) {
-		await interaction.deferReply({ephemeral: true}); // defer reply and then call run
-		return this.some();
-	}
+    /**
+     * @param { ButtonInteraction } interaction
+     */
+    async parse(interaction) {
+        await interaction.deferReply({ ephemeral: true }); // defer reply and then call run
+        return this.some();
+    }
 }
 
 module.exports = { ReactionRolesButtonHandler };
@@ -517,7 +525,7 @@ module.exports = { ReactionRolesButtonHandler };
  *
  * @param { GuildMember } member
  */
- function removeOtherColorRoles(member) {
+function removeOtherColorRoles(member) {
     colorRoles.forEach((role) => {
         member.roles.remove(role, 'Removing other color roles');
     });
