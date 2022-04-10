@@ -4,13 +4,18 @@ FROM node:17.6.0
 
 ENV NODE_ENV=production
 
-WORKDIR /src
+WORKDIR /home/container
 
+# copy config files #
 COPY ["package.json", "package-lock.json", "yarn.lock", "./"]
 
 #RUN yarn install #
 RUN yarn install --immutable
 
+# copy other files # 
 COPY . .
+
+# change workdir to src #
+WORKDIR home/container/src
 
 CMD ["node", "."]

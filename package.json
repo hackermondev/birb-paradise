@@ -1,6 +1,6 @@
 {
   "name": "birb-helper",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,6 @@
   },
   "author": "Grav <grav4029@gmail.com>",
   "contributors": [],
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/grav4029/Birb-Helper.git"
