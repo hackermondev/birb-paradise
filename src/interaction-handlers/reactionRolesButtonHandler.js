@@ -5,7 +5,7 @@ const {
     bpPingRoles,
     bpVerifiedRole,
     colorRoles,
-} = require('../../../config.json');
+} = require('../../config.json');
 
 class ReactionRolesButtonHandler extends InteractionHandler {
 	constructor(ctx) {
