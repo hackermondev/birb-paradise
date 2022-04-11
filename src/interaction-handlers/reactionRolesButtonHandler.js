@@ -507,9 +507,19 @@ class ReactionRolesButtonHandler extends InteractionHandler {
                         ],
                     });
                 }
+            default:
+                interaction.followUp({
+                    embeds: [
+                        new MessageEmbed()
+                            .setDescription(
+                                'An error occured. Please try again later'
+                            )
+                            .setColor('RED'),
+                    ],
+                });
+                return Sentry.captureEvent(interaction);
         }
     }
-
     /**
      * @param { ButtonInteraction } interaction
      */
