@@ -1,8 +1,8 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Stopwatch } = require('@sapphire/stopwatch');
 const { MessageEmbed, Message } = require('discord.js');
+const { codeBlock } = require('@discordjs/builders');
 const util = require('util');
-const req = require('petitio');
 class EvalCommand extends Command {
     constructor(context, options) {
         super(context, {
@@ -11,8 +11,8 @@ class EvalCommand extends Command {
             aliases: ['e', 'evaluate', 'ev'],
             description: 'Evaluate code',
             preconditions: ['Developer'],
-            flags: ['hide', 'delete', 'del', 'async'],
-            options: ['depth'],
+            flags: ['hide', 'delete', 'del', 'async', 'showh', 'showp', 'notcompact', 'sorted'],
+            options: ['depth', 'breaklength', 'maxarraylength', 'maxstringlength'],
         });
     }
     /**
@@ -41,29 +41,33 @@ class EvalCommand extends Command {
                     }, 3000)
                 );
         code = code.value;
-        const wantsHide = args.getFlags('hide');
-        const wantsDelete = args.getFlags('delete', 'del');
-        const async = args.getFlags('async');
         let output, type;
         const evalTime = new Stopwatch();
         let error = false;
 
         let evaluation = await message.reply('Evaluating...');
         try {
+            if (args.getFlags('async')) code = `(async () => {\n${code}\n})();`;
             evalTime.start();
-            if (async) code = `(async () => {\n${code}\n})();`;
             output = await eval(code);
             evalTime.stop();
             type = typeof output;
         } catch (err) {
             // return evaluation.edit(`An error occured during evaluation: ${err}`);
             output = `An error occured during evaluation: ${err}`;
-            type = `Error`;
+            type = typeof err;
             error = true;
         }
         if (typeof output !== 'string')
             output = util.inspect(output, {
-                depth: args.getOption('depth') || 0,
+                depth: args.getOption('depth') || 2,
+                showHidden: args.getFlags('showh'),
+                showProxy: args.getFlags('showp'),
+                compact: !args.getFlags('notcompact'),
+                sorted: args.getFlags('sorted'),
+                breakLength: args.getFlags('breakLength') || 80,
+                maxArrayLength: args.getOption('maxarraylength') || 100,
+                maxStringLength: args.getOption('maxstringlength') || 10000,
             });
         if (output.length >= 2000) {
             let hastebinOutput = await this.container.utility.createHastebin(
@@ -72,14 +76,14 @@ class EvalCommand extends Command {
             return evaluation.edit(
                 `Output was too long to be sent on discord: ${hastebinOutput}`
             );
-        } else if (wantsHide && !error) {
+        } else if (args.getFlags('hide') && !error) {
             evaluation.delete();
-        } else if (wantsDelete) {
+        } else if (args.getFlags('delete', 'del')) {
             message.delete();
         }
-        if (wantsHide || wantsDelete) return;
+        if (args.getFlags('hide') || args.getFlags('delete', 'del')) return;
         return evaluation.edit(
-            `Output: \`\`\`js\n${output}\`\`\`\nType: \`${type}\` Time Taken: \`${evalTime.toString()}\``
+            `Output: ${codeBlock('js', output)} \nType: \`${type}\` Time Taken: \`${evalTime}\``
         );
     }
 }

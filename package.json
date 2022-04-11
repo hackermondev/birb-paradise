@@ -13,6 +13,7 @@
   },
   "author": "Grav <grav4029@gmail.com>",
   "contributors": [],
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/grav4029/Birb-Helper.git"
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/grav4029/Birb-Helper#readme",
   "description": "A custom bot for the server Birb Paradise",
   "dependencies": {
+    "@discordjs/builders": "^0.12.0",
     "@sapphire/discord-utilities": "^2.8.0",
     "@sapphire/discord.js-utilities": "^4.9.0",
     "@sapphire/framework": "^3.0.0-next.7ef7ac9.0",
