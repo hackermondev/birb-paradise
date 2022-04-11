@@ -10,7 +10,7 @@ WORKDIR /home/container
 COPY ["package.json", "package-lock.json", "yarn.lock", "./"]
 
 #RUN yarn install #
-RUN yarn install --immutable
+RUN yarn install --immutable --prefer-offline
 
 # copy other files # 
 COPY . .
