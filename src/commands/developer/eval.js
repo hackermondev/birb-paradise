@@ -60,7 +60,7 @@ class EvalCommand extends Command {
         }
         if (typeof output !== 'string')
             output = util.inspect(output, {
-                depth: args.getOption('depth') || 2,
+                depth: args.getOption('depth') || 0,
                 showHidden: args.getFlags('showh'),
                 showProxy: args.getFlags('showp'),
                 compact: !args.getFlags('notcompact'),
