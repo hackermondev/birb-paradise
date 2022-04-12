@@ -19,17 +19,17 @@ process.on('exit', (code) => {
     );
 });
 
-const redisClient = redis.createClient({
-    url: process.env.REDIS_URL
-});
-redisClient.connect();
+// const redisClient = redis.createClient({
+//     url: process.env.REDIS_URL
+// });
+// redisClient.connect();
 
-// redis listeners
-redisClient.on('ready', () => {
-    client.logger.info('Connected to redis');
-});
+// // redis listeners
+// redisClient.on('ready', () => {
+//     client.logger.info('Connected to redis');
+// });
 
-container.redis = redisClient;
+// container.redis = redisClient;
 container.utility = new Utility();
 
 const client = new SapphireClient({
