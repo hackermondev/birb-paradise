@@ -19,16 +19,16 @@ process.on('exit', (code) => {
     );
 });
 
-// redis listeners
-redisClient.on('connect', () => {
-    client.logger.info('Connected to redis');
-});
-
 const redisClient = redis.createClient({
     host: process.env.REDIS_HOST,
     password: process.env.REDIS_PWD
 });
 redisClient.connect();
+
+// redis listeners
+redisClient.on('connect', () => {
+    client.logger.info('Connected to redis');
+});
 
 container.redis = redisClient;
 container.utility = new Utility();
