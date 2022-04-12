@@ -27,7 +27,6 @@ class UserInfoCommand extends Command {
         if (!rawMember.success) {
             // TODO construct embed for message.member
         }
-
         if (!member.success)
             return message.reply('Invalid User').then((reply) =>
                 setTimeout(function () {

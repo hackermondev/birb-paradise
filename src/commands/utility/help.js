@@ -96,6 +96,10 @@ class HelpCommand extends Command {
             commandsData.push(` **Description:** ${cmd.description}\n`);
         if (cmd.options.usage)
             commandsData.push(` **Usage:** ${cmd.options.usage}\n`);
+        if (cmd.options.flags)
+            commandsData.push(` **Flags:** ${cmd.options.flags.join(', ')}\n`);
+        if (cmd.options.options)
+            commandsData.push(` **Options:** ${cmd.options.options.join(', ')}\n`);
         if (cmd.options.subCommands)
             commandsData.push(
                 ` **Subcommands:** ${cmd.options.subCommands.join(', ')}\n`
