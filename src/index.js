@@ -19,12 +19,14 @@ process.on('exit', (code) => {
     );
 });
 
-(async () => {
-    const redisClient = redis.createClient({
+const redisClient = redis.createClient({
         host: process.env.REDIS_HOST,
         port: process.env.REDIS_PORT,
         password: process.env.REDIS_PWD,
-    });
+});
+
+(async () => {
+    
     await redisClient.connect();
 })();
 
