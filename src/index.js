@@ -28,7 +28,7 @@ const redisClient = redis.createClient({
     host: process.env.REDIS_HOST,
     password: process.env.REDIS_PWD
 });
-await redisClient.connect();
+Promise.all(redisClient.connect());
 
 container.redis = redisClient;
 container.utility = new Utility();
