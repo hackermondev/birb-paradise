@@ -20,13 +20,12 @@ process.on('exit', (code) => {
 });
 
 const redisClient = redis.createClient({
-    host: process.env.REDIS_HOST,
-    password: process.env.REDIS_PWD
+    url: process.env.REDIS_URL
 });
 redisClient.connect();
 
 // redis listeners
-redisClient.on('connect', () => {
+redisClient.on('ready', () => {
     client.logger.info('Connected to redis');
 });
 
