@@ -11,8 +11,22 @@ class EvalCommand extends Command {
             aliases: ['e', 'evaluate', 'ev'],
             description: 'Evaluate code',
             preconditions: ['Developer'],
-            flags: ['hide', 'delete', 'del', 'async', 'showh', 'showp', 'notcompact', 'sorted'],
-            options: ['depth', 'breaklength', 'maxarraylength', 'maxstringlength'],
+            flags: [
+                'hide',
+                'delete',
+                'del',
+                'async',
+                'showh',
+                'showp',
+                'notcompact',
+                'sorted',
+            ],
+            options: [
+                'depth',
+                'breaklength',
+                'maxarraylength',
+                'maxstringlength',
+            ],
         });
     }
     /**
@@ -83,7 +97,10 @@ class EvalCommand extends Command {
         }
         if (args.getFlags('hide') || args.getFlags('delete', 'del')) return;
         return evaluation.edit(
-            `Output: ${codeBlock('js', output)} \nType: \`${type}\` Time Taken: \`${evalTime}\``
+            `Output: ${codeBlock(
+                'js',
+                output
+            )} \nType: \`${type}\` Time Taken: \`${evalTime}\``
         );
     }
 }
