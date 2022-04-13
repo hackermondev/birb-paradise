@@ -4,5 +4,6 @@
     "config:base",
     "group:allNonMajor"
   ],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "ignoreDeps": ["node"]
 }
