@@ -2,7 +2,7 @@ const { SapphireClient, container } = require('@sapphire/framework');
 const { Options, Intents } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
-const redis = require('redis');
+const Redis = require('ioredis');
 require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
@@ -10,6 +10,7 @@ const { Utility } = require('./library/utility');
 const sentryDSN = process.env.SENTRY_DSN;
 
 process.on('uncaughtException', (error) => {
+    console.log(error);
     container.utility.sendException(error, 'Uncaught');
 });
 
@@ -19,23 +20,13 @@ process.on('exit', (code) => {
     );
 });
 
-const redisClient = redis.createClient({
-        host: process.env.REDIS_HOST,
-        port: process.env.REDIS_PORT,
-        password: process.env.REDIS_PWD,
+const redis = new Redis({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PWD,
 });
 
-(async () => {
-    
-    await redisClient.connect();
-})();
-
-// redis listeners
-redisClient.on('connect', () => {
-    client.logger.info('Connected to redis');
-});
-
-container.redis = redisClient;
+container.redis = redis;
 container.utility = new Utility();
 
 const client = new SapphireClient({
@@ -63,8 +54,6 @@ const client = new SapphireClient({
         },
     },
 });
-
-
 
 Sentry.init({
     dsn: sentryDSN,
