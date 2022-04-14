@@ -2,8 +2,7 @@ const { SapphireClient, container } = require('@sapphire/framework');
 const { Options, Intents } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const Redis = require('ioredis');
 require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
@@ -21,7 +20,13 @@ process.on('exit', (code) => {
     );
 });
 
-container.db = prisma;
+const redis = new Redis({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PWD,
+});
+
+container.redis = redis;
 container.utility = new Utility();
 
 const client = new SapphireClient({

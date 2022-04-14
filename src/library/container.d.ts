@@ -1,11 +1,11 @@
 import { ApplicationCommandRegistry, ILogger, SapphireClient, StoreRegistry } from '@sapphire/framework';
-import { PrismaClient } from '@prisma/client';
+import { Redis } from 'ioredis';
 import { Utility } from './utility';
 declare module '@sapphire/pieces' {
     interface Container {
         client: SapphireClient;
         utility: Utility;
-        db: PrismaClient;
+        redis: Redis;
         stores: StoreRegistry;
 	    logger: ILogger;
 	    applicationCommandRegistries: ApplicationCommandRegistry;
