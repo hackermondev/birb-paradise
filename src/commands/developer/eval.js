@@ -42,7 +42,7 @@ class EvalCommand extends Command {
         if (!code.success)
             return this.container.utility.errorReply(
                 message,
-                'PRovide doce to evaluate'
+                'Provide code to evaluate'
             );
         code = code.value;
         let output, type;
@@ -62,10 +62,10 @@ class EvalCommand extends Command {
             type = typeof err;
             error = true;
         }
-        if (hiddenItems.some((item) => output.contains(item)))
-            hiddenItems.forEach(
-                (item) => (output = output.replace(item, '*HIDDEN*'))
-            );
+        // if (hiddenItems.some((item) => output.contains(item)))
+        //     hiddenItems.forEach(
+        //         (item) => (output = output.replace(item, '*HIDDEN*'))
+        //     );
         if (typeof output !== 'string')
             output = util.inspect(output, {
                 depth: args.getOption('depth') || 0,
