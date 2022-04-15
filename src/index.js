@@ -61,4 +61,12 @@ Sentry.init({
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
+let sentry = Sentry.getSentryRelease();
+setInterval(() => {
+    if (Sentry.getSentryRelease() !== sentry) {
+        container.logger.warn('New release was detected..Updating bot');
+        return process.exit();
+    }
+}, 3000);
+
 client.login(process.env.DISCORD_TOKEN);
