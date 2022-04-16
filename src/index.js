@@ -8,6 +8,8 @@ require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
 const sentryDSN = process.env.SENTRY_DSN;
+const { Octokit } = require('@octokit/core');
+const octokit = new Octokit({ auth: process.env.OCTOKIT_AUTH });
 
 process.on('uncaughtException', (error) => {
     console.log(error);
@@ -62,9 +64,20 @@ Sentry.init({
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
-let sentry = Sentry.getSentryRelease();
+async function getLastCommitSha() {
+    let returnValue = await octokit.request('GET /repos/{owner}/{repo}/commits/master', {
+        owner: 'birb-paradise',
+        repo: 'birb-helper',
+    });
+    if (returnValue.status !== 200) return null;
+    else return JSON.parse(returnValue.data).sha;
+}
+
+var lastCommitSha = await getLastCommitSha();
 setInterval(() => {
-    if (Sentry.getSentryRelease() !== sentry) {
+    let sha = await getLastCommitSha();
+    container.logger.debug('sha: ' + sha);
+    if (sha && sha !== lastCommitSha) {
         container.logger.warn('New release was detected..Updating bot');
         return process.exit();
     }

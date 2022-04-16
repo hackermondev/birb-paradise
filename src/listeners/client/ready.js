@@ -23,7 +23,7 @@ class ReadyListener extends Listener {
         this.container.logger.info(
             `Ping acknowledged by the API. ${client.ws.ping} ms. Bot is online.\n\n`
         );
-        
+
         this.container.client.user.setActivity(`${activities[0]}`, {
             type: `${activitiesTypes[0]}`,
         });
