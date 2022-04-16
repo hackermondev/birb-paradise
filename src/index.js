@@ -73,9 +73,11 @@ async function getLastCommitSha() {
     else return JSON.parse(returnValue.data).sha;
 }
 
-var lastCommitSha = await getLastCommitSha();
+var lastCommitSha;
+(async () => { lastCommitSha = await getLastCommitSha(); })();
 setInterval(() => {
-    let sha = await getLastCommitSha();
+    let sha;
+    (async () => { sha = await getLastCommitSha(); })();
     container.logger.debug('sha: ' + sha);
     if (sha && sha !== lastCommitSha) {
         container.logger.warn('New release was detected..Updating bot');
