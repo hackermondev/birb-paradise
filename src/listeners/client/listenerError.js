@@ -18,7 +18,7 @@ class ListenerErrorListener extends Listener {
      * @param { Error } error
      * @param { ListenerErrorPayload } payload
      */
-    async run(error, payload) {
+    async run(error, _payload) {
         this.container.utility.sendException(error, 'Listener');
     }
 }
