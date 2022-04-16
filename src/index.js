@@ -77,6 +77,7 @@ var lastCommitSha;
 (async () => { lastCommitSha = await getLastCommitSha(); })();
 setInterval(() => {
     var sha;
+    // TODO need to fix sha being undefined
     (async () => { sha = await getLastCommitSha(); })();
     container.logger.debug('sha: ' + sha);
     if (sha && sha !== lastCommitSha) {
