@@ -9,7 +9,7 @@ class Utility {
     }
 
     /**
-     *
+     * A function that returns if the member is a staff member
      * @param { GuildMember } member
      * @returns if the member is a staff member
      */
@@ -37,10 +37,10 @@ class Utility {
     }
 
     /**
-     *
+     * This function sends an exception to Sentry
      * @param { Sentry.Exception } error
      * @param { String } type
-     * @returns the sentry id of the exception
+     * @returns the sentry ID of the exception
      */
     sendException(error, type) {
         const sentryID = Sentry.captureException(error);
