@@ -70,7 +70,7 @@ async function getLastCommitSha() {
         repo: 'birb-helper',
     });
     if (returnValue.status !== 200) return null;
-    else return JSON.parse(returnValue.data).sha;
+    else return returnValue.data.sha;
 }
 
 var lastCommitSha;
