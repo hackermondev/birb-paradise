@@ -76,7 +76,7 @@ async function getLastCommitSha() {
 var lastCommitSha;
 (async () => { lastCommitSha = await getLastCommitSha(); })();
 setInterval(() => {
-    let sha;
+    var sha;
     (async () => { sha = await getLastCommitSha(); })();
     container.logger.debug('sha: ' + sha);
     if (sha && sha !== lastCommitSha) {
