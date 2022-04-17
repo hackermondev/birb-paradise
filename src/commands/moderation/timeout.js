@@ -10,7 +10,7 @@ class TimeoutCommand extends Command {
             name: 'timeout',
             preconditions: ['Staff'],
             description: 'Times out someone in the server',
-            enabled: false
+            enabled: false,
         });
     }
 
