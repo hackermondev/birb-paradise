@@ -1,20 +1,16 @@
 name: Pre deploy tasks for Birb Helper
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
 
   workflow_dispatch:
 
 jobs:
-  # Build and push Docker Image
   docker:
     name: Build and push docker image
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout Repo 
         uses: actions/checkout@v3
@@ -34,7 +30,6 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/birb-helper:latest
       - name: Echo Docker Image
         run: echo ${{ steps.docker_build.outputs.digest }}
-  # Create Sentry release
   sentry:
     name: Sentry release creation
     runs-on: ubuntu-latest
