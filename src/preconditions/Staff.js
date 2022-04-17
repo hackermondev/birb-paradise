@@ -1,6 +1,6 @@
 const { Precondition } = require('@sapphire/framework');
 const { Message, Permissions } = require('discord.js');
-const { staffRoles } = require('../../config.json');
+const { staffRoles, testingServerID } = require('../../config.json');
 
 class StaffPrecondition extends Precondition {
     /**
@@ -9,7 +9,7 @@ class StaffPrecondition extends Precondition {
      * @returns
      */
     messageRun(message) {
-        if (message.guild.id === '895515788126072842') return this.ok(); // return ok if testing server
+        if (message.guild.id === testingServerID) return this.ok(); // return ok if testing server
         if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR))
             return this.ok();
         return staffRoles.some((role) => message.member.roles.cache.has(role))

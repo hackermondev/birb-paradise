@@ -8,9 +8,8 @@ class BanCommand extends Command {
             name: 'ban',
             aliases: ['b', 'yeet'],
             description:
-                "Bans a member from the server(doesn't currently log anything)",
+                "Bans a member from the server (doesn't currently log anything)",
             preconditions: ['Staff'],
-            enabled: false,
         });
     }
 
@@ -21,26 +20,23 @@ class BanCommand extends Command {
      * @returns
      */
     async messageRun(message, args) {
-        return message.reply("Command isn't ready yet");
-        const rawMember = await args.pickResult('string');
-        if (!rawMember.success)
-            return message
-                .reply('You must provide a member to kick')
-                .then((reply) =>
-                    setTimeout(function () {
-                        reply.delete();
-                        message.delete();
-                    }, 3500)
-                );
         const member = await args.pickResult('member');
         if (!member.success)
-            return message.reply('Mention a valid user to kick').then((reply) =>
-                setTimeout(function () {
-                    reply.delete();
-                    message.delete();
-                }, 3500)
-            );
-        await member.value.ban(); // TODO reason and stuff
+            return this.container.utility.errorReply(message, 'Mention a valid user to ban.');
+
+        const reason = await args
+            .pickResult('string')
+            .catch(() => 'Reason was not specified.');
+        const days = await args.pickResult('number').catch(() => 0);
+
+        if (days > 7) return this.container.utility.errorReply(message, 'Days of messages to delete cannot be more than **7 days**');
+
+        await member.value.ban({
+            reason: `Banned by ${message.author.tag}. Reason: "${reason}"`,
+            days,
+        });
+
+        return message.reply(`${member.value} was banned from the server.`);
     }
 }
 

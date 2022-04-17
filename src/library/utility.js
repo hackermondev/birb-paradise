@@ -2,7 +2,11 @@ const { GuildMember, Guild, TextChannel, Message } = require('discord.js');
 const { container } = require('@sapphire/pieces');
 const Sentry = require('@sentry/node');
 const req = require('petitio');
-const { staffRoles, reactChannels } = require('../../config.json');
+const {
+    staffRoles,
+    reactChannels,
+    testingServerID,
+} = require('../../config.json');
 class Utility {
     constructor() {
         container.utility = this;
@@ -24,7 +28,7 @@ class Utility {
      * @returns if the guild is Birb Paradise
      */
     isBp(guild) {
-        return guild.id === '891286303574994974';
+        return guild.id === '891286303574994974' || guild.id == testingServerID;
     }
 
     /**
@@ -44,9 +48,11 @@ class Utility {
      */
     sendException(error, type) {
         const sentryID = Sentry.captureException(error);
+        console.error(error);
         container.logger.error(
             `${type} exception with ID ${sentryID} sent to Sentry`
         );
+
         return sentryID;
     }
 

@@ -27,6 +27,7 @@ class EmmieCommand extends Command {
                     reply.delete();
                 }, 3500)
             );
+
         const member = rawMember.value;
         return message.reply({
             embeds: [

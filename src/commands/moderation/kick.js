@@ -10,7 +10,6 @@ class KickCommand extends Command {
             description:
                 "Kicks a member from the server(doesn't currently log anything",
             preconditions: ['Staff'],
-            enabled: false,
         });
     }
 
@@ -21,17 +20,6 @@ class KickCommand extends Command {
      * @returns
      */
     async messageRun(message, args) {
-        return message.reply("Command isn't ready yet");
-        const rawMember = await args.pickResult('string');
-        if (!rawMember.success)
-            return message
-                .reply('You must provide a member to kick')
-                .then((reply) =>
-                    setTimeout(function () {
-                        reply.delete();
-                        message.delete();
-                    }, 3500)
-                );
         const member = await args.pickResult('member');
         if (!member.success)
             return message.reply('Mention a valid user to kick').then((reply) =>
@@ -40,7 +28,14 @@ class KickCommand extends Command {
                     message.delete();
                 }, 3500)
             );
-        await member.value.kick(); // TODO reason and stuff
+
+        const reason = await args
+            .pickResult('string')
+            .catch(() => 'Reason was not specified.');
+        await member.value.kick(
+            `Kicked by ${message.author.tag}. Reason: "${reason}"`
+        );
+        return message.reply(`${member.value} was kicked from the server.`);
     }
 }
 

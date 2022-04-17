@@ -1,9 +1,10 @@
 const { Precondition } = require('@sapphire/framework');
 const { Permissions } = require('discord.js');
+const { testingServerID } = require('../../config.json');
 
 class AdminPrecondition extends Precondition {
     messageRun(message) {
-        if (message.guild.id === '895515788126072842') return this.ok(); // return ok if testing server
+        if (message.guild.id === testingServerID) return this.ok();
         return message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
             ? this.ok()
             : this.error('User is not an admin');
