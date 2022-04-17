@@ -17,7 +17,7 @@ class ForceShutdownCommand extends Command {
      * @returns
      */
     async messageRun(message) {
-        message.channel.send(
+        await message.channel.send(
             'Shutting down...(You will be able to see that the bot is shutdown as it will go offline)'
         );
         this.container.logger.warn(

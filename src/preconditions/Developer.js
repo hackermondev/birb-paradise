@@ -12,8 +12,6 @@ class DeveloperPrecondition extends Precondition {
         if (!this.container.client.application.owner)
             await this.container.client.application.fetch();
         return message.author.id === this.container.client.application.owner.id ? this.ok() : this.error('User is not a developer');
-            ? this.ok()
-            : this.error('User is not a developer');
     }
 }
 
