@@ -24,7 +24,7 @@
   "homepage": "https://github.com/grav4029/Birb-Helper#readme",
   "description": "A custom bot for the server Birb Paradise",
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
+    "@discordjs/builders": "^0.13.0",
     "@octokit/core": "^3.6.0",
     "@sapphire/discord-utilities": "^2.8.0",
     "@sapphire/discord.js-utilities": "^4.9.0",
