@@ -2,11 +2,7 @@ const {
     InteractionHandler,
     InteractionHandlerTypes,
 } = require('@sapphire/framework');
-const {
-    ButtonInteraction,
-    MessageEmbed,
-    GuildMember,
-} = require('discord.js');
+const { ButtonInteraction, MessageEmbed, GuildMember } = require('discord.js');
 const Sentry = require('@sentry/node');
 const {
     bpPingRoles,
