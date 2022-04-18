@@ -3,7 +3,6 @@ const {
     InteractionHandlerTypes,
 } = require('@sapphire/framework');
 const {
-    Interaction,
     ButtonInteraction,
     MessageEmbed,
     GuildMember,
@@ -524,6 +523,7 @@ class ReactionRolesButtonHandler extends InteractionHandler {
      * @param { ButtonInteraction } interaction
      */
     async parse(interaction) {
+        if (interaction.customId.startsWith('tickets')) return this.none(); // exit if the button is part of the ticket system
         await interaction.deferReply({ ephemeral: true }); // defer reply and then call run
         return this.some();
     }
