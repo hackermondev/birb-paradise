@@ -44,3 +44,16 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
+  eslint:
+    name: ESLint syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+      - run: npm install -g eslint
+      - run: npx eslint -v
+      - run: npx eslint . --ext .js
