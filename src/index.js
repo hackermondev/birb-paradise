@@ -71,8 +71,8 @@ async function getLastCommitSha() {
             owner: 'birb-paradise',
             repo: 'birb-helper',
         }
-    );
-    if (returnValue.status !== 200) return null;
+    ).catch(() => null);
+    if (!returnValue || returnValue.status !== 200) return null;
     else return returnValue.data.sha;
 }
 
@@ -91,6 +91,6 @@ setInterval(() => {
         container.logger.warn('New release was detected..Updating bot');
         return process.exit();
     }
-}, 3000);
+}, 20000);
 
 client.login(process.env.DISCORD_TOKEN);
