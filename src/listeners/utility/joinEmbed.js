@@ -2,7 +2,7 @@ const { Listener, Events } = require('@sapphire/framework');
 const { GuildMember, MessageEmbed, Message } = require('discord.js');
 const { memberJoinChannel } = require('../../../config.json');
 
-class GuildMemberRemoveMsg extends Listener {
+class GuildMemberJoinMsg extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
@@ -34,4 +34,4 @@ class GuildMemberRemoveMsg extends Listener {
     }
 }
 
-module.exports = { GuildMemberRemoveMsg };
+module.exports = { GuildMemberJoinMsg };
