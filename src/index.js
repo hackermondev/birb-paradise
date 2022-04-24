@@ -65,13 +65,12 @@ Sentry.init({
 });
 
 async function getLastCommitSha() {
-    let returnValue = await octokit.request(
-        'GET /repos/{owner}/{repo}/commits/master',
-        {
+    let returnValue = await octokit
+        .request('GET /repos/{owner}/{repo}/commits/master', {
             owner: 'birb-paradise',
             repo: 'birb-helper',
-        }
-    ).catch(() => null);
+        })
+        .catch(() => null);
     if (!returnValue || returnValue.status !== 200) return null;
     else return returnValue.data.sha;
 }
