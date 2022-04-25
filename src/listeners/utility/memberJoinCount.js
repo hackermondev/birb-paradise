@@ -18,6 +18,7 @@ class MemberJoinCountListener extends Listener {
 		if (!this.container.utility.isBp(member.guild)) return;
 		
 		const joinCount = await this.container.redis.get('dailyJoinCount');
+		this.container.logger.debug(`joinCount: ${joinCount}`);
 		if (!joinCount) return this.container.redis.set('dailyJoinCount', 1);
 		else return this.container.redis.set('dailyJoinCount', Number.parseInt(joinCount) + 1);
 	}
