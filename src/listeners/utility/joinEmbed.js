@@ -30,7 +30,7 @@ class GuildMemberJoinMsg extends Listener {
             .setTimestamp();
         return member.guild.channels.cache
             .get(memberJoinChannel)
-            .send({ embeds: joinEmbed });
+            .send({ embeds: [joinEmbed] });
     }
 }
 
