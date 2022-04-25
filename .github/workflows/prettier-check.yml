@@ -2,7 +2,7 @@ name: Prettier formatting check
 
 on:
   push:
-    branches: ['master']
+    branches: 'feat/**'
   
   pull_request:
   workflow_dispatch:
