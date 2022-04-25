@@ -120,6 +120,15 @@ class Utility {
             }
         }, 20000);
     }
+
+    async enableJoinCountReset() {
+        setInterval(() => {
+            const date = new Date();
+            if (date.getHours() === 4 && date.getMinutes() === 0) {
+                container.redis.del('dailyJoinCount');
+            }
+        }, 5000);
+    }
 }
 
 module.exports = { Utility };
