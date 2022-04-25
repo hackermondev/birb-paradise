@@ -98,6 +98,39 @@ class Utility {
     async delay(duration) {
         return new Promise((r) => setTimeout(r, duration));
     }
+
+    /**
+     * Enables auto deployment capabilities
+     */
+    async enableAutoDeploy() {
+        var lastCommitSha;
+        (async () => {
+            lastCommitSha = await getLastCommitSha();
+        })();
+        setInterval(() => {
+            var sha;
+            // TODO need to fix sha being undefined
+            (async () => {
+                sha = await getLastCommitSha();
+            })();
+            container.logger.debug('sha: ' + sha);
+            if (sha && sha !== lastCommitSha) {
+                container.logger.warn('New release was detected..Updating bot');
+                return process.exit();
+            }
+        }, 20000);
+    }
 }
 
 module.exports = { Utility };
+
+async function getLastCommitSha() {
+    let returnValue = await octokit
+        .request('GET /repos/{owner}/{repo}/commits/master', {
+            owner: 'birb-paradise',
+            repo: 'birb-helper',
+        })
+        .catch(() => null);
+    if (!returnValue || returnValue.status !== 200) return null;
+    else return returnValue.data.sha;
+}
