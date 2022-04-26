@@ -1,5 +1,5 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { GuildBan, Message, MessageEmbed } = require('discord.js');
+const { GuildBan, MessageEmbed } = require('discord.js');
 const { evidenceChannel } = require('../../../config.json');
 
 class AutoBanMessageListener extends Listener {
@@ -17,6 +17,7 @@ class AutoBanMessageListener extends Listener {
      */
     async run(ban) {
         if (!this.container.utility.isBp(ban.guild)) return;
+
         await ban.fetch();
         const banEmbed = new MessageEmbed()
             .setTitle('User Banned')

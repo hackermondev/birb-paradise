@@ -65,6 +65,7 @@ Sentry.init({
 });
 
 async function getLastCommitSha() {
+    if (!process.env.OCTOKIT_AUTH) return '';
     let returnValue = await octokit.request(
         'GET /repos/{owner}/{repo}/commits/master',
         {
