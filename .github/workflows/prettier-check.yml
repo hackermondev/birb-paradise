@@ -3,7 +3,6 @@ name: Prettier formatting check
 on:
   push:
     branches: 'feat/**'
-  
   pull_request:
   workflow_dispatch:
 
