@@ -21,7 +21,7 @@ class TicketSetupCommand extends Command {
      * @param { Message } message
      * @param { Args } args
      */
-    messageRun(message, args) {
+    async messageRun(message, args) {
         const channel = await args.pickResult('guildTextChannel');
         if (!channel.success) return this.container.utility.errorReply('You must provide a valid text channel to send the ticket embed in');
         
