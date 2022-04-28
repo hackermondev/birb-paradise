@@ -22,8 +22,8 @@ class TicketSetupCommand extends Command {
      * @param { Args } args
      */
     messageRun(message, args) {
-        const channel = args.pickResult('textChannel');
-        if (!channel.success) return this.container.utility.errorReply('You must provide a channel to send the ticket embed in');
+        const channel = await args.pickResult('guildTextChannel');
+        if (!channel.success) return this.container.utility.errorReply('You must provide a valid text channel to send the ticket embed in');
         
         message.delete();
         const e = new MessageEmbed()
@@ -54,7 +54,7 @@ class TicketSetupCommand extends Command {
                 .setStyle('PRIMARY')
         );
 
-        channel.send({
+        channel.value.send({
             embeds: [e],
             components: [c],
         });

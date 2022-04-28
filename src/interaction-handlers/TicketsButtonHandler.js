@@ -32,11 +32,10 @@ class TicketsButtonHandler extends InteractionHandler {
                 'tickets_reportStaff',
             ].includes(interaction.customId)
         ) {
-            channel = await interaction.guild.channels.create(
-                interaction.user.tag,
+            channel = await interaction.guild.channels.create (
+                `${interaction.user.tag}-ticket`,
                 {
-                    type: 'text',
-                    topic: `Reason: "${interaction.customId}" . Created by ${interaction.user}.`,
+                    topic: `Reason: "${interaction.customId.split('_').join(' ')}" . Created by ${interaction.user}.`,
                     parent: ticketsCategoryID,
                 }
             );
