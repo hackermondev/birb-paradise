@@ -36,7 +36,6 @@ class TicketsButtonHandler extends InteractionHandler {
                 `${interaction.user.tag}-ticket`,
                 {
                     topic: `Reason: "${interaction.customId.split('_').join(' ')}" . Created by ${interaction.user}.`,
-                    parent: ticketsCategoryID,
                 }
             );
 
