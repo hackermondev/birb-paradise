@@ -40,7 +40,7 @@ class TicketsButtonHandler extends InteractionHandler {
             );
 
             // await channel.lockPermissions();
-            await channel.permissionOverwrites.create(interaction.user, {
+            await channel.permissionOverwrites.create(interaction.member, {
                 SEND_MESSAGES: true,
                 READ_MESSAGE_HISTORY: true,
                 EMBED_LINKS: true,
