@@ -8,6 +8,7 @@ const {
     MessageEmbed,
     MessageButton,
     MessageActionRow,
+    TextChannel,
 } = require('discord.js');
 const { ticketsCategoryID, noTicketsRole } = require('../../config.json');
 const Sentry = require('@sentry/node');
@@ -23,6 +24,7 @@ class TicketsButtonHandler extends InteractionHandler {
      */
     async run(interaction) {
         let channel = null;
+        let isPartner = false;
 
         if (
             [
@@ -32,6 +34,7 @@ class TicketsButtonHandler extends InteractionHandler {
                 'tickets_reportStaff',
             ].includes(interaction.customId)
         ) {
+            isPartner = interaction.customId === 'tickets_partner';
             channel = await interaction.guild.channels.create (
                 `${interaction.user.tag}-ticket`,
                 {
@@ -39,7 +42,9 @@ class TicketsButtonHandler extends InteractionHandler {
                 }
             );
 
-            // await channel.lockPermissions();
+            if (!channel) return interaction.followUp('An error occured. Please try again');
+
+            await channel.lockPermissions();
             await channel.permissionOverwrites.create(interaction.member, {
                 SEND_MESSAGES: true,
                 READ_MESSAGE_HISTORY: true,
@@ -71,8 +76,10 @@ class TicketsButtonHandler extends InteractionHandler {
                         content: `You do not have permission to close this ticket.`,
                     });
 
+                const msgs = await channel.messages.fetch({limit: 100});
+
                 await interaction.followUp({
-                    content: `Closing ticket...`,
+                    content: `Saving messages and closing ticket...`,
                 });
                 await interaction.channel.send({
                     content: `Closing ticket in 10 seconds...`,
@@ -108,7 +115,7 @@ class TicketsButtonHandler extends InteractionHandler {
                     .setStyle('DANGER')
             );
 
-            const text = data.endsWith('server partnership.') ? '<@&958103993924595752>' : '<@&897328748217630780>';
+            const text = isPartner ? '<@&958103993924595752>' : '<@&897328748217630780>';
 
             await channel.send({
                 content: `${interaction.user} ${text}`,
