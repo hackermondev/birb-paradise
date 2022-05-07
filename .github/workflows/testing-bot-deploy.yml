@@ -2,8 +2,10 @@ name: Deploy to testing bot
 
 on:
   push:
+  
   pull_request:
     types: [opened, edited, reopened, synchronized]
+  workflow_dispatch:
 
 jobs:
   deploy:
