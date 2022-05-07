@@ -1,0 +1,21 @@
+name: Deploy to testing bot
+
+on:
+  push:
+  
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: "contains(github.event.head_commit.message, '[deploy to testing]')"
+    name: Deploy to testing bot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_TESTING_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          procfile: "worker: node src/index.js"
+      - run: heroku releases

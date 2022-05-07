@@ -2,9 +2,9 @@ name: Prettier formatting check
 
 on:
   push:
-    branches: ['master']
-  
+    branches: 'feat/**'
   pull_request:
+    types: [opened, edited, reopened, synchronized]
   workflow_dispatch:
 
 jobs:
@@ -19,4 +19,5 @@ jobs:
         with:
           node-version: '17'
       - run: npm install -g prettier
+      - run: npx prettier -v
       - run: npx prettier --check "./src/**/*.js"

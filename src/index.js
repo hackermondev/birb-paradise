@@ -64,34 +64,7 @@ Sentry.init({
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
-async function getLastCommitSha() {
-    if (!process.env.OCTOKIT_AUTH) return '';
-    let returnValue = await octokit.request(
-        'GET /repos/{owner}/{repo}/commits/master',
-        {
-            owner: 'birb-paradise',
-            repo: 'birb-helper',
-        }
-    );
-    if (returnValue.status !== 200) return null;
-    else return returnValue.data.sha;
-}
-
-var lastCommitSha;
-(async () => {
-    lastCommitSha = await getLastCommitSha();
-})();
-setInterval(() => {
-    var sha;
-    // TODO need to fix sha being undefined
-    (async () => {
-        sha = await getLastCommitSha();
-    })();
-    container.logger.debug('sha: ' + sha);
-    if (sha && sha !== lastCommitSha) {
-        container.logger.warn('New release was detected..Updating bot');
-        return process.exit();
-    }
-}, 3000);
+container.utility.enableJoinCountReset();
+// await (container.utility.enableAutoDeploy());
 
 client.login(process.env.DISCORD_TOKEN);
