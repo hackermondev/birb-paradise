@@ -44,7 +44,7 @@ class TicketsButtonHandler extends InteractionHandler {
 
             if (!channel) return interaction.followUp('An error occured. Please try again');
 
-            await channel.lockPermissions();
+            await channel.permissionOverwrites.edit(interaction.guild.roles.everyone, {VIEW_CHANNEL: false});
             await channel.permissionOverwrites.create(interaction.member, {
                 SEND_MESSAGES: true,
                 READ_MESSAGE_HISTORY: true,
