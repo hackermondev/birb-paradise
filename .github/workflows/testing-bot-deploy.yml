@@ -4,12 +4,12 @@ on:
   push:
   
   pull_request:
-    types: [opened, edited, reopened, synchronized]
+    types: [opened, edited, reopened, synchronize]
   workflow_dispatch:
 
 jobs:
   deploy:
-    if: "contains(needs.pre_ci.outputs.commit_message, '[deploy to testing]')"
+    if: "contains(github.event.head_commit.message, '[deploy to testing]')"
     name: Deploy to testing bot
     runs-on: ubuntu-latest
     steps:
