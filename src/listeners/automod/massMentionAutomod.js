@@ -1,13 +1,13 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { gifPermRoles } = require('../../../config.json');
-const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
-class GifAutomodListener extends Listener {
+
+class MassMentionAutomod extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'gifAutomod',
+            name: 'massMentionAutomod',
             event: Events.MessageCreate,
+            enabled: false, // disabling this automod until we have a db to track punishments
         });
     }
 
@@ -18,25 +18,25 @@ class GifAutomodListener extends Listener {
     async run(message) {
         if (!(await this.container.utility.automodChecks(message))) return;
 
-        if (gifPermRoles.some((role) => message.member.roles.cache.has(role)))
-            return;
-        if (!tenorDomains.some((domain) => message.content.startsWith(domain)))
-            return;
-
-        if (message.deletable) {
+        if (new Set(message.mentions.users).size > 10 && message.deletable) {
             await message.delete();
             const automodMsg = await message.channel.send(
-                `${message.member.toString()}, You do not have permissions to send gifs in this channel`
+                `${message.member.toString()}, You may not mention more than 10 users in a single message.`
             );
             setTimeout(() => automodMsg.delete(), 4500);
 
+            await message.member.ban({
+                days: 0,
+                reason: '[AUTOMOD] Mass Mention',
+            });
+
             const gifLogEmbed = new MessageEmbed()
                 .setColor('YELLOW')
-                .setTitle('Gif Deleted')
+                .setTitle('Link Deleted')
                 .setDescription(
-                    `${message.member} sent a gif in ${message.channel} and it was deleted since they lack the perms to send gifs`
+                    `${message.member} sent a link in ${message.channel} and it was deleted`
                 )
-                .addField('Gif Sent', `${message.content}`);
+                .addField('Link Sent', `${message.content}`);
             this.container.utility.sendWebhook(
                 process.env.automodLogsWebhookID,
                 process.env.automodLogsWebhookToken,
@@ -46,4 +46,4 @@ class GifAutomodListener extends Listener {
     }
 }
 
-module.exports = { GifAutomodListener };
+module.exports = { MassMentionAutomod };

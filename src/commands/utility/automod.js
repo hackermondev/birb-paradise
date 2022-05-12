@@ -1,27 +1,23 @@
-const { Args } = require('@sapphire/framework');
+const { Args, Store } = require('@sapphire/framework');
 const { SubCommandPluginCommand } = require('@sapphire/plugin-subcommands');
 const { Message, MessageEmbed } = require('discord.js');
-
+const root = `${process.cwd()}/src`;
+const validAutomods = ['gif', 'link', 'massMention'];
 class AutomodCommand extends SubCommandPluginCommand {
     constructor(context, options) {
         super(context, {
             ...options,
             name: 'automod',
-            aliases: ['auto'],
+            aliases: ['autoconfig', 'automodconfig'],
             description: 'Configures or shows you the current automod settings',
             subCommands: [
-                'current',
-                'disablegif',
-                'enablegif',
-                'disableaccountkick',
-                'enableaccountkick',
+                'enable',
+                'disable',
+                { input: 'current', default: true },
             ],
             preconditions: ['Admin'],
-            enabled: false,
         });
     }
-
-    // TODO: fix command
 
     /**
      *
@@ -29,102 +25,82 @@ class AutomodCommand extends SubCommandPluginCommand {
      * @returns
      */
     async current(message) {
-        const automods = this.container.stores
-            .get('listeners')
-            .filter((cmd) => cmd.name.endsWith('Automod'));
-        const currentAutomodConfig = new MessageEmbed().setTitle(
-            'Current Automod Configuration'
-        );
-        automods.forEach((automod) => {
+        const currentAutomodConfig = new MessageEmbed()
+            .setColor('RANDOM')
+            .setTitle('Current Automod Configuration');
+        for (var x = 0; x < validAutomods.length; ++x) {
+            const validAutomod = validAutomods[x];
+            const automod = this.container.stores
+                .get('listeners')
+                .get(`${validAutomod}Automod`);
             currentAutomodConfig.addField(
-                'Gifs',
-                this.container.stores.get('listeners').get(automod.name).enabled
-                    ? `enabled`
-                    : `disabled`
+                `${validAutomod} Automod`,
+                automod ? 'Enabled' : 'Disabled',
+                true
             );
-        });
-        currentAutomodConfig.addField(
-            'Account Age Kick',
-            this.container.stores.get('listeners').get('accountAgeKick').enabled
-                ? 'enabled'
-                : 'disabled'
-        );
+        }
+
         return message.reply({ embeds: [currentAutomodConfig] });
     }
 
     /**
      *
      * @param { Message } message
+     * @param { Args } args
      */
-    async disablegif(message) {
-        if (!this.container.stores.get('listeners').get('gifAutomod').enabled)
-            return message.reply(
-                `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it`
+    async enable(message, args) {
+        const rawAutomod = await args.restResult('string');
+        if (!rawAutomod.success)
+            return this.container.utility.errorReply(
+                message,
+                'You must provide an automod to enable.'
             );
-        await this.container.stores.get('listeners').get('gifAutomod').unload();
-        return message.reply(
-            `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod enablegif\` to enable it again`
-        );
-    }
 
-    /**
-     *
-     * @param { Message } message
-     */
-    async enablegif(message) {
-        if (this.container.stores.get('listeners').get('gifAutomod').enabled)
-            return message.reply(
-                `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it`
+        if (!validAutomods.some((automod) => rawAutomod.value === automod))
+            return this.container.utility.errorReply(
+                message,
+                `That automod does not exist. The valid automods are ${validAutomods.join(
+                    ', '
+                )}`
             );
-        await this.container.stores.get('listeners').get('gifAutomod').reload();
-        return message.reply(
-            `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disablegif\` to disable it again`
-        );
-    }
 
-    /**
-     *
-     * @param { Message } message
-     * @returns
-     */
-    async enableaccountkick(message) {
-        if (
-            this.container.stores
-                .get('listeners')
-                .get('guildMemberAddAccountAgeKick').enabled
-        )
-            return message.reply(
-                `The gif automod is already enabled. Use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to disable it`
-            );
         await this.container.stores
             .get('listeners')
-            .get('gifguildMemberAddAccountAgeKickAutomod')
-            .reload();
+            .load(root, `/listeners/automod/${rawAutomod.value}Automod.js`);
+
         return message.reply(
-            `The gif automod has successfully been enabled. You can use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to disable it again`
+            `The ${rawAutomod.value} automod has been enabled.`
         );
     }
 
     /**
      *
      * @param { Message } message
-     * @returns
+     * @param { Args } args
      */
-    async disableaccountkick(message) {
-        if (
-            !this.container.stores
-                .get('listeners')
-                .get('guildMemberAddAccountAgeKick').enabled
-        )
-            return message.reply(
-                `The gif automod is already disabled. Use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to enable it`
+    async disable(message, args) {
+        const rawAutomod = await args.restResult('string');
+        if (!rawAutomod.success)
+            return this.container.utility.errorReply(
+                message,
+                'You must provide an automod to disable.'
             );
+
+        if (!validAutomods.some((automod) => rawAutomod.value === automod))
+            return this.container.utility.errorReply(
+                message,
+                `That automod does not exist. The valid automods are ${validAutomods.join(
+                    ', '
+                )}`
+            );
+
         await this.container.stores
             .get('listeners')
-            .get('gifguildMemberAddAccountAgeKickAutomod')
+            .get(`${rawAutomod.value}Automod`)
             .unload();
+
         return message.reply(
-            `The gif automod has successfully been disabled. You can use \`${this.container.client.options.defaultPrefix}automod disableaccountkick\` to enable it again`
+            `The ${rawAutomod.value} automod has been disabled.`
         );
     }
 }

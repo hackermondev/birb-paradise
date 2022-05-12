@@ -10,6 +10,7 @@ class BanCommand extends Command {
             description:
                 "Bans a member from the server (doesn't currently log anything)",
             preconditions: ['Staff'],
+            options: ['delete-days'],
         });
     }
 
@@ -20,17 +21,19 @@ class BanCommand extends Command {
      * @returns
      */
     async messageRun(message, args) {
-        const member = await args.pickResult('member');
+        const member = await args.pickResult('user');
         if (!member.success)
             return this.container.utility.errorReply(
                 message,
                 'Mention a valid user to ban.'
             );
 
-        const reason = await args
-            .pickResult('string')
-            .catch(() => 'Reason was not specified.');
-        const days = await args.pickResult('number').catch(() => 0);
+        const reason = await args.restResult('string').catch(() => {
+            return this.container.utility.errorReply(
+                'You must provide a reason for banning.'
+            );
+        });
+        const days = Number(args.getOption('days')) || 0;
 
         if (days > 7)
             return this.container.utility.errorReply(

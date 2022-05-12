@@ -1,12 +1,13 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { gifPermRoles } = require('../../../config.json');
-const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
-class GifAutomodListener extends Listener {
+const maxNewLines = 10;
+const newLineRegex = /\n/g;
+
+class WalltextAutomodListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'gifAutomod',
+            name: 'walltextAutomod',
             event: Events.MessageCreate,
         });
     }
@@ -14,36 +15,36 @@ class GifAutomodListener extends Listener {
     /**
      *
      * @param { Message } message
+     * @returns
      */
     async run(message) {
         if (!(await this.container.utility.automodChecks(message))) return;
 
-        if (gifPermRoles.some((role) => message.member.roles.cache.has(role)))
-            return;
-        if (!tenorDomains.some((domain) => message.content.startsWith(domain)))
-            return;
+        const matches = message.content.match(newLineRegex);
+        if (!matches) return;
+        if (matches.length < maxNewLines) return;
 
         if (message.deletable) {
             await message.delete();
             const automodMsg = await message.channel.send(
-                `${message.member.toString()}, You do not have permissions to send gifs in this channel`
+                `${message.member.toString()}, You may not send walltext in this channel`
             );
             setTimeout(() => automodMsg.delete(), 4500);
 
-            const gifLogEmbed = new MessageEmbed()
+            const walltextLogEmbed = new MessageEmbed()
                 .setColor('YELLOW')
-                .setTitle('Gif Deleted')
+                .setTitle('Walltext Deleted')
                 .setDescription(
-                    `${message.member} sent a gif in ${message.channel} and it was deleted since they lack the perms to send gifs`
+                    `${message.member} sent walltext in ${message.channel} and it was deleted`
                 )
-                .addField('Gif Sent', `${message.content}`);
+                .addField('Walltext Sent', `${message.content}`);
             this.container.utility.sendWebhook(
                 process.env.automodLogsWebhookID,
                 process.env.automodLogsWebhookToken,
-                gifLogEmbed
+                walltextLogEmbed
             );
         }
     }
 }
 
-module.exports = { GifAutomodListener };
+module.exports = { WalltextAutomodListener };

@@ -64,7 +64,4 @@ Sentry.init({
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
-container.utility.enableJoinCountReset();
-// await (container.utility.enableAutoDeploy());
-
 client.login(process.env.DISCORD_TOKEN);

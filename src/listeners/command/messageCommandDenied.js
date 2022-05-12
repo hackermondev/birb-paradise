@@ -19,7 +19,7 @@ class MessageCommandDeniedListener extends Listener {
         if (message.deletable) await message.delete();
         else
             Sentry.captureMessage(
-                `A command was denied but the message wasn't able to be deleted`,
+                `A command was denied but the message wasn't able to be deleted, Message Link ${message.url}`,
                 Sentry.Severity.Warning
             );
     }

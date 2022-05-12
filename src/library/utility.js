@@ -1,4 +1,11 @@
-const { GuildMember, Guild, TextChannel, Message } = require('discord.js');
+const {
+    GuildMember,
+    Guild,
+    TextChannel,
+    Message,
+    MessageEmbed,
+    WebhookClient,
+} = require('discord.js');
 const { container } = require('@sapphire/pieces');
 const Sentry = require('@sentry/node');
 const req = require('petitio');
@@ -7,6 +14,7 @@ const {
     reactChannels,
     testingServerID,
 } = require('../../config.json');
+const { isNullOrUndefined } = require('@sapphire/utilities');
 class Utility {
     constructor() {
         container.utility = this;
@@ -100,7 +108,33 @@ class Utility {
     }
 
     /**
-     * Enables auto deployment capabilities
+     *
+     * @param { String } id
+     * @param { String } token
+     * @param { MessageEmbed } embed
+     */
+    async sendWebhook(id, token, embed) {
+        const webhookClient = new WebhookClient({
+            id: id,
+            token: token,
+        });
+        await webhookClient.send({ embeds: [embed] });
+    }
+
+    /**
+     * Performs checks for all automod
+     * @param { Message } message
+     */
+    async automodChecks(message) {
+        return (
+            !isNullOrUndefined(message.guild) &&
+            this.isBp(message.guild) &&
+            !message.author.bot &&
+            !this.isStaffMember(message.member)
+        );
+    }
+
+    /** Enables auto deployment capabilities
      */
     async enableAutoDeploy() {
         var lastCommitSha;
