@@ -1,8 +1,6 @@
 name: Prettier formatting check
 
 on:
-  push:
-    branches: 'feat/**'
   pull_request:
     types: [opened, edited, reopened, synchronized]
   workflow_dispatch:
