@@ -18,7 +18,7 @@ class MessageCommandErrorListener extends Listener {
      * @param { Error } error
      * @param { MessageCommandErrorPayload } payload
      */
-    async run(error, payload) {
+    async run(error, _payload) {
         this.container.utility.sendException(error, 'Command');
     }
 }

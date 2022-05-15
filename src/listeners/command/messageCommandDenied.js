@@ -15,7 +15,7 @@ class MessageCommandDeniedListener extends Listener {
      * @param { Error } error
      * @param { Message } message
      */
-    async run(error, { message }) {
+    async run(_error, { message }) {
         if (message.deletable) await message.delete();
         else
             Sentry.captureMessage(
