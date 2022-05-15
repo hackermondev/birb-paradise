@@ -19,12 +19,14 @@ class RestartCommand extends Command {
      */
     async messageRun(message) {
         await message.reply(
-            "The bot is restarting... (You can check the bot's status to see when it has restarted)"
+            "The bot is restarting..."
         );
         this.container.logger.warn(
             `Restart signal sent by ${message.member.user.tag}`
         );
-        this.container.client.user.setActivity('Restarting..');
+
+        await this.container.redis.hset('tasks', 'restart', `${message.channel.id}:${Date.now().toString()}`);
+
         return process.exit();
     }
 }
