@@ -134,36 +134,6 @@ class Utility {
         );
     }
 
-    /** Enables auto deployment capabilities
-     */
-    async enableAutoDeploy() {
-        var lastCommitSha;
-        (async () => {
-            lastCommitSha = await getLastCommitSha();
-        })();
-        setInterval(() => {
-            var sha;
-            // TODO need to fix sha being undefined
-            (async () => {
-                sha = await getLastCommitSha();
-            })();
-            container.logger.debug('sha: ' + sha);
-            if (sha && sha !== lastCommitSha) {
-                container.logger.warn('New release was detected..Updating bot');
-                return process.exit();
-            }
-        }, 20000);
-    }
-
-    async enableJoinCountReset() {
-        setInterval(() => {
-            const date = new Date();
-            if (date.getHours() === 4 && date.getMinutes() === 0) {
-                container.redis.del('dailyJoinCount');
-            }
-        }, 5000);
-    }
-
     /**
      *
      * @param { String } userID

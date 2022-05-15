@@ -1,25 +1,16 @@
 const { SapphireClient, container } = require('@sapphire/framework');
 const { Options, Intents } = require('discord.js');
 const Sentry = require('@sentry/node');
-const Tracing = require('@sentry/tracing');
 const Redis = require('ioredis');
 require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
 const sentryDSN = process.env.SENTRY_DSN;
-const { Octokit } = require('@octokit/core');
-const octokit = new Octokit({ auth: process.env.OCTOKIT_AUTH });
 
 process.on('uncaughtException', (error) => {
     console.log(error);
     container.utility.sendException(error, 'Uncaught');
-});
-
-process.on('exit', (code) => {
-    client.logger.info(
-        `Process exiting with code ${code}...(A restart signal was probably sent)`
-    );
 });
 
 const redis = new Redis({
@@ -27,9 +18,12 @@ const redis = new Redis({
     port: process.env.REDIS_PORT,
     password: process.env.REDIS_PWD,
 });
-// container.logger.info('Connected to redis!');
 
 container.redis = redis;
+container.redis.on('connect', () => {
+    container.logger.info('Connected to redis!');
+});
+
 container.utility = new Utility();
 
 const client = new SapphireClient({
