@@ -7,6 +7,7 @@ class ResetMessagesCommand extends Command {
             ...options,
             name: 'resetmessages',
             description: 'Resets the message count for a member.',
+			preconditions: ['Admin'],
             aliases: [
                 'resetmessagecount',
                 'resetmessagecounts',
@@ -37,3 +38,5 @@ class ResetMessagesCommand extends Command {
             );
     }
 }
+
+module.exports = { ResetMessagesCommand };

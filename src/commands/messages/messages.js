@@ -7,6 +7,7 @@ class MessagesCommand extends Command {
             ...options,
             name: 'messages',
             description: 'Gets the message count for a member.',
+            preconditions: ['Admin'],
             aliases: ['messagecount', 'messagecounts', 'msgcount'],
         });
     }
@@ -20,13 +21,8 @@ class MessagesCommand extends Command {
         const argUser = await args.pickResult('user');
 
         const user = this.container.utility.isStaffMember(message.member)
-            ? argUser.value
+            ? argUser.value ?? message.member.user
             : message.member.user;
-        if (!user)
-            return this.container.utility.errorReply(
-                message,
-                "That isn't a valid user"
-            );
 
         const msgCount =
             (await this.container.utility.getMessageCount(user.id)) ?? '0';
