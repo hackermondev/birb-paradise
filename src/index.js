@@ -42,11 +42,11 @@ const client = new SapphireClient({
     sweepers: {
         ...Options.defaultSweeperSettings,
         guildMembers: {
-            interval: 500,
+            interval: 1000,
             filter: () => (m) => m.id != '925829323762577479',
         },
         users: {
-            interval: 500,
+            interval: 1000,
             filter: () => (m) => m.id != '925829323762577479',
         },
     },
