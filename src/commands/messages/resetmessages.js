@@ -31,11 +31,14 @@ class ResetMessagesCommand extends Command {
 
         const rawID = user.value.id;
 
-        const redisEntry = await this.container.redis.get(`${rawID}_messages`);
+        const redisEntry = await this.container.utility.getMessageCount(rawID);
         if (!redisEntry)
-            return this.container.utility.errorReply(
+            return this.container.utility.errorReply(message, 
                 `${rawID} does not have a message count stored to reset.`
             );
+		await this.container.redis.hdel('messages', rawID);
+
+		return message.reply(`Reset ${user.value.tag}'s message count to zero.`);
     }
 }
 
