@@ -8,7 +8,7 @@ class MessagesCommand extends Command {
             name: 'messages',
             description: 'Gets the message count for a member.',
             preconditions: ['Admin'],
-            aliases: ['messagecount', 'messagecounts', 'msgcount'],
+            aliases: ['messagecount', 'messagecounts', 'msgcount', 'msgs'],
         });
     }
 

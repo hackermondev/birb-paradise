@@ -7,11 +7,12 @@ class ResetMessagesCommand extends Command {
             ...options,
             name: 'resetmessages',
             description: 'Resets the message count for a member.',
-			preconditions: ['Admin'],
+            preconditions: ['Admin'],
             aliases: [
                 'resetmessagecount',
                 'resetmessagecounts',
                 'resetmsgcount',
+                'resetmsgs',
             ],
         });
     }
@@ -33,12 +34,15 @@ class ResetMessagesCommand extends Command {
 
         const redisEntry = await this.container.utility.getMessageCount(rawID);
         if (!redisEntry)
-            return this.container.utility.errorReply(message, 
+            return this.container.utility.errorReply(
+                message,
                 `${rawID} does not have a message count stored to reset.`
             );
-		await this.container.redis.hdel('messages', rawID);
+        await this.container.redis.hdel('messages', rawID);
 
-		return message.reply(`Reset ${user.value.tag}'s message count to zero.`);
+        return message.reply(
+            `Reset ${user.value.tag}'s message count to zero.`
+        );
     }
 }
 
