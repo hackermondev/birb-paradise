@@ -28,7 +28,7 @@ class ReadyListener extends Listener {
         const hasRebooted = await this.container.redis.hget('tasks', 'restart');
         if (hasRebooted) {
             const [channelID, restartTime] = hasRebooted.split(':');
-            this.container.client.channels.cache.get(channelID).send(`Bot restarted successfully in  ${new DurationFormatter().format(Date.now() - restartTime)}`);
+            this.container.client.channels.cache.get(channelID).send(`The bot restarted successfully in ${new DurationFormatter().format(Date.now() - restartTime)}`);
             await this.container.redis.hdel('tasks', 'restart');
         }
 
