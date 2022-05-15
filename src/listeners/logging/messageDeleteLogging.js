@@ -1,3 +1,4 @@
+const { time, TimestampStyles } = require('@discordjs/builders');
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed, WebhookClient } = require('discord.js');
 const msgLogWebhookID = process.env.msgLogWebhookID;
@@ -28,8 +29,9 @@ class MessageDeleteLogging extends Listener {
             .addField('Message', `${message.content}`)
             .addField('User', `<@${message.author.id}>`, true)
             .addField('Channel', `<#${message.channel.id}>`, true)
-            .addField('Time', `<t:${Math.round(Date.now() / 1000)}>`, true)
+            .addField('Time', time(message.createdAt, TimestampStyles.LongDateTime), true)
             .setColor('DARK_ORANGE');
+        if (message.attachments.size > 0) msgDeleteEmbed.setImage(message.attachments.first().url);
         webhookClient.send({
             embeds: [msgDeleteEmbed],
         });
