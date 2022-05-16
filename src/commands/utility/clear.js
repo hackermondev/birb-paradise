@@ -24,11 +24,13 @@ class ClearCommand extends Command {
 		const rawChannel = await args.pickResult('guildTextChannel');
 		const channel = rawChannel.value ?? message.channel;
 
+		if (message.deletable) await message.delete();
+		
 		const msgs = await channel.messages.fetch({ limit: num.value });
 		
 		await channel.bulkDelete(msgs);
 
-		return this.container.utility.errorReply(message, `Cleared ${num.value} messages ${rawChannel.success ? rawChannel.value.toString() : ''}.`);
+		return message.channel.send(`Cleared ${num.value} messages ${rawChannel.success ? rawChannel.value.toString() : ''}.`).then((reply) => setTimeout(() => reply.delete(), 3500));
 	}
 }
 
