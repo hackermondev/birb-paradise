@@ -55,4 +55,4 @@ class ResetMessagesButtonHandler extends InteractionHandler {
     }
 }
 
-module.export = { ResetMessagesButtonHandler };
+module.exports = { ResetMessagesButtonHandler };

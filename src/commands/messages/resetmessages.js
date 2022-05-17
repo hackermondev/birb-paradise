@@ -1,6 +1,5 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageActionRow, MessageButton } = require('discord.js');
-const { MessageButtonStyles } = require('discord.js/typings/enums');
 
 class ResetMessagesCommand extends Command {
     constructor(context, options) {
@@ -49,11 +48,11 @@ class ResetMessagesCommand extends Command {
             new MessageButton()
             .setCustomId(`resetMessagesYes-${user.value.id}`)
             .setLabel('Yes')
-            .setStyle(MessageButtonStyles.SUCCESS),
+            .setStyle('SUCCESS'),
             new MessageButton()
             .setCustomId(`resetMessagesNo-${user.value.id}`)
             .setLabel('No')
-            .setStyle(MessageButtonStyles.DANGER)
+            .setStyle('DANGER')
         );
         return msg.edit({components: [c]});
     }
