@@ -43,8 +43,9 @@ class LeaderboardCommand extends Command {
                 true
             );
         }
-        
-        if (!leaderboardEmbed.fields.length) return message.reply('No members are currently on the leaderboard');
+
+        if (!leaderboardEmbed.fields.length)
+            return message.reply('No members are currently on the leaderboard');
 
         return message.reply({ embeds: [leaderboardEmbed] });
     }

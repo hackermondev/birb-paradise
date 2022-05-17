@@ -524,7 +524,25 @@ class ReactionRolesButtonHandler extends InteractionHandler {
      * @param { ButtonInteraction } interaction
      */
     async parse(interaction) {
-        if (!['giveaway', 'announcement', 'event', 'upload', 'update', 'bumper', 'partnership', 'verify', 'green', 'gold', 'red', 'white', 'pink', 'blue'].includes(interaction.customId)) return this.none(); // exit if button is not part of the readction role system
+        if (
+            ![
+                'giveaway',
+                'announcement',
+                'event',
+                'upload',
+                'update',
+                'bumper',
+                'partnership',
+                'verify',
+                'green',
+                'gold',
+                'red',
+                'white',
+                'pink',
+                'blue',
+            ].includes(interaction.customId)
+        )
+            return this.none(); // exit if button is not part of the readction role system
         await interaction.deferReply({ ephemeral: true }); // defer reply and then call run
         return this.some();
     }

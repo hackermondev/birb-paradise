@@ -43,18 +43,21 @@ class ResetMessagesCommand extends Command {
                 `${rawID} does not have a message count stored to reset.`
             );
 
-        const msg = await message.reply({content: `Are you sure you want to reset the messages of ${user.value} (${user.value.tag})`, allowedMentions: {users: [], roles: [], parse: []}});
+        const msg = await message.reply({
+            content: `Are you sure you want to reset the messages of ${user.value} (${user.value.tag})`,
+            allowedMentions: { users: [], roles: [], parse: [] },
+        });
         const c = new MessageActionRow().addComponents(
             new MessageButton()
-            .setCustomId(`resetMessagesYes-${user.value.id}`)
-            .setLabel('Yes')
-            .setStyle('SUCCESS'),
+                .setCustomId(`resetMessagesYes-${user.value.id}`)
+                .setLabel('Yes')
+                .setStyle('SUCCESS'),
             new MessageButton()
-            .setCustomId(`resetMessagesNo-${user.value.id}`)
-            .setLabel('No')
-            .setStyle('DANGER')
+                .setCustomId(`resetMessagesNo-${user.value.id}`)
+                .setLabel('No')
+                .setStyle('DANGER')
         );
-        return msg.edit({components: [c]});
+        return msg.edit({ components: [c] });
     }
 }
 
