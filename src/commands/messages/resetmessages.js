@@ -29,7 +29,11 @@ class ResetMessagesCommand extends Command {
                 message,
                 'You must provide a valid user to reset the messages of'
             );
-
+        if (user.value.bot)
+            return this.container.utility.errorReply(
+                message,
+                'You cannot reset the messages of a bot'
+            );
         const rawID = user.value.id;
 
         const redisEntry = await this.container.utility.getMessageCount(rawID);

@@ -23,6 +23,11 @@ class MessagesCommand extends Command {
         const user = this.container.utility.isStaffMember(message.member)
             ? argUser.value ?? message.member.user
             : message.member.user;
+        if (user.bot)
+            return this.container.utility.errorReply(
+                message,
+                "The message count of bots isn't tracked"
+            );
 
         const msgCount =
             (await this.container.utility.getMessageCount(user.id)) ?? '0';

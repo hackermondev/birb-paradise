@@ -29,9 +29,14 @@ class MessageDeleteLogging extends Listener {
             .addField('Message', `${message.content}`)
             .addField('User', `<@${message.author.id}>`, true)
             .addField('Channel', `<#${message.channel.id}>`, true)
-            .addField('Time', time(message.createdAt, TimestampStyles.LongDateTime), true)
+            .addField(
+                'Time',
+                time(message.createdAt, TimestampStyles.LongDateTime),
+                true
+            )
             .setColor('DARK_ORANGE');
-        if (message.attachments.size > 0) msgDeleteEmbed.setImage(message.attachments.first().url);
+        if (message.attachments.size > 0)
+            msgDeleteEmbed.setImage(message.attachments.first().url);
         webhookClient.send({
             embeds: [msgDeleteEmbed],
         });
