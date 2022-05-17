@@ -6,7 +6,6 @@ require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
-const sentryDSN = process.env.SENTRY_DSN;
 
 process.on('uncaughtException', (error) => {
     console.log(error);
@@ -53,7 +52,7 @@ const client = new SapphireClient({
 });
 
 Sentry.init({
-    dsn: sentryDSN,
+    dsn: process.env.SENTRY_DSN,
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });

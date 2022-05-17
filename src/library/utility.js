@@ -86,7 +86,10 @@ class Utility {
      * @returns whether the error reply was successful
      */
     async errorReply(message, errorMsg) {
-        const reply = await message.reply(errorMsg);
+        const reply = await message.reply({
+            content: errorMsg,
+            allowedMentions: { users: [], roles: [], parse: [] },
+        });
         if (!reply) return;
         setTimeout(() => {
             message.delete().catch(() => {

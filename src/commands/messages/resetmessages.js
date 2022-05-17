@@ -40,7 +40,7 @@ class ResetMessagesCommand extends Command {
         if (!redisEntry)
             return this.container.utility.errorReply(
                 message,
-                `${rawID} does not have a message count stored to reset.`
+                `<@${rawID}> does not have a message count stored to reset.`
             );
 
         const msg = await message.reply({
