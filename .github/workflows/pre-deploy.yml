@@ -3,11 +3,11 @@ name: Pre deploy tasks for Birb Helper
 on:
   push:
     branches: [ master ]
-
   workflow_dispatch:
 
 jobs:
   docker:
+    if: "!contains(github.event.head_commit.message, '[skip docker]')"
     name: Build and push docker image
     runs-on: ubuntu-latest
 
@@ -28,9 +28,8 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/birb-helper:latest
-      - name: Echo Docker Image
-        run: echo ${{ steps.docker_build.outputs.digest }}
   sentry:
+    if: "!contains(github.event.head_commit.message, '[skip sentry release]')"
     name: Sentry release creation
     runs-on: ubuntu-latest
     steps:
