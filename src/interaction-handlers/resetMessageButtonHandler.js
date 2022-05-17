@@ -22,9 +22,10 @@ class ResetMessagesButtonHandler extends InteractionHandler {
         const isYes = type.toLowerCase().endsWith('yes');
 
         if (!isYes) {
-            interaction.message.components[0].components.forEach(component => {
-                component.setDisabled(true);
-            });
+            interaction.component.setDisabled(true);
+            // interaction.message.components[0].components.forEach(component => {
+            //     component.setDisabled(true);
+            // });
             return interaction.message.reply('Cancelled.');
         }
 
