@@ -18,12 +18,12 @@ class LeaderboardCommand extends Command {
      */
     async messageRun(message) {
         const allMessages = await this.container.redis.hgetall('messages');
-        const topTenMembers = Object.entries(allMessages)
-            .sort((a, b) => b[1] - a[1])
-            .map((entry) => entry[0])
-            .slice(0, 10);
-        const topTenMemberMessages = Object.entries(allMessages)
-            .sort((a, b) => b[1] - a[1])
+        const sorted = Object.entries(allMessages).sort(
+            (a, b) => (b[1] = a[1])
+        );
+
+        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
+        const topTenMemberMessages = sorted
             .map((entry) => entry[1])
             .slice(0, 10);
 
