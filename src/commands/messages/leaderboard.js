@@ -29,7 +29,8 @@ class LeaderboardCommand extends Command {
 
         const leaderboardEmbed = new MessageEmbed()
             .setTitle('Message Leaderboard')
-            .setColor('RANDOM');
+            .setColor('RANDOM')
+            .setFooter({ text: message.guild.name });
 
         for (var i = 0; i < topTenMembers.length; ++i) {
             const user = await this.container.client.users
@@ -38,7 +39,8 @@ class LeaderboardCommand extends Command {
             if (!user) continue;
             leaderboardEmbed.addField(
                 user.tag,
-                `Messages: ${topTenMemberMessages[i]}`
+                `Messages: ${topTenMemberMessages[i]}`,
+                true
             );
         }
 
