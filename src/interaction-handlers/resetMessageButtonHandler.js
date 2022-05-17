@@ -18,7 +18,7 @@ class ResetMessagesButtonHandler extends InteractionHandler {
         const isYes = type.toLowerCase().endsWith('yes');
 
         if (!isYes) {
-            interaction.message.components = [];
+            interaction.message.edit({ components: [] });
             interaction.message.edit(
                 `${interaction.message.content} \n This action was cancelled.`
             );
@@ -30,7 +30,7 @@ class ResetMessagesButtonHandler extends InteractionHandler {
             .catch(() => null);
         if (!user) return;
 
-        interaction.message.components = [];
+        interaction.message.edit({ components: [] });
         interaction.message.edit(
             `${interaction.message.content} \n This action was confirmed.`
         );
