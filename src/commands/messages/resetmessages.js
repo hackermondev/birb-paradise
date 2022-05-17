@@ -1,5 +1,6 @@
 const { Command, Args } = require('@sapphire/framework');
-const { Message } = require('discord.js');
+const { Message, MessageActionRow, MessageButton } = require('discord.js');
+const { MessageButtonStyles } = require('discord.js/typings/enums');
 
 class ResetMessagesCommand extends Command {
     constructor(context, options) {
@@ -42,11 +43,19 @@ class ResetMessagesCommand extends Command {
                 message,
                 `${rawID} does not have a message count stored to reset.`
             );
-        await this.container.redis.hdel('messages', rawID);
 
-        return message.reply(
-            `Reset ${user.value.tag}'s message count to zero.`
+        const msg = await message.reply({content: `Are you sure you want to reset the messages of ${user.value} (${user.value.tag})`, allowedMentions: {users: [], roles: [], parse: []}});
+        const c = new MessageActionRow().addComponents(
+            new MessageButton()
+            .setCustomId(`resetMessagesYes-${user.value.id}`)
+            .setLabel('Yes')
+            .setStyle(MessageButtonStyles.SUCCESS),
+            new MessageButton()
+            .setCustomId(`resetMessagesNo-${user.value.id}`)
+            .setLabel('No')
+            .setStyle(MessageButtonStyles.DANGER)
         );
+        return msg.edit({components: [c]});
     }
 }
 
