@@ -30,7 +30,7 @@ class MessagesCommand extends Command {
             );
 
         const msgCount =
-            (await this.container.utility.getMessageCount(user.id)) ?? '0';
+            (await this.container.leaderboard.getMessageCount(user.id)) ?? '0';
 
         const embed = new MessageEmbed()
             .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL() })

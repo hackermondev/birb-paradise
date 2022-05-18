@@ -22,9 +22,9 @@ class UpdateMessageCountListener extends Listener {
         const spamAnalyzed = await this.container.perspective.analyzeSpam(
             message.content
         );
-        if (spamAnalyzed > 0.9) return;
+        if (spamAnalyzed > 0.5) return; // if message is spam do not add it to the message count
 
-        return this.container.utility.addMessageCount(message.member.id, 1);
+        return this.container.leaderboard.addMessageCount(message.member.id, 1);
     }
 }
 

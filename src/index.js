@@ -7,6 +7,7 @@ require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
 const { Perspective } = require('./library/perspective');
+const { Leaderboard } = require('./library/leaderboard');
 
 process.on('uncaughtException', (error) => {
     console.log(error);
@@ -26,6 +27,7 @@ container.redis.on('connect', () => {
 
 container.utility = new Utility();
 container.perspective = new Perspective(process.env.PERSPECTIVE_API_KEY);
+container.leaderboard = new Leaderboard();
 
 const client = new SapphireClient({
     intents: [
