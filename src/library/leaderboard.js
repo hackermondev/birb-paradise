@@ -39,7 +39,7 @@ class Leaderboard {
      * @param { Number } count
      */
     async addAllTimeMessageCount(userID, count) {
-        const currentMemberMsgs = await this.getMessageCount(userID);
+        const currentMemberMsgs = await this.getAllTimeMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs
             ? Number.parseInt(currentMemberMsgs) + count
@@ -54,7 +54,7 @@ class Leaderboard {
      * @param { Number } count
      */
     async addWeeklyMessageCount(userID, count) {
-        const currentMemberMsgs = await this.getMessageCount(userID);
+        const currentMemberMsgs = await this.getWeeklyMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs
             ? Number.parseInt(currentMemberMsgs) + count
@@ -69,7 +69,7 @@ class Leaderboard {
      * @param { Number } count
      */
      async addDailyMessageCount(userID, count) {
-        const currentMemberMsgs = await this.getMessageCount(userID);
+        const currentMemberMsgs = await this.getDailyMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs
             ? Number.parseInt(currentMemberMsgs) + count
@@ -84,7 +84,7 @@ class Leaderboard {
      * @param { Number } count
      */
      async addHourlyMessageCount(userID, count) {
-        const currentMemberMsgs = await this.getMessageCount(userID);
+        const currentMemberMsgs = await this.getHourlyMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs
             ? Number.parseInt(currentMemberMsgs) + count
