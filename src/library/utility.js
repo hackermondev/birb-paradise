@@ -16,9 +16,7 @@ const {
 } = require('../../config.json');
 const { isNullOrUndefined } = require('@sapphire/utilities');
 class Utility {
-    constructor() {
-        container.utility = this;
-    }
+    constructor() {}
 
     /**
      * A function that returns if the member is a staff member
