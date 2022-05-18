@@ -46,9 +46,9 @@ class MessagesCommand extends Command {
         const embed = new MessageEmbed()
             .setAuthor({ name: user.tag, iconURL: user.displayAvatarURL() })
             .addField('Hourly Message Count', hourlyMsgCount, true)
-            .addField('Daily Message Count', dailyMsgCount)
-            .addField('Weekly Message Count', weeklyMsgCount, true)
-            .addField('All Time Message Count', allTimeMsgCount)
+            .addField('Daily Message Count', dailyMsgCount, true)
+            .addField('Weekly Message Count', weeklyMsgCount)
+            .addField('All Time Message Count', allTimeMsgCount, true)
             .setColor('BLURPLE')
             .setTimestamp();
         return message.reply({ embeds: [embed] });
