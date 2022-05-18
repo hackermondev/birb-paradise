@@ -6,6 +6,7 @@ require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
+const { Perspective } = require('./library/perspective');
 
 process.on('uncaughtException', (error) => {
     console.log(error);
@@ -24,6 +25,7 @@ container.redis.on('connect', () => {
 });
 
 container.utility = new Utility();
+container.perspective = new Perspective(process.env.PERSPECTIVE_API_KEY);
 
 const client = new SapphireClient({
     intents: [

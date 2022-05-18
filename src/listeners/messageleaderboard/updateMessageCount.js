@@ -19,9 +19,12 @@ class UpdateMessageCountListener extends Listener {
         if (message.channel.type !== 'GUILD_TEXT') return;
         if (!this.container.utility.isBp(message.guild)) return;
 
-        // TODO: check for spam
+        const spamAnalyzed = await this.container.perspective.analyzeSpam(
+            message.content
+        );
+        if (spamAnalyzed > 0.9) return;
 
-        this.container.utility.addMessageCount(message.member.id, 1);
+        return this.container.utility.addMessageCount(message.member.id, 1);
     }
 }
 
