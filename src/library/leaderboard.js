@@ -4,7 +4,7 @@ class Leaderboard {
      * @param { String } userID
      */
     async getMessageCount(userID) {
-        return container.redis.hget('messages', userID);
+        return container.redis.hget('messages_alltime', userID);
     }
 
     /**
@@ -19,7 +19,7 @@ class Leaderboard {
             ? Number.parseInt(currentMemberMsgs) + count
             : count;
 
-        await container.redis.hset('messages', userID, newMemberMsgs);
+        await container.redis.hset('messages_alltime', userID, newMemberMsgs);
     }
 }
 

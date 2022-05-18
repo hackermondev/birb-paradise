@@ -17,7 +17,7 @@ class LeaderboardCommand extends Command {
      * @param { Message } message
      */
     async messageRun(message) {
-        const allMessages = await this.container.redis.hgetall('messages');
+        const allMessages = await this.container.redis.hgetall('messages_alltime');
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
         const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);

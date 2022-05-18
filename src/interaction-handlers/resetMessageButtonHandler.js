@@ -20,7 +20,7 @@ class ResetMessagesButtonHandler extends InteractionHandler {
         if (!isYes) {
             interaction.message.edit({ components: [] });
             interaction.message.edit(
-                `${interaction.message.content} \n This action was cancelled.`
+                `${interaction.message.content} \nThis action was cancelled.`
             );
             return interaction.reply('Cancelled.');
         }
@@ -32,9 +32,9 @@ class ResetMessagesButtonHandler extends InteractionHandler {
 
         interaction.message.edit({ components: [] });
         interaction.message.edit(
-            `${interaction.message.content} \n This action was confirmed.`
+            `${interaction.message.content} \nThis action was confirmed.`
         );
-        await this.container.redis.hdel('messages', userID);
+        await this.container.redis.hdel('messages_alltime', userID);
 
         const embed = new MessageEmbed()
             .setColor('DARK_RED')
