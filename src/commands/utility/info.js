@@ -19,6 +19,8 @@ class InfoCommand extends Command {
      */
     async messageRun(message) {
         const formatter = new DurationFormatter();
+        const processMem = process.memoryUsage();
+
         const info = new MessageEmbed()
             .setTitle('Bot Details')
             .setFooter({ text: `${this.container.client.user.tag}` })
@@ -29,8 +31,13 @@ class InfoCommand extends Command {
                 true
             )
             .addField(
-                'Memory Usage',
-                `\`${process.memoryUsage.rss() / 1024 / 1024} MiB\``,
+                'Memory Usage(RSS)',
+                `\`${processMem.rss / 1024 / 1024} MiB\``,
+                true
+            )
+            .addField(
+                'Memory Usage(Heap)',
+                `\`${processMem.heapUsed / 1024 / 1024} MiB\``,
                 true
             )
             .addField(
