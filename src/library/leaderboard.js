@@ -1,3 +1,5 @@
+const { container } = require("@sapphire/pieces");
+
 class Leaderboard {
     /**
      *
