@@ -24,7 +24,7 @@ class UpdateMessageCountListener extends Listener {
         );
         if (spamAnalyzed > 0.5) return; // if message is spam do not add it to the message count
 
-        return this.container.leaderboard.addMessageCount(message.member.id, 1);
+        return this.container.leaderboard.addAllTimeMessageCount(message.member.id, 1);
     }
 }
 
