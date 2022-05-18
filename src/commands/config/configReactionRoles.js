@@ -22,7 +22,7 @@ class ConfigReactionRolesCommand extends Command {
      * @param { Message } message
      * @param { Args } args
      */
-    async messagePreParse(message, args) {
+    async messageRun(message, args) {
         const ch = await args.pickResult('guildTextChannel');
         if (!ch.success)
             return this.container.utility.errorReply(
