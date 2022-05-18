@@ -1,4 +1,4 @@
-const { container } = require("@sapphire/pieces");
+const { container } = require('@sapphire/pieces');
 
 class Leaderboard {
     /**
@@ -13,7 +13,7 @@ class Leaderboard {
      *
      * @param { String } userID
      */
-     async getWeeklyMessageCount(userID) {
+    async getWeeklyMessageCount(userID) {
         return container.redis.hget('messages_weekly', userID);
     }
 
@@ -21,7 +21,7 @@ class Leaderboard {
      *
      * @param { String } userID
      */
-     async getDailyMessageCount(userID) {
+    async getDailyMessageCount(userID) {
         return container.redis.hget('messages_daily', userID);
     }
 
@@ -29,7 +29,7 @@ class Leaderboard {
      *
      * @param { String } userID
      */
-     async getHourlyMessageCount(userID) {
+    async getHourlyMessageCount(userID) {
         return container.redis.hget('messages_hourly', userID);
     }
 
@@ -68,7 +68,7 @@ class Leaderboard {
      * @param { String } userID
      * @param { Number } count
      */
-     async addDailyMessageCount(userID, count) {
+    async addDailyMessageCount(userID, count) {
         const currentMemberMsgs = await this.getDailyMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs
@@ -83,7 +83,7 @@ class Leaderboard {
      * @param { String } userID
      * @param { Number } count
      */
-     async addHourlyMessageCount(userID, count) {
+    async addHourlyMessageCount(userID, count) {
         const currentMemberMsgs = await this.getHourlyMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs

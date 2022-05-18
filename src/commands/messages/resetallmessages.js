@@ -2,7 +2,7 @@ const { Command } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 
 class ResetAllMessagesCommand extends Command {
-	constructor(context, options) {
+    constructor(context, options) {
         super(context, {
             ...options,
             name: 'resetallmessages',
@@ -11,14 +11,14 @@ class ResetAllMessagesCommand extends Command {
         });
     }
 
-	/**
-	 * 
-	 * @param { Message } message 
-	 * @returns 
-	 */
-	async messageRun(message) {
-		return this.container.utility.errorReply(message, 'Command not ready');
-	}
+    /**
+     *
+     * @param { Message } message
+     * @returns
+     */
+    async messageRun(message) {
+        return this.container.utility.errorReply(message, 'Command not ready');
+    }
 }
 
 module.exports = { ResetAllMessagesCommand };

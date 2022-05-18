@@ -104,14 +104,13 @@ class HelpCommand extends Command {
             );
 
         if (cmd.options.subCommands) {
-            const subCmds = []
+            const subCmds = [];
             subCmds.push(`**Subcommands:**`);
-            cmd.options.subCommands.forEach(subCmd => {
+            cmd.options.subCommands.forEach((subCmd) => {
                 if (typeof subCmd === 'string') {
                     subCmds.push(`${subCmd}\n`);
-                }
-                else subCmds.push(`${subCmd.input}\n`);
-            })
+                } else subCmds.push(`${subCmd.input}\n`);
+            });
             commandsData.push(subCmds.join(', '));
         }
         if (cmd.preconditions.entries.length)

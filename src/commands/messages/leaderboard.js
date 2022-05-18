@@ -1,4 +1,7 @@
-const { SubCommandPluginCommand, SubCommandEntry } = require('@sapphire/plugin-subcommands');
+const {
+    SubCommandPluginCommand,
+    SubCommandEntry,
+} = require('@sapphire/plugin-subcommands');
 const { Message, MessageEmbed } = require('discord.js');
 
 class LeaderboardCommand extends SubCommandPluginCommand {
@@ -8,7 +11,12 @@ class LeaderboardCommand extends SubCommandPluginCommand {
             name: 'leaderboard',
             description: 'Displays the top 10 users with the most messages.',
             preconditions: ['Admin'],
-            subCommands: ['hourly', 'daily', 'weekly', {input: 'alltime', default: true}],
+            subCommands: [
+                'hourly',
+                'daily',
+                'weekly',
+                { input: 'alltime', default: true },
+            ],
             aliases: ['lb', 'leaderboards', 'msglb'],
         });
     }
@@ -18,7 +26,9 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Message } message
      */
     async hourly(message) {
-        const allMessages = await this.container.redis.hgetall('messages_hourly');
+        const allMessages = await this.container.redis.hgetall(
+            'messages_hourly'
+        );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
         const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
@@ -44,7 +54,9 @@ class LeaderboardCommand extends SubCommandPluginCommand {
         }
 
         if (!leaderboardEmbed.fields.length)
-            return message.reply('No members are currently on the hourly leaderboard');
+            return message.reply(
+                'No members are currently on the hourly leaderboard'
+            );
 
         return message.reply({ embeds: [leaderboardEmbed] });
     }
@@ -53,8 +65,10 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      *
      * @param { Message } message
      */
-     async daily(message) {
-        const allMessages = await this.container.redis.hgetall('messages_daily');
+    async daily(message) {
+        const allMessages = await this.container.redis.hgetall(
+            'messages_daily'
+        );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
         const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
@@ -80,7 +94,9 @@ class LeaderboardCommand extends SubCommandPluginCommand {
         }
 
         if (!leaderboardEmbed.fields.length)
-            return message.reply('No members are currently on the daily leaderboard');
+            return message.reply(
+                'No members are currently on the daily leaderboard'
+            );
 
         return message.reply({ embeds: [leaderboardEmbed] });
     }
@@ -89,8 +105,10 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      *
      * @param { Message } message
      */
-     async weekly(message) {
-        const allMessages = await this.container.redis.hgetall('messages_weekly');
+    async weekly(message) {
+        const allMessages = await this.container.redis.hgetall(
+            'messages_weekly'
+        );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
         const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
@@ -116,7 +134,9 @@ class LeaderboardCommand extends SubCommandPluginCommand {
         }
 
         if (!leaderboardEmbed.fields.length)
-            return message.reply('No members are currently on the weekly leaderboard');
+            return message.reply(
+                'No members are currently on the weekly leaderboard'
+            );
 
         return message.reply({ embeds: [leaderboardEmbed] });
     }
@@ -125,8 +145,10 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      *
      * @param { Message } message
      */
-     async alltime(message) {
-        const allMessages = await this.container.redis.hgetall('messages_alltime');
+    async alltime(message) {
+        const allMessages = await this.container.redis.hgetall(
+            'messages_alltime'
+        );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
         const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
