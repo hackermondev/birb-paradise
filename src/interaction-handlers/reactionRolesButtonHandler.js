@@ -58,9 +58,9 @@ class ReactionRolesButtonHandler extends InteractionHandler {
                     });
                 }
             case 'botgiveaway':
-                if (!interaction.member.roles.cache.has(bpPingRoles[6])) {
+                if (!interaction.member.roles.cache.has(bpPingRoles[7])) {
                     interaction.member.roles.add(
-                        bpPingRoles[6],
+                        bpPingRoles[7],
                         'Reaction role add'
                     );
                     return interaction.followUp({
