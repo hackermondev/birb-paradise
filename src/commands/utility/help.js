@@ -112,6 +112,7 @@ class HelpCommand extends Command {
                 }
                 else subCmds.push(`${subCmd.input}\n`);
             })
+            commandsData.push(subCmds);
         }
         if (cmd.preconditions.entries.length)
             commandsData.push(
