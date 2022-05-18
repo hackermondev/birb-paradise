@@ -57,6 +57,36 @@ class ReactionRolesButtonHandler extends InteractionHandler {
                         ],
                     });
                 }
+            case 'botgiveaway':
+                if (!interaction.member.roles.cache.has(bpPingRoles[6])) {
+                    interaction.member.roles.add(
+                        bpPingRoles[6],
+                        'Reaction role add'
+                    );
+                    return interaction.followUp({
+                        embeds: [
+                            new MessageEmbed()
+                                .setDescription(
+                                    'Successfully added Bot Giveaway Ping'
+                                )
+                                .setColor('GREEN'),
+                        ],
+                    });
+                } else {
+                    interaction.member.roles.remove(
+                        bpPingRoles[6],
+                        'Reaction role remove'
+                    );
+                    return interaction.followUp({
+                        embeds: [
+                            new MessageEmbed()
+                                .setDescription(
+                                    'Successfully removed Bot Giveaway Ping'
+                                )
+                                .setColor('RED'),
+                        ],
+                    });
+                }
             case 'announcement':
                 if (!interaction.member.roles.cache.has(bpPingRoles[1])) {
                     interaction.member.roles.add(
@@ -527,6 +557,7 @@ class ReactionRolesButtonHandler extends InteractionHandler {
         if (
             ![
                 'giveaway',
+                'botgiveaway',
                 'announcement',
                 'event',
                 'upload',
