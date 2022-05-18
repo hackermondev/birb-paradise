@@ -27,7 +27,7 @@ class LeaderboardCommand extends SubCommandPluginCommand {
             .slice(0, 10);
 
         const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Message Leaderboard')
+            .setTitle('Hourly Message Leaderboard')
             .setColor('RANDOM')
             .setFooter({ text: message.guild.name });
 
@@ -63,7 +63,7 @@ class LeaderboardCommand extends SubCommandPluginCommand {
             .slice(0, 10);
 
         const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Message Leaderboard')
+            .setTitle('Daily Message Leaderboard')
             .setColor('RANDOM')
             .setFooter({ text: message.guild.name });
 
@@ -99,7 +99,7 @@ class LeaderboardCommand extends SubCommandPluginCommand {
             .slice(0, 10);
 
         const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Message Leaderboard')
+            .setTitle('Weekly Message Leaderboard')
             .setColor('RANDOM')
             .setFooter({ text: message.guild.name });
 
@@ -135,7 +135,7 @@ class LeaderboardCommand extends SubCommandPluginCommand {
             .slice(0, 10);
 
         const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Message Leaderboard')
+            .setTitle('All Time Message Leaderboard')
             .setColor('RANDOM')
             .setFooter({ text: message.guild.name });
 
