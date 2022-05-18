@@ -36,7 +36,7 @@ class ResetMessagesCommand extends Command {
             );
         const rawID = user.value.id;
 
-        const redisEntry = await this.container.leaderboard.getMessageCount(
+        const redisEntry = await this.container.leaderboard.getAllTimeMessageCount(
             rawID
         );
         if (!redisEntry)

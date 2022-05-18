@@ -5,7 +5,7 @@ class Leaderboard {
      *
      * @param { String } userID
      */
-    async getMessageCount(userID) {
+    async getAllTimeMessageCount(userID) {
         return container.redis.hget('messages_alltime', userID);
     }
 
@@ -14,7 +14,7 @@ class Leaderboard {
      * @param { String } userID
      * @param { Number } count
      */
-    async addMessageCount(userID, count) {
+    async addAllTimeMessageCount(userID, count) {
         const currentMemberMsgs = await this.getMessageCount(userID);
 
         const newMemberMsgs = currentMemberMsgs
