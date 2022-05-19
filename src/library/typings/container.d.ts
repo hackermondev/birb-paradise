@@ -2,6 +2,7 @@ import { ApplicationCommandRegistry, ILogger, SapphireClient, StoreRegistry } fr
 import Redis, { RedisCommander } from 'ioredis';
 import { Leaderboard } from '../leaderboard';
 import { Perspective } from '../perspective';
+import { Tasks } from '../tasks';
 import { Utility } from '../utility';
 declare module '@sapphire/pieces' {
     interface Container {
@@ -10,6 +11,7 @@ declare module '@sapphire/pieces' {
         redis: RedisCommander;
         perspective: Perspective;
         leaderboard: Leaderboard;
+        tasks: Tasks;
         stores: StoreRegistry;
 	    logger: ILogger;
 	    applicationCommandRegistries: ApplicationCommandRegistry;
