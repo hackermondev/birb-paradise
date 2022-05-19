@@ -2,8 +2,8 @@ const { container } = require("@sapphire/pieces");
 
 class Tasks {
     constructor() {
-        this.startTasks();
         this.intervals = [];
+        this.startTasks();
     }
 
     /**
