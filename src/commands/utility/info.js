@@ -32,12 +32,12 @@ class InfoCommand extends Command {
             )
             .addField(
                 'Memory Usage(RSS)',
-                `\`${processMem.rss / 1024 / 1024} MiB\``,
+                `\`${(processMem.rss / 1024 / 1024).toFixed(3)} MiB\``,
                 true
             )
             .addField(
                 'Memory Usage(Heap)',
-                `\`${processMem.heapUsed / 1024 / 1024} MiB\``,
+                `\`${(processMem.heapUsed / 1024 / 1024).toFixed(3)} MiB\``,
                 true
             )
             .addField(

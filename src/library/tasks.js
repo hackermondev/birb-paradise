@@ -1,4 +1,4 @@
-const { container } = require("@sapphire/pieces");
+const { container } = require('@sapphire/pieces');
 
 class Tasks {
     constructor() {
@@ -20,6 +20,7 @@ class Tasks {
             const date = new Date();
             if (date.getUTCHours() === 4 && date.getUTCMinutes() === 0) {
                 container.leaderboard.resetHourlyMessageCount();
+                container.logger.debug('Reset hourly message leaderboard');
             }
         }, 5000);
         this.intervals.push(i);
@@ -30,6 +31,7 @@ class Tasks {
             const date = new Date();
             if (date.getUTCMinutes() === 0) {
                 container.leaderboard.resetDailyMessageCount();
+                container.logger.debug('Reset daily message leaderboard');
             }
         }, 5000);
         this.intervals.push(i);
@@ -38,14 +40,17 @@ class Tasks {
     async startResetWeeklyMessageLeaderboard() {
         const i = setInterval(() => {
             const date = new Date();
-            if (date.getUTCDay() === 1 && date.getUTCHours() === 4 && date.getUTCMinutes() === 0) {
+            if (
+                date.getUTCDay() === 1 &&
+                date.getUTCHours() === 4 &&
+                date.getUTCMinutes() === 0
+            ) {
                 container.leaderboard.resetWeeklyMessageCount();
+                container.logger.debug('Reset weekly message leaderboard');
             }
         }, 5000);
         this.intervals.push(i);
     }
-
-
 }
 
 module.exports = { Tasks };

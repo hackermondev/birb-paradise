@@ -106,7 +106,7 @@ class Leaderboard {
     /**
      * Resets the daily message count for the leaderboard
      */
-     async resetDailyMessageCount() {
+    async resetDailyMessageCount() {
         const data = await container.redis.hkeys('messages_daily');
         for (var i = 0; i < data.length; ++i) {
             await container.redis.hdel('messages_daily', data[i]);
@@ -116,7 +116,7 @@ class Leaderboard {
     /**
      * Resets the weekly message count for the leaderboard
      */
-     async resetWeeklyMessageCount() {
+    async resetWeeklyMessageCount() {
         const data = await container.redis.hkeys('messages_weekly');
         for (var i = 0; i < data.length; ++i) {
             await container.redis.hdel('messages_weekly', data[i]);
