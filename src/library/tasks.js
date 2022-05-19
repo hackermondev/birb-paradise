@@ -18,7 +18,7 @@ class Tasks {
     async startResetHourlyMessageLeaderboard() {
         const i = setInterval(() => {
             const date = new Date();
-            if (date.getUTCHours() === 4 && date.getUTCMinutes() === 0) {
+            if (date.getUTCMinutes() === 0) {
                 container.leaderboard.resetHourlyMessageCount();
                 container.logger.debug('Reset hourly message leaderboard');
             }
@@ -29,7 +29,7 @@ class Tasks {
     async startResetDailyMessageLeaderboard() {
         const i = setInterval(() => {
             const date = new Date();
-            if (date.getUTCMinutes() === 0) {
+            if (date.getUTCHours() === 4 && date.getUTCMinutes() === 0) {
                 container.leaderboard.resetDailyMessageCount();
                 container.logger.debug('Reset daily message leaderboard');
             }
