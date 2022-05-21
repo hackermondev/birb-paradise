@@ -108,7 +108,7 @@ class HelpCommand extends Command {
             subCmds.push(`**Subcommands:**`);
             cmd.options.subCommands.forEach((subCmd) => {
                 if (typeof subCmd === 'string') {
-                    subCmds.push(`${subCmd}\n`);
+                    subCmds.push(`${subCmd}`);
                 } else subCmds.push(`${subCmd.input}\n`);
             });
             commandsData.push(subCmds.join(', '));
