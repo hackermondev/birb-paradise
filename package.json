@@ -43,7 +43,7 @@
     "velocity-api": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "8.15.0",
+    "eslint": "8.16.0",
     "prettier": "2.6.2"
   }
 }
