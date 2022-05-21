@@ -3,7 +3,9 @@ const { container } = require('@sapphire/pieces');
 class Tasks {
     constructor() {
         this.intervals = [];
-        this.startTasks();
+        this.startTasks().then(() => {
+            container.logger.info('All tasks successfully started.');
+        });
     }
 
     /**
@@ -15,6 +17,18 @@ class Tasks {
         this.startResetWeeklyMessageLeaderboard();
     }
 
+    /**
+     * Forcefully stops all running tasks
+     */
+    async stopTasks() {
+        for (const i of this.intervals) {
+            clearInterval(i);
+        }
+    }
+
+    /**
+     * Starts the reset hourly message leaderboard task
+     */
     async startResetHourlyMessageLeaderboard() {
         const i = setInterval(() => {
             const date = new Date();
@@ -26,6 +40,9 @@ class Tasks {
         this.intervals.push(i);
     }
 
+    /**
+     * Starts the reset daily message leaderboard task
+     */
     async startResetDailyMessageLeaderboard() {
         const i = setInterval(() => {
             const date = new Date();
@@ -36,7 +53,9 @@ class Tasks {
         }, 5000);
         this.intervals.push(i);
     }
-
+    /**
+     * Starts the reset weekly message leaderboard task
+     */
     async startResetWeeklyMessageLeaderboard() {
         const i = setInterval(() => {
             const date = new Date();
