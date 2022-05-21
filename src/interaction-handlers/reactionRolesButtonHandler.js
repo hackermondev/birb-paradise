@@ -74,7 +74,7 @@ class ReactionRolesButtonHandler extends InteractionHandler {
                     });
                 } else {
                     interaction.member.roles.remove(
-                        bpPingRoles[6],
+                        bpPingRoles[7],
                         'Reaction role remove'
                     );
                     return interaction.followUp({
