@@ -1,3 +1,4 @@
+const { Args } = require('@sapphire/framework');
 const {
     SubCommandPluginCommand,
     SubCommandEntry,
@@ -17,6 +18,7 @@ class LeaderboardCommand extends SubCommandPluginCommand {
                 'weekly',
                 { input: 'alltime', default: true },
             ],
+            options: ['limit', 'l'],
             aliases: ['lb', 'leaderboards', 'msglb'],
         });
     }
@@ -24,14 +26,16 @@ class LeaderboardCommand extends SubCommandPluginCommand {
     /**
      *
      * @param { Message } message
+     * @param { Args } args
      */
-    async hourly(message) {
+    async hourly(message, args) {
         const allMessages = await this.container.redis.hgetall(
             'messages_hourly'
         );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
+        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
+        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
         const topTenMemberMessages = sorted
             .map((entry) => entry[1])
             .slice(0, 10);
@@ -64,14 +68,16 @@ class LeaderboardCommand extends SubCommandPluginCommand {
     /**
      *
      * @param { Message } message
+     * @param { Args } args
      */
-    async daily(message) {
+    async daily(message, args) {
         const allMessages = await this.container.redis.hgetall(
             'messages_daily'
         );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
+        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
+        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
         const topTenMemberMessages = sorted
             .map((entry) => entry[1])
             .slice(0, 10);
@@ -104,14 +110,16 @@ class LeaderboardCommand extends SubCommandPluginCommand {
     /**
      *
      * @param { Message } message
+     * @param { Args } args
      */
-    async weekly(message) {
+    async weekly(message, args) {
         const allMessages = await this.container.redis.hgetall(
             'messages_weekly'
         );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
+        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
+        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
         const topTenMemberMessages = sorted
             .map((entry) => entry[1])
             .slice(0, 10);
@@ -144,14 +152,16 @@ class LeaderboardCommand extends SubCommandPluginCommand {
     /**
      *
      * @param { Message } message
+     * @param { Args } args
      */
-    async alltime(message) {
+    async alltime(message, args) {
         const allMessages = await this.container.redis.hgetall(
             'messages_alltime'
         );
         const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
 
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, 10);
+        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
+        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
         const topTenMemberMessages = sorted
             .map((entry) => entry[1])
             .slice(0, 10);
