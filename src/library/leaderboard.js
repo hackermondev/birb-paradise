@@ -5,7 +5,7 @@ const LeaderboardType = {
     DAILY: 'DAILY',
     WEEKLY: 'WEEKLY',
     ALL_TIME: 'ALLTIME',
-}
+};
 
 class Leaderboard {
     /**
@@ -136,32 +136,27 @@ class Leaderboard {
      * @param { Number } limit
      */
     async constructLeaderboardEmbed(type, guild, limit) {
-        const leaderboardEmbed = new MessageEmbed().setColor('RANDOM').setFooter({text: guild.name});
-        let allMessages = null
+        const leaderboardEmbed = new MessageEmbed()
+            .setColor('RANDOM')
+            .setFooter({ text: guild.name });
+        let allMessages;
+
         switch (type) {
-            case type.HOURLY:
-                allMessages = await container.redis.hgetall(
-                    'message_hourly'
-                );
+            case 'HOURLY':
+                allMessages = await container.redis.hgetall('message_hourly');
                 leaderboardEmbed.setTitle('Hourly Message Leaderboard');
                 break;
-            case type.DAILY:
+            case 'DAILY':
                 leaderboardEmbed.setTitle('Daily Message Leaderboard');
-                allMessages = await container.redis.hgetall(
-                    'message_daily'
-                );
+                allMessages = await container.redis.hgetall('message_daily');
                 break;
-            case type.WEEKLY:
+            case 'WEEKLY':
                 leaderboardEmbed.setTitle('Weekly Message Leaderboard');
-                allMessages = await container.redis.hgetall(
-                    'message_weekly'
-                );
+                allMessages = await container.redis.hgetall('message_weekly');
                 break;
-            case type.ALL_TIME:
+            case 'ALLTIME':
                 leaderboardEmbed.setTitle('All Time Message Leaderboard');
-                allMessages = await container.redis.hgetall(
-                    'message_alltime'
-                );
+                allMessages = await container.redis.hgetall('message_alltime');
                 break;
             default:
                 break;
@@ -172,7 +167,7 @@ class Leaderboard {
         const topTenMemberMessages = sorted
             .map((entry) => entry[1])
             .slice(0, 10);
-        
+
         for (var i = 0; i < topTenMembers.length; ++i) {
             const user = await container.client.users
                 .fetch(topTenMembers[i])
@@ -186,7 +181,9 @@ class Leaderboard {
         }
 
         if (!leaderboardEmbed.fields.length)
-            leaderboardEmbed.setDescription('No members are currently on the leaderboard');
+            leaderboardEmbed.setDescription(
+                'No members are currently on the leaderboard'
+            );
 
         return leaderboardEmbed;
     }

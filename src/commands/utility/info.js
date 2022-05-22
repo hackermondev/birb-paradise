@@ -22,20 +22,18 @@ class InfoCommand extends Command {
         const formatter = new DurationFormatter();
         const processMem = process.memoryUsage();
 
-        const devs = packageInfo.developers.map((dev) => (this.container.client.users.fetch(dev).then((user) => user.tag).catch(() => null)));
+        const devs = packageInfo.developers.map((dev) =>
+            this.container.client.users
+                .fetch(dev)
+                .then((user) => user.tag)
+                .catch(() => null)
+        );
         const info = new MessageEmbed()
             .setTitle('Bot Details')
             .setFooter({ text: `${this.container.client.user.tag}` })
             .setColor('RANDOM')
-            .addField(
-                'Version',
-                packageInfo.version,
-                true
-            )
-            .addField(
-                'Developers',
-                devs.join(', '),
-            )
+            .addField('Version', packageInfo.version, true)
+            .addField('Developers', devs.join(', '))
             .addField(
                 'Memory Usage(RSS)',
                 `\`${(processMem.rss / 1024 / 1024).toFixed(3)} MiB\``,
@@ -60,7 +58,7 @@ class InfoCommand extends Command {
                 'Commands',
                 `${this.container.stores.get('commands').size}`,
                 true
-            )
+            );
         return message.reply({ embeds: [info] });
     }
 }

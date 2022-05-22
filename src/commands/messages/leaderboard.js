@@ -30,11 +30,18 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async hourly(message, args) {
-        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        
-        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.HOURLY, message.guild, limit);
+        const limit = Number(
+            args.getOption('limit') ?? args.getOption('l') ?? 10
+        );
 
-        return message.reply({embeds: [leaderboard]});
+        const leaderboard =
+            await this.container.leaderboard.constructLeaderboardEmbed(
+                LeaderboardType.HOURLY,
+                message.guild,
+                limit
+            );
+
+        return message.reply({ embeds: [leaderboard] });
     }
 
     /**
@@ -43,11 +50,18 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async daily(message, args) {
-        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        
-        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.DAILY, message.guild, limit);
+        const limit = Number(
+            args.getOption('limit') ?? args.getOption('l') ?? 10
+        );
 
-        return message.reply({embeds: [leaderboard]});
+        const leaderboard =
+            await this.container.leaderboard.constructLeaderboardEmbed(
+                LeaderboardType.DAILY,
+                message.guild,
+                limit
+            );
+
+        return message.reply({ embeds: [leaderboard] });
     }
 
     /**
@@ -56,11 +70,18 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async weekly(message, args) {
-        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        
-        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.WEEKLY, message.guild, limit);
+        const limit = Number(
+            args.getOption('limit') ?? args.getOption('l') ?? 10
+        );
 
-        return message.reply({embeds: [leaderboard]});
+        const leaderboard =
+            await this.container.leaderboard.constructLeaderboardEmbed(
+                LeaderboardType.WEEKLY,
+                message.guild,
+                limit
+            );
+
+        return message.reply({ embeds: [leaderboard] });
     }
 
     /**
@@ -69,11 +90,18 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async alltime(message, args) {
-        const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        
-        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.ALL_TIME, message.guild, limit);
+        const limit = Number(
+            args.getOption('limit') ?? args.getOption('l') ?? 10
+        );
 
-        return message.reply({embeds: [leaderboard]});
+        const leaderboard =
+            await this.container.leaderboard.constructLeaderboardEmbed(
+                LeaderboardType.ALL_TIME,
+                message.guild,
+                limit
+            );
+
+        return message.reply({ embeds: [leaderboard] });
     }
 }
 
