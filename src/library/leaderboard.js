@@ -143,20 +143,20 @@ class Leaderboard {
 
         switch (type) {
             case 'HOURLY':
-                allMessages = await container.redis.hgetall('message_hourly');
+                allMessages = await container.redis.hgetall('messages_hourly');
                 leaderboardEmbed.setTitle('Hourly Message Leaderboard');
                 break;
             case 'DAILY':
                 leaderboardEmbed.setTitle('Daily Message Leaderboard');
-                allMessages = await container.redis.hgetall('message_daily');
+                allMessages = await container.redis.hgetall('messages_daily');
                 break;
             case 'WEEKLY':
                 leaderboardEmbed.setTitle('Weekly Message Leaderboard');
-                allMessages = await container.redis.hgetall('message_weekly');
+                allMessages = await container.redis.hgetall('messages_weekly');
                 break;
             case 'ALLTIME':
                 leaderboardEmbed.setTitle('All Time Message Leaderboard');
-                allMessages = await container.redis.hgetall('message_alltime');
+                allMessages = await container.redis.hgetall('messages_alltime');
                 break;
             default:
                 break;
