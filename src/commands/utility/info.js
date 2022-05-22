@@ -1,6 +1,7 @@
 const { Command } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
 const { DurationFormatter } = require('@sapphire/time-utilities');
+const packageInfo = require(`${process.cwd()}/package.json`);
 class InfoCommand extends Command {
     constructor(context, options) {
         super(context, {
@@ -21,14 +22,19 @@ class InfoCommand extends Command {
         const formatter = new DurationFormatter();
         const processMem = process.memoryUsage();
 
+        const devs = packageInfo.developers.map((dev) => (this.container.client.users.fetch(dev).then((user) => user.tag).catch(() => null)));
         const info = new MessageEmbed()
             .setTitle('Bot Details')
             .setFooter({ text: `${this.container.client.user.tag}` })
             .setColor('RANDOM')
             .addField(
                 'Version',
-                require(`${process.cwd()}/package.json`).version,
+                packageInfo.version,
                 true
+            )
+            .addField(
+                'Developers',
+                devs.join(', '),
             )
             .addField(
                 'Memory Usage(RSS)',
@@ -55,7 +61,6 @@ class InfoCommand extends Command {
                 `${this.container.stores.get('commands').size}`,
                 true
             )
-            .addField('Server', `${message.guild.name}`, true);
         return message.reply({ embeds: [info] });
     }
 }

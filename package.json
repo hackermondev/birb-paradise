@@ -12,17 +12,18 @@
     "npm": ">8.0.0"
   },
   "author": "Grav <grav4029@gmail.com>",
-  "contributors": [],
+  "contributors": ["Hackermon <therealhackermon@gmail.com>"],
+  "developers": ["671780654882619393", "963141789571756062"],
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grav4029/Birb-Helper.git"
+    "url": "git+https://github.com/Birb-Paradise/Birb-Helper.git"
   },
   "bugs": {
-    "url": "https://github.com/grav4029/Birb-Helper/issues"
+    "url": "https://github.com/Birb-Paradise/Birb-Helper/issues"
   },
-  "homepage": "https://github.com/grav4029/Birb-Helper#readme",
-  "description": "A custom bot for the server Birb Paradise",
+  "homepage": "https://github.com/Birb-Paradise/Birb-Helper#readme",
+  "description": "A custom bot for the server Birb Paradise.",
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
     "@sapphire/discord-utilities": "^2.8.0",
