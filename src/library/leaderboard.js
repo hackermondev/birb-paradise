@@ -1,4 +1,11 @@
 const { container } = require('@sapphire/pieces');
+const { MessageEmbed, Guild } = require('discord.js');
+const LeaderboardType = {
+    HOURLY: 'HOURLY',
+    DAILY: 'DAILY',
+    WEEKLY: 'WEEKLY',
+    ALL_TIME: 'ALLTIME',
+}
 
 class Leaderboard {
     /**
@@ -122,6 +129,67 @@ class Leaderboard {
             await container.redis.hdel('messages_weekly', data[i]);
         }
     }
+
+    /**
+     * @param { LeaderboardType } type
+     * @param { Guild } guild
+     * @param { Number } limit
+     */
+    async constructLeaderboardEmbed(type, guild, limit) {
+        const leaderboardEmbed = new MessageEmbed().setColor('RANDOM').setFooter({text: guild.name});
+        let allMessages = null
+        switch (type) {
+            case type.HOURLY:
+                allMessages = await container.redis.hgetall(
+                    'message_hourly'
+                );
+                leaderboardEmbed.setTitle('Hourly Message Leaderboard');
+                break;
+            case type.DAILY:
+                leaderboardEmbed.setTitle('Daily Message Leaderboard');
+                allMessages = await container.redis.hgetall(
+                    'message_daily'
+                );
+                break;
+            case type.WEEKLY:
+                leaderboardEmbed.setTitle('Weekly Message Leaderboard');
+                allMessages = await container.redis.hgetall(
+                    'message_weekly'
+                );
+                break;
+            case type.ALL_TIME:
+                leaderboardEmbed.setTitle('All Time Message Leaderboard');
+                allMessages = await container.redis.hgetall(
+                    'message_alltime'
+                );
+                break;
+            default:
+                break;
+        }
+        const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
+
+        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
+        const topTenMemberMessages = sorted
+            .map((entry) => entry[1])
+            .slice(0, 10);
+        
+        for (var i = 0; i < topTenMembers.length; ++i) {
+            const user = await container.client.users
+                .fetch(topTenMembers[i])
+                .catch(() => null);
+            if (!user) continue;
+            leaderboardEmbed.addField(
+                user.tag,
+                `Messages: ${topTenMemberMessages[i]}`,
+                true
+            );
+        }
+
+        if (!leaderboardEmbed.fields.length)
+            leaderboardEmbed.setDescription('No members are currently on the leaderboard');
+
+        return leaderboardEmbed;
+    }
 }
 
-module.exports = { Leaderboard };
+module.exports = { Leaderboard, LeaderboardType };

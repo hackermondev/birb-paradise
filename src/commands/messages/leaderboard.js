@@ -4,6 +4,7 @@ const {
     SubCommandEntry,
 } = require('@sapphire/plugin-subcommands');
 const { Message, MessageEmbed } = require('discord.js');
+const { LeaderboardType } = require('../../library/leaderboard');
 
 class LeaderboardCommand extends SubCommandPluginCommand {
     constructor(context, options) {
@@ -29,40 +30,11 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async hourly(message, args) {
-        const allMessages = await this.container.redis.hgetall(
-            'messages_hourly'
-        );
-        const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
-
         const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
-        const topTenMemberMessages = sorted
-            .map((entry) => entry[1])
-            .slice(0, 10);
+        
+        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.HOURLY, message.guild, limit);
 
-        const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Hourly Message Leaderboard')
-            .setColor('RANDOM')
-            .setFooter({ text: message.guild.name });
-
-        for (var i = 0; i < topTenMembers.length; ++i) {
-            const user = await this.container.client.users
-                .fetch(topTenMembers[i])
-                .catch(() => null);
-            if (!user) continue;
-            leaderboardEmbed.addField(
-                user.tag,
-                `Messages: ${topTenMemberMessages[i]}`,
-                true
-            );
-        }
-
-        if (!leaderboardEmbed.fields.length)
-            return message.reply(
-                'No members are currently on the hourly leaderboard'
-            );
-
-        return message.reply({ embeds: [leaderboardEmbed] });
+        return message.reply({embeds: [leaderboard]});
     }
 
     /**
@@ -71,40 +43,11 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async daily(message, args) {
-        const allMessages = await this.container.redis.hgetall(
-            'messages_daily'
-        );
-        const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
-
         const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
-        const topTenMemberMessages = sorted
-            .map((entry) => entry[1])
-            .slice(0, 10);
+        
+        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.DAILY, message.guild, limit);
 
-        const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Daily Message Leaderboard')
-            .setColor('RANDOM')
-            .setFooter({ text: message.guild.name });
-
-        for (var i = 0; i < topTenMembers.length; ++i) {
-            const user = await this.container.client.users
-                .fetch(topTenMembers[i])
-                .catch(() => null);
-            if (!user) continue;
-            leaderboardEmbed.addField(
-                user.tag,
-                `Messages: ${topTenMemberMessages[i]}`,
-                true
-            );
-        }
-
-        if (!leaderboardEmbed.fields.length)
-            return message.reply(
-                'No members are currently on the daily leaderboard'
-            );
-
-        return message.reply({ embeds: [leaderboardEmbed] });
+        return message.reply({embeds: [leaderboard]});
     }
 
     /**
@@ -113,40 +56,11 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async weekly(message, args) {
-        const allMessages = await this.container.redis.hgetall(
-            'messages_weekly'
-        );
-        const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
-
         const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
-        const topTenMemberMessages = sorted
-            .map((entry) => entry[1])
-            .slice(0, 10);
+        
+        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.WEEKLY, message.guild, limit);
 
-        const leaderboardEmbed = new MessageEmbed()
-            .setTitle('Weekly Message Leaderboard')
-            .setColor('RANDOM')
-            .setFooter({ text: message.guild.name });
-
-        for (var i = 0; i < topTenMembers.length; ++i) {
-            const user = await this.container.client.users
-                .fetch(topTenMembers[i])
-                .catch(() => null);
-            if (!user) continue;
-            leaderboardEmbed.addField(
-                user.tag,
-                `Messages: ${topTenMemberMessages[i]}`,
-                true
-            );
-        }
-
-        if (!leaderboardEmbed.fields.length)
-            return message.reply(
-                'No members are currently on the weekly leaderboard'
-            );
-
-        return message.reply({ embeds: [leaderboardEmbed] });
+        return message.reply({embeds: [leaderboard]});
     }
 
     /**
@@ -155,38 +69,11 @@ class LeaderboardCommand extends SubCommandPluginCommand {
      * @param { Args } args
      */
     async alltime(message, args) {
-        const allMessages = await this.container.redis.hgetall(
-            'messages_alltime'
-        );
-        const sorted = Object.entries(allMessages).sort((a, b) => b[1] - a[1]);
-
         const limit = Number(args.getOption('limit') ?? args.getOption('l') ?? 10);
-        const topTenMembers = sorted.map((entry) => entry[0]).slice(0, limit);
-        const topTenMemberMessages = sorted
-            .map((entry) => entry[1])
-            .slice(0, 10);
+        
+        const leaderboard = await this.container.leaderboard.constructLeaderboardEmbed(LeaderboardType.ALL_TIME, message.guild, limit);
 
-        const leaderboardEmbed = new MessageEmbed()
-            .setTitle('All Time Message Leaderboard')
-            .setColor('RANDOM')
-            .setFooter({ text: message.guild.name });
-
-        for (var i = 0; i < topTenMembers.length; ++i) {
-            const user = await this.container.client.users
-                .fetch(topTenMembers[i])
-                .catch(() => null);
-            if (!user) continue;
-            leaderboardEmbed.addField(
-                user.tag,
-                `Messages: ${topTenMemberMessages[i]}`,
-                true
-            );
-        }
-
-        if (!leaderboardEmbed.fields.length)
-            return message.reply('No members are currently on the leaderboard');
-
-        return message.reply({ embeds: [leaderboardEmbed] });
+        return message.reply({embeds: [leaderboard]});
     }
 }
 
