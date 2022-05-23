@@ -1,0 +1,162 @@
+{
+    "coinEmoji": ":coin:",
+    "items": [
+        {
+            "name": "Rifle",
+            "id": "rifle",
+            "thumbnail": "https://cdn.discordapp.com/emojis/868286178070261760.webp?quality=lossless",
+            "description": "This hunting rifle allows you to use the hunt command, which can give you lots of different types of items!",
+            "type": "Tools",
+            "item": true,
+            "role": null,
+            "buyable": true,
+            "sellable": true,
+            "buyingCost": 200,
+            "sellCost": 100
+        },
+
+        {
+            "name": "Fishing Pole",
+            "id": "fishingpole",
+            "thumbnail": "https://cdn.discordapp.com/emojis/868519722759630858.webp?quality=lossless",
+            "description": "This fishing pole allows you to use the fish command, which can give you lots of different types of items!",
+            "type": "Tools",
+            "item": true,
+            "role": null,
+            "buyable": true,
+            "sellable": true,
+            "buyingCost": 500,
+            "sellCost": 100
+        },
+
+        {
+            "name": "Admin Perms",
+            "id": "adminperms",
+            "thumbnail": "",
+            "description": "Get admin perms.",
+            "type": "Roles",
+            "role": ["891293531455496202"],
+            "buyable": false,
+            "sellable": false,
+            "sellCost": 999999999999999999999999999999999999999
+        },
+        
+        {
+            "name": "Bypass Giveaway Requirements (48 hours)",
+            "id": "giveawayrequirementsbypass",
+            "thumbnail": "https://static.wikia.nocookie.net/discord/images/e/ea/Nitro.png/revision/latest?cb=20210105222501",
+            "description": "This item will allow you to bypass requirements for giveaways hosted in <#891377297989455892> for **48 hours**!",
+            "type": "Giveaways",
+            "role": ["976211740146692136"],
+            "buyable": true,
+            "sellable": false,
+            "buyingCost": 5000,
+            "expires": 1.728e+8
+        },
+
+        {
+            "name": "Bypass Claim Time (48 hours)",
+            "id": "giveawayclaimtimebypass",
+            "thumbnail": "https://static.wikia.nocookie.net/discord/images/e/ea/Nitro.png/revision/latest?cb=20210105222501",
+            "description": "This item will allow you to bypass claim time limits for giveaways for **48 hours**.",
+            "type": "Giveaways",
+            "role": ["976211794160943164"],
+            "buyable": true,
+            "sellable": false,
+            "buyingCost": 5000,
+            "expires": 1.728e+8
+        },
+
+
+        {
+            "name": "x2",
+            "id": "twotimesmultiplier",
+            "thumbnail": "",
+            "description": "2x multiplier while using commands like daily, bet, etc for **12 hours**",
+            "type": "Multipliers",
+            "buyable": true,
+            "sellable": false,
+            "multiplier": 2,
+            "buyingCost": 20000,
+            "maxLimit": 1,
+            "expires": 4.32e+7
+        },
+        {
+            "name": "x3",
+            "id": "threetimesmultiplier",
+            "thumbnail": "",
+            "description": "3x multiplier while using commands like daily, bet, etc for **12 hours**",
+            "type": "Multipliers",
+            "buyable": true,
+            "sellable": false,
+            "multiplier": 3,
+            "buyingCost": 50000,
+            "maxLimit": 1,
+            "expires": 4.32e+7
+        },
+        {
+            "name": "x5",
+            "id": "fivetimesmultiplier",
+            "thumbnail": "",
+            "description": "5x multiplier while using commands like daily, bet, etc for **12 hours**",
+            "type": "Multipliers",
+            "buyable": true,
+            "sellable": false,
+            "buyingCost": 100000,
+            "multiplier": 5,
+            "maxLimit": 1,
+            "expires": 4.32e+7
+        },
+
+
+        {
+            "name": "Basic Fish",
+            "id": "fish",
+            "item": true,
+            "thumbnail": "https://i.imgur.com/DR0aWDW.png",
+            "description": "The basic fish you can get from fishing. Sells for 300 coins.",
+            "type": "Animals",
+            "buyable": false,
+            "sellable": true,
+            "emoji": ":fish:",
+            "sellCost": 300
+        },
+        {
+            "name": "Rare Fish",
+            "id": "rarefish",
+            "item": true,
+            "thumbnail": "https://i.imgur.com/DR0aWDW.png",
+            "description": "Rare fish. Sells for 1000 coins.",
+            "type": "Animals",
+            "buyable": false,
+            "sellable": true,
+            "emoji": ":fish:",
+            "sellCost": 1000
+        },
+        {
+            "name": "Shark",
+            "id": "sharkfish",
+            "item": true,
+            "thumbnail": "https://i.imgur.com/DR0aWDW.png",
+            "description": "Shark. Very rare. Sells for 2000 coins.",
+            "type": "Animals",
+            "buyable": false,
+            "sellable": true,
+            "emoji": ":fish:",
+            "sellCost": 2000
+        },
+
+        {
+            "name": "Deer",
+            "id": "deer",
+            "item": true,
+            "thumbnail": "https://i.imgur.com/zkfv8Sm.png",
+            "description": "The basic deer you can get from hunting. Sells for 50 coins.",
+            "type": "Animals",
+            "buyable": false,
+            "sellable": true,
+            "emoji": ":deer:",
+            "sellCost": 50
+        }
+    ]
+}
