@@ -4,6 +4,9 @@ import { Leaderboard } from '../leaderboard';
 import { Perspective } from '../perspective';
 import { Tasks } from '../tasks';
 import { Utility } from '../utility';
+import { Leaderboard } from '../leaderboard';
+import { Economy } from '../economy';
+
 declare module '@sapphire/pieces' {
     interface Container {
         client: SapphireClient;
@@ -11,6 +14,7 @@ declare module '@sapphire/pieces' {
         redis: RedisCommander;
         perspective: Perspective;
         leaderboard: Leaderboard;
+        economy: Economy;
         tasks: Tasks;
         stores: StoreRegistry;
 	    logger: ILogger;

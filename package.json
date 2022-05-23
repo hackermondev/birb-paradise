@@ -5,15 +5,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "lint": "npx prettier --write \"./src/**/*.js\""
+    "lint": "npx prettier --write \"./src/**/*.js\"",
+    "dev": "nodemon ."
   },
   "engines": {
     "node": ">17.0.0",
     "npm": ">8.0.0"
   },
   "author": "Grav <grav4029@gmail.com>",
-  "contributors": ["Hackermon <therealhackermon@gmail.com>"],
-  "developers": ["671780654882619393", "963141789571756062"],
+  "contributors": [
+    "Hackermon <therealhackermon@gmail.com>"
+  ],
+  "developers": [
+    "671780654882619393",
+    "963141789571756062"
+  ],
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -26,6 +32,7 @@
   "description": "A custom bot for the server Birb Paradise.",
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
+    "@quick.eco/mongo": "^1.0.4",
     "@sapphire/discord-utilities": "^2.8.0",
     "@sapphire/discord.js-utilities": "^4.9.0",
     "@sapphire/framework": "^3.0.0-next.7ef7ac9.0",
@@ -40,11 +47,15 @@
     "discord.js": "^13.7.0",
     "dotenv": "^16.0.0",
     "ioredis": "^5.0.4",
+    "node-cron": "^3.0.0",
+    "nodemon": "^2.0.16",
     "petitio": "^1.4.0",
+    "quick.eco": "^6.0.0",
+    "quickmongo": "^5.1.2",
     "velocity-api": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "8.16.0",
+    "eslint": "8.15.0",
     "prettier": "2.6.2"
   }
 }
