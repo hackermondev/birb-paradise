@@ -22,12 +22,11 @@ class InfoCommand extends Command {
         const formatter = new DurationFormatter();
         const processMem = process.memoryUsage();
 
-        const devs = packageInfo.developers.map((dev) =>
-            this.container.client.users
-                .fetch(dev)
-                .then((user) => user.tag)
-                .catch(() => null)
-        );
+        for (var i = 0; i < packageInfo.developers.length; ++i) {
+            await this.container.client.users.fetch(packageInfo.developers[i]);
+        }
+        const devs = packageInfo.developers.map((id) => this.container.client.users.cache.get(id).tag);
+        
         const info = new MessageEmbed()
             .setTitle('Bot Details')
             .setFooter({ text: `${this.container.client.user.tag}` })
