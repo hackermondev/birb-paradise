@@ -12,7 +12,6 @@ class LeaderboardCommand extends SubCommandPluginCommand {
             ...options,
             name: 'leaderboard',
             description: 'Displays the top 10 users with the most messages.',
-            preconditions: ['Admin'],
             subCommands: [
                 'hourly',
                 'daily',
