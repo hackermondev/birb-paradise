@@ -56,12 +56,13 @@ class UpdateMessageCountListener extends Listener {
             );
         // rewards for every 20 messages per hour
         if ((hourlyMessageCount / 20) % 1 == 0) {
-            let amount = Math.floor(Math.random() * 5000) + 1000;
+            let amount = Math.floor(Math.random() * 250) + 100;
             await this.container.economy.ecoDB.addMoney(
                 message.author.id,
                 message.guild.id,
                 amount
             );
+
             const embed = new MessageEmbed()
                 .setTitle(`Message Rewards`)
                 .setDescription(
@@ -73,7 +74,9 @@ class UpdateMessageCountListener extends Listener {
                     iconURL: message.author.displayAvatarURL(),
                 });
 
-            message.reply(embed);
+            message.reply({
+                'embeds': [embed],
+            });
         }
     }
 }
