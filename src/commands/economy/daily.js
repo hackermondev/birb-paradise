@@ -10,7 +10,6 @@ class EconomyDailyCommand extends Command {
             name: 'daily',
             aliases: [],
             description: '(Economy) Recieve your daily amount of coins.',
-            enabled: true,
         });
     }
 
