@@ -31,7 +31,6 @@ const redis = new Redis({
     port: process.env.REDIS_PORT,
     password: process.env.REDIS_PWD,
 });
-container.logger.info('Connected to redis!');
 
 container.redis = redis;
 container.utility = new Utility();
