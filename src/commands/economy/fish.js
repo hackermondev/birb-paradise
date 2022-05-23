@@ -74,7 +74,7 @@ class EconomyFishCommand extends Command {
         const fishChances = {
             fish: 85,
             shark: 5,
-            sharkfish: 10,
+            rarefish: 10,
         };
 
         const array = [];
@@ -107,6 +107,7 @@ class EconomyFishCommand extends Command {
             message.guild.id,
             userItems
         );
+
         await container.economy.ecoDB._set(key, Date.now());
 
         message.reply({ embeds: [e] });

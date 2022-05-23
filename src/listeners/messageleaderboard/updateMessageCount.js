@@ -63,20 +63,15 @@ class UpdateMessageCountListener extends Listener {
                 amount
             );
 
-            const embed = new MessageEmbed()
-                .setTitle(`Message Rewards`)
-                .setDescription(
-                    `You were rewarded with **${amount} ${coinEmoji}** for being active in chat!`
-                )
-                .setTimestamp()
-                .setAuthor({
-                    name: message.author.username,
-                    iconURL: message.author.displayAvatarURL(),
+            message
+                .reply({
+                    content: `You were rewarded with **${amount} ${coinEmoji}** for being active in chat!`,
+                })
+                .then((m) => {
+                    m.delete({
+                        timeout: 6000,
+                    });
                 });
-
-            message.reply({
-                'embeds': [embed],
-            });
         }
     }
 }

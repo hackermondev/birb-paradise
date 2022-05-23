@@ -40,6 +40,18 @@
             "sellable": false,
             "sellCost": 999999999999999999999999999999999999999
         },
+        {
+            "name": "Custom Role",
+            "id": "customrole",
+            "thumbnail": "",
+            "description": "Allows you to get a custom role in the server. DM an admin to get the role.",
+            "type": "Roles",
+            "role": null,
+            "buyable": true,
+            "sellable": false,
+            "buyingCost": 20000,
+            "maxLimit": 1
+        },
         
         {
             "name": "Bypass Giveaway Requirements (48 hours)",

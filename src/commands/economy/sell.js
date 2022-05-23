@@ -1,5 +1,6 @@
 const { Command, Args, container } = require('@sapphire/framework');
 const { Message } = require('discord.js');
+const Fuse = require('fuse.js');
 const { items, coinEmoji } = require('../../../economy.config.json');
 const { SimpleEmbed, ErrorEmbed } = require('../../library/embeds');
 
@@ -44,7 +45,34 @@ class EconomySellCommand extends Command {
 
         const item = items.filter((i) => i.id == itemID.value)[0];
 
-        if (!item || item.sellable == false) {
+        if (!item) {
+            const fuse = new Fuse(
+                items.filter((i) => i.sellable),
+                {
+                    keys: ['id', 'name', 'description', 'emoji', 'type'],
+                    threshold: 0.3,
+                }
+            );
+
+            const results = fuse.search(itemID.value);
+            return message.reply({
+                embeds: [
+                    ErrorEmbed(
+                        `That item doesn't exist. ${
+                            results.length > 0
+                                ? `\nDid you mean: ${results
+                                      .map((r) => `\`${r.item.id}\``)
+                                      .join(', ')}?`
+                                : ''
+                        }`,
+                        `}`,
+                        message.author
+                    ),
+                ],
+            });
+        }
+
+        if (item.sellable == false) {
             return message.reply({
                 embeds: [
                     ErrorEmbed(`You cannot sell this item.`, message.author),
