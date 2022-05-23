@@ -28,7 +28,7 @@ class ClearCommand extends Command {
         const rawChannel = await args.pickResult('guildTextChannel');
         const channel = rawChannel.value ?? message.channel;
 
-        if (num < 1 || num > 100)
+        if (num.value < 1 || num.value > 100)
             return this.container.utility.errorReply(
                 message,
                 'The number of messages to delete must be between 1 and 100'
