@@ -6,10 +6,6 @@ require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
-const sentryDSN = process.env.SENTRY_DSN;
-// const { Octokit } = require('@octokit/core');
-const { Economy } = require('./library/economy');
-// const octokit = new Octokit({ auth: process.env.OCTOKIT_AUTH });
 const { Perspective } = require('./library/perspective');
 const { Leaderboard } = require('./library/leaderboard');
 const { Tasks } = require('./library/tasks');
@@ -19,24 +15,14 @@ process.on('uncaughtException', (error) => {
     container.utility.sendException(error, 'Uncaught');
 });
 
-process.on('exit', (code) => {
-    client.logger.info(
-        `Process exiting with code ${code}...(A restart signal was probably sent)`
-    );
-});
-
-
 const redis = new Redis({
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
     password: process.env.REDIS_PWD,
 });
-container.logger.info('Connected to redis!');
 
 container.redis = redis;
-container.utility = new Utility();
-
-container.redis?.on('connect', () => {
+container.redis.on('connect', () => {
     container.logger.info('Connected to redis!');
 });
 
@@ -76,8 +62,5 @@ Sentry.init({
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
-
-container.economy = new Economy();
-require('./library/cron-jobs');
 
 client.login(process.env.DISCORD_TOKEN);

@@ -17,7 +17,6 @@ class MessageEditLogging extends Listener {
      */
     async run(oldMessage, newMessage) {
         if (!this.container.utility.isBp(oldMessage.guild)) return;
-        if (!msgLogWebhookID || !msgLogWebhookToken) return;
         if (oldMessage.channel.parentId === '891307974948184114') return;
         if (!oldMessage.content || !newMessage.content) return; // TODO add support for image logging and other types of messages
         const webhookClient = new WebhookClient({
