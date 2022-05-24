@@ -114,7 +114,7 @@
             "type": "Multipliers",
             "buyable": true,
             "sellable": false,
-            "buyingCost": 100000,
+            "buyingCost": 1000000,
             "multiplier": 5,
             "maxLimit": 1,
             "expires": 4.32e+7

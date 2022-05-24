@@ -22,27 +22,23 @@ class EconomyLeaderboardCommand extends Command {
     async messageRun(message) {
         const leaderboard = await container.economy.ecoDB.leaderboard(
             message.guild.id,
-            15
+            20
         );
-      
-        let text = await Promise.all(
-            leaderboard.map(async (user, index) => {
-                let emoji = '';
-                if (index == 0) emoji = '🥇';
-                if (index == 1) emoji = '🥈';
-                if (index == 2) emoji = '🥉';
-                if (emoji == '') emoji = `🔹`;
 
-                const u = await message.client.users.fetch(user.user, {
-                    cache: false,
-                });
-                return `${emoji} **${user.money} ${coinEmoji}** - ${u.tag}`;
-            })
-        );
+        let text = leaderboard.map((user, index) => {
+            let emoji = '';
+            if (index == 0) emoji = '🥇';
+            if (index == 1) emoji = '🥈';
+            if (index == 2) emoji = '🥉';
+            if (emoji == '') emoji = `🔹`;
+
+            const u = await message.client.users.fetch(user.user);
+            return `${emoji} **${user.money} ${coinEmoji}** - <@${user.user}>`;
+        });
 
         text = text.join('\n');
         const embed = new MessageEmbed()
-            .setTitle('Top 15 Richest Users')
+            .setTitle(`Richest Users in ${message.guild.name}`)
             .setDescription(
                 text == '' ? `No one on the leaderboard :flush:` : text
             );
