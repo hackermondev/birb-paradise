@@ -49,7 +49,7 @@ class EconomyFishCommand extends Command {
             message.guild.id,
             'fishing_cooldown'
         );
-        const time = Time.Second * 15;
+        const time = Time.Second * 20;
 
         const cooldownRaw = await container.economy.ecoDB._get(key);
         const cooldown = Util.onCooldown(

@@ -48,7 +48,7 @@ class EconomyBegCommand extends Command {
             message.guild.id,
             'hunting_cooldown'
         );
-        const time = Time.Second * 5;
+        const time = Time.Second * 9;
 
         const cooldownRaw = await container.economy.ecoDB._get(key);
         const cooldown = Util.onCooldown(

@@ -9,8 +9,8 @@ class EconomyLeaderboardCommand extends Command {
             name: 'ecoleaderboard',
             aliases: ['moneyleaders', 'moneyleaderboard'],
             description:
-                '(Economy) View the top 10 richest users in the server.',
-            
+                '(Economy) View the top 15 richest users in the server.',
+
         });
     }
 
@@ -22,8 +22,9 @@ class EconomyLeaderboardCommand extends Command {
     async messageRun(message) {
         const leaderboard = await container.economy.ecoDB.leaderboard(
             message.guild.id,
-            10
+            15
         );
+      
         let text = await Promise.all(
             leaderboard.map(async (user, index) => {
                 let emoji = '';
@@ -41,7 +42,7 @@ class EconomyLeaderboardCommand extends Command {
 
         text = text.join('\n');
         const embed = new MessageEmbed()
-            .setTitle('Top 10 Richest Users')
+            .setTitle('Top 15 Richest Users')
             .setDescription(
                 text == '' ? `No one on the leaderboard :flush:` : text
             );
