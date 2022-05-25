@@ -49,7 +49,7 @@
             "role": null,
             "buyable": true,
             "sellable": false,
-            "buyingCost": 50000,
+            "buyingCost": 100000,
             "maxLimit": 1
         },
         
