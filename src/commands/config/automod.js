@@ -28,8 +28,8 @@ class AutomodCommand extends SubCommandPluginCommand {
         const currentAutomodConfig = new MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Current Automod Configuration');
-        for (var x = 0; x < validAutomods.length; ++x) {
-            const validAutomod = validAutomods[x];
+        for (var i = 0; i < validAutomods.length; ++i) {
+            const validAutomod = validAutomods[i];
             const automod = this.container.stores
                 .get('listeners')
                 .get(`${validAutomod}Automod`);

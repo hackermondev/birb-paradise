@@ -20,27 +20,22 @@ class FaqCommand extends Command {
      * @returns
      */
     async messageRun(message, args) {
-        let faqNumber = await args.pickResult('string');
-        if (!faqNumber.success)
+        const faqNumber = parseInt((await args.pickResult('string')).value);
+        if (!faqNumber)
             return this.container.utility.errorReply(
                 message,
-                'You need to enter a rule number'
+                'You need to enter a valid rule number'
             );
         message.channel.send(
-            "This command isn't ready yet, but you can still use it. However, it may not work as intended"
+            "**WARNING:** this command isn't ready yet, but you can still use it. However, it may not work as intended"
         );
-        faqNumber = faqNumber.value;
-        if (Number.isNaN(Number.parseInt(faqNumber)))
-            return this.container.utility.errorReply(
-                message,
-                `That's not a valid number`
-            );
+
         if (faqNumber < 0 || faqNumber >= rules.length)
             return this.container.utility.errorReply(
                 message,
                 `That's not a valid rule number`
             );
-        faqNumber = Number.parseInt(faqNumber);
+
         const faq = faqs[faqNumber - 1];
         const faqEmbed = new MessageEmbed()
             .setTitle(`Faq ${rules.indexOf(faq) + 1}`)

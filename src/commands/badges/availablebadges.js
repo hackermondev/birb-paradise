@@ -18,40 +18,28 @@ class AvailableBadgesCommand extends Command {
      * @param { Message } message
      */
     messageRun(message) {
-        const badgesLiteralStrings = [
-            'DISCORD_EMPLOYEE',
-            'HOUSE_BRILLIANCE',
-            'HOUSE_BALANCE',
-            'HOUSE_BRAVERY',
-            'EARLY_VERIFIED_BOT_DEVELOPER',
-            'DISCORD_CERTIFIED_MODERATOR',
-            'HYPESQUAD_EVENTS',
-            'EARLY_SUPPORTER',
-            'PARTNERED_SERVER_OWNER',
-            'BUGHUNTER_LEVEL_1',
-            'BUGHUNTER_LEVEL_2',
-        ];
         const badgesStrings = [
-            'discord staff',
-            'hypesquad brilliance',
-            'hypesquad balance',
-            'hypesquad bravery',
-            'early verified bot developer',
-            'discord certified moderator',
-            'hypesquad events',
-            'early supporter',
-            'partner',
-            'bug hunter level 1',
-            'bug hunter level 2',
+            'Discord Staff',
+            'Hypesquad Brilliance',
+            'Hypesquad Balance',
+            'hypesquad Bravery',
+            'Early Verified Bot Developer',
+            'Discord Certified Moderator',
+            'Hypesquad Events',
+            'Early Supporter',
+            'Partner',
+            'Bug Hunter Level 1',
+            'Bug Hunter Level 2',
         ];
         return message.reply(
-            `The badges that are currently supported are ${badgesLiteralStrings.join(
-                ', '
-            )}\n You can use them by using the \`${
-                this.container.client.options.defaultPrefix
-            } whohas\` command with the following identifiers: ${badgesStrings.join(
-                ', '
-            )}`
+            `The badges that are currently supported are **${badgesStrings
+                .map((badge) =>
+                    badge
+                        .split(' ')
+                        .map((word) => word[0].toUpperCase() + word.slice(1))
+                        .join(' ')
+                )
+                .join(', ')}**`
         );
     }
 }

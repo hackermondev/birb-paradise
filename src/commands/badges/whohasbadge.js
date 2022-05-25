@@ -55,28 +55,35 @@ class WhoHasBadgeCommand extends Command {
             'BUGHUNTER_LEVEL_1',
             'BUGHUNTER_LEVEL_2',
         ];
-        if (!badgesStrings.includes(rawBadge.value))
+
+        const index = badgesStrings.indexOf(rawBadge.value.toLowerCase());
+        if (index == -1)
             return message
                 .reply(
-                    `That badge doesn\'t exist. The badges you can search for are: ${badgesStrings.toString()}`
+                    `That badge doesn\'t exist. The badges you can search for are: **${badgesStrings
+                        .map((badge) =>
+                            badge
+                                .split(' ')
+                                .map(
+                                    (word) =>
+                                        word[0].toUpperCase() + word.slice(1)
+                                )
+                                .join(' ')
+                        )
+                        .join(', ')
+                        .toString()}**`
                 )
                 .then((reply) =>
                     setTimeout(function () {
                         message.delete();
                         reply.delete();
-                    }, 3500)
+                    }, 30000)
                 );
-        let index = badgesStrings.indexOf(rawBadge.value);
         let r = await message.reply(
             `Fetching members and checking for the badge ${badgesLiteralStrings[index]}...`
         );
-        let guilds = [...this.container.client.guilds.cache.values()];
-        for (let i = 0; i < guilds.length; i++) {
-            const guild = guilds[i];
-            await guild.members.fetch();
-        }
-        let membersWithBadge = [];
-        message.guild.members.cache
+        await message.guild.members.fetch();
+        const membersWithBadge = message.guild.members.cache
             .filter(
                 (member) =>
                     member.user.flags &&
@@ -85,9 +92,7 @@ class WhoHasBadgeCommand extends Command {
                         .toString()
                         .includes(badgesLiteralStrings[index])
             )
-            .forEach((member) =>
-                membersWithBadge.push(`${member.user.tag} (<@${member.id}>)`)
-            );
+            .map((member) => `${member.user.tag} (${member.user.toString()})`);
         if (membersWithBadge.length == 0)
             return r.edit(
                 `I couldn\'t find anyone who has the ${badgesLiteralStrings[index]} badge`
@@ -101,9 +106,12 @@ class WhoHasBadgeCommand extends Command {
             );
         } else {
             return r.edit(
-                `The following members have the ${
-                    badgesLiteralStrings[index]
-                } badge: ${membersWithBadge.toString()}`
+                `The following members have the **${badgesStrings[index]
+                    .split(' ')
+                    .map((word) => word[0].toUpperCase() + word.slice(1))
+                    .join(' ')}** badge: ${membersWithBadge
+                    .join(', ')
+                    .toString()}`
             );
         }
     }

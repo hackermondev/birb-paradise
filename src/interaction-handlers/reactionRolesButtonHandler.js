@@ -586,7 +586,7 @@ module.exports = { ReactionRolesButtonHandler };
  * @param { GuildMember } member
  */
 function removeOtherColorRoles(member) {
-    colorRoles.forEach((role) => {
+    for (const role of colorRoles) {
         member.roles.remove(role, 'Removing other color roles');
-    });
+    };
 }

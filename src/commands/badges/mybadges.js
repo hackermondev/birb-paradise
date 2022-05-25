@@ -30,11 +30,19 @@ class MyBadgesCommand extends Command {
                 'DISCORD_CERTIFIED_MODERATOR',
                 'Discord Certified Moderator'
             );
-        const badgesArray = badges.split(',');
-        if (!badgesArray.length) return message.reply('You have no badges');
+        if (!badges) return message.reply('You have no badges');
         else
             return message.reply(
-                `These are the badges you have: ${badgesArray.toString()}`
+                `These are the badges you have: **${badges
+                    .split(',')
+                    .map((badge) =>
+                        badge
+                            .split(' ')
+                            .map(
+                                (word) => word[0].toUpperCase() + word.slice(1)
+                            )
+                            .join(', ')
+                    )}**`
             );
     }
 }

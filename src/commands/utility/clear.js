@@ -18,35 +18,44 @@ class ClearCommand extends Command {
      * @param { Args } args
      */
     async messageRun(message, args) {
-        const num = await args.pickResult('integer');
-        if (!num.success)
+        const user = (await args.pickResult('user')).value ?? null;
+        const channel =
+            (await args.pickResult('guildTextChannel')).value ??
+            message.channel;
+
+        const num = (await args.pickResult('integer')).value;
+        if (!num)
             return this.container.utility.errorReply(
                 message,
                 'You must provide a number of messages to clear.'
             );
 
-        const rawChannel = await args.pickResult('guildTextChannel');
-        const channel = rawChannel.value ?? message.channel;
-
         if (num.value < 1 || num.value > 100)
             return this.container.utility.errorReply(
                 message,
-                'The number of messages to delete must be between 1 and 100'
+                'The number of messages to delete must be between 1 and 100.'
             );
 
         if (message.deletable) await message.delete();
 
-        const msgs = await channel.messages.fetch({ limit: num.value });
+        const msgs = user
+            ? [
+                  ...(await channel.messages.fetch({ limit: 100 }))
+                      .filter((m) => m.author.id === user.id)
+                      .values(),
+              ].slice(0, num)
+            : await channel.messages.fetch({ limit: num.value });
 
-        await channel.bulkDelete(msgs);
+        if (msgs.size == 0)
+            return message.channel.send('No messages to delete.');
 
-        return message.channel
-            .send(
-                `Cleared ${num.value} messages ${
-                    rawChannel.success ? rawChannel.value.toString() : ''
-                }.`
-            )
-            .then((reply) => setTimeout(() => reply.delete(), 3500));
+        try {
+            await channel.bulkDelete(msgs);
+        } catch (err) {
+            return message.channel.send('Could not delete any messages.');
+        }
+
+        return true;
     }
 }
 

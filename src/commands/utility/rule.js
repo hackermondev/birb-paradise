@@ -25,24 +25,19 @@ class RuleCommand extends Command {
      * @returns
      */
     async messageRun(message, args) {
-        let ruleNumber = await args.pickResult('string');
-        if (!ruleNumber.success)
+        const ruleNumber = parseInt((await args.pickResult('string')).value);
+        if (!ruleNumber)
             return this.container.utility.errorReply(
                 message,
-                'You need to enter a rule number'
+                'You need to enter a valid rule number'
             );
-        ruleNumber = ruleNumber.value;
-        if (Number.isNaN(Number.parseInt(ruleNumber)))
-            return this.container.utility.errorReply(
-                message,
-                "That's not a valid rule number"
-            );
+
         if (ruleNumber <= 0 || ruleNumber >= rules.length)
             return this.container.utility.errorReply(
                 message,
                 "That's not a valid rule number"
             );
-        ruleNumber = Number.parseInt(ruleNumber);
+
         const rule = rules[ruleNumber - 1];
         const ruleEmbed = new MessageEmbed()
             .setTitle(`Rule ${rules.indexOf(rule) + 1}`)

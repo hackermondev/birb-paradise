@@ -30,14 +30,16 @@ class LockdownCommand extends Command {
             );
         message.channel.send('Starting Lockdown...');
         const lockTime = new Stopwatch().start();
-        for (var i = 0; i < lockdownChannels.length; ++i) {
+        for (let i = 0; i < lockdownChannels.length; ++i) {
             const ch = message.guild.channels.cache.get(lockdownChannels[i]);
+            if (!ch || ch.type !== 'GUILD_TEXT') continue;
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: false,
             });
             await ch.permissionOverwrites.edit('925832521218920490', {
                 SEND_MESSAGES: true,
             });
+
             if (ch.id === mainChannel) continue;
             await ch.send(
                 `This channel is locked. see <#${mainChannel}> for more information.`

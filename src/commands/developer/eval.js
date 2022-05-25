@@ -42,7 +42,7 @@ class EvalCommand extends Command {
         if (!code.success)
             return this.container.utility.errorReply(
                 message,
-                'Provide code to evaluate'
+                'Provide code to evaluate.'
             );
         code = code.value;
         let output, type;

@@ -33,7 +33,7 @@ class BanCommand extends Command {
                 'You must provide a reason for banning.'
             );
         });
-        const days = Number(args.getOption('days')) || 0;
+        const days = +args.getOption('days') || 0;
 
         if (days > 7)
             return this.container.utility.errorReply(

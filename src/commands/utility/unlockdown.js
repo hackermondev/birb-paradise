@@ -30,7 +30,7 @@ class UnLockdownCommand extends Command {
             );
         message.channel.send('Starting Unlockdown...');
         const unlockTime = new Stopwatch().start();
-        for (var i = 0; i < lockdownChannels.length; ++i) {
+        for (let i = 0; i < lockdownChannels.length; ++i) {
             const ch = message.guild.channels.cache.get(lockdownChannels[i]);
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: null,
