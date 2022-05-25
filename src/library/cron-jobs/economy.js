@@ -22,7 +22,6 @@ async function run() {
         .split(',')
         .filter((a) => a != '');
 
-    console.log(usersWithItemsExpiring);
     for (let len = 0; len < usersWithItemsExpiring.length; len++) {
         const u = usersWithItemsExpiring[len];
         const user = u.split('|')[0];
