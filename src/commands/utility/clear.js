@@ -38,19 +38,14 @@ class ClearCommand extends Command {
 
         if (message.deletable) await message.delete();
 
-        const msgs = user
-            ? [
-                  ...(await channel.messages.fetch({ limit: 100 }))
-                      .filter((m) => m.author.id === user.id)
-                      .values(),
-              ].slice(0, num)
-            : await channel.messages.fetch({ limit: num.value });
+        const msgs = (await channel.messages.fetch({limit: 100})).filter(msg => user ? msg.member.user.id === user.id : true);
+        const messages = msgs.map(msg => msg);
 
-        if (msgs.size == 0)
+        if (!messages.length)
             return message.channel.send('No messages to delete.');
 
         try {
-            await channel.bulkDelete(msgs);
+            await channel.bulkDelete(messages);
         } catch (err) {
             return message.channel.send('Could not delete any messages.');
         }
