@@ -25,8 +25,10 @@ class InfoCommand extends Command {
         for (var i = 0; i < packageInfo.developers.length; ++i) {
             await this.container.client.users.fetch(packageInfo.developers[i]);
         }
-        const devs = packageInfo.developers.map((id) => this.container.client.users.cache.get(id).tag);
-        
+        const devs = packageInfo.developers.map(
+            (id) => this.container.client.users.cache.get(id).tag
+        );
+
         const info = new MessageEmbed()
             .setTitle('Bot Details')
             .setFooter({ text: `${this.container.client.user.tag}` })

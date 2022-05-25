@@ -63,8 +63,12 @@ class UpdateMessageCountListener extends Listener {
                 amount
             );
 
-        const reply = await message.reply(`You were rewarded with **${amount} ${coinEmoji}** for being active in chat!`);
-        setTimeout(() => { reply.delete() }, 5000);
+            const reply = await message.reply(
+                `You were rewarded with **${amount} ${coinEmoji}** for being active in chat!`
+            );
+            setTimeout(() => {
+                reply.delete();
+            }, 5000);
         }
     }
 }

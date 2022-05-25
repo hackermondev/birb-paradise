@@ -1,6 +1,7 @@
 const { Command, Args, container } = require('@sapphire/framework');
 const { coinEmoji } = require('../../../economy.config.json');
 const { MessageEmbed, Message } = require('discord.js');
+const { Util } = require('quick.eco');
 
 class EconomyLeaderboardCommand extends Command {
     constructor(context, options) {
@@ -10,7 +11,6 @@ class EconomyLeaderboardCommand extends Command {
             aliases: ['moneyleaders', 'moneyleaderboard'],
             description:
                 '(Economy) View the top 15 richest users in the server.',
-
         });
     }
 
@@ -20,10 +20,27 @@ class EconomyLeaderboardCommand extends Command {
      * @param { Args } args
      */
     async messageRun(message) {
-        const leaderboard = await container.economy.ecoDB.leaderboard(
-            message.guild.id,
-            20
-        );
+        await container.economy.ecoDB.__checkManager();
+        const limit = 20;
+
+        const data = (await container.economy.ecoDB.all())
+            .filter((x) => x.ID.startsWith(container.economy.ecoDB.prefix))
+            .filter((x) => x.ID.includes(message.guild.id))
+            .splice(0, limit);
+
+        const leaderboard = [];
+        data.sort((a, b) => b.data - a.data).forEach((item, index) => {
+            const parsedKey = Util.parseKey(item.ID);
+
+            const data = {
+                position: index + 1,
+                user: `${parsedKey.userID}`,
+                guild: `${parsedKey.guildID || ''}`,
+                money: isNaN(item.data) ? 0 : item.data,
+            };
+
+            leaderboard.push(data);
+        });
 
         let text = leaderboard.map((user, index) => {
             let emoji = '';
@@ -31,7 +48,7 @@ class EconomyLeaderboardCommand extends Command {
             if (index == 1) emoji = '🥈';
             if (index == 2) emoji = '🥉';
             if (emoji == '') emoji = `🔹`;
-          
+
             return `${emoji} **${user.money} ${coinEmoji}** - <@${user.user}>`;
         });
 
