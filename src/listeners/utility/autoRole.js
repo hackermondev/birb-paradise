@@ -17,7 +17,7 @@ class AutoRoleListener extends Listener {
      */
     async run(member) {
         if (!this.container.utility.isBp(member.guild)) return;
-        member.roles.add(bpVerifiedRole, 'Autorole on join');
+        return member.roles.add(bpVerifiedRole, 'Autorole on join');
     }
 }
 

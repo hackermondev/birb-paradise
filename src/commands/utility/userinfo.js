@@ -6,7 +6,7 @@ class UserInfoCommand extends Command {
         super(context, {
             ...options,
             name: 'userinfo',
-            aliases: ['user', 'ui'],
+            aliases: ['user', 'ui', 'whois'],
             description: 'Shows you the details of a user',
             preconditions: ['Staff'],
         });
