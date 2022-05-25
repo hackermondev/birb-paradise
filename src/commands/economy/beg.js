@@ -31,7 +31,7 @@ class EconomyBegCommand extends Command {
             message.author.id,
             message.guild.id,
             amount,
-            { timeout: 9000 }
+            { timeout: 1 * 60000 }
         );
         if (beg.cooldown)
             return message.reply({

@@ -31,8 +31,7 @@ class EconomyLeaderboardCommand extends Command {
             if (index == 1) emoji = '🥈';
             if (index == 2) emoji = '🥉';
             if (emoji == '') emoji = `🔹`;
-
-            const u = await message.client.users.fetch(user.user);
+          
             return `${emoji} **${user.money} ${coinEmoji}** - <@${user.user}>`;
         });
 
