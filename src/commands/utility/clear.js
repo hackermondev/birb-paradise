@@ -30,7 +30,7 @@ class ClearCommand extends Command {
                 'You must provide a number of messages to clear.'
             );
 
-        if (num.value < 1 || num.value > 100)
+        if (num < 1 || num > 100)
             return this.container.utility.errorReply(
                 message,
                 'The number of messages to delete must be between 1 and 100.'
@@ -39,7 +39,7 @@ class ClearCommand extends Command {
         if (message.deletable) await message.delete();
 
         const msgs = (await channel.messages.fetch({limit: 100})).filter(msg => user ? msg.member.user.id === user.id : true);
-        const messages = msgs.map(msg => msg);
+        const messages = msgs.map(msg => msg).slice(0, num);
 
         if (!messages.length)
             return message.channel.send('No messages to delete.');
