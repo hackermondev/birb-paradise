@@ -10,7 +10,6 @@ class RaidMassbanCommand extends Command {
             description: 'Bans users from the server for raiding',
             usage: `[user ids]`,
             preconditions: ['Staff'],
-            enabled: false,
         });
     }
 
