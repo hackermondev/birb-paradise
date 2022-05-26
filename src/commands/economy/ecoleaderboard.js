@@ -42,7 +42,7 @@ class EconomyLeaderboardCommand extends Command {
             leaderboard.push(data);
         });
 
-        let text = leaderboard.map((user, index) => {
+        let text = leaderboard.map(async(user, index) => {
             let emoji = '';
             if (index == 0) emoji = '🥇';
             if (index == 1) emoji = '🥈';
