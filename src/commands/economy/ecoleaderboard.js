@@ -21,7 +21,7 @@ class EconomyLeaderboardCommand extends Command {
      */
     async messageRun(message) {
         await container.economy.ecoDB.__checkManager();
-        const limit = 20;
+        const limit = 5;
 
         const data = (await container.economy.ecoDB.all())
             .filter((x) => x.ID.startsWith(container.economy.ecoDB.prefix))
@@ -49,14 +49,15 @@ class EconomyLeaderboardCommand extends Command {
             if (index == 2) emoji = '🥉';
             if (emoji == '') emoji = `🔹`;
 
-            return `${emoji} **${user.money} ${coinEmoji}** - <@${user.user}>`;
+            const u = await this.container.client.users.fetch(user.user, { cache: false });
+            return `${emoji} **${user.money} ${coinEmoji}** - ${u.tag}`;
         });
 
         text = text.join('\n');
         const embed = new MessageEmbed()
             .setTitle(`Richest Users in ${message.guild.name}`)
             .setDescription(
-                text == '' ? `No one on the leaderboard :flush:` : text
+                text == '' ? `No one on the leaderboard :flushed:` : text
             );
 
         message.channel.send({ embeds: [embed] });
