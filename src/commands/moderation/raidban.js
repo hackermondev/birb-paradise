@@ -49,7 +49,7 @@ class RaidMassbanCommand extends Command {
             const user = users.value[x];
             if (
                 this.container.utility.isStaffMember(
-                    message.guild.members.cache.get(user)
+                    message.guild.members.cache.get(user.id)
                 )
             ) {
                 errors.push(
@@ -60,9 +60,9 @@ class RaidMassbanCommand extends Command {
             await message.guild.members
                 .ban(user, {
                     days: 7,
-                    reason: `Raiding or attempting to raid ${message.guild.name}`,
+                    reason: `Raiding or attempting to raid ${message.guild.name}.`,
                 })
-                .catch((e) => errors.push(`Error banning ${user}: ${e}`));
+                .catch((e) => errors.push(`Error banning ${user} (${user.id}): ${e}`));
             await this.container.utility.delay(400);
         }
 
