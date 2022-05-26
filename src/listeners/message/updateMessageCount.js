@@ -18,6 +18,7 @@ class UpdateMessageCountListener extends Listener {
     async run(message) {
         if (message.author.bot) return;
         if (message.channel.type !== 'GUILD_TEXT') return;
+        if (message.system) return;
         if (!this.container.utility.isBp(message.guild)) return;
         if (!message.member) return;
 
