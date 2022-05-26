@@ -1,12 +1,12 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message } = require('discord.js');
 
-class RaidBanCommand extends Command {
+class RaidMassbanCommand extends Command {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'raidban',
-            aliases: ['rban'],
+            name: 'raidmassban',
+            aliases: ['rban', 'raidban'],
             description: 'Bans users from the server for raiding',
             usage: `[user ids]`,
             preconditions: ['Staff'],
@@ -25,45 +25,41 @@ class RaidBanCommand extends Command {
                 message,
                 'This command is currently only available to Birb Paradise'
             );
-        const users = await args.restResult('string');
+        const users = await args.repeatResult('user');
         if (!users.success)
             return this.container.utility.errorReply(
                 message,
-                'You must provide users to ban for raiding'
+                'You must provide valid users to ban for raiding'
             );
-        const usersArray = users.value.split(' ');
-        const isAdmin = this.container.stores
-            .get('preconditions')
-            .get('Admin')
-            .messageRun(message).success
-            ? true
-            : false;
-        if (!isAdmin && usersArray.length > 20)
+        const isAdmin = (
+            await this.container.stores
+                .get('preconditions')
+                .get('Admin')
+                .messageRun(message)
+        ).success;
+
+        if (!isAdmin && users.value.length > 20)
             return this.container.utility.errorReply(
                 message,
-                'You can only ban up to 20 users at a time'
+                'You can only ban up to 20 users at a time.'
             );
-        message.reply(`Banning ${usersArray.length} users`);
+        message.reply(`Banning ${users.value.length} users...`);
+
         let errors = [];
-        for (let x = 0; x < usersArray.length; ++x) {
-            const user = usersArray[x];
-            const resolvedUser = await this.container.client.users
-                .fetch(user)
-                .catch(() => null);
-            if (!resolvedUser) {
-                errors.push(`${user} is not a valid user`);
-                continue;
-            }
+        for (let x = 0; x < users.value.length; ++x) {
+            const user = users.value[x];
             if (
                 this.container.utility.isStaffMember(
                     message.guild.members.cache.get(user)
                 )
             ) {
-                errors.push(`${user} is a staff member`);
+                errors.push(
+                    `${user} is a staff member, so you cannot ban them.`
+                );
                 continue;
             }
             await message.guild.members
-                .ban(resolvedUser, {
+                .ban(user, {
                     days: 7,
                     reason: `Raiding or attempting to raid ${message.guild.name}`,
                 })
@@ -74,19 +70,20 @@ class RaidBanCommand extends Command {
         if (!errors.length)
             return message.channel.send(
                 `Successfully banned ${
-                    usersArray.length - 1
+                    users.value.length - 1
                 } users from this server for raiding`
             );
         else {
-            return message.channel.send(
-                `Successfully banned ${
+            return message.channel.send({
+                content: `Successfully banned ${
                     errors.length - usersArray.length
                 } users from this server. There were errors banning some users:\n  \`\`\`js\n${errors.join(
                     '\n'
-                )} \`\`\``
-            );
+                )} \`\`\``,
+                allowedMentions: { users: [], roles: [], parse: [] },
+            });
         }
     }
 }
 
-module.exports = { RaidBanCommand };
+module.exports = { RaidMassbanCommand };
