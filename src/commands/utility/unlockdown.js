@@ -30,13 +30,19 @@ class UnLockdownCommand extends Command {
             );
         message.channel.send('Starting Unlockdown...');
         const unlockTime = new Stopwatch().start();
-        for (let i = 0; i < lockdownChannels.length; ++i) {
-            const ch = message.guild.channels.cache.get(lockdownChannels[i]);
+        const channels = [...message.guild.channels.cache.values()];
+        for (var x = 0; x < channels.length; ++x) {
+            const ch = channels[x];
+            if (!ch || ch.type !== 'GUILD_TEXT') continue;
+            if (lockdownIgnoredCategories.includes(ch.parentId) || lockdownIgnoredChannels.includes(ch.id)) continue;
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: null,
             });
+
             if (ch.id === mainChannel) continue;
-            await ch.send(`This channel is now unlocked.`);
+            await ch.send(
+                `This channel is locked. see <#${mainChannel}> for more information.`
+            );
             await this.container.utility.delay(100);
         }
         await message.guild.channels.cache
