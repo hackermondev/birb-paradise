@@ -1,6 +1,6 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { lockdownChannels, mainChannel } = require('../../../config.json');
+const { lockdownIgnoredCategories, lockdownIgnoredChannels, mainChannel } = require('../../../config.json');
 const { Stopwatch } = require('@sapphire/stopwatch');
 
 class UnLockdownCommand extends Command {
