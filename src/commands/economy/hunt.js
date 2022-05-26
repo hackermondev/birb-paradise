@@ -70,7 +70,7 @@ class EconomyBegCommand extends Command {
             });
         }
 
-        const deerFound = Math.floor(Math.random() * 5) + 1;
+        const deerFound = Math.floor(Math.random() * 3) + 1;
         const e = SimpleEmbed(
             `You hunted **${deerFound} :deer:**. You can sell them through the shop command.`,
             message.author

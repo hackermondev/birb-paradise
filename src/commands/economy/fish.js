@@ -73,7 +73,7 @@ class EconomyFishCommand extends Command {
 
         const fishChances = {
             fish: 85,
-            shark: 5,
+            sharkfish: 5,
             rarefish: 10,
         };
 
@@ -102,11 +102,22 @@ class EconomyFishCommand extends Command {
             date: new Date().toString(),
         });
 
-        await container.economy.shop.setItems(
+        const i = await container.economy.shop.setItems(
             message.author.id,
             message.guild.id,
             userItems
         );
+
+        if(i.length != userItems.length) {
+            return message.reply({
+                embeds: [
+                    ErrorEmbed(
+                        `Something went wrong. Please try again in a few minutes.`,
+                        message.author
+                    ),
+                ],
+            });
+        };
 
         await container.economy.ecoDB._set(key, Date.now());
 

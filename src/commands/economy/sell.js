@@ -44,7 +44,6 @@ class EconomySellCommand extends Command {
         if (amount == 0) return message.delete();
 
         const item = items.filter((i) => i.id == itemID.value)[0];
-
         if (!item) {
             const fuse = new Fuse(
                 items.filter((i) => i.sellable),
@@ -87,6 +86,7 @@ class EconomySellCommand extends Command {
             message.author.id,
             message.guild.id
         );
+        
         const itemsOwned = userItems.filter((i) => i.id == item.id);
         if (amountArg.value == 'all') {
             amount = itemsOwned.length;
