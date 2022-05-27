@@ -53,7 +53,6 @@ class EconomyLeaderboardCommand extends Command {
             return `${emoji} **${user.money} ${coinEmoji}** - ${u.tag}`;
         }))
 
-
         text = text.join('\n');
         const embed = new MessageEmbed()
             .setTitle(`Richest Users in ${message.guild.name}`)
