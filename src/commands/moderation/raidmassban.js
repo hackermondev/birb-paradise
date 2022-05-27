@@ -24,8 +24,8 @@ class RaidMassbanCommand extends Command {
                 message,
                 'This command is currently only available to Birb Paradise'
             );
-        const users = await args.repeatResult('user');
-        if (!users.success)
+        const rawUsers = await args.repeatResult('user');
+        if (!rawUsers.success)
             return this.container.utility.errorReply(
                 message,
                 'You must provide valid users to ban for raiding'
@@ -37,7 +37,9 @@ class RaidMassbanCommand extends Command {
                 .messageRun(message)
         ).success;
 
-        if (!isAdmin && users.value.length > 20)
+        const users = [...new Set(rawUsers.value)];
+
+        if (!isAdmin && users.length > 20)
             return this.container.utility.errorReply(
                 message,
                 'You can only ban up to 20 users at a time.'
@@ -45,8 +47,9 @@ class RaidMassbanCommand extends Command {
         message.reply(`Banning ${users.value.length} users...`);
 
         let errors = [];
-        for (let x = 0; x < users.value.length; ++x) {
-            const user = users.value[x];
+
+        for (let x = 0; x < users.length; ++x) {
+            const user = users[x];
             const member = await message.guild.members.fetch(user.id).catch(() => null);
             if (
                 member && this.container.utility.isStaffMember(member)
@@ -68,13 +71,13 @@ class RaidMassbanCommand extends Command {
         if (!errors.length)
             return message.channel.send(
                 `Successfully banned ${
-                    users.value.length
+                    users.length
                 } users from this server for raiding`
             );
         else {
             return message.channel.send({
                 content: `Successfully banned ${
-                    errors.length - users.value.length + 1
+                    errors.length - users.length + 1
                 } users from this server. There were errors banning some users:\n  \`\`\`js\n${errors.join(
                     '\n'
                 )} \`\`\``,
