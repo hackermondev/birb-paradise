@@ -68,13 +68,13 @@ class RaidMassbanCommand extends Command {
         if (!errors.length)
             return message.channel.send(
                 `Successfully banned ${
-                    users.value.length - 1
+                    users.value.length
                 } users from this server for raiding`
             );
         else {
             return message.channel.send({
                 content: `Successfully banned ${
-                    errors.length - users.value.length
+                    errors.length - users.value.length + 1
                 } users from this server. There were errors banning some users:\n  \`\`\`js\n${errors.join(
                     '\n'
                 )} \`\`\``,
