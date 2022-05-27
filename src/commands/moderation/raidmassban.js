@@ -47,10 +47,9 @@ class RaidMassbanCommand extends Command {
         let errors = [];
         for (let x = 0; x < users.value.length; ++x) {
             const user = users.value[x];
+            const member = await message.guild.members.fetch(user.id).catch(() => null);
             if (
-                this.container.utility.isStaffMember(
-                    await message.guild.members.fetch(user.id)
-                )
+                member && this.container.utility.isStaffMember(member)
             ) {
                 errors.push(
                     `${user.tag} is a staff member, so you cannot ban them.`
