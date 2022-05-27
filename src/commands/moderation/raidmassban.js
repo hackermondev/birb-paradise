@@ -75,7 +75,7 @@ class RaidMassbanCommand extends Command {
         else {
             return message.channel.send({
                 content: `Successfully banned ${
-                    errors.length - usersArray.length
+                    errors.length - users.value.length
                 } users from this server. There were errors banning some users:\n  \`\`\`js\n${errors.join(
                     '\n'
                 )} \`\`\``,
