@@ -49,11 +49,11 @@ class RaidMassbanCommand extends Command {
             const user = users.value[x];
             if (
                 this.container.utility.isStaffMember(
-                    message.guild.members.cache.get(user.id)
+                    await message.guild.members.fetch(user.id)
                 )
             ) {
                 errors.push(
-                    `${user} is a staff member, so you cannot ban them.`
+                    `${user.tag} is a staff member, so you cannot ban them.`
                 );
                 continue;
             }
