@@ -55,7 +55,7 @@
     "petitio": "^1.4.0",
     "quick.eco": "^6.0.0",
     "quickmongo": "^5.1.2",
-    "velocity-api": "^2.0.3"
+    "velocity-api": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "8.15.0",
