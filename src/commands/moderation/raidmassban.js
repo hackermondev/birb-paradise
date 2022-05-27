@@ -44,7 +44,7 @@ class RaidMassbanCommand extends Command {
                 message,
                 'You can only ban up to 20 users at a time.'
             );
-        message.reply(`Banning ${users.value.length} users...`);
+        message.reply(`Banning ${users.length} users...`);
 
         let errors = [];
 
