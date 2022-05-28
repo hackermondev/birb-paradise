@@ -1,5 +1,6 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
+const { walltextAutomodIgnoredChannels } = require('../../../config.json');
 const maxNewLines = 10;
 const newLineRegex = /\n/g;
 
@@ -20,6 +21,7 @@ class WalltextAutomodListener extends Listener {
     async run(message) {
         if (!(await this.container.utility.automodChecks(message))) return;
 
+        if (walltextAutomodIgnoredChannels.includes(message.channel.id)) return;
         const matches = message.content.match(newLineRegex);
         if (!matches) return;
         if (matches.length < maxNewLines) return;
