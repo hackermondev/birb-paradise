@@ -5,7 +5,6 @@ container.redis?.del(`runningEconomyCronJob`);
 
 // Check expired shop items
 async function run() {
-    container.logger.info(`Running economy cron job.`);
     /*
         usersWithItemsExpiring = "
             userid|guildid|itemid,
@@ -75,9 +74,6 @@ async function run() {
             userItems
         );
         usersWithItemsExpiring.splice(len, 1);
-        container.logger.info(
-            `Removed item "${u.split('|')[2]}" from user ${discordUser.tag}.`
-        );
     }
 
     if (usersWithItemsExpiring.length == 0) {
@@ -90,7 +86,6 @@ async function run() {
     }
 
     await container.redis?.del(`runningEconomyCronJob`);
-    container.logger.info(`Done running economy cron job.`);
 }
 
 module.exports = { run };
