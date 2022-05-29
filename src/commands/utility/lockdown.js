@@ -35,9 +35,14 @@ class LockdownCommand extends Command {
         message.channel.send('Starting Lockdown...');
         const lockTime = new Stopwatch().start();
         const channels = [...message.guild.channels.cache.values()];
+        let errors = [];
         for (var x = 0; x < channels.length; ++x) {
             const ch = channels[x];
             if (!ch || ch.type !== 'GUILD_TEXT') continue;
+            if (!ch.manageable) {
+                errors.push(`Could not lock ${ch}. Missing Permissions.`);
+                continue;
+            }
             if (
                 lockdownIgnoredCategories.includes(ch.parentId) ||
                 lockdownIgnoredChannels.includes(ch.id)
@@ -73,7 +78,7 @@ class LockdownCommand extends Command {
             .get(mainChannel)
             .send({ embeds: [serverLockEmbed] });
         return message.channel.send(
-            `The server has been locked down. Process took ${lockTime}`
+            `The server has been locked down. Process took ${lockTime} ${errors.length ? `\n${errors.join('\n')}` : ''}`
         );
     }
 }

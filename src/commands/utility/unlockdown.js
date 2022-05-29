@@ -35,6 +35,7 @@ class UnLockdownCommand extends Command {
         message.channel.send('Starting Unlockdown...');
         const unlockTime = new Stopwatch().start();
         const channels = [...message.guild.channels.cache.values()];
+        let errors = [];
         for (var x = 0; x < channels.length; ++x) {
             const ch = channels[x];
             if (!ch || ch.type !== 'GUILD_TEXT') continue;
@@ -70,7 +71,7 @@ class UnLockdownCommand extends Command {
             .get(mainChannel)
             .send({ embeds: [serverUnlockEmbed] });
         message.channel.send(
-            `The server has been unlocked. Process took ${unlockTime}`
+            `The server has been unlocked. Process took ${unlockTime} ${errors.length ? `\n${errors.join('\n')}` : ''}`
         );
     }
 }
