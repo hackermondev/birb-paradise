@@ -1,4 +1,4 @@
-const { SapphireClient, container } = require('@sapphire/framework');
+const { SapphireClient, container, LogLevel } = require('@sapphire/framework');
 const { Options, Intents } = require('discord.js');
 const Sentry = require('@sentry/node');
 const Redis = require('ioredis');
@@ -67,6 +67,7 @@ const client = new SapphireClient({
             filter: () => (m) => m.id != '925829323762577479',
         },
     },
+    logger: {level: LogLevel.Debug}
 });
 
 Sentry.init({
