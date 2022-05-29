@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.2
 
-FROM node:17.6.0
+FROM node:18.0.0
 
 ENV NODE_ENV=production
 
@@ -10,7 +10,7 @@ WORKDIR /home/container
 COPY ["package.json", "package-lock.json", "yarn.lock", "./"]
 
 #RUN yarn install #
-RUN yarn install --immutable --prod --prefer-offline --non-interactive --pure-lockfile --check-files
+RUN yarn install --immutable
 
 # copy other files # 
 COPY . .
@@ -18,4 +18,4 @@ COPY . .
 # change workdir to src #
 WORKDIR home/container/src
 
-CMD ["node", "."]
+CMD ["node", "src/index.js"]

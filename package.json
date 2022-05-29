@@ -1,6 +1,6 @@
 {
   "name": "birb-helper",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,12 +9,13 @@
     "dev": "nodemon ."
   },
   "engines": {
-    "node": ">17.0.0",
-    "npm": ">8.0.0"
+    "node": ">18.0.0",
+    "npm": ">8.8.0"
   },
   "author": "Grav <grav4029@gmail.com>",
   "contributors": [
-    "Hackermon <therealhackermon@gmail.com>"
+    "Hackermon <therealhackermon@gmail.com>",
+    "Piyeris <piyeris0@gmail.com>"
   ],
   "developers": [
     "671780654882619393",
@@ -51,7 +52,6 @@
     "fuse.js": "^6.6.2",
     "ioredis": "^5.0.4",
     "node-cron": "^3.0.0",
-    "nodemon": "^2.0.16",
     "petitio": "^1.4.0",
     "quick.eco": "^6.0.0",
     "quickmongo": "^5.1.2",
@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "eslint": "8.15.0",
-    "prettier": "2.6.2"
+    "prettier": "2.6.2",
+    "nodemon": "^2.0.16"
   }
 }
