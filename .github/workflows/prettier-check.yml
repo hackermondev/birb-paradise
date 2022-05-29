@@ -2,7 +2,8 @@ name: Prettier formatting check
 
 on:
   pull_request:
-    types: [opened, edited, reopened, synchronized]
+    types: [opened, edited, reopened, synchronize]
+  pull_request_review:
   workflow_dispatch:
 
 jobs:
