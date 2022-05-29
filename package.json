@@ -55,6 +55,7 @@
     "petitio": "^1.4.0",
     "quick.eco": "^6.0.0",
     "quickmongo": "^5.1.2",
+    "statcord.js": "^3.4.2",
     "velocity-api": "^3.0.0"
   },
   "devDependencies": {

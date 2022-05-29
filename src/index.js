@@ -1,5 +1,6 @@
 const { SapphireClient, container, LogLevel } = require('@sapphire/framework');
 const { Options, Intents } = require('discord.js');
+const Statcord = require('statcord.js');
 const Sentry = require('@sentry/node');
 const Redis = require('ioredis');
 require('@sapphire/plugin-logger/register');
@@ -65,6 +66,14 @@ Sentry.init({
     dsn: process.env.SENTRY_DSN,
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
+});
+
+container.statcord = new Statcord.Client({
+    key: process.env.STATCORD_API_KEY,
+    client: client,
+    postCpuStatistics: true,
+    postMemStatistics: true,
+    postNetworkStatistics: true
 });
 
 container.economy = new Economy();

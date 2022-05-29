@@ -6,6 +6,7 @@ import { Tasks } from '../tasks';
 import { Utility } from '../utility';
 import { Leaderboard } from '../leaderboard';
 import { Economy } from '../economy';
+import Statcord from "statcord.js" 
 
 declare module '@sapphire/pieces' {
     interface Container {
@@ -15,6 +16,7 @@ declare module '@sapphire/pieces' {
         perspective: Perspective;
         leaderboard: Leaderboard;
         economy: Economy;
+        statcord: Statcord.Client;
         tasks: Tasks;
         stores: StoreRegistry;
 	    logger: ILogger;
