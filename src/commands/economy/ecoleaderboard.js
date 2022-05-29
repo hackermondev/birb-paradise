@@ -1,5 +1,4 @@
 const { Command, Args, container } = require('@sapphire/framework');
-const { coinEmoji } = require('../../../economy.config.json');
 const { MessageEmbed, Message } = require('discord.js');
 const { Util } = require('quick.eco');
 
@@ -26,11 +25,13 @@ class EconomyLeaderboardCommand extends Command {
         const data = (await container.economy.ecoDB.all())
             .filter((x) => x.ID.startsWith(container.economy.ecoDB.prefix))
             .filter((x) => x.ID.includes(message.guild.id))
-            .splice(0, limit);
+            .sort((a, b) => b.data - a.data)
+            .slice(0, limit);
 
-        const leaderboard = [];
-        data.sort((a, b) => b.data - a.data).forEach((item, index) => {
-            const parsedKey = Util.parseKey(item.ID);
+        console.log(data);
+
+        const leaderboard = data.map((item, index) => {
+          const parsedKey = Util.parseKey(item.ID)
 
             const data = {
                 position: index + 1,
@@ -39,30 +40,27 @@ class EconomyLeaderboardCommand extends Command {
                 money: isNaN(item.data) ? 0 : item.data,
             };
 
-            leaderboard.push(data);
-        });
+            return data;
+        })
 
-        let text = await Promise.all(
-            leaderboard.map(async (user, index) => {
-                let emoji = '';
-                if (index == 0) emoji = '🥇';
-                if (index == 1) emoji = '🥈';
-                if (index == 2) emoji = '🥉';
-                if (emoji == '') emoji = `🔹`;
+        const emojiLibrary = {
+            0: '🥇',
+            1: '🥈',
+            2: '🥉',
+            3: '🔹',
+            4: '🔹',
+        }
 
-                const u = await this.container.client.users.fetch(user.user, {
-                    cache: false,
-                });
-                return `${emoji} **${user.money} ${coinEmoji}** - ${u.tag}`;
-            })
-        );
+        const text = (await Promise.all(leaderboard.map(async (user, index) => {
+            const emoji = emojiLibrary[index];
 
-        text = text.join('\n');
+            const u = await this.container.client.users.fetch(user.user);
+            return `${emoji} ${u.tag} - **${user.money.toLocaleString()}**`;
+        }))).join('\n');
+
         const embed = new MessageEmbed()
             .setTitle(`Richest Users in ${message.guild.name}`)
-            .setDescription(
-                text == '' ? `No one on the leaderboard :flushed:` : text
-            );
+            .setDescription(text);
 
         message.channel.send({ embeds: [embed] });
     }
