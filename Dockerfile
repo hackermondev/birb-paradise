@@ -7,7 +7,7 @@ ENV NODE_ENV=production
 WORKDIR /home/container
 
 # copy config files #
-COPY ["package.json", "package-lock.json", "yarn.lock", "./"]
+COPY ["package.json", "yarn.lock", "./"]
 
 #RUN yarn install #
 RUN yarn install --immutable
