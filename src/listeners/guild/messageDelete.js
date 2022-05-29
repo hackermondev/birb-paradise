@@ -1,10 +1,12 @@
 const { time, TimestampStyles } = require('@discordjs/builders');
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-class MessageDeleteLogging extends Listener {
+
+class MessageDeleteListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
+            name: Events.MessageDelete,
             event: Events.MessageDelete,
         });
     }
@@ -14,7 +16,16 @@ class MessageDeleteLogging extends Listener {
      * @param { Message } message
      */
     async run(message) {
-        if (!process.env.msgLogWebhookID || !process.env.msgLogWebhookToken) return;
+        await this.logDelete(message);
+    }
+
+    /**
+     *
+     * @param { Message } message
+     */
+    async logDelete(message) {
+        if (!process.env.msgLogWebhookID || !process.env.msgLogWebhookToken)
+            return;
         if (!this.container.utility.isBp(message.guild)) return;
         if (message.channel.parentId === '891307974948184114') return;
         if (!message.content) return;
@@ -31,8 +42,12 @@ class MessageDeleteLogging extends Listener {
             .setColor('DARK_ORANGE');
         if (message.attachments.size > 0)
             msgDeleteEmbed.setImage(message.attachments.first().url);
-        this.container.utility.sendWebhook(process.env.msgLogWebhookID, process.env.msgLogWebhookToken, msgDeleteEmbed);
+        this.container.utility.sendWebhook(
+            process.env.msgLogWebhookID,
+            process.env.msgLogWebhookToken,
+            msgDeleteEmbed
+        );
     }
 }
 
-module.exports = { MessageDeleteLogging };
+module.exports = { MessageDeleteListener };

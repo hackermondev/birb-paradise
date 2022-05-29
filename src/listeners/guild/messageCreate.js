@@ -1,12 +1,11 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { coinEmoji } = require('../../../economy.config.json');
-const { Message, MessageEmbed } = require('discord.js');
+const { Message } = require('discord.js');
 
-class UpdateMessageCountListener extends Listener {
+class MessageCreateListener extends Listener {
     constructor(context, options) {
         super(context, {
             ...options,
-            name: 'updateMessageCount',
+            name: Events.MessageCreate,
             event: Events.MessageCreate,
         });
     }
@@ -16,6 +15,15 @@ class UpdateMessageCountListener extends Listener {
      * @param { Message } message
      */
     async run(message) {
+        await this.updateMessageCount(message);
+        await this.checkReactChannels(message);
+    }
+
+    /**
+     *
+     * @param { Message } message
+     */
+    async updateMessageCount(message) {
         if (message.author.bot) return;
         if (message.channel.type !== 'GUILD_TEXT') return;
         if (message.system) return;
@@ -72,6 +80,22 @@ class UpdateMessageCountListener extends Listener {
             }, 5000);
         }
     }
+
+    /**
+     *
+     * @param { Message } message
+     * @returns
+     */
+    async checkReactChannels(message) {
+        if (!this.container.utility.isBp(message.guild) || message.author.bot)
+            return;
+        if (!this.container.utility.isReactChannel(message.channel)) return;
+        if (message.author.id === message.guild.ownerId) return;
+        return message
+            .react('👍')
+            .then(message.react('👎'))
+            .catch(() => {});
+    }
 }
 
-module.exports = { UpdateMessageCountListener };
+module.exports = { MessageCreateListener };

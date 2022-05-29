@@ -73,7 +73,7 @@ container.statcord = new Statcord.Client({
     client: client,
     postCpuStatistics: true,
     postMemStatistics: true,
-    postNetworkStatistics: true
+    postNetworkStatistics: true,
 });
 
 container.economy = new Economy();
