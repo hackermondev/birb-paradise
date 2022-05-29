@@ -99,7 +99,7 @@ class Economy {
             adapter: 'mongo',
             adapterOptions: {
                 collection: `economy-${process.env['NODE_ENV'] || 'dev'}`, // => Collection Name
-                uri: MONGO_URI,
+                uri: process.env.MONGO_URI,
             },
         });
 
