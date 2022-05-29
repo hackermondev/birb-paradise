@@ -14,7 +14,7 @@ class MessageDeleteLogging extends Listener {
      * @param { Message } message
      */
     async run(message) {
-        if (!msgLogWebhookID || !msgLogWebhookToken) return;
+        if (!process.env.msgLogWebhookID || !process.env.msgLogWebhookToken) return;
         if (!this.container.utility.isBp(message.guild)) return;
         if (message.channel.parentId === '891307974948184114') return;
         if (!message.content) return;
