@@ -13,7 +13,7 @@ class LockdownCommand extends Command {
             ...options,
             name: 'lockdown',
             aliases: ['lockall'],
-            description: 'Locks down Birb Paradise',
+            description: 'Locks down Birb Paradise.',
             preconditions: ['Staff'],
         });
     }

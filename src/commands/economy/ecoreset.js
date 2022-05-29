@@ -8,8 +8,7 @@ class EconomyResetCommand extends Command {
             name: 'ecoreset',
             preconditions: ['Admin'],
             description:
-                '(Economy) Resets everyones balance to 0 and removes all shop items.',
-            enabled: true,
+                'Resets everyones balance to 0 and removes all shop items.',
         });
     }
 

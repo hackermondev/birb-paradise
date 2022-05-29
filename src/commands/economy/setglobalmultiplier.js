@@ -1,7 +1,5 @@
 const { Command, Args, container } = require('@sapphire/framework');
 const { Message } = require('discord.js');
-const { coinEmoji } = require('../../../economy.config.json');
-const { SimpleEmbed, ErrorEmbed } = require('../../library/embeds');
 
 class GlobalMultiplierCommand extends Command {
     constructor(context, options) {
@@ -9,8 +7,7 @@ class GlobalMultiplierCommand extends Command {
             ...options,
             name: 'setglobalmultiplier',
             preconditions: ['Admin'],
-            description: '(Economy) Set global multiplier for the server.',
-            enabled: true,
+            description: 'Sets the global multiplier for the server.',
         });
     }
 
@@ -23,7 +20,7 @@ class GlobalMultiplierCommand extends Command {
         const multiplierArg = await args.pickResult('number');
         let multiplier = 0;
 
-        if (!multiplierArg.error) multiplier = multiplierArg.value;
+        if (multiplierArg.success) multiplier = multiplierArg.value;
 
         if (multiplier < 0) {
             await container.redis?.del(`globalMultiplier`);

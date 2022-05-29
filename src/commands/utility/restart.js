@@ -8,7 +8,7 @@ class RestartCommand extends Command {
             name: 'restart',
             aliases: ['reboot'],
             preconditions: ['Staff'],
-            description: 'Restarts Birb Helper',
+            description: 'Restarts Birb Helper.',
         });
     }
 
@@ -28,7 +28,7 @@ class RestartCommand extends Command {
             'restart',
             `${message.channel.id}:${Date.now().toString()}`
         );
-
+        
         return process.exit();
     }
 }

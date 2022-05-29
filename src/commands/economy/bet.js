@@ -8,9 +8,7 @@ class EconomyBetCommand extends Command {
         super(context, {
             ...options,
             name: 'bet',
-            aliases: [],
-            description: '(Economy) Bet some of your coins.',
-            enabled: true,
+            description: 'Bet some of your coins.',
         });
     }
 

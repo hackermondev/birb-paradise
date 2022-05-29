@@ -8,8 +8,7 @@ class EconomyDailyCommand extends Command {
         super(context, {
             ...options,
             name: 'daily',
-            aliases: [],
-            description: '(Economy) Recieve your daily amount of coins.',
+            description: 'Recieve your daily amount of coins.',
         });
     }
 

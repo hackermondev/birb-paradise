@@ -10,10 +10,8 @@ class EconomyFishCommand extends Command {
         super(context, {
             ...options,
             name: 'fish',
-            aliases: [],
             description:
-                '(Economy) Fish for fish. Requires you to have a fishing pole.',
-            enabled: true,
+                'Fish for fish. Requires you to have a fishing pole.',
         });
     }
 

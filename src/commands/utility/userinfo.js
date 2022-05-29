@@ -1,3 +1,4 @@
+const { time, TimestampStyles } = require('@discordjs/builders');
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed, GuildMember } = require('discord.js');
 
@@ -39,13 +40,13 @@ class UserInfoCommand extends Command {
             .addField('ID', user.id, true)
             .addField(
                 'Account registered',
-                `<t:${Math.round(user.createdAt / 1000)}>`,
+                time(user.createdAt, TimestampStyles.LongDateTime),
                 true
             );
         if (member instanceof GuildMember) {
             userEmbed.addField(
                 'Joined server',
-                `<t:${Math.round(member.joinedAt / 1000)}>`,
+                time(member.joinedAt, TimestampStyles.LongDateTime),
                 true
             );
             if (member.roles.cache.size > 0)

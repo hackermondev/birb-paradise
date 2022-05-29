@@ -1,7 +1,9 @@
 const { Command } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
 const { DurationFormatter } = require('@sapphire/time-utilities');
+const formatter = new DurationFormatter();
 const packageInfo = require(`${process.cwd()}/package.json`);
+
 class InfoCommand extends Command {
     constructor(context, options) {
         super(context, {
@@ -19,7 +21,6 @@ class InfoCommand extends Command {
      * @returns
      */
     async messageRun(message) {
-        const formatter = new DurationFormatter();
         const processMem = process.memoryUsage();
 
         for (var i = 0; i < packageInfo.developers.length; ++i) {
@@ -31,6 +32,7 @@ class InfoCommand extends Command {
 
         const info = new MessageEmbed()
             .setTitle('Bot Details')
+            .setURL('https://statcord.com/bot/925829323762577479')
             .setFooter({ text: `${this.container.client.user.tag}` })
             .setColor('RANDOM')
             .addField('Version', packageInfo.version, true)

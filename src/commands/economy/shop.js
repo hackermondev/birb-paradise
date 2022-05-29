@@ -9,8 +9,6 @@ const {
 const {
     Message,
     MessageEmbed,
-    Modal,
-    TextInputComponent,
 } = require('discord.js');
 
 class EconomyShopCommand extends Command {

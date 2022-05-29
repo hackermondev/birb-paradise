@@ -5,8 +5,7 @@ class MemberCountCommand extends Command {
         super(context, {
             ...options,
             name: 'membercount',
-            description: '',
-            enabled: false,
+            description: 'Shows you the number of members in this server.',
         });
     }
 

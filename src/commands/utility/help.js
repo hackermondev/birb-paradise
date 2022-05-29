@@ -39,7 +39,7 @@ class HelpCommand extends Command {
             for (
                 var x = 0;
                 x < this.container.stores.get('commands').categories.length;
-                x++
+                ++x
             ) {
                 categories.push(
                     this.container.stores.get('commands').categories[x]
@@ -68,7 +68,7 @@ class HelpCommand extends Command {
                 }
             });
 
-            for (var i = 0; i < categories.length; i++) {
+            for (var i = 0; i < categories.length; ++i) {
                 if (isNullOrUndefinedOrEmpty(categoryCommands[i])) continue;
                 helpEmbed.addField(
                     `${categories[i].charAt(0).toUpperCase()}${categories[
@@ -117,12 +117,11 @@ class HelpCommand extends Command {
             commandsData.push(
                 `**Permissions:** ${cmd.options.preconditions.join(', ')}\n`
             );
-        if (!cmd.enabled) commandsData.push(`*This command is disabled*\n`);
-        const commandsDataString = commandsData.join(' ');
         const commandHelpEmbed = new MessageEmbed()
             .setColor('BLUE')
             .setTitle(`Information for ${cmd.name}`)
-            .setDescription(`${commandsDataString}`);
+            .setDescription(commandsData.join(' '));
+        
         return message.reply({ embeds: [commandHelpEmbed] });
     }
 }

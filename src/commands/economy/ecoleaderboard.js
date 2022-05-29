@@ -9,7 +9,7 @@ class EconomyLeaderboardCommand extends Command {
             name: 'ecoleaderboard',
             aliases: ['moneyleaders', 'moneyleaderboard'],
             description:
-                '(Economy) View the top 15 richest users in the server.',
+                'View the top 15 richest users in the server.',
         });
     }
 

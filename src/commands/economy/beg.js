@@ -8,9 +8,7 @@ class EconomyBegCommand extends Command {
         super(context, {
             ...options,
             name: 'beg',
-            aliases: [],
-            description: '(Economy) Beg for coins. smh.',
-            enabled: true,
+            description: 'beg for coins. smh.',
         });
     }
 

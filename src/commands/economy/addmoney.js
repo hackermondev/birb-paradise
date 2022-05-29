@@ -9,8 +9,7 @@ class AddMoneyCommand extends Command {
             ...options,
             name: 'addmoney',
             preconditions: ['Admin'],
-            description: "(Economy) Add money to user's balance.",
-            enabled: true,
+            description: "Add money to user's balance.",
         });
     }
 

@@ -9,10 +9,8 @@ class EconomyBegCommand extends Command {
         super(context, {
             ...options,
             name: 'hunt',
-            aliases: [],
             description:
-                '(Economy) Hunt for animals. Requires you to have a rifle.',
-            enabled: true,
+                'Hunt for animals. Requires you to have a rifle.',
         });
     }
 

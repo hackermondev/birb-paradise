@@ -9,9 +9,7 @@ class HourlyCommand extends Command {
         super(context, {
             ...options,
             name: 'hourly',
-            aliases: [],
-            description: '(Economy) Recieve your hourly amount of coins.',
-            enabled: true,
+            description: 'Recieve your hourly amount of coins.',
         });
     }
 

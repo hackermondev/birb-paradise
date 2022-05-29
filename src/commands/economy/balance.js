@@ -9,8 +9,7 @@ class EconomyBalanceCommand extends Command {
             ...options,
             name: 'balance',
             aliases: ['bal'],
-            description: '(Economy) View your current balance!',
-            enabled: true,
+            description: 'View your current balance!',
         });
     }
 

@@ -9,9 +9,7 @@ class EconomySellCommand extends Command {
         super(context, {
             ...options,
             name: 'sell',
-            preconditions: [],
-            description: '(Economy) Quicker way to sell items.',
-            enabled: true,
+            description: 'Quicker way to sell items.',
         });
     }
 
