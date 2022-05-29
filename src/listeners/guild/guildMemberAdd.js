@@ -2,8 +2,7 @@ const { Listener, Events } = require('@sapphire/framework');
 const { GuildMember } = require('discord.js');
 const {
     bpVerifiedRole,
-    accountAgeKickWebhookID,
-    accountAgeKickWebhookToken,
+    dividerPingRole
 } = require('../../../config.json');
 
 class GuildMemberAddListener extends Listener {
@@ -46,7 +45,7 @@ class GuildMemberAddListener extends Listener {
      */
     async checkAccountAge(member) {
         if (!this.container.utility.isBp(member.guild)) return;
-        if (!accountAgeKickWebhookID || !accountAgeKickWebhookToken) return;
+        if (!process.env.accountAgeKickWebhookID || !process.env.accountAgeKickWebhookToken) return;
 
         const accountAgeKickEmbed = new MessageEmbed()
             .setTitle(
@@ -68,8 +67,8 @@ class GuildMemberAddListener extends Listener {
                 .catch(() => {});
             await member.kick('Account was less than 1d old');
             this.container.utility.sendWebhook(
-                accountAgeKickWebhookID,
-                accountAgeKickWebhookToken,
+                process.env.accountAgeKickWebhookID,
+                process.env.accountAgeKickWebhookToken,
                 accountAgeLogEmbed
             );
             return true;
