@@ -1,7 +1,5 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { Message, MessageEmbed, WebhookClient } = require('discord.js');
-const msgLogWebhookID = process.env.msgLogWebhookID;
-const msgLogWebhookToken = process.env.msgLogWebhookToken;
+const { Message, MessageEmbed } = require('discord.js');
 class MessageEditLogging extends Listener {
     constructor(context, options) {
         super(context, {
@@ -20,10 +18,6 @@ class MessageEditLogging extends Listener {
         if (!msgLogWebhookID || !msgLogWebhookToken) return;
         if (oldMessage.channel.parentId === '891307974948184114') return;
         if (!oldMessage.content || !newMessage.content) return; // TODO add support for image logging and other types of messages
-        const webhookClient = new WebhookClient({
-            id: msgLogWebhookID,
-            token: msgLogWebhookToken,
-        });
         const msgDeleteEmbed = new MessageEmbed()
             .setTitle(`Message edited by ${oldMessage.author.tag}`)
             .addField('Old Message', `${oldMessage.content}`)
@@ -32,9 +26,7 @@ class MessageEditLogging extends Listener {
             .addField('Channel', `<#${oldMessage.channel.id}>`, true)
             .addField('Time', `<t:${Math.round(Date.now() / 1000)}>`, true)
             .setColor('DARK_PURPLE');
-        webhookClient.send({
-            embeds: [msgDeleteEmbed],
-        });
+        this.container.utility.sendWebhook(process.env.msgLogWebhookID, process.env.msgLogWebhookToken, msgDeleteEmbed);
     }
 }
 
