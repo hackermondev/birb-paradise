@@ -1,5 +1,6 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message } = require('discord.js');
+const { coinEmoji } = require('../../../economy.config.json');
 
 class MessageCreateListener extends Listener {
     constructor(context, options) {
