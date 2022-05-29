@@ -6,7 +6,7 @@ class Perspective {
      * @param { String } apiKey
      */
     constructor(apiKey) {
-        this.perspective = new Velocity(apiKey);
+        this.velocity = new Velocity(apiKey);
     }
 
     /**
@@ -14,7 +14,7 @@ class Perspective {
      * @param { String } text
      */
     async analyzeSpam(text) {
-        const analysis = await this.perspective.processMessage(text, {
+        const analysis = await this.velocity.processMessage(text, {
             attributes: ['SPAM'],
             languages: ['en'],
             doNotStore: true,

@@ -42,16 +42,20 @@ class EconomyLeaderboardCommand extends Command {
             leaderboard.push(data);
         });
 
-        let text = await Promise.all(leaderboard.map(async (user, index) => {
-            let emoji = '';
-            if (index == 0) emoji = '🥇';
-            if (index == 1) emoji = '🥈';
-            if (index == 2) emoji = '🥉';
-            if (emoji == '') emoji = `🔹`;
+        let text = await Promise.all(
+            leaderboard.map(async (user, index) => {
+                let emoji = '';
+                if (index == 0) emoji = '🥇';
+                if (index == 1) emoji = '🥈';
+                if (index == 2) emoji = '🥉';
+                if (emoji == '') emoji = `🔹`;
 
-            const u = await this.container.client.users.fetch(user.user, { cache: false });
-            return `${emoji} **${user.money} ${coinEmoji}** - ${u.tag}`;
-        }))
+                const u = await this.container.client.users.fetch(user.user, {
+                    cache: false,
+                });
+                return `${emoji} **${user.money} ${coinEmoji}** - ${u.tag}`;
+            })
+        );
 
         text = text.join('\n');
         const embed = new MessageEmbed()

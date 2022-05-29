@@ -6,10 +6,7 @@ require('@sapphire/plugin-logger/register');
 require('dotenv').config();
 const { prefix } = require('../config.json');
 const { Utility } = require('./library/utility');
-const sentryDSN = process.env.SENTRY_DSN;
-// const { Octokit } = require('@octokit/core');
 const { Economy } = require('./library/economy');
-// const octokit = new Octokit({ auth: process.env.OCTOKIT_AUTH });
 const { Perspective } = require('./library/perspective');
 const { Leaderboard } = require('./library/leaderboard');
 const { Tasks } = require('./library/tasks');
@@ -17,12 +14,6 @@ const { Tasks } = require('./library/tasks');
 process.on('uncaughtException', (error) => {
     console.log(error);
     container.utility.sendException(error, 'Uncaught');
-});
-
-process.on('exit', (code) => {
-    client.logger.info(
-        `Process exiting with code ${code}...(A restart signal was probably sent)`
-    );
 });
 
 const redis = new Redis({
@@ -67,7 +58,7 @@ const client = new SapphireClient({
             filter: () => (m) => m.id != '925829323762577479',
         },
     },
-    logger: {level: LogLevel.Debug}
+    logger: { level: LogLevel.Debug },
 });
 
 Sentry.init({

@@ -588,5 +588,5 @@ module.exports = { ReactionRolesButtonHandler };
 function removeOtherColorRoles(member) {
     for (const role of colorRoles) {
         member.roles.remove(role, 'Removing other color roles');
-    };
+    }
 }

@@ -1,6 +1,10 @@
 const { Command, Args } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
-const { lockdownIgnoredCategories, lockdownIgnoredChannels, mainChannel } = require('../../../config.json');
+const {
+    lockdownIgnoredCategories,
+    lockdownIgnoredChannels,
+    mainChannel,
+} = require('../../../config.json');
 const { Stopwatch } = require('@sapphire/stopwatch');
 
 class LockdownCommand extends Command {
@@ -34,7 +38,11 @@ class LockdownCommand extends Command {
         for (var x = 0; x < channels.length; ++x) {
             const ch = channels[x];
             if (!ch || ch.type !== 'GUILD_TEXT') continue;
-            if (lockdownIgnoredCategories.includes(ch.parentId) || lockdownIgnoredChannels.includes(ch.id)) continue;
+            if (
+                lockdownIgnoredCategories.includes(ch.parentId) ||
+                lockdownIgnoredChannels.includes(ch.id)
+            )
+                continue;
             await ch.permissionOverwrites.edit(message.guild.roles.everyone, {
                 SEND_MESSAGES: false,
             });

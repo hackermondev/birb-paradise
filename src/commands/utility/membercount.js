@@ -11,7 +11,9 @@ class MemberCountCommand extends Command {
     }
 
     async messageRun() {
-        return message.reply(`There are ${message.guild.memberCount} members in this server.`);
+        return message.reply(
+            `There are ${message.guild.memberCount} members in this server.`
+        );
     }
 }
 

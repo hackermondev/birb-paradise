@@ -50,10 +50,10 @@ class RaidMassbanCommand extends Command {
 
         for (let x = 0; x < users.length; ++x) {
             const user = users[x];
-            const member = await message.guild.members.fetch(user.id).catch(() => null);
-            if (
-                member && this.container.utility.isStaffMember(member)
-            ) {
+            const member = await message.guild.members
+                .fetch(user.id)
+                .catch(() => null);
+            if (member && this.container.utility.isStaffMember(member)) {
                 errors.push(
                     `${user.tag} is a staff member, so you cannot ban them.`
                 );
@@ -64,15 +64,15 @@ class RaidMassbanCommand extends Command {
                     days: 7,
                     reason: `Raiding or attempting to raid ${message.guild.name}.`,
                 })
-                .catch((e) => errors.push(`Error banning ${user} (${user.id}): ${e}`));
+                .catch((e) =>
+                    errors.push(`Error banning ${user} (${user.id}): ${e}`)
+                );
             await this.container.utility.delay(400);
         }
 
         if (!errors.length)
             return message.channel.send(
-                `Successfully banned ${
-                    users.length
-                } users from this server for raiding`
+                `Successfully banned ${users.length} users from this server for raiding`
             );
         else {
             return message.channel.send({

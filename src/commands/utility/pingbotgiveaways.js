@@ -9,9 +9,9 @@ class PingBotGiveawaysCommand extends Command {
             ...options,
             name: 'pingbotgiveaways',
             aliases: ['pbg'],
-            description: 'Ping the \"Bot Giveaways Role\".',
+            description: 'Ping the "Bot Giveaways Role".',
             preconditions: ['GiveawayHoster'],
-            cooldownDelay: 30 * Time.Minute
+            cooldownDelay: 30 * Time.Minute,
         });
     }
 
@@ -21,7 +21,10 @@ class PingBotGiveawaysCommand extends Command {
      * @returns
      */
     async messageRun(message) {
-        message.channel.send({content: `> <@&${botGiveawayRole}> New giveaway! Please check the above message`, allowedMentions: {users: [], roles: [botGiveawayRole], parse: []}});
+        message.channel.send({
+            content: `> <@&${botGiveawayRole}> New giveaway! Please check the above message`,
+            allowedMentions: { users: [], roles: [botGiveawayRole], parse: [] },
+        });
         message.delete();
     }
 }

@@ -3,10 +3,9 @@ const { items } = require('../../economy.config.json');
 const { Database } = require('quickmongo');
 const { container } = require('@sapphire/pieces');
 
-const MONGO_URI = process.env['MONGO_URI'];
 class EconomyShop {
     constructor() {
-        this.db = new Database(MONGO_URI);
+        this.db = new Database(process.env.MONGO_URI);
         this.connected = false;
     }
 
@@ -72,7 +71,7 @@ class EconomyShop {
         // Doing this so it puts the user in the database if they don't exist.
         await this.getData(userID, guildID);
 
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; ++i) {
             await this.db.push(n, data[i]);
         }
 
@@ -97,10 +96,10 @@ class EconomyShop {
 class Economy {
     constructor() {
         this.ecoDB = new EconomyManager({
-            adapter: 'mongo', // => sqlite, mongo or mysql
+            adapter: 'mongo',
             adapterOptions: {
                 collection: `economy-${process.env['NODE_ENV'] || 'dev'}`, // => Collection Name
-                uri: MONGO_URI, // => Mongodb uri
+                uri: MONGO_URI,
             },
         });
 

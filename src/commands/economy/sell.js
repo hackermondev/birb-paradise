@@ -86,7 +86,7 @@ class EconomySellCommand extends Command {
             message.author.id,
             message.guild.id
         );
-        
+
         const itemsOwned = userItems.filter((i) => i.id == item.id);
         if (amountArg.value == 'all') {
             amount = itemsOwned.length;

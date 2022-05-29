@@ -108,7 +108,7 @@ class EconomyFishCommand extends Command {
             userItems
         );
 
-        if(i.length != userItems.length) {
+        if (i.length != userItems.length) {
             return message.reply({
                 embeds: [
                     ErrorEmbed(
@@ -117,7 +117,7 @@ class EconomyFishCommand extends Command {
                     ),
                 ],
             });
-        };
+        }
 
         await container.economy.ecoDB._set(key, Date.now());
 
