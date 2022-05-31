@@ -45,7 +45,7 @@ class GuildMemberAddListener extends Listener {
      */
     async checkAccountAge(member) {
         if (!this.container.utility.isBp(member.guild)) return;
-        if (!process.env.accountAgeKickWebhookID || !process.env.accountAgeKickWebhookToken) return;
+        
 
         const accountAgeKickEmbed = new MessageEmbed()
             .setTitle(
@@ -66,6 +66,7 @@ class GuildMemberAddListener extends Listener {
                 .send({ embeds: [accountAgeKickEmbed] })
                 .catch(() => {});
             await member.kick('Account was less than 1d old');
+            if (!process.env.accountAgeKickWebhookID || !process.env.accountAgeKickWebhookToken) return;
             this.container.utility.sendWebhook(
                 process.env.accountAgeKickWebhookID,
                 process.env.accountAgeKickWebhookToken,
