@@ -109,11 +109,14 @@ class MessageCreateListener extends Listener {
         if (message.system) return;
         if (message.channel.type !== 'GUILD_TEXT') return;
 
+        if (message.content.startsWith('>afk')) return;
+
         const afk = await this.container.redis.hget('afk', message.author.id);
 
         if (afk) {
             await this.container.redis.hdel('afk', message.author.id);
-            message.reply('Welcome back!')
+            const reply = await message.reply('Welcome back!');
+            setTimeout(() => reply.delete(), 3500);
         }
 
         if (!message.mentions.members.size) return;
