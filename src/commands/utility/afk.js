@@ -20,6 +20,8 @@ class AfkCommand extends Command {
 	async messageRun(message, args) {
 		const rawReason = await args.restResult('string');
 
+		if (rawReason.value?.length > 100) return this.container.utility.errorReply(message, 'Your AFK reason cannot be longer than 100 characters.');
+
 		const reason = rawReason.value ?? 'No reason provided.';
 
 		await this.setAFK(message.author, reason);
