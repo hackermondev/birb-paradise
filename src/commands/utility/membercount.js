@@ -1,4 +1,5 @@
 const { Command } = require('@sapphire/framework');
+const { Message } = require('discord.js');
 
 class MemberCountCommand extends Command {
     constructor(context, options) {
@@ -9,7 +10,12 @@ class MemberCountCommand extends Command {
         });
     }
 
-    async messageRun() {
+    /**
+     * 
+     * @param { Message } message 
+     * @returns 
+     */
+    async messageRun(message) {
         return message.reply(
             `There are ${message.guild.memberCount} members in this server.`
         );
