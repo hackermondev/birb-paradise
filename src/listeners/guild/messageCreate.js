@@ -109,11 +109,10 @@ class MessageCreateListener extends Listener {
         if (message.system) return;
         if (message.channel.type !== 'GUILD_TEXT') return;
 
-        if (message.content.startsWith('>afk')) return;
-
         const afk = await this.container.redis.hget('afk', message.author.id);
 
         if (afk) {
+            if (message.content.startsWith('>afk')) return;
             await this.container.redis.hdel('afk', message.author.id);
             const reply = await message.reply('Welcome back!');
             setTimeout(() => reply.delete(), 3500);
@@ -124,8 +123,8 @@ class MessageCreateListener extends Listener {
         for (var i = 0; i < mentioned.length; ++i) {
             const member = mentioned[i];
             if (member.id === message.author.id) continue;
-            const afk = await this.container.redis.hget('afk', member.id);
-            if (afk) message.reply({content: `${member.user.tag} is currenly AFK: ${afk}`, allowedMentions: {users: [], roles: [], parse: []}});
+            const checkAFK = await this.container.redis.hget('afk', member.id);
+            if (checkAFK) message.reply({content: `${member.user.tag} is currently AFK: ${afk}`, allowedMentions: {users: [message.author.id], roles: [], parse: []}});
         }
     }
 }

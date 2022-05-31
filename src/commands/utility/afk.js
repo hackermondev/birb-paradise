@@ -24,7 +24,7 @@ class AfkCommand extends Command {
 
 		await this.setAFK(message.author, reason);
 
-		return message.reply({content: `Your AFK status has been set. ${reason}`, allowedMentions: {users: [message.author.id], roles: [], parse: []}});
+		return message.reply({content: `Your AFK status has been set. \`${reason}\``, allowedMentions: {users: [message.author.id], roles: [], parse: []}});
 	}
 
 	/**
