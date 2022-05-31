@@ -1,5 +1,5 @@
 const { Listener, Events } = require('@sapphire/framework');
-const { GuildMember } = require('discord.js');
+const { GuildMember, MessageEmbed } = require('discord.js');
 const {
     bpVerifiedRole,
     dividerPingRole
