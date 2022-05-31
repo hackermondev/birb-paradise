@@ -36,3 +36,5 @@ class AfkCommand extends Command {
 		await this.container.redis.hset('afk', user.id, reason);
 	}
 }
+
+module.exports = { AfkCommand };
