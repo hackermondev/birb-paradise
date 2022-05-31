@@ -18,6 +18,7 @@ class MessageCreateListener extends Listener {
     async run(message) {
         await this.updateMessageCount(message);
         await this.checkReactChannels(message);
+        await this.checkAFKStatus(message);
     }
 
     /**
@@ -96,6 +97,33 @@ class MessageCreateListener extends Listener {
             .react('👍')
             .then(message.react('👎'))
             .catch(() => {});
+    }
+
+    /**
+     * 
+     * @param { Message } message 
+     */
+    async checkAFKStatus(message) {
+        if (!this.container.utility.isBp(message.guild)) return;
+        if (message.author.bot) return;
+        if (message.system) return;
+        if (message.channel.type !== 'GUILD_TEXT') return;
+
+        const afk = await this.container.redis.hget('afk', message.author.id);
+
+        if (afk) {
+            await this.container.redis.hdel('afk', message.author.id);
+            message.reply('Welcome back!')
+        }
+
+        if (!message.mentions.members.size) return;
+        const mentioned = [...new Set(message.mentions.members.values())];
+        for (var i = 0; i < mentioned.length; ++i) {
+            const member = mentioned[i];
+            if (member.id === message.author.id) continue;
+            const afk = await this.container.redis.hget('afk', member.id);
+            if (afk) message.reply({content: `${member.user.tag} is currenly AFK: ${afk}`, allowedMentions: {users: [], roles: [], parse: []}});
+        }
     }
 }
 
