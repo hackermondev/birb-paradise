@@ -132,7 +132,7 @@ class Economy {
         const ids = data.split('|');
         for (var i = 0; i < ids.length; i++) {
             const id = ids[i];
-            const user = await container.client.users.fetch(id);
+            const user = await container.client.users.fetch(id).catch(() => null);
             if (!user) continue;
 
             const shopItems = await this.shop.getItems(id, guildID);
