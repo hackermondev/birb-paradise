@@ -18,8 +18,6 @@ class MessageCommandDeniedListener extends Listener {
      * @param { Message } message
      */
     async run(_error, { message }) {
-        console.log(_error);
-        console.log(_error.name);
         if (_error.precondition.name == 'Cooldown') {
             return message.channel.send({
                 embeds: [
@@ -31,7 +29,7 @@ class MessageCommandDeniedListener extends Listener {
                     ),
                 ],
             });
-        }
+        };
 
         if (message.deletable) await message.delete();
         else

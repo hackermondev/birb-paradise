@@ -10,6 +10,7 @@ class EconomyShop {
     }
 
     async _connect() {
+        if(this.connected) return;
         await this.db.connect();
         this.connected = true;
     }
@@ -123,6 +124,45 @@ class Economy {
         const item = multiplierItem[0];
         return item.multiplier;
     }
+
+    async fixEconomyExpiringBug(guildID) {
+        await this.shop._connect();
+        const data = await container.redis.get(`usersWithItemsExpiring`);
+        if(!data) return;
+        const ids = data.split('|');
+        for (var i = 0; i < ids.length; i++) {
+            const id = ids[i];
+            const user = await container.client.users.fetch(id);
+            if (!user) continue;
+
+            const shopItems = await this.shop.getItems(id, guildID);
+            const indexesToDelete = [];
+            const _ = shopItems.filter((i, index) => {
+                const expires = items.filter((itemFromConfig) => itemFromConfig.id == i.id && itemFromConfig.expires);
+                if(expires.length > 0) {
+                    indexesToDelete.push(index);
+                };
+
+                return false
+            }); 
+
+            for(var i = 0; i < indexesToDelete.length; i++) {
+                const index = indexesToDelete[i];
+                const role = items.filter((itemFromConfig) => itemFromConfig.id == shopItems[index].id)[0].role;
+                if(role) {
+                    const guild = await container.client.guilds.fetch(guildID);
+                    const member = await guild.members.fetch(user.id);
+                    await member.roles.remove(role);
+                };
+
+                shopItems.splice(index, 1);
+            };
+
+            await this.shop.setItems(id, guildID, shopItems);
+        };
+        
+    };
+
 }
 
 module.exports = { Economy };

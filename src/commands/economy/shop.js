@@ -250,9 +250,9 @@ class EconomyShopCommand extends Command {
                                 }
 
                                 if (item.expires) {
-                                    await container.redis?.append(
-                                        `usersWithItemsExpiring`,
-                                        `${interaction.user.id}|${message.guild.id}|${item.id},`
+                                    await container.redis?.set(
+                                        `usersWithItemsExpiring/${interaction.user.id}/${message.guild.id}/${item.id}/${new Date().getTime()}`,
+                                        '1',
                                     );
                                 }
 

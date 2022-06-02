@@ -9,6 +9,7 @@ class DeveloperPrecondition extends Precondition {
      * @returns
      */
     async messageRun(message) {
+        if (message.guild.id === testingServerID) return this.ok();
         if (!this.container.client.application.owner)
             await this.container.client.application.fetch();
         return message.author.id === this.container.client.application.owner.id

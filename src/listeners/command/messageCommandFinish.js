@@ -17,6 +17,7 @@ class MessageCommandFinishListener extends Listener {
      */
     run(message, command) {
         this.container.statcord.postCommand(command.name, message.author.id);
+
         this.container.logger.debug(
             `Command ${command.name} ran by ${message.member.user.tag}`
         );

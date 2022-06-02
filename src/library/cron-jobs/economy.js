@@ -5,31 +5,17 @@ container.redis?.del(`runningEconomyCronJob`);
 
 // Check expired shop items
 async function run() {
-    /*
-        usersWithItemsExpiring = "
-            userid|guildid|itemid,
-            963141789571756062|895515788126072842|giveawayclaimtimebypass,
-        "
-    */
-
     await container.redis?.set(`runningEconomyCronJob`, '1');
-    let usersWithItemsExpiringRaw = await container.redis?.get(
-        `usersWithItemsExpiring`
-    );
-    if (usersWithItemsExpiringRaw == null) usersWithItemsExpiringRaw = '';
-    let usersWithItemsExpiring = usersWithItemsExpiringRaw
-        .split(',')
-        .filter((a) => a != '');
+    let usersWithItemsExpiring = await container.redis?.keys(`usersWithItemsExpiring/**`);
 
     for (let len = 0; len < usersWithItemsExpiring.length; len++) {
         const u = usersWithItemsExpiring[len];
-        const user = u.split('|')[0];
-        const guildID = u.split('|')[1];
 
-        const guild = container.client.guilds.cache.get(guildID);
-        const discordUser = await container.client.users.fetch(user, {
-            cache: false,
-        });
+        const user = u.split('/')[1];
+        const guildID = u.split('/')[2];
+
+        const guild = await container.client.guilds.fetch(guildID);
+        const discordUser = await container.client.users.fetch(user);
 
         if (!discordUser || !guild) {
             continue;
@@ -43,7 +29,7 @@ async function run() {
 
         for (let index = 0; index < userItems.length; index++) {
             const ui = userItems[index];
-            if (ui.id == u.split('|')[2]) {
+            if (ui.id == u.split('/')[3]) {
                 const expires = items.filter((i) => i.id == ui.id)[0].expires;
                 if (
                     new Date().getTime() - new Date(ui.date).getTime() >=
@@ -65,7 +51,6 @@ async function run() {
         }
 
         if (indexOfItem == -1) continue;
-
         userItems.splice(indexOfItem, 1);
 
         await container.economy.shop.setItems(
@@ -73,15 +58,10 @@ async function run() {
             guildID,
             userItems
         );
-        usersWithItemsExpiring.splice(len, 1);
-    }
 
-    if (usersWithItemsExpiring.length == 0) {
-        await container.redis?.del(`usersWithItemsExpiring`);
-    } else {
-        await container.redis?.set(
-            `usersWithItemsExpiring`,
-            usersWithItemsExpiring.join(',')
+        await container.redis.del(u);
+        container.logger.info(
+            `Removed item "${u.split('/')[3]}" from user ${discordUser.tag}.`
         );
     }
 
