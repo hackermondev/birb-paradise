@@ -9,7 +9,7 @@
     "dev": "nodemon ."
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=17.0.0",
     "npm": ">=8.8.0"
   },
   "author": "Grav <grav4029@gmail.com>",

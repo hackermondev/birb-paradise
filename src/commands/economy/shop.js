@@ -348,6 +348,10 @@ class EconomyShopCommand extends Command {
                                 item.sellable
                                     ? `${item.sellCost} ${coinEmoji}`
                                     : `Cannot be sold`
+                            }\n**TRADEABLE** - ${
+                                item.tradeable
+                                    ? `Yes`
+                                    : `No`
                             }`
                         )
                         .setThumbnail(item.thumbnail)

@@ -68,13 +68,15 @@ Sentry.init({
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
-container.statcord = new Statcord.Client({
-    key: process.env.STATCORD_API_KEY,
-    client: client,
-    postCpuStatistics: true,
-    postMemStatistics: true,
-    postNetworkStatistics: true,
-});
+if(process.env['STATCORD_API_KEY']) {
+    container.statcord = new Statcord.Client({
+        key: process.env.STATCORD_API_KEY,
+        client: client,
+        postCpuStatistics: true,
+        postMemStatistics: true,
+        postNetworkStatistics: true,
+    });
+}
 
 container.economy = new Economy();
 require('./library/cron-jobs');

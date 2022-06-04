@@ -65,6 +65,33 @@ class EconomyShop {
         return itemsTheyHave.length > 0;
     }
 
+
+    async removeItems(userID, guildID, itemID, amount=1) {
+        if (!this.connected) await this._connect();
+        const n = `userData.${userID}.${guildID}.shopItems`;
+
+        // Doing this so it puts the user in the database if they don't exist.
+        await this.getData(userID, guildID);
+
+        const userItems = await this.db.get(n);
+        const indexes = [];
+        let a = 0;
+
+        for(var i = 0; i < userItems.length; i++) {
+            if(userItems[i].id == itemID && a < amount) {
+                indexes.push(i);
+                a++;
+            };
+        };
+
+        for(var i = 0; i < indexes.length; i++) {
+            userItems.splice(indexes[i], 1);
+        };
+
+        await this.db.set(n, userItems);
+        return true;
+    }
+
     async addItems(userID, guildID, ...data) {
         if (!this.connected) await this._connect();
         const n = `userData.${userID}.${guildID}.shopItems`;
@@ -125,44 +152,19 @@ class Economy {
         return item.multiplier;
     }
 
-    async fixEconomyExpiringBug(guildID) {
-        await this.shop._connect();
-        const data = await container.redis.get(`usersWithItemsExpiring`);
-        if(!data) return;
-        const ids = data.split('|');
-        for (var i = 0; i < ids.length; i++) {
-            const id = ids[i];
-            const user = await container.client.users.fetch(id).catch(() => null);
-            if (!user) continue;
+    convertTextToString(text) {
+        if (typeof text != 'string') return 0;
 
-            const shopItems = await this.shop.getItems(id, guildID);
-            const indexesToDelete = [];
-            const _ = shopItems.filter((i, index) => {
-                const expires = items.filter((itemFromConfig) => itemFromConfig.id == i.id && itemFromConfig.expires);
-                if(expires.length > 0) {
-                    indexesToDelete.push(index);
-                };
+        const number = parseInt(text);
+        if (isNaN(number)) return 0;
 
-                return false
-            }); 
+        const last = text.slice(-1);
+        if (last == 'k') return number * 1000;
+        if (last == 'm') return number * 1000000;
+        if (last == 'b') return number * 1000000000;
 
-            for(var i = 0; i < indexesToDelete.length; i++) {
-                const index = indexesToDelete[i];
-                const role = items.filter((itemFromConfig) => itemFromConfig.id == shopItems[index].id)[0].role;
-                if(role) {
-                    const guild = await container.client.guilds.fetch(guildID);
-                    const member = await guild.members.fetch(user.id);
-                    await member.roles.remove(role);
-                };
-
-                shopItems.splice(index, 1);
-            };
-
-            await this.shop.setItems(id, guildID, shopItems);
-        };
-        
-    };
-
+        return number;
+    }
 }
 
 module.exports = { Economy };

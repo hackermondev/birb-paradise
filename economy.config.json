@@ -11,6 +11,7 @@
             "role": null,
             "buyable": true,
             "sellable": true,
+            "tradeable": true,
             "buyingCost": 200,
             "sellCost": 100
         },
@@ -25,6 +26,7 @@
             "role": null,
             "buyable": true,
             "sellable": true,
+            "tradeable": true,
             "buyingCost": 500,
             "sellCost": 100
         },
@@ -38,6 +40,7 @@
             "role": ["891293531455496202"],
             "buyable": false,
             "sellable": false,
+            "tradeable": false,
             "sellCost": 999999999999999999999999999999999999999
         },
         {
@@ -49,6 +52,7 @@
             "role": null,
             "buyable": true,
             "sellable": false,
+            "tradeable": false,
             "buyingCost": 100000,
             "maxLimit": 1
         },
@@ -62,6 +66,7 @@
             "role": ["976211740146692136"],
             "buyable": true,
             "sellable": false,
+            "tradeable": false,
             "buyingCost": 5000,
             "expires": 1.728e+8
         },
@@ -75,6 +80,7 @@
             "role": ["976211794160943164"],
             "buyable": true,
             "sellable": false,
+            "tradeable": false,
             "buyingCost": 5000,
             "expires": 1.728e+8
         },
@@ -88,6 +94,7 @@
             "type": "Multipliers",
             "buyable": true,
             "sellable": false,
+            "tradeable": false,
             "multiplier": 2,
             "buyingCost": 20000,
             "maxLimit": 1,
@@ -101,6 +108,7 @@
             "type": "Multipliers",
             "buyable": true,
             "sellable": false,
+            "tradeable": false,
             "multiplier": 3,
             "buyingCost": 50000,
             "maxLimit": 1,
@@ -114,6 +122,7 @@
             "type": "Multipliers",
             "buyable": true,
             "sellable": false,
+            "tradeable": false,
             "buyingCost": 1000000,
             "multiplier": 5,
             "maxLimit": 1,
@@ -130,6 +139,7 @@
             "type": "Animals",
             "buyable": false,
             "sellable": true,
+            "tradeable": true,
             "emoji": ":fish:",
             "sellCost": 300
         },
@@ -142,6 +152,7 @@
             "type": "Animals",
             "buyable": false,
             "sellable": true,
+            "tradeable": true,
             "emoji": ":fish:",
             "sellCost": 1000
         },
@@ -154,6 +165,7 @@
             "type": "Animals",
             "buyable": false,
             "sellable": true,
+            "tradeable": true,
             "emoji": ":fish:",
             "sellCost": 2000
         },
@@ -167,6 +179,7 @@
             "type": "Animals",
             "buyable": false,
             "sellable": true,
+            "tradeable": true,
             "emoji": ":deer:",
             "sellCost": 50
         }

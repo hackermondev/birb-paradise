@@ -21,7 +21,7 @@ class ReadyListener extends Listener {
     async run(client) {
         this.container.logger.info(`Logged in as ${client.user.tag}!`);
         this.container.logger.info(`Starting statcord auto-posting.`);
-        this.container.statcord.autopost();
+        this.container.statcord?.autopost();
         this.container.logger.info(`Pinging...`);
         this.container.logger.info(
             `Ping acknowledged by the API. ${client.ws.ping} ms. Bot is online.\n\n`
