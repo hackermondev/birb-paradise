@@ -1,6 +1,6 @@
 const { Listener, Events } = require("@sapphire/framework");
 const { GuildMember } = require("discord.js");
-const { memberLeaveChannel } = require("../../config.json");
+const { memberLeaveChannel } = require("../../../config.json");
 
 class GuildMemberRemoveMsg extends Listener {
   constructor(context, options) {
