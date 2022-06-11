@@ -33,7 +33,7 @@
   "homepage": "https://github.com/Birb-Paradise/Birb-Helper#readme",
   "description": "A custom bot for the server Birb Paradise.",
   "dependencies": {
-    "@discordjs/builders": "^0.13.0",
+    "@discordjs/builders": "^0.15.0",
     "@psibean/discord.js-pagination": "^4.0.5",
     "@quick.eco/mongo": "^1.0.4",
     "@sapphire/discord-utilities": "^2.8.0",
@@ -59,7 +59,7 @@
     "velocity-api": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "8.15.0",
+    "eslint": "8.17.0",
     "nodemon": "2.0.16",
     "prettier": "2.6.2"
   }
