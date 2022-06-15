@@ -4,6 +4,13 @@
     "config:base",
     "group:allNonMajor"
   ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true
+    }
+  ],
   "labels": ["dependencies"],
   "ignoreDeps": ["node"]
 }
