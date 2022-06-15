@@ -1,7 +1,7 @@
 const { Listener, Events } = require('@sapphire/framework');
 const { Message, MessageEmbed } = require('discord.js');
 const tenorDomains = ['https://tenor.com', 'https://c.tenor.com'];
-const { linkAutomodIgnoredChannels } = require('../../../config.json');
+const { linkAutomodIgnoredChannels, linkAutomodBypassRoles } = require('../../../config.json');
 const linkRegex =
     /https?:\/\/(www\.)?([-a-zA-Z0-9@:%._+~#=]{1,256})\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/g;
 
@@ -26,6 +26,7 @@ class LinkAutomodListener extends Listener {
         if (tenorDomains.some((domain) => message.content.includes(domain)))
             // return to be handled by the gif automod
             return;
+        if (linkAutomodBypassRoles.some((role) => message.member.roles.cache.has(role))) return;
 
         if (message.deletable) {
             await message.delete();
