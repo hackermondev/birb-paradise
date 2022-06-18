@@ -10,7 +10,7 @@ class EconomyShop {
     }
 
     async _connect() {
-        if(this.connected) return;
+        if (this.connected) return;
         await this.db.connect();
         this.connected = true;
     }
@@ -65,8 +65,7 @@ class EconomyShop {
         return itemsTheyHave.length > 0;
     }
 
-
-    async removeItems(userID, guildID, itemID, amount=1) {
+    async removeItems(userID, guildID, itemID, amount = 1) {
         if (!this.connected) await this._connect();
         const n = `userData.${userID}.${guildID}.shopItems`;
 
@@ -77,16 +76,16 @@ class EconomyShop {
         const indexes = [];
         let a = 0;
 
-        for(var i = 0; i < userItems.length; i++) {
-            if(userItems[i].id == itemID && a < amount) {
+        for (var i = 0; i < userItems.length; i++) {
+            if (userItems[i].id == itemID && a < amount) {
                 indexes.push(i);
                 a++;
-            };
-        };
+            }
+        }
 
-        for(var i = 0; i < indexes.length; i++) {
+        for (var i = 0; i < indexes.length; i++) {
             userItems.splice(indexes[i], 1);
-        };
+        }
 
         await this.db.set(n, userItems);
         return true;

@@ -1,4 +1,9 @@
-import { ApplicationCommandRegistry, ILogger, SapphireClient, StoreRegistry } from '@sapphire/framework';
+import {
+    ApplicationCommandRegistry,
+    ILogger,
+    SapphireClient,
+    StoreRegistry,
+} from '@sapphire/framework';
 import Redis, { RedisCommander } from 'ioredis';
 import { Leaderboard } from '../leaderboard';
 import { Perspective } from '../perspective';
@@ -6,7 +11,7 @@ import { Tasks } from '../tasks';
 import { Utility } from '../utility';
 import { Leaderboard } from '../leaderboard';
 import { Economy } from '../economy';
-import Statcord from "statcord.js" 
+import Statcord from 'statcord.js';
 
 declare module '@sapphire/pieces' {
     interface Container {
@@ -19,7 +24,7 @@ declare module '@sapphire/pieces' {
         statcord: Statcord.Client;
         tasks: Tasks;
         stores: StoreRegistry;
-	    logger: ILogger;
-	    applicationCommandRegistries: ApplicationCommandRegistry;
+        logger: ILogger;
+        applicationCommandRegistries: ApplicationCommandRegistry;
     }
 }

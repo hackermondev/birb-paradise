@@ -9,8 +9,7 @@ class EconomyBegCommand extends Command {
         super(context, {
             ...options,
             name: 'hunt',
-            description:
-                'Hunt for animals. Requires you to have a rifle.',
+            description: 'Hunt for animals. Requires you to have a rifle.',
         });
     }
 

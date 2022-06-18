@@ -6,10 +6,7 @@ const {
     PaginatorEvents,
     ActionRowPaginator,
 } = require('@psibean/discord.js-pagination');
-const {
-    Message,
-    MessageEmbed,
-} = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 
 class EconomyShopCommand extends Command {
     constructor(context, options) {
@@ -251,8 +248,12 @@ class EconomyShopCommand extends Command {
 
                                 if (item.expires) {
                                     await container.redis?.set(
-                                        `usersWithItemsExpiring/${interaction.user.id}/${message.guild.id}/${item.id}/${new Date().getTime()}`,
-                                        '1',
+                                        `usersWithItemsExpiring/${
+                                            interaction.user.id
+                                        }/${message.guild.id}/${
+                                            item.id
+                                        }/${new Date().getTime()}`,
+                                        '1'
                                     );
                                 }
 
@@ -348,11 +349,7 @@ class EconomyShopCommand extends Command {
                                 item.sellable
                                     ? `${item.sellCost} ${coinEmoji}`
                                     : `Cannot be sold`
-                            }\n**TRADEABLE** - ${
-                                item.tradeable
-                                    ? `Yes`
-                                    : `No`
-                            }`
+                            }\n**TRADEABLE** - ${item.tradeable ? `Yes` : `No`}`
                         )
                         .setThumbnail(item.thumbnail)
                         .addField(`Rarity`, ` \`Rare\` `, true)

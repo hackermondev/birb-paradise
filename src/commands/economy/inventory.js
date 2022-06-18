@@ -44,8 +44,8 @@ class EconomyInventoryCommand extends Command {
                 itemCategories.push(item.type);
             }
         }
-        
-        if(itemCategories.length < 1) {
+
+        if (itemCategories.length < 1) {
             return message.reply({
                 embeds: [
                     ErrorEmbed(
@@ -54,7 +54,7 @@ class EconomyInventoryCommand extends Command {
                     ),
                 ],
             });
-        };
+        }
 
         let currentItemCategory = itemCategories[0];
         const buildMessageActionRows = () => {
@@ -127,9 +127,7 @@ class EconomyInventoryCommand extends Command {
 
                     const newEmbed = new MessageEmbed()
                         .setTitle(
-                            `${
-                                message.author.tag
-                            }'s inventory - ${newPageIdentifier}`
+                            `${message.author.tag}'s inventory - ${newPageIdentifier}`
                         )
                         .setAuthor({
                             name: message.author.username,
@@ -222,7 +220,7 @@ class EconomyInventoryCommand extends Command {
         };
 
         const endHandler = async (error) => {
-            if(m) await m.edit({ components: [] });
+            if (m) await m.edit({ components: [] });
             if (error && typeof error == 'string') {
                 message.reply(error);
             }

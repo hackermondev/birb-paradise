@@ -6,7 +6,9 @@ container.redis?.del(`runningEconomyCronJob`);
 // Check expired shop items
 async function run() {
     await container.redis?.set(`runningEconomyCronJob`, '1');
-    let usersWithItemsExpiring = await container.redis?.keys(`usersWithItemsExpiring/**`);
+    let usersWithItemsExpiring = await container.redis?.keys(
+        `usersWithItemsExpiring/**`
+    );
 
     for (let len = 0; len < usersWithItemsExpiring.length; len++) {
         const u = usersWithItemsExpiring[len];

@@ -100,8 +100,8 @@ class MessageCreateListener extends Listener {
     }
 
     /**
-     * 
-     * @param { Message } message 
+     *
+     * @param { Message } message
      */
     async checkAFKStatus(message) {
         if (!this.container.utility.isBp(message.guild)) return;
@@ -124,7 +124,15 @@ class MessageCreateListener extends Listener {
             const member = mentioned[i];
             if (member.id === message.author.id) continue;
             const checkAFK = await this.container.redis.hget('afk', member.id);
-            if (checkAFK) message.reply({content: `${member.user.tag} is currently AFK: ${afk}`, allowedMentions: {users: [message.author.id], roles: [], parse: []}});
+            if (checkAFK)
+                message.reply({
+                    content: `${member.user.tag} is currently AFK: ${afk}`,
+                    allowedMentions: {
+                        users: [message.author.id],
+                        roles: [],
+                        parse: [],
+                    },
+                });
         }
     }
 }

@@ -121,7 +121,7 @@ class HelpCommand extends Command {
             .setColor('BLUE')
             .setTitle(`Information for ${cmd.name}`)
             .setDescription(commandsData.join(' '));
-        
+
         return message.reply({ embeds: [commandHelpEmbed] });
     }
 }
