@@ -1,0 +1,22 @@
+name: Prettier formatting check
+
+on:
+  push:
+  pull_request_review:
+  workflow_dispatch:
+
+jobs:
+  prettier:
+    if: "!contains(github.event.head_commit.message, '[skip prettier]')"
+    name: Run Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Run Prettier on code and push
+        uses: creyD/prettier_action@v4.2
+        with: 
+          prettier_options: -w ./src/**/*
+          commit_message: "chore[auto]: run prettier on code"
