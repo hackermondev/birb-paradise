@@ -59,8 +59,8 @@
     "velocity-api": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "8.17.0",
+    "eslint": "8.18.0",
     "nodemon": "2.0.16",
-    "prettier": "2.7.0"
+    "prettier": "2.7.1"
   }
 }
