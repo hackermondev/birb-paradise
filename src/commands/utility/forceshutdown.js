@@ -7,7 +7,8 @@ class ForceShutdownCommand extends Command {
             ...options,
             name: 'forceshutdown',
             preconditions: ['Admin'],
-            description: "Forcefully shuts down Birb Helper in the event of an issue(it won't restart).",
+            description:
+                "Forcefully shuts down Birb Helper in the event of an issue(it won't restart).",
         });
     }
 

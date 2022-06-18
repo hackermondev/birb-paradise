@@ -8,8 +8,7 @@ class EconomyLeaderboardCommand extends Command {
             ...options,
             name: 'ecoleaderboard',
             aliases: ['moneyleaders', 'moneyleaderboard'],
-            description:
-                'View the top 15 richest users in the server.',
+            description: 'View the top 15 richest users in the server.',
         });
     }
 
@@ -31,7 +30,7 @@ class EconomyLeaderboardCommand extends Command {
         console.log(data);
 
         const leaderboard = data.map((item, index) => {
-          const parsedKey = Util.parseKey(item.ID)
+            const parsedKey = Util.parseKey(item.ID);
 
             const data = {
                 position: index + 1,
@@ -41,7 +40,7 @@ class EconomyLeaderboardCommand extends Command {
             };
 
             return data;
-        })
+        });
 
         const emojiLibrary = {
             0: '🥇',
@@ -49,14 +48,22 @@ class EconomyLeaderboardCommand extends Command {
             2: '🥉',
             3: '🔹',
             4: '🔹',
-        }
+        };
 
-        const text = (await Promise.all(leaderboard.map(async (user, index) => {
-            const emoji = emojiLibrary[index];
+        const text = (
+            await Promise.all(
+                leaderboard.map(async (user, index) => {
+                    const emoji = emojiLibrary[index];
 
-            const u = await this.container.client.users.fetch(user.user);
-            return `${emoji} ${u.tag} - **${user.money.toLocaleString()}**`;
-        }))).join('\n');
+                    const u = await this.container.client.users.fetch(
+                        user.user
+                    );
+                    return `${emoji} ${
+                        u.tag
+                    } - **${user.money.toLocaleString()}**`;
+                })
+            )
+        ).join('\n');
 
         const embed = new MessageEmbed()
             .setTitle(`Richest Users in ${message.guild.name}`)

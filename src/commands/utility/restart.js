@@ -28,7 +28,7 @@ class RestartCommand extends Command {
             'restart',
             `${message.channel.id}:${Date.now().toString()}`
         );
-        
+
         return process.exit();
     }
 }

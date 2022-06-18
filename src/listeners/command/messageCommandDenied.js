@@ -29,7 +29,7 @@ class MessageCommandDeniedListener extends Listener {
                     ),
                 ],
             });
-        };
+        }
 
         if (message.deletable) await message.delete();
         else

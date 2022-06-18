@@ -71,7 +71,9 @@ class UnLockdownCommand extends Command {
             .get(mainChannel)
             .send({ embeds: [serverUnlockEmbed] });
         message.channel.send(
-            `The server has been unlocked. Process took ${unlockTime} ${errors.length ? `\n${errors.join('\n')}` : ''}`
+            `The server has been unlocked. Process took ${unlockTime} ${
+                errors.length ? `\n${errors.join('\n')}` : ''
+            }`
         );
     }
 }

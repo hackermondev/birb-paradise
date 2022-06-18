@@ -16,7 +16,7 @@ const {
 } = require('../../config.json');
 const { isNullOrUndefined } = require('@sapphire/utilities');
 class Utility {
-    constructor() { }
+    constructor() {}
 
     /**
      * A function that returns if the member is a staff member
@@ -135,17 +135,14 @@ class Utility {
         );
     }
 
-
     /**
- *  A function that formats coins
- *  100000 -> 10,000 
- *
- * @param { Number } coins
- */
+     *  A function that formats coins
+     *  100000 -> 10,000
+     *
+     * @param { Number } coins
+     */
     formatCoins(coins) {
-        return `${coins
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+        return `${coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
     }
 }
 

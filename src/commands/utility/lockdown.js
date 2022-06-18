@@ -78,7 +78,9 @@ class LockdownCommand extends Command {
             .get(mainChannel)
             .send({ embeds: [serverLockEmbed] });
         return message.channel.send(
-            `The server has been locked down. Process took ${lockTime} ${errors.length ? `\n${errors.join('\n')}` : ''}`
+            `The server has been locked down. Process took ${lockTime} ${
+                errors.length ? `\n${errors.join('\n')}` : ''
+            }`
         );
     }
 }

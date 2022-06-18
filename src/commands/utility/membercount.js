@@ -11,9 +11,9 @@ class MemberCountCommand extends Command {
     }
 
     /**
-     * 
-     * @param { Message } message 
-     * @returns 
+     *
+     * @param { Message } message
+     * @returns
      */
     async messageRun(message) {
         return message.reply(

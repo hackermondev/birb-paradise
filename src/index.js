@@ -68,7 +68,7 @@ Sentry.init({
     integrations: [new Sentry.Integrations.Http({ tracing: true })],
 });
 
-if(process.env['STATCORD_API_KEY']) {
+if (process.env['STATCORD_API_KEY']) {
     container.statcord = new Statcord.Client({
         key: process.env.STATCORD_API_KEY,
         client: client,
