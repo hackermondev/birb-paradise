@@ -59,7 +59,7 @@
     "velocity-api": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "8.19.0",
+    "eslint": "8.20.0",
     "nodemon": "2.0.19",
     "prettier": "2.7.1"
   }
