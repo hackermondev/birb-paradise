@@ -14,10 +14,10 @@
     ts-mixer "^6.0.1"
     tslib "^2.3.1"
 
-"@discordjs/builders@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.npmjs.org/@discordjs/builders/-/builders-0.16.0.tgz"
-  integrity sha512-9/NCiZrLivgRub2/kBc0Vm5pMBE5AUdYbdXsLu/yg9ANgvnaJ0bZKTY8yYnLbsEc/LYUP79lEIdC73qEYhWq7A==
+"@discordjs/builders@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@discordjs/builders/-/builders-1.0.0.tgz"
+  integrity sha512-8y91ZfpOHubiGJu5tVyGI9tQCEyHZDTeqUWVcJd0dq7B96xIf84S0L4fwmD1k9zTe1eqEFSk0gc7BpY+FKn7Ww==
   dependencies:
     "@sapphire/shapeshift" "^3.5.1"
     discord-api-types "^0.36.2"
